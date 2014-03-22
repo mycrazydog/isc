@@ -1,4 +1,4 @@
-## Laravel 4 - Starter Site
+## Laravel 4 Bootstrap Starter Site
 
 This is a Laravel 4 Starter Site and it will help you getting started with Laravel 4. It's based off the great [Laravel Starter Kit](https://brunogaspar/laravel4-starter-kit) from [brunogaspar](https://brunogaspar/laravel4-starter-kit), with some additional refinements and a cleaner UX.
 
