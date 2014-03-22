@@ -14,7 +14,7 @@ env:
 
 # execute any number of scripts before the test run, custom env's are available as variables
 before_script:
-  - if [[ "$DB" == "mysql" ]]; then mysql -e "create database IF NOT EXISTS laravel_bootstrap;" -utravis; fi
+  - if [[ "$DB" == "mysql" ]]; then mysql -e "create database IF NOT EXISTS laravel4_testing;" -utravis; fi
   - curl -s http://getcomposer.org/installer | php
   - php composer.phar self-update
   - php composer.phar install --prefer-source --no-interaction --dev
