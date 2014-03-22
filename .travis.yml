@@ -17,7 +17,11 @@ env:
 before_script:
   - composer self-update
   - php composer.phar install --prefer-source --no-interaction --dev
-  - php artisan app:install
+  - php artisan key:generate
+  - php artisan migrate:install
+  - php artisan migrate -package cartalyst/sentry
+  - php artisan migrate
+  - db:seed
   - if [[ "$DB" == "mysql" ]]; then mysql -e "create database IF NOT EXISTS laravel_bootstrap;" -utravis; fi
 
 # omitting "script:" will default to phpunit
