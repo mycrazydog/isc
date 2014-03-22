@@ -22,7 +22,7 @@ before_script:
   - php artisan migrate:install
   - php artisan migrate --package cartalyst/sentry
   - php artisan migrate
-  - db:seed
+  - php artisan db:seed
 
 # omitting "script:" will default to phpunit
 # use the $DB env variable to determine the phpunit.xml to use
