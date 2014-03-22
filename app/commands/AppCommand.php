@@ -289,6 +289,7 @@ class AppCommand extends Command {
 			'last_name'  => 'Doe',
 			'email'      => 'john.doe@example.com',
 			'password'   => 'johndoe',
+			'gravatar'   => 'john.doe@example.com',
 			'activated'  => 1,
 		);
 
