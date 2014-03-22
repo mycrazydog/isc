@@ -1,6 +1,6 @@
-## Laravel 4 - Starter Kit
+## Laravel 4 - Starter Site
 
-This is a Laravel 4 Starter Kit and it will help you getting started with Laravel 4.
+This is a Laravel 4 Starter Kit and it will help you getting started with Laravel 4. It's based off the [great Laravel Starter Kit](https://brunogaspar/laravel4-starter-kit) from [brunogaspar](https://brunogaspar/laravel4-starter-kit), with some additional refinements and a cleaner UX.
 
 It includes examples on how to use the framework itself and how to use some
 packages, like the awesome [Sentry 2](https://github.com/cartalyst/sentry) package.
