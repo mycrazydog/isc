@@ -22,7 +22,7 @@
 				<p></p>
 				<p>
 					<i class="icon-user"></i> by
-					@if ($post->author->first_name)
+					@if ($post->author)
 					 	{{ $post->author->first_name }}
 					 @else
 					 	discontinued user
