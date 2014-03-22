@@ -4,9 +4,6 @@ language: php
 # list any PHP version you want to test against
 php:
   # using major version aliases
-
-  # aliased to 5.2.17
-  - 5.2
   # aliased to a recent 5.3.x version
   - 5.3
   # aliased to a recent 5.4.x version
@@ -20,7 +17,7 @@ env:
 
 # execute any number of scripts before the test run, custom env's are available as variables
 before_script:
-  - if [[ "$DB" == "mysql" ]]; then mysql -e "create database IF NOT EXISTS laravel-starter-db;" -ularavel-starter; fi
+  - if [[ "$DB" == "mysql" ]]; then mysql -e "create database IF NOT EXISTS laravel-starter-db;" -uroot; fi
 
 # omitting "script:" will default to phpunit
 # use the $DB env variable to determine the phpunit.xml to use
