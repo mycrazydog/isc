@@ -11,30 +11,41 @@ Contact us ::
 <div class="page-header">
 	<h3>Contact us</h3>
 </div>
-<form method="post" action="">
-	<!-- CSRF Token -->
-	<input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
-	<fieldset>
-		<!-- Name -->
-		<div  class="control-group{{ $errors->first('name', ' error') }}">
-			<input type="text" id="name" name="name" class="input-block-level" placeholder="Name">
+<form class="form-horizontal" role="form" method="post" action="">
+<!-- CSRF Token -->
+<input type="hidden" name="_token" value="{{ csrf_token() }}" />
+
+	<div class="form-group {{ $errors->first('name', 'has-error') }}">
+		<label for="name" class="col-sm-2 control-label">Name</label>
+			<div class="col-sm-10">
+			<input type="text" class="form-control" id="name" placeholder="Your Name">
 			{{ $errors->first('name', '<span class="help-block">:message</span>') }}
-		</div>
+			</div>
+	</div>
 
-		<!-- Email -->
-		<div  class="control-group{{ $errors->first('email', ' error') }}">
-			<input type="text" id="email" name="email" class="input-block-level" placeholder="Email">
+  	<div class="form-group {{ $errors->first('email', 'has-error') }}">
+		<label for="email" class="col-sm-2 control-label">Email</label>
+			<div class="col-sm-10">
+			<input type="email" id="email" name="email" class="form-control" placeholder="Email">
 			{{ $errors->first('email', '<span class="help-block">:message</span>') }}
-		</div>
-		<!-- Description -->
-		<div  class="control-group{{ $errors->first('description', ' error') }}">
-			<textarea rows="4" id="description" name="description" class="input-block-level" placeholder="Description"></textarea>
-			{{ $errors->first('description', '<span class="help-block">:message</span>') }}
-		</div>
+			</div>
+	</div>
 
-		<!-- Form actions -->
-		<button type="submit" class="btn btn-warning pull-right">Submit</button>
-	</fieldset>
+	<div class="form-group {{ $errors->first('description', 'has-error') }}">
+			<label for="description" class="col-sm-2 control-label">Description</label>
+			<div class="col-sm-10">
+			<textarea rows="4" id="description" name="description" class="form-control" placeholder="Type your message here"></textarea>
+			{{ $errors->first('description', '<span class="help-block">:message</span>') }}
+			</div>
+	</div>
+
+	<div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <button type="submit" class="btn btn-default">Submit</button>
+    </div>
+  </div>
+
+
 </form>
 @stop
