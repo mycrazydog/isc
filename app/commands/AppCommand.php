@@ -290,6 +290,7 @@ class AppCommand extends Command {
 			'email'      => 'john.doe@example.com',
 			'password'   => 'johndoe',
 			'gravatar'   => 'john.doe@example.com',
+			'permissions'   => '{"admin":1,"user":1}',
 			'activated'  => 1,
 		);
 
