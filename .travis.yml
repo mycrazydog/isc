@@ -20,7 +20,7 @@ before_script:
   - php composer.phar install --prefer-source --no-interaction --dev
   - php artisan key:generate
   - php artisan migrate:install
-  - php artisan migrate -package cartalyst/sentry
+  - php artisan migrate --package cartalyst/sentry
   - php artisan migrate
   - db:seed
 
