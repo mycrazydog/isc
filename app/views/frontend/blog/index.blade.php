@@ -2,6 +2,7 @@
 
 {{-- Page content --}}
 @section('content')
+@if (count($posts))
 @foreach ($posts as $post)
 <div class="row">
 	<div class="span8">
@@ -37,4 +38,8 @@
 @endforeach
 
 {{ $posts->links() }}
+
+@else
+<h1>Oops. That page number is invalid.</h1>
+@endif
 @stop
