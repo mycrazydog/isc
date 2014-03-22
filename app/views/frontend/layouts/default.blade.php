@@ -6,7 +6,7 @@
 		<meta charset="utf-8" />
 		<title>
 			@section('title')
-			Bootstrap
+			Project Name
 			@show
 		</title>
 		<meta name="keywords" content="your, awesome, keywords, here" />
@@ -19,13 +19,14 @@
 
 		<!-- CSS
 		================================================== -->
-		<link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
+		<link href="{{ asset('assets/css/bootstrap.css') }}" rel="stylesheet">
 
 		<style>
 		@section('styles')
-		body {
-			padding: 10px 0;
-		}
+		body { padding-top: 70px; }
+			@media screen and (max-width: 768px) {
+				body { padding-top: 0px; }
+			}
 		@show
 		</style>
 
@@ -44,65 +45,81 @@
 	</head>
 
 	<body>
-		<!-- Container -->
-		<div class="container">
-			<!-- Navbar -->
-			<div class="navbar navbar-inverse">
-				<div class="navbar-inner">
-					<div class="container">
-						<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-							<span class="icon-bar"></span>
-						</a>
 
-						<div class="nav-collapse collapse">
-							<ul class="nav">
-								<li {{ (Request::is('/') ? 'class="active"' : '') }}><a href="{{ route('home') }}"><i class="icon-home icon-white"></i> Home</a></li>
-								<li {{ (Request::is('about-us') ? 'class="active"' : '') }}><a href="{{ URL::to('about-us') }}"><i class="icon-file icon-white"></i> About us</a></li>
-								<li {{ (Request::is('contact-us') ? 'class="active"' : '') }}><a href="{{ URL::to('contact-us') }}"><i class="icon-file icon-white"></i> Contact us</a></li>
-							</ul>
+	<!-- Fixed navbar -->
+    <div class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">Project name</a>
+        </div>
+        <div class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+			<li {{ (Request::is('about-us') ? 'class="active"' : '') }}><a href="{{ URL::to('about-us') }}">About us</a></li>
+			<li {{ (Request::is('contact-us') ? 'class="active"' : '') }}><a href="{{ URL::to('contact-us') }}">Contact us</a></li>
 
-							<ul class="nav pull-right">
-								@if (Sentry::check())
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+           @if (Sentry::check())
 
-								<li class="dropdown{{ (Request::is('account*') ? ' active' : '') }}">
-									<a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="{{ route('account') }}">
-										Welcome, {{ Sentry::getUser()->first_name }}
-										<b class="caret"></b>
-									</a>
-									<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-										@if(Sentry::getUser()->hasAccess('admin'))
-										<li><a href="{{ route('admin') }}"><i class="icon-cog"></i> Administration</a></li>
-										@endif
-										<li{{ (Request::is('account/profile') ? ' class="active"' : '') }}><a href="{{ route('profile') }}"><i class="icon-user"></i> Your profile</a></li>
-										<li class="divider"></li>
-										<li><a href="{{ route('logout') }}"><i class="icon-off"></i> Logout</a></li>
-									</ul>
-								</li>
-								@else
-								<li {{ (Request::is('auth/signin') ? 'class="active"' : '') }}><a href="{{ route('signin') }}">Sign in</a></li>
-								<li {{ (Request::is('auth/signup') ? 'class="active"' : '') }}><a href="{{ route('signup') }}">Sign up</a></li>
-								@endif
-							</ul>
-						</div>
-					</div>
-				</div>
-			</div>
+			<li class="dropdown-toggle{{ (Request::is('account*') ? ' active' : '') }}" data-toggle="dropdown">
+				<a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="{{ route('account') }}">
+					Welcome, {{ Sentry::getUser()->first_name }}
+					<b class="caret"></b>
+				</a>
+				<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+					<li{{ (Request::is('account/profile') ? ' class="active"' : '') }}><a href="{{ route('profile') }}"><i class="icon-user"></i> Your profile</a></li>
+					<li class="divider"></li>
+					<li><a href="{{ route('logout') }}"><i class="icon-off"></i> Logout</a></li>
+				</ul>
+			</li>
+			<li{{ (Request::is('admin/blogs*') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/blogs') }}"><i class="icon-list-alt icon-white"></i> Blog Posts</a></li>
 
-			<!-- Notifications -->
-			@include('frontend/notifications')
 
-			<!-- Content -->
-			@yield('content')
+			<li class="dropdown{{ (Request::is('admin/users*|admin/groups*') ? ' active' : '') }}">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="{{ URL::to('admin/users') }}">
+					<i class="icon-user icon-white"></i> Users <span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li{{ (Request::is('admin/users*') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/users') }}"><i class="icon-user"></i> Users</a></li>
+					<li{{ (Request::is('admin/groups*') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/groups') }}"><i class="icon-user"></i> Groups</a></li>
+				</ul>
+			</li>
 
-			<hr />
+			@else
+			<li {{ (Request::is('auth/signin') ? 'class="active"' : '') }}><a href="{{ route('signin') }}">Sign in</a></li>
+			<li {{ (Request::is('auth/signup') ? 'class="active"' : '') }}><a href="{{ route('signup') }}">Sign up</a></li>
+			@endif
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </div>
 
-			<!-- Footer -->
-			<footer>
-				<p>&copy; Company {{ date('Y') }}</p>
-			</footer>
-		</div>
+<!-- Begin page content -->
+
+<div class="container">
+
+
+      <!-- Notifications -->
+		@include('frontend/notifications')
+		<!-- Content -->
+		@yield('content')
+
+	</div>
+
+
+
+ 	<div id="footer">
+      <div class="container">
+        <p class="text-muted">Place sticky footer content here.</p>
+      </div>
+    </div>
+
 
 		<!-- Javascripts
 		================================================== -->
