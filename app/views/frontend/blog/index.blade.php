@@ -21,7 +21,12 @@
 		  <div class="media-footer">
 				<p></p>
 				<p>
-					<i class="icon-user"></i> by <col-lg- class="muted">{{ $post->author->first_name }}</col-lg->
+					<i class="icon-user"></i> by
+					@if ($post->author->first_name)
+					 	{{ $post->author->first_name }}
+					 @else
+					 	discontinued user
+					 @endif
 					| <i class="icon-calendar"></i> {{ $post->created_at->diffForHumans() }}
 					| <i class="icon-comment"></i> <a href="{{ $post->url() }}#comments">Comments <span class="badge">{{ $post->comments()->count() }}</span></a>
 				</p>
