@@ -78,6 +78,8 @@
 					<li><a href="{{ route('logout') }}"><i class="icon-off"></i> Logout</a></li>
 				</ul>
 			</li>
+
+			@if(Sentry::getUser()->hasAccess('admin'))
 			<li{{ (Request::is('admin/blogs*') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/blogs') }}"><i class="icon-list-alt icon-white"></i> Blog Posts</a></li>
 
 
@@ -90,6 +92,7 @@
 					<li{{ (Request::is('admin/groups*') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/groups') }}"><i class="icon-user"></i> Groups</a></li>
 				</ul>
 			</li>
+			@endif
 
 			@else
 			<li {{ (Request::is('auth/signin') ? 'class="active"' : '') }}><a href="{{ route('signin') }}">Sign in</a></li>
@@ -104,13 +107,13 @@
 
 <div class="container">
 
+	<!-- Notifications -->
+	@include('frontend/notifications')
 
-      <!-- Notifications -->
-		@include('frontend/notifications')
-		<!-- Content -->
-		@yield('content')
+	<!-- Content -->
+	@yield('content')
 
-	</div>
+</div>
 
 
 
