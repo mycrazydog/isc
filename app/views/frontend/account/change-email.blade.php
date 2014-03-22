@@ -8,7 +8,7 @@ Change your Email
 {{-- Account page content --}}
 @section('account-content')
 <div class="page-header">
-  <h1>Edit Profile <small>Change Your Email Address</small></h1>
+  <h3>Edit Profile <small>Change Your Email Address</small></h3>
 </div>
 
 <form class="form-horizontal" role="form" method="post" action="" autocomplete="off">

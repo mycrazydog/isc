@@ -20,7 +20,7 @@ Group Management ::
 
 {{ $groups->links() }}
 
-<table class="table table-bordered table-striped table-hover">
+<table class="table table-striped table-hover">
 	<thead>
 		<tr>
 			<th class="span1">@lang('admin/groups/table.id')</th>

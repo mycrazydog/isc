@@ -11,19 +11,18 @@ User Management ::
 <div class="page-header">
 	<h3>
 		User Management
-
 		<div class="pull-right">
 			<a href="{{ route('create/user') }}" class="btn btn-small btn-info"><i class="icon-plus-sign icon-white"></i> Create</a>
 		</div>
 	</h3>
 </div>
 
-<a class="btn btn-medium" href="{{ URL::to('admin/users?withTrashed=true') }}">Include Deleted Users</a>
-<a class="btn btn-medium" href="{{ URL::to('admin/users?onlyTrashed=true') }}">Include Only Deleted Users</a>
+<ul class="nav nav-pills">
+  <li><a class="btn btn-medium" href="{{ URL::to('admin/users?withTrashed=true') }}">Include Deleted Users</a></li>
+  <li><a class="btn btn-medium" href="{{ URL::to('admin/users?onlyTrashed=true') }}">Include Only Deleted Users</a></li>
+</ul>
 
-{{ $users->links() }}
-
-<table class="table table-bordered table-striped table-hover">
+<table class="table table-striped table-hover">
 	<thead>
 		<tr>
 			<th class="span1">@lang('admin/users/table.id')</th>
@@ -62,5 +61,9 @@ User Management ::
 	</tbody>
 </table>
 
+@if (count($users))
+<div class="row">
 {{ $users->links() }}
+</div>
+@endif
 @stop
