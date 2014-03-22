@@ -2,40 +2,40 @@
 
 {{-- Page content --}}
 @section('content')
+@if (count($posts))
 @foreach ($posts as $post)
 <div class="row">
 	<div class="span8">
-		<!-- Post Title -->
-		<div class="row">
-			<div class="span8">
-				<h4><strong><a href="{{ $post->url() }}">{{ $post->title }}</a></strong></h4>
-			</div>
-		</div>
+
 
 		<!-- Post Content -->
-		<div class="row">
-			<div class="span2">
-				<a href="{{ $post->url() }}" class="thumbnail"><img src="{{ $post->thumbnail() }}" alt=""></a>
-			</div>
-			<div class="span6">
+
+		<div class="media">
+		  <a class="pull-left" href="{{ $post->url() }}">
+			<img class="media-object" src="{{ $post->thumbnail() }}." alt="...">
+		  </a>
+		  <div class="media-body">
+			<h4 class="media-heading"><a href="{{ $post->url() }}">{{ $post->title }}</a></h4>
+			{{ Str::limit($post->content, 200) }}
+		  </div>
+		  <div class="media-footer">
+				<p></p>
 				<p>
-					{{ Str::limit($post->content, 200) }}
+					<i class="icon-user"></i> by
+					@if ($post->author)
+					 	{{ $post->author->first_name }}
+					 @else
+					 	discontinued user
+					 @endif
+					| <i class="icon-calendar"></i> {{ $post->created_at->diffForHumans() }}
+					| <i class="icon-comment"></i> <a href="{{ $post->url() }}#comments">Comments <span class="badge">{{ $post->comments()->count() }}</span></a>
 				</p>
-				<p><a class="btn btn-mini" href="{{ $post->url() }}">Read more...</a></p>
 			</div>
 		</div>
 
-		<!-- Post Footer -->
-		<div class="row">
-			<div class="span8">
-				<p></p>
-				<p>
-					<i class="icon-user"></i> by <span class="muted">{{ $post->author->first_name }}</span>
-					| <i class="icon-calendar"></i> {{ $post->created_at->diffForHumans() }}
-					| <i class="icon-comment"></i> <a href="{{ $post->url() }}#comments">{{ $post->comments()->count() }} Comments</a>
-				</p>
-			</div>
-		</div>
+
+
+
 	</div>
 </div>
 
@@ -43,4 +43,8 @@
 @endforeach
 
 {{ $posts->links() }}
+
+@else
+<h1>Oops. That page number is invalid.</h1>
+@endif
 @stop

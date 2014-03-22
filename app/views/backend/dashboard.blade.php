@@ -1,1 +1,1 @@
-@extends('backend/layouts/default')
+@extends('frontend/layouts/default')

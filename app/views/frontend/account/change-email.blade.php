@@ -8,10 +8,10 @@ Change your Email
 {{-- Account page content --}}
 @section('account-content')
 <div class="page-header">
-	<h4>Change your Email</h4>
+  <h3>Edit Profile <small>Change Your Email Address</small></h3>
 </div>
 
-<form method="post" action="" class="form-horizontal" autocomplete="off">
+<form class="form-horizontal" role="form" method="post" action="" autocomplete="off">
 	<!-- CSRF Token -->
 	<input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
@@ -19,38 +19,39 @@ Change your Email
 	<input type="hidden" name="formType" value="change-email" />
 
 	<!-- New Email -->
-	<div class="control-group{{ $errors->first('email', ' error') }}">
-		<label class="control-label" for="email">New Email</label>
-		<div class="controls">
-			<input type="text" name="email" id="email" value="" />
+	<div class="form-group {{ $errors->first('email', 'has-error') }}">
+		<label for="email" class="col-sm-3 control-label">New Email</label>
+			<div class="col-sm-9">
+			<input type="email" id="email" name="email" class="form-control" placeholder="New Email">
 			{{ $errors->first('email', '<span class="help-block">:message</span>') }}
-		</div>
+			</div>
 	</div>
 
-	<!-- Confirm New Email -->
-	<div class="control-group{{ $errors->first('email_confirm', ' error') }}">
-		<label class="control-label" for="email_confirm">Confirm New Email</label>
-		<div class="controls">
-			<input type="text" name="email_confirm" id="email_confirm" value="" />
+	<!-- Confirm Email -->
+	<div class="form-group {{ $errors->first('email_confirm', 'has-error') }}">
+		<label for="email" class="col-sm-3 control-label">Confirm Email</label>
+			<div class="col-sm-9">
+			<input type="email" id="email_confirm" name="email_confirm" class="form-control" placeholder="Confirm Email">
 			{{ $errors->first('email_confirm', '<span class="help-block">:message</span>') }}
-		</div>
+			</div>
 	</div>
 
-	<!-- Current Password -->
-	<div class="control-group{{ $errors->first('current_password', ' error') }}">
-		<label class="control-label" for="current_password">Current Password</label>
-		<div class="controls">
-			<input type="password" name="current_password" id="current_password" value="" />
+	<!-- Confirm Password -->
+	<div class="form-group {{ $errors->first('current_password', 'has-error') }}">
+		<label for="email" class="col-sm-3 control-label">Current Password</label>
+			<div class="col-sm-9">
+			<input type="password" id="current_password" name="current_password" class="form-control">
 			{{ $errors->first('current_password', '<span class="help-block">:message</span>') }}
-		</div>
+			</div>
 	</div>
+
 
 	<hr>
 
 	<!-- Form actions -->
 	<div class="control-group">
 		<div class="controls">
-			<button type="submit" class="btn">Update Email</button>
+			<button type="submit" class="btn btn-default">Update Email</button>
 
 			<a href="{{ route('forgot-password') }}" class="btn btn-link">I forgot my password</a>
 		</div>

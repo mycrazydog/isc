@@ -285,10 +285,15 @@ class AppCommand extends Command {
 	{
 		// Prepare the user data array.
 		$data = array(
+			'id' => 2,
 			'first_name' => 'John',
 			'last_name'  => 'Doe',
-			'email'      => 'john.doe@example.com',
+			'email'      => 'example@example.com',
 			'password'   => 'johndoe',
+			'gravatar'   => 'example@example.com',
+			'permissions' => array(
+				'admin' => 1
+			),
 			'activated'  => 1,
 		);
 

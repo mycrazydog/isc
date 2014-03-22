@@ -2,20 +2,8 @@
 	$presenter = new Illuminate\Pagination\BootstrapPresenter($paginator);
 ?>
 
-<div class="pagination">
-	<ul class="pull left">
-		<li>
-		Showing
-		<?php echo $paginator->getFrom(); ?>
-		-
-		<?php echo $paginator->getTo(); ?>
-		of
-		<?php echo $paginator->getTotal(); ?>
-		items
-		</li>
-	</ul>
-
-	<ul class="pull-right">
+	<ul class="pagination">
 		<?php echo $presenter->render(); ?>
 	</ul>
-</div>
+
+
