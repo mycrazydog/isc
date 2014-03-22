@@ -1,6 +1,6 @@
 ## Laravel 4 - Starter Kit
 
-This is a Laravel 4 Starter Kit and it will help you getting started with Laravel 4.
+This is a Laravel 4 Starter Kit and it will help you getting started with Laravel 4, based off of the fantastic [Laravel Bootstrap Starter Kit](https://github.com/brunogaspar/laravel4-starter-kit) by [brunogaspar](https://github.com/brunogaspar)
 
 It includes examples on how to use the framework itself and how to use some
 packages, like the awesome [Sentry 2](https://github.com/cartalyst/sentry) package.
@@ -9,7 +9,7 @@ packages, like the awesome [Sentry 2](https://github.com/cartalyst/sentry) packa
 
 ## Included goodies
 
-* Twitter Bootstrap 2.3.2
+* Twitter Bootstrap 3.1.1
 * jQuery 1.10.2
 * Custom CLI Installer
 * Custom Error Pages:
