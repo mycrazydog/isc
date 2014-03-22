@@ -18,7 +18,7 @@ class CommentsSeeder extends Seeder {
 		);
 		$date = new DateTime;
 		$comments[] = array(
-			'user_id'    => 2,
+			'user_id'    => 1,
 			'post_id'    => 1,
 			'content'    => file_get_contents(__DIR__.'/comment2-content.txt'),
 			'created_at' => $date->modify('-7 day +2 hour'),
@@ -44,7 +44,7 @@ class CommentsSeeder extends Seeder {
 		);
 		$date = new DateTime;
 		$comments[] = array(
-			'user_id'    => 2,
+			'user_id'    => 1,
 			'post_id'    => 2,
 			'content'    => file_get_contents(__DIR__.'/comment2-content.txt'),
 			'created_at' => $date->modify('-1 day +2 hour'),
