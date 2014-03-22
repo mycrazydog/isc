@@ -28,4 +28,4 @@ script: phpunit
 
 # configure notifications (email, IRC, campfire etc)
 notifications:
-  irc: "irc.freenode.org#yourfavouriteroomfortravis"
+  slack: snipe:9aS2ZhrcigViFsO94kcee5s4
