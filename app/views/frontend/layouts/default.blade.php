@@ -27,6 +27,13 @@
 			@media screen and (max-width: 768px) {
 				body { padding-top: 0px; }
 			}
+		/* Set the fixed height of the footer here */
+		#footer {
+
+		  line-height: 40px;
+		  background-color: #f5f5f5;
+		  margin-top: 20px;
+		}
 		@show
 		</style>
 
@@ -73,7 +80,9 @@
 					<b class="caret"></b>
 				</a>
 				<ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
-					<li{{ (Request::is('account/profile') ? ' class="active"' : '') }}><a href="{{ route('profile') }}"><i class="icon-user"></i> Your profile</a></li>
+					<li{{ (Request::is('account/profile') ? ' class="active"' : '') }}><a href="{{ route('profile') }}"><i class="icon-user"></i> Edit profile</a></li>
+					<li{{ Request::is('account/change-password') ? ' class="active"' : '' }}><a href="{{ URL::route('change-password') }}">Change Password</a></li>
+					<li{{ Request::is('account/change-email') ? ' class="active"' : '' }}><a href="{{ URL::route('change-email') }}">Change Email</a></li>
 					<li class="divider"></li>
 					<li><a href="{{ route('logout') }}"><i class="icon-off"></i> Logout</a></li>
 				</ul>
