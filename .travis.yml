@@ -17,11 +17,13 @@ env:
 
 # execute any number of scripts before the test run, custom env's are available as variables
 before_script:
+  - curl -s http://getcomposer.org/installer | php
+  - php composer.phar install --prefer-source --no-interaction --dev
   - if [[ "$DB" == "mysql" ]]; then mysql -e "create database IF NOT EXISTS laravel-starter-db;" -uroot; fi
 
 # omitting "script:" will default to phpunit
+# use the $DB env variable to determine the phpunit.xml to use
 script:
-composer install
 phpunit
 
 # configure notifications (email, IRC, campfire etc)
