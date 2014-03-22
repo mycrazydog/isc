@@ -14,6 +14,7 @@ env:
 
 # execute any number of scripts before the test run, custom env's are available as variables
 before_script:
+  - curl -s http://getcomposer.org/installer | php
   - php composer.phar self-update
   - php composer.phar install --prefer-source --no-interaction --dev
   - php artisan key:generate
