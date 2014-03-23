@@ -102,8 +102,7 @@ Blog Post Update ::
 	<div class="form-group">
     <div class="col-sm-offset-2 col-sm-10">
       <a class="btn btn-link" href="{{ route('blogs') }}">Cancel</a>
-			<button type="reset" class="btn">Reset</button>
-			<button type="submit" class="btn btn-success">Publish</button>
+			<button type="submit" class="btn btn-default">Publish</button>
     </div>
 	</div>
 
