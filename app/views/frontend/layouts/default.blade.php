@@ -74,7 +74,7 @@
           <ul class="nav navbar-nav navbar-right">
            @if (Sentry::check())
 
-			<li class="dropdown-toggle{{ (Request::is('account*') ? ' active' : '') }}" data-toggle="dropdown">
+			<li class="dropdown {{ (Request::is('account*') ? ' active' : '') }}">
 				<a class="dropdown-toggle" id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="{{ route('account') }}">
 					Welcome, {{ Sentry::getUser()->first_name }}
 					<b class="caret"></b>
@@ -92,7 +92,7 @@
 			<li{{ (Request::is('admin/blogs*') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/blogs') }}"><i class="icon-list-alt icon-white"></i> Blog Posts</a></li>
 
 
-			<li class="dropdown{{ (Request::is('admin/users*|admin/groups*') ? ' active' : '') }}">
+			<li class="dropdown {{ (Request::is('admin/users*|admin/groups*') ? ' active' : '') }}">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="{{ URL::to('admin/users') }}">
 					<i class="icon-user icon-white"></i> Users <span class="caret"></span>
 				</a>
