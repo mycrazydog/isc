@@ -2,7 +2,7 @@
 
 {{-- Web site Title --}}
 @section('title')
-Group Update ::
+@lang('admin/groups/title.edit') ::
 @parent
 @stop
 
@@ -10,7 +10,7 @@ Group Update ::
 @section('content')
 <div class="page-header">
 	<h3>
-		Group Update
+		@lang('admin/groups/title.edit')
 
 		<div class="pull-right">
 			<a href="{{ route('groups') }}" class="btn btn-small btn-inverse"><i class="icon-circle-arrow-left icon-white"></i> Back</a>
@@ -20,11 +20,11 @@ Group Update ::
 
 <!-- Tabs -->
 <ul class="nav nav-tabs">
-	<li class="active"><a href="#tab-general" data-toggle="tab">General</a></li>
-	<li><a href="#tab-permissions" data-toggle="tab">Permissions</a></li>
+	<li class="active"><a href="#tab-general" data-toggle="tab">@lang('admin/groups/form.general')</a></li>
+	<li><a href="#tab-permissions" data-toggle="tab">@lang('admin/groups/form.permissions')</a></li>
 </ul>
 
-<form class="form-horizontal" method="post" action="" autocomplete="off">
+<form class="form-horizontal" role="form" method="post" action="">
 	<!-- CSRF Token -->
 	<input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
@@ -32,42 +32,45 @@ Group Update ::
 	<div class="tab-content">
 		<!-- General tab -->
 		<div class="tab-pane active" id="tab-general">
+		<br>
 			<!-- Name -->
-			<div class="control-group {{ $errors->has('name') ? 'error' : '' }}">
-				<label class="control-label" for="name">Name</label>
-				<div class="controls">
-					<input type="text" name="name" id="name" value="{{ Input::old('name', $group->name) }}" />
-					{{ $errors->first('name', '<span class="help-inline">:message</span>') }}
-				</div>
+			<div class="form-group {{ $errors->first('name', 'has-error') }}">
+				<label for="title" class="col-sm-2 control-label">@lang('admin/groups/form.name')</label>
+					<div class="col-sm-5">
+						<input type="text" id="name" name="name" class="form-control" placeholder="Group Name" value="{{ Input::old('name', $group->name) }}">
+					</div>
+					<div class="col-sm-4">
+						{{ $errors->first('name', '<span class="help-block">:message</span>') }}
+					</div>
 			</div>
+
 		</div>
 
 		<!-- Permissions tab -->
 		<div class="tab-pane" id="tab-permissions">
 			<div class="controls">
-				<div class="control-group">
+				<div class="form-group">
+				<div class="controls">
 
 					@foreach ($permissions as $area => $permissions)
 					<fieldset>
-						<legend>{{ $area }}</legend>
+						<div class="col-sm-12">
+						<h4>{{ $area }}</h4>
+						</div>
 
 						@foreach ($permissions as $permission)
-						<div class="control-group">
-							<label class="control-group">{{ $permission['label'] }}</label>
+						 <div class="form-group">
+							<label class="control-label radio-inline col-sm-2">{{ $permission['label'] }} </label>
+							<label for="{{ $permission['permission'] }}_allow" onclick="" class="radio-inline control-label col-sm-1">
+								<input type="radio" value="1" id="{{ $permission['permission'] }}_allow" name="permissions[{{ $permission['permission'] }}]"{{ (array_get($groupPermissions, $permission['permission']) === 1 ? ' checked="checked"' : '') }}> Allow
+							</label>
 
-							<div class="radio inline">
-								<label for="{{ $permission['permission'] }}_allow" onclick="">
-									<input type="radio" value="1" id="{{ $permission['permission'] }}_allow" name="permissions[{{ $permission['permission'] }}]"{{ (array_get($groupPermissions, $permission['permission']) === 1 ? ' checked="checked"' : '') }}>
-									Allow
-								</label>
-							</div>
-
-							<div class="radio inline">
-								<label for="{{ $permission['permission'] }}_deny" onclick="">
+							<label for="{{ $permission['permission'] }}_deny" onclick="" class="radio-inline control-label   col-sm-1">
 									<input type="radio" value="0" id="{{ $permission['permission'] }}_deny" name="permissions[{{ $permission['permission'] }}]"{{ ( ! array_get($groupPermissions, $permission['permission']) ? ' checked="checked"' : '') }}>
 									Deny
 								</label>
 							</div>
+
 						</div>
 						@endforeach
 
@@ -76,18 +79,16 @@ Group Update ::
 
 				</div>
 			</div>
+			</div>
 		</div>
 	</div>
 
-	<!-- Form Actions -->
-	<div class="control-group">
-		<div class="controls">
-			<a class="btn btn-link" href="{{ route('groups') }}">Cancel</a>
-
-			<button type="reset" class="btn">Reset</button>
-
-			<button type="submit" class="btn btn-success">Update Group</button>
+	<!-- Form actions -->
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-4">
+			<a class="btn btn-link" href="{{ route('groups') }}">@lang('button.cancel')</a>
+		  	<button type="submit" class="btn btn-default">@lang('button.save')</button>
 		</div>
-	</div>
+  	</div>
 </form>
 @stop

@@ -1,5 +1,8 @@
 <?php
-
+/**
+* Language file for blog management form text
+*
+*/
 return array(
 
 	'posttitle'			=> 'Post Title',

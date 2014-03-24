@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-Blog Post Update ::
+@lang('admin/blogs/title.edit') ::
 @parent
 @stop
 

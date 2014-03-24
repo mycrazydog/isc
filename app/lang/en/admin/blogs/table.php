@@ -1,4 +1,8 @@
 <?php
+/**
+* Language file for blog management table headings
+*
+*/
 
 return array(
 

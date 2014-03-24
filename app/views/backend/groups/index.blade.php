@@ -2,7 +2,7 @@
 
 {{-- Web site Title --}}
 @section('title')
-Group Management ::
+@lang('admin/groups/title.management') ::
 @parent
 @stop
 
@@ -10,10 +10,10 @@ Group Management ::
 @section('content')
 <div class="page-header">
 	<h3>
-		Group Management
+		@lang('admin/groups/title.management')
 
 		<div class="pull-right">
-			<a href="{{ route('create/group') }}" class="btn btn-small btn-info"><i class="icon-plus-sign icon-white"></i> Create</a>
+			<a href="{{ route('create/group') }}" class="btn btn-small btn-info"><i class="icon-plus-sign icon-white"></i> @lang('button.create')</a>
 		</div>
 	</h3>
 </div>
@@ -46,7 +46,7 @@ Group Management ::
 		@endforeach
 		@else
 		<tr>
-			<td colspan="5">No results</td>
+			<td colspan="5">@lang('general.noresults')</td>
 		</tr>
 		@endif
 	</tbody>

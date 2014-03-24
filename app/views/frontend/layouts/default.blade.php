@@ -32,7 +32,8 @@
 
 		  line-height: 40px;
 		  background-color: #f5f5f5;
-		  margin-top: 20px;
+		  margin-top: 60px;
+		  padding-top: 20px;
 		}
 		@show
 		</style>

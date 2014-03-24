@@ -19,5 +19,8 @@ return array(
 	'changegravatar'		=> 'Change your avatar at Gravatar.com',
 	'oldpassword'			=> 'Current Password',
 	'confirmpassword'		=> 'Confirm Password',
+	'activated'				=> 'Activated',
+	'groups'				=> 'Groups',
+	'grouphelp'				=> 'Select a group to assign to the user, remember that a user takes on the permissions of the group they are assigned.',
 
 );
