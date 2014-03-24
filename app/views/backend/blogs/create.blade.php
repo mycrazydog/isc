@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-Create a New Blog Post ::
+@lang('admin/blogs/title.create') ::
 @parent
 @stop
 

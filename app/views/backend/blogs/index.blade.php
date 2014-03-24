@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-Blog Management ::
+@lang('admin/blogs/title.blogmanagement') ::
 @parent
 @stop
 
@@ -10,7 +10,7 @@ Blog Management ::
 @section('content')
 <div class="page-header">
 	<h3>
-		Blog Management
+		@lang('admin/blogs/title.blogmanagement')
 
 		<div class="pull-right">
 			<a href="{{ route('create/blog') }}" class="btn btn-small btn-info"><i class="icon-plus-sign icon-white"></i> @lang('button.create')</a>

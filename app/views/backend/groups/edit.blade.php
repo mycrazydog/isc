@@ -2,7 +2,7 @@
 
 {{-- Web site Title --}}
 @section('title')
-Group Update ::
+@lang('admin/groups/title.edit') ::
 @parent
 @stop
 
@@ -10,7 +10,7 @@ Group Update ::
 @section('content')
 <div class="page-header">
 	<h3>
-		Group Update
+		@lang('admin/groups/title.edit')
 
 		<div class="pull-right">
 			<a href="{{ route('groups') }}" class="btn btn-small btn-inverse"><i class="icon-circle-arrow-left icon-white"></i> Back</a>
@@ -20,8 +20,8 @@ Group Update ::
 
 <!-- Tabs -->
 <ul class="nav nav-tabs">
-	<li class="active"><a href="#tab-general" data-toggle="tab">General</a></li>
-	<li><a href="#tab-permissions" data-toggle="tab">Permissions</a></li>
+	<li class="active"><a href="#tab-general" data-toggle="tab">@lang('admin/groups/form.general')</a></li>
+	<li><a href="#tab-permissions" data-toggle="tab">@lang('admin/groups/form.permissions')</a></li>
 </ul>
 
 <form class="form-horizontal" method="post" action="" autocomplete="off">
@@ -34,7 +34,7 @@ Group Update ::
 		<div class="tab-pane active" id="tab-general">
 			<!-- Name -->
 			<div class="control-group {{ $errors->has('name') ? 'error' : '' }}">
-				<label class="control-label" for="name">Name</label>
+				<label class="control-label" for="name">@lang('admin/groups/form.name')</label>
 				<div class="controls">
 					<input type="text" name="name" id="name" value="{{ Input::old('name', $group->name) }}" />
 					{{ $errors->first('name', '<span class="help-inline">:message</span>') }}
@@ -82,11 +82,8 @@ Group Update ::
 	<!-- Form Actions -->
 	<div class="control-group">
 		<div class="controls">
-			<a class="btn btn-link" href="{{ route('groups') }}">Cancel</a>
-
-			<button type="reset" class="btn">Reset</button>
-
-			<button type="submit" class="btn btn-success">Update Group</button>
+			<a class="btn btn-link" href="{{ route('groups') }}">@lang('button.cancel')</a>
+			<button type="submit" class="btn btn-default">@lang('button.update')</button>
 		</div>
 	</div>
 </form>
