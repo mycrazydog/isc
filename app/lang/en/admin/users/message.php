@@ -1,4 +1,8 @@
 <?php
+/**
+* Language file for user error/success messages
+*
+*/
 
 return array(
 

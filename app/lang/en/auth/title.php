@@ -1,4 +1,8 @@
 <?php
+/**
+* Language file for auth section titles
+*
+*/
 
 return array(
 

@@ -1,4 +1,8 @@
 <?php
+/**
+* Language blog management error/success messages
+*
+*/
 
 return array(
 
