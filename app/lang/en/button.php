@@ -1,5 +1,8 @@
 <?php
-
+/**
+* Language file for submit buttons across the site
+*
+*/
 return array(
 
 	'edit'    			=> 'Edit',
@@ -7,6 +10,7 @@ return array(
 	'restore' 			=> 'Restore',
 	'publish' 			=> 'Publish',
 	'save'	  			=> 'Save',
+	'submit'	  		=> 'Submit',
 	'cancel'  			=> 'Cancel',
 	'create'  			=> 'Create',
 	'back'    			=> 'Back',
@@ -14,5 +18,6 @@ return array(
 	'forgotpassword' 	=> 'I forgot my password',
 	'rememberme'		=> 'Remember me',
 	'signup'			=> 'Sign-Up',
+	'update'			=> 'Update',
 
 );
