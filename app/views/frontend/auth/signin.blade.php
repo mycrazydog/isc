@@ -52,9 +52,8 @@ Account Sign in ::
 		  <button type="submit" class="btn btn-default">Sign in</button>
 		  <a href="{{ route('forgot-password') }}" class="btn btn-link">I forgot my password</a>
 		</div>
+
   	</div>
-
-
 
 	</form>
 </div>

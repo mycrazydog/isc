@@ -16,21 +16,21 @@ Forgot Password ::
 	<input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
 	<!-- Email -->
-	<div class="control-group{{ $errors->first('email', ' error') }}">
-		<label class="control-label" for="email">Email</label>
-		<div class="controls">
-			<input type="text" name="email" id="email" value="{{ Input::old('email') }}" />
-			{{ $errors->first('email', '<span class="help-block">:message</span>') }}
+	<div class="form-group {{ $errors->first('email', 'has-error') }}">
+			<label for="email" class="col-sm-2 control-label">Email</label>
+			<div class="col-sm-4">
+				<input type="email" class="form-control" name="email" id="email" value="{{ Input::old('email') }}">
+				{{ $errors->first('email', '<span class="help-block">:message</span>') }}
+			</div>
 		</div>
-	</div>
 
 	<!-- Form actions -->
-	<div class="control-group">
-		<div class="controls">
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-10">
 			<a class="btn" href="{{ route('home') }}">Cancel</a>
-
-			<button type="submit" class="btn">Submit</button>
+		  <button type="submit" class="btn btn-default">Submit</button>
 		</div>
 	</div>
+
 </form>
 @stop
