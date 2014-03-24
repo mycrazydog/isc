@@ -32,7 +32,7 @@
 	<tbody>
 		@foreach ($posts as $post)
 		<tr>
-			<td>{{ $post->title }}</td>
+			<td><a href="{{ $post->url() }}">{{ $post->title }}</a></td>
 			<td>{{ $post->comments()->count() }}</td>
 			<td>{{ $post->created_at->diffForHumans() }}</td>
 			<td>
