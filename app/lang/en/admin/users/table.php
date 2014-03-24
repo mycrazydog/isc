@@ -1,5 +1,8 @@
 <?php
-
+/**
+* Language file for user table headings
+*
+*/
 return array(
 
 	'id'         => 'Id',
