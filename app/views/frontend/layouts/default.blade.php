@@ -33,7 +33,7 @@
 		  line-height: 40px;
 		  background-color: #f5f5f5;
 		  margin-top: 60px;
-		  padding-top: 20px;
+		  padding-top: 10px;
 		}
 		@show
 		</style>
