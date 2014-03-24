@@ -22,6 +22,8 @@
 			<label for="email" class="col-sm-2 control-label">@lang('account/form.email')</label>
 			<div class="col-sm-4">
 				<input type="email" class="form-control" name="email" id="email" value="{{ Input::old('email') }}">
+			</div>
+			<div class="col-sm-4">
 				{{ $errors->first('email', '<span class="help-block">:message</span>') }}
 			</div>
 		</div>
@@ -31,6 +33,8 @@
 			<label for="password" class="col-sm-2 control-label">@lang('account/form.password')</label>
 			<div class="col-sm-4">
 				<input type="text" class="form-control" name="password" id="password">
+			</div>
+			<div class="col-sm-4">
 				{{ $errors->first('password', '<span class="help-block">:message</span>') }}
 			</div>
 		</div>

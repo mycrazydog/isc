@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-Change your Email
+@lang('account/title.changeemailsubtitle') ::
 @stop
 
 {{-- Account page content --}}
@@ -23,27 +23,33 @@ Change your Email
 	<!-- New Email -->
 	<div class="form-group {{ $errors->first('email', 'has-error') }}">
 		<label for="email" class="col-sm-3 control-label">@lang('account/form.newemail')</label>
-			<div class="col-sm-9">
-			<input type="email" id="email" name="email" class="form-control" placeholder="New Email">
-			{{ $errors->first('email', '<span class="help-block">:message</span>') }}
+			<div class="col-sm-5">
+				<input type="email" id="email" name="email" class="form-control" placeholder="New Email">
+			</div>
+			<div class="col-sm-4">
+				{{ $errors->first('email', '<span class="help-block">:message</span>') }}
 			</div>
 	</div>
 
 	<!-- Confirm Email -->
 	<div class="form-group {{ $errors->first('email_confirm', 'has-error') }}">
 		<label for="email" class="col-sm-3 control-label">@lang('account/form.confirmemail')</label>
-			<div class="col-sm-9">
-			<input type="email" id="email_confirm" name="email_confirm" class="form-control" placeholder="Confirm Email">
-			{{ $errors->first('email_confirm', '<span class="help-block">:message</span>') }}
+			<div class="col-sm-5">
+				<input type="email" id="email_confirm" name="email_confirm" class="form-control" placeholder="Confirm Email">
+			</div>
+			<div class="col-sm-4">
+				{{ $errors->first('email_confirm', '<span class="help-block">:message</span>') }}
 			</div>
 	</div>
 
 	<!-- Confirm Password -->
 	<div class="form-group {{ $errors->first('current_password', 'has-error') }}">
 		<label for="email" class="col-sm-3 control-label">@lang('account/form.oldpassword')</label>
-			<div class="col-sm-9">
-			<input type="password" id="current_password" name="current_password" class="form-control">
-			{{ $errors->first('current_password', '<span class="help-block">:message</span>') }}
+			<div class="col-sm-5">
+				<input type="password" id="current_password" name="current_password" class="form-control">
+			</div>
+			<div class="col-sm-4">
+				{{ $errors->first('current_password', '<span class="help-block">:message</span>') }}
 			</div>
 	</div>
 
