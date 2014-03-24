@@ -1,5 +1,13 @@
 <?php
+/**
+* Macro helpers
+*
+*/
 
+/**
+* Country macro
+* Generates the dropdown menu of countries for the profile form
+*/
 Form::macro('countries', function($name = "country", $selected = null, $class = null) {
 
 	$countries = array(

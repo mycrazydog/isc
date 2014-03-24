@@ -1,5 +1,8 @@
 <?php
-
+/**
+* Language file reminders
+*
+*/
 return array(
 
 	/*

@@ -1,5 +1,8 @@
 <?php
-
+/**
+* Language file for pagination
+*
+*/
 return array(
 
 	/*

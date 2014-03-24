@@ -1,5 +1,8 @@
 <?php
-
+/**
+* Language file for form field validation
+*
+*/
 return array(
 
 	/*
