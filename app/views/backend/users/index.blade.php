@@ -25,18 +25,20 @@ User Management ::
 <table class="table table-striped table-hover">
 	<thead>
 		<tr>
+			<th class="span1"></th>
 			<th class="span1">@lang('admin/users/table.id')</th>
 			<th class="span2">@lang('admin/users/table.first_name')</th>
 			<th class="span2">@lang('admin/users/table.last_name')</th>
 			<th class="span3">@lang('admin/users/table.email')</th>
 			<th class="span2">@lang('admin/users/table.activated')</th>
 			<th class="span2">@lang('admin/users/table.created_at')</th>
-			<th class="span2">@lang('table.actions')</th>
+			<th class="span1"></th>
 		</tr>
 	</thead>
 	<tbody>
 		@foreach ($users as $user)
 		<tr>
+			<td><a href="{{ route('update/user', $user->id) }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
 			<td>{{ $user->id }}</td>
 			<td>{{ $user->first_name }}</td>
 			<td>{{ $user->last_name }}</td>
@@ -44,15 +46,13 @@ User Management ::
 			<td>@lang('general.' . ($user->isActivated() ? 'yes' : 'no'))</td>
 			<td>{{ $user->created_at->diffForHumans() }}</td>
 			<td>
-				<a href="{{ route('update/user', $user->id) }}" class="btn btn-mini">@lang('button.edit')</a>
-
 				@if ( ! is_null($user->deleted_at))
-				<a href="{{ route('restore/user', $user->id) }}" class="btn btn-mini btn-warning">@lang('button.restore')</a>
+				<a href="{{ route('restore/user', $user->id) }}"><span class="glyphicon glyphicon-ok"></span></a>
 				@else
 				@if (Sentry::getId() !== $user->id)
-				<a href="{{ route('delete/user', $user->id) }}" class="btn btn-mini btn-danger">@lang('button.delete')</a>
+				<a href="{{ route('delete/user', $user->id) }}"><span class="glyphicon glyphicon-trash"></span></a>
 				@else
-				<span class="btn btn-mini btn-danger disabled">@lang('button.delete')</span>
+				<span class="glyphicon glyphicon-trash"></span>
 				@endif
 				@endif
 			</td>
