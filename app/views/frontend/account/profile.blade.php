@@ -17,7 +17,7 @@ Your Profile
 
 	<!-- First Name -->
 	<div class="form-group {{ $errors->first('first_name', 'has-error') }}">
-		<label for="first_name" class="col-sm-3 control-label">First Name</label>
+		<label for="first_name" class="col-sm-3 control-label">@lang('account/form.firstname')</label>
 			<div class="col-sm-9">
 			<input type="text" id="first_name" name="first_name" class="form-control" placeholder="First Name" value="{{ Input::old('first_name', $user->first_name) }}">
 			{{ $errors->first('first_name', '<span class="help-block">:message</span>') }}
@@ -26,7 +26,7 @@ Your Profile
 
 	<!-- Last Name -->
 	<div class="form-group {{ $errors->first('last_name', 'has-error') }}">
-		<label for="last_name" class="col-sm-3 control-label">Last Name</label>
+		<label for="last_name" class="col-sm-3 control-label">@lang('account/form.lastname')</label>
 			<div class="col-sm-9">
 			<input type="text" id="last_name" name="last_name" class="form-control" placeholder="Last Name" value="{{ Input::old('last_name', $user->last_name) }}">
 			{{ $errors->first('last_name', '<span class="help-block">:message</span>') }}
@@ -35,7 +35,7 @@ Your Profile
 
 	<!-- Website URL -->
 	<div class="form-group {{ $errors->first('website', 'has-error') }}">
-		<label for="website" class="col-sm-3 control-label">Website</label>
+		<label for="website" class="col-sm-3 control-label">@lang('account/form.website')</label>
 			<div class="col-sm-9">
 			<input type="text" id="website" name="website" class="form-control" placeholder="http://www.yoursite.com" value="{{ Input::old('website', $user->website) }}">
 			{{ $errors->first('website', '<span class="help-block">:message</span>') }}
@@ -44,7 +44,7 @@ Your Profile
 
 	<!-- Country -->
 	<div class="form-group {{ $errors->first('country', 'has-error') }}">
-		<label for="country" class="col-sm-3 control-label">Country</label>
+		<label for="country" class="col-sm-3 control-label">@lang('account/form.country')</label>
 			<div class="col-sm-9">
 			{{ Form::countries('country', $user->country, 'form-control') }}
 			{{ $errors->first('country', '<span class="help-block">:message</span>') }}
@@ -53,14 +53,14 @@ Your Profile
 
 	<!-- Gravatar Email -->
 	<div class="form-group {{ $errors->first('gravatar', 'has-error') }}">
-		<label for="gravatar" class="col-sm-3 control-label">Gravatar Email</label>
+		<label for="gravatar" class="col-sm-3 control-label">@lang('account/form.gravataremail')</label>
 			<div class="col-sm-9">
 			<input type="email" id="gravatar" name="gravatar" class="form-control" value="{{ Input::old('gravatar', $user->gravatar) }}">
 			{{ $errors->first('gravatar', '<span class="help-block">:message</span>') }}
 
 			<p>
 			<img src="{{ $user->gravatar() }}" width="30" height="30" />
-			<a href="http://gravatar.com">Change your avatar at Gravatar.com</a>.
+			<a href="http://gravatar.com">@lang('account/form.changegravatar')</a>.
 			</div>
 		</p>
 	</div>

@@ -8,6 +8,10 @@ return array(
 
 	'password'				=> 'Password',
 	'email'					=> 'Email',
+	'newemail'				=> 'New Email',
+	'confirmemail'			=> 'Confirm Email',
+	'firstname'				=> 'First Name',
+	'lastname'				=> 'Last Name',
 	'newpassword'			=> 'New Password',
 	'website'				=> 'Website',
 	'country'				=> 'Country',
