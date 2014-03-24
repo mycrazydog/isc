@@ -54,7 +54,8 @@ class AuthController extends BaseController {
 			Session::forget('loginRedirect');
 
 			// Redirect to the users page
-			return Redirect::to($redirect)->with('success', Lang::get('auth/message.signin.success'));
+			//return Redirect::to($redirect)->with('success', Lang::get('auth/message.signin.success'));
+			return Redirect::to("/")->with('success', Lang::get('auth/message.signin.success'));
 		}
 		catch (Cartalyst\Sentry\Users\UserNotFoundException $e)
 		{
