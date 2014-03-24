@@ -18,6 +18,7 @@
 	</h3>
 </div>
 
+@if ($groups->count() >= 1)
 {{ $groups->links() }}
 
 <table class="table table-striped table-hover">
@@ -31,7 +32,7 @@
 		</tr>
 	</thead>
 	<tbody>
-		@if ($groups->count() >= 1)
+
 		@foreach ($groups as $group)
 		<tr>
 			<td><a href="{{ route('update/group', $group->id) }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
@@ -43,13 +44,12 @@
 			</td>
 		</tr>
 		@endforeach
-		@else
-		<tr>
-			<td colspan="5">@lang('general.noresults')</td>
-		</tr>
-		@endif
 	</tbody>
 </table>
 
 {{ $groups->links() }}
+
+@else
+	@lang('general.noresults')
+@endif
 @stop
