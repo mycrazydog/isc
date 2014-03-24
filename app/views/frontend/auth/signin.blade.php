@@ -37,11 +37,10 @@ Account Sign in ::
 
 		<!-- Remember me -->
 		<div class="checkbox">
-
 			<div class="col-sm-2">
 			</div>
 			<label for="remember-me">
-			 <input type="checkbox" name="remember-me" id="remember-me" value="1" /> Remember me
+			 	<input type="checkbox" name="remember-me" id="remember-me" value="1" /> Remember me
 			</label>
 		</div>
 
