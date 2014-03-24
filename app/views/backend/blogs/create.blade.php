@@ -37,9 +37,11 @@
 			<!-- Post Title -->
 			<div class="form-group {{ $errors->first('title', 'has-error') }}">
 				<label for="title" class="col-sm-2 control-label">@lang('admin/blogs/form.posttitle')</label>
-					<div class="col-sm-10">
+					<div class="col-sm-5">
 						<input type="email" id="title" name="title" class="form-control" placeholder="Post Title" value="{{ Input::old('title') }}">
-						{{ $errors->first('title', '<span class="help-block">:message</span>') }}
+					</div>
+					<div class="col-sm-4">
+					{{ $errors->first('title', '<span class="help-block">:message</span>') }}
 					</div>
 			</div>
 
@@ -48,6 +50,8 @@
 				<label for="title" class="col-sm-2 control-label">@lang('admin/blogs/form.slug')</label>
 					<div class="col-sm-3">
 						<input type="text" id="slug" name="slug" class="form-control" placeholder="Post Slug" value="{{ Input::old('slug') }}">
+					</div>
+					<div class="col-sm-4">
 						{{ $errors->first('slug', '<span class="help-block">:message</span>') }}
 					</div>
 			</div>
@@ -56,8 +60,9 @@
 			<div class="form-group {{ $errors->first('content', 'has-error') }}">
 				<label for="content" class="col-sm-2 control-label">@lang('admin/blogs/form.content')</label>
 				<div class="col-sm-10">
+				{{ $errors->first('content', '<span class="help-block">:message</span>') }}
 					<textarea rows="4" id="content" name="content" class="form-control">{{ Input::old('content') }}</textarea>
-					{{ $errors->first('content', '<span class="help-block">:message</span>') }}
+
 			</div>
 		</div>
 
@@ -69,8 +74,10 @@
 			<!-- Meta Title -->
 			<div class="form-group {{ $errors->first('meta-title', 'has-error') }}">
 				<label for="meta-title" class="col-sm-2 control-label">@lang('admin/blogs/form.metatitle')</label>
-					<div class="col-sm-10">
+					<div class="col-sm-5">
 						<input type="text" id="meta-title" name="meta-title" class="form-control" value="{{ Input::old('meta-title') }}">
+					</div>
+					<div class="col-sm-4">
 						{{ $errors->first('meta-title', '<span class="help-block">:message</span>') }}
 					</div>
 			</div>
@@ -78,8 +85,10 @@
 			<!-- Meta Description -->
 			<div class="form-group {{ $errors->first('meta-description', 'has-error') }}">
 				<label for="meta-description" class="col-sm-2 control-label">@lang('admin/blogs/form.metadescription')</label>
-					<div class="col-sm-10">
+					<div class="col-sm-5">
 						<input type="text" id="meta-description" name="meta-description" class="form-control" value="{{ Input::old('meta-description') }}">
+					</div>
+					<div class="col-sm-4">
 						{{ $errors->first('meta-description', '<span class="help-block">:message</span>') }}
 					</div>
 			</div>
@@ -87,8 +96,10 @@
 			<!-- Meta Keywords -->
 			<div class="form-group {{ $errors->first('meta-keywords', 'has-error') }}">
 				<label for="meta-keywords" class="col-sm-2 control-label">@lang('admin/blogs/form.metakeywords')</label>
-					<div class="col-sm-10">
+					<div class="col-sm-5">
 						<input type="text" id="meta-keywords" name="meta-keywords" class="form-control" value="{{ Input::old('meta-keywords') }}">
+					</div>
+					<div class="col-sm-4">
 						{{ $errors->first('meta-keywords', '<span class="help-block">:message</span>') }}
 					</div>
 			</div>
