@@ -32,8 +32,9 @@
 	<div class="tab-content">
 		<!-- General tab -->
 		<div class="tab-pane active" id="tab-general">
-			<!-- Post Title -->
+		<br>
 
+			<!-- Post Title -->
 			<div class="form-group {{ $errors->first('title', 'has-error') }}">
 				<label for="title" class="col-sm-2 control-label">@lang('admin/blogs/form.posttitle')</label>
 					<div class="col-sm-10">
@@ -44,14 +45,11 @@
 
 			<!-- Post Slug -->
 			<div class="form-group {{ $errors->first('slug', 'has-error') }}">
-				<label for="slug" class="col-sm-2 control-label">@lang('admin/blogs/form.slug')</label>
-				<div class="col-sm-10 input-group">
-					<span class="input-group-addon">
-						{{ str_finish(URL::to('/'), '/') }}
-					</span>
-					<input type="text" id="slug" name="slug" class="form-control" value="{{ Input::old('slug') }}">
-					{{ $errors->first('slug', '<span class="help-block">:message</span>') }}
-				</div>
+				<label for="title" class="col-sm-2 control-label">@lang('admin/blogs/form.slug')</label>
+					<div class="col-sm-3">
+						<input type="text" id="slug" name="slug" class="form-control" placeholder="Post Slug" value="{{ Input::old('slug') }}">
+						{{ $errors->first('slug', '<span class="help-block">:message</span>') }}
+					</div>
 			</div>
 
 			<!-- Content -->
@@ -67,6 +65,7 @@
 
 		<!-- Meta Data tab -->
 		<div class="tab-pane" id="tab-meta-data">
+		<br>
 			<!-- Meta Title -->
 			<div class="form-group {{ $errors->first('meta-title', 'has-error') }}">
 				<label for="meta-title" class="col-sm-2 control-label">@lang('admin/blogs/form.metatitle')</label>
