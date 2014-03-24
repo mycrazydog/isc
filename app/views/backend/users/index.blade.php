@@ -52,7 +52,7 @@ User Management ::
 				@if (Sentry::getId() !== $user->id)
 				<a href="{{ route('delete/user', $user->id) }}"><span class="glyphicon glyphicon-trash"></span></a>
 				@else
-				<span class="glyphicon glyphicon-trash"></span>
+				<span class="glyphicon glyphicon-trash text-muted"></span>
 				@endif
 				@endif
 			</td>
