@@ -1,4 +1,8 @@
 <?php
+/**
+* Language file for form fields for user account management
+*
+*/
 
 return array(
 
