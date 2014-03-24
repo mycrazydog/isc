@@ -13,7 +13,7 @@
 		@lang('admin/groups/title.management')
 
 		<div class="pull-right">
-			<a href="{{ route('create/group') }}" class="btn btn-small btn-info"><i class="icon-plus-sign icon-white"></i> @lang('button.create')</a>
+			<a href="{{ route('create/group') }}" class="btn btn-small btn-info"><span class="glyphicon glyphicon-plus"></span> @lang('button.create')</a>
 		</div>
 	</h3>
 </div>
@@ -23,24 +23,23 @@
 <table class="table table-striped table-hover">
 	<thead>
 		<tr>
-			<th class="span1">@lang('admin/groups/table.id')</th>
+			<th class="span1"></th>
 			<th class="span6">@lang('admin/groups/table.name')</th>
 			<th class="span2">@lang('admin/groups/table.users')</th>
 			<th class="span2">@lang('admin/groups/table.created_at')</th>
-			<th class="span2">@lang('table.actions')</th>
+			<th class="span1"></th>
 		</tr>
 	</thead>
 	<tbody>
 		@if ($groups->count() >= 1)
 		@foreach ($groups as $group)
 		<tr>
-			<td>{{ $group->id }}</td>
+			<td><a href="{{ route('update/group', $group->id) }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
 			<td>{{ $group->name }}</td>
 			<td>{{ $group->users()->count() }}</td>
 			<td>{{ $group->created_at->diffForHumans() }}</td>
 			<td>
-				<a href="{{ route('update/group', $group->id) }}" class="btn btn-mini">@lang('button.edit')</a>
-				<a href="{{ route('delete/group', $group->id) }}" class="btn btn-mini btn-danger">@lang('button.delete')</a>
+				<td><a href="{{ route('delete/group', $group->id) }}"><span class="glyphicon glyphicon-trash"></span></a></td>
 			</td>
 		</tr>
 		@endforeach

@@ -13,7 +13,7 @@
 		@lang('admin/blogs/title.blogmanagement')
 
 		<div class="pull-right">
-			<a href="{{ route('create/blog') }}"><i class="icon-plus-sign icon-white"></i> @lang('button.create')</a>
+			<a href="{{ route('create/blog') }}" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span> @lang('button.create')</a>
 		</div>
 	</h3>
 </div>

@@ -12,7 +12,7 @@ User Management ::
 	<h3>
 		User Management
 		<div class="pull-right">
-			<a href="{{ route('create/user') }}" class="btn btn-small btn-info"><i class="icon-plus-sign icon-white"></i> Create</a>
+			<a href="{{ route('create/user') }}" class="btn btn-small btn-info"><span class="glyphicon glyphicon-plus"></span> Create</a>
 		</div>
 	</h3>
 </div>
