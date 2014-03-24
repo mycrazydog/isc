@@ -95,7 +95,7 @@ Use the following command to create your default user, user groups and run all t
 
 ### 6) Accessing the Administration
 
-To access the administration page, you just need to access `http://your-host/public/admin` on your browser and it will automatically redirect you to the login page, in the login page, just fill in and submit the form.
+To access the administration page, you just need to access `http://your-host/admin` on your browser and it will automatically redirect you to the login page, in the login page, just fill in and submit the form.
 
 After you being authenticated, you will be redirected back to the administration page.
 
