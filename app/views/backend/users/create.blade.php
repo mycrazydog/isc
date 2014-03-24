@@ -153,14 +153,12 @@ Create a User ::
 	</div>
 
 	<!-- Form Actions -->
-	<div class="control-group">
-		<div class="controls">
-			<a class="btn btn-link" href="{{ route('users') }}">Cancel</a>
-
-			<button type="reset" class="btn">Reset</button>
-
-			<button type="submit" class="btn btn-success">Create User</button>
+	<div class="form-group">
+		<div class="col-sm-offset-2 col-sm-4">
+			<a class="btn btn-link" href="{{ route('users') }}">@lang('button.cancel')</a>
+		  	<button type="submit" class="btn btn-default">@lang('button.save')</button>
 		</div>
-	</div>
+  	</div>
+
 </form>
 @stop
