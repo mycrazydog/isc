@@ -28,7 +28,7 @@ packages, like the awesome [Sentry 2](https://github.com/cartalyst/sentry) packa
 * Front-end
 	* User login, registration, activation and forgot password
 	* User account area
-	* Blog functionality with commentaries
+	* Blog functionality with comments
 	* Contact us page
 * Packages included:
 	* [Cartalyst Sentry 2 - Authentication and Authorization package](https://github.com/cartalyst/sentry)
