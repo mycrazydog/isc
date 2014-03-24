@@ -17,6 +17,7 @@ packages, like the awesome [Sentry 2](https://github.com/cartalyst/sentry) packa
 * Twitter Bootstrap 3.1.1
 * jQuery 1.10.2
 * Custom CLI Installer
+* Translation-ready with internationalization files
 * Custom Error Pages:
 	* 403 for forbidden page access
 	* 404 for not found pages
