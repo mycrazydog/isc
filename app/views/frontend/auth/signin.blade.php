@@ -21,7 +21,7 @@ Account Sign in ::
 		<div class="form-group {{ $errors->first('email', 'has-error') }}">
 			<label for="email" class="col-sm-2 control-label">Email</label>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" id="email" value="{{ Input::old('email') }}">
+				<input type="email" class="form-control" name="email" id="email" value="{{ Input::old('email') }}">
 				{{ $errors->first('email', '<span class="help-block">:message</span>') }}
 			</div>
 		</div>
@@ -30,7 +30,7 @@ Account Sign in ::
 		<div class="form-group {{ $errors->first('password', 'has-error') }}">
 			<label for="password" class="col-sm-2 control-label">Password</label>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" id="password">
+				<input type="text" class="form-control" name="password" id="password">
 				{{ $errors->first('password', '<span class="help-block">:message</span>') }}
 			</div>
 		</div>
