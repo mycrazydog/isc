@@ -47,8 +47,15 @@ class BlogsController extends AdminController {
 		// Declare the rules for the form validation
 		$rules = array(
 			'title'   => 'required|min:3',
+			'slug'   => "unique:posts",
 			'content' => 'required|min:3',
 		);
+
+		if (Input::get('slug')) {
+			$post_slug             = e(Input::get('slug'));
+		} else {
+			$post_slug             = e(Str::slug(Input::get('title')));
+		}
 
 		// Create a new validator instance from our validation rules
 		$validator = Validator::make(Input::all(), $rules);
@@ -65,8 +72,8 @@ class BlogsController extends AdminController {
 
 		// Update the blog post data
 		$post->title            = e(Input::get('title'));
-		$post->slug             = e(Str::slug(Input::get('title')));
 		$post->content          = e(Input::get('content'));
+		$post->slug             = $post_slug;
 		$post->meta_title       = e(Input::get('meta-title'));
 		$post->meta_description = e(Input::get('meta-description'));
 		$post->meta_keywords    = e(Input::get('meta-keywords'));
@@ -120,8 +127,15 @@ class BlogsController extends AdminController {
 		// Declare the rules for the form validation
 		$rules = array(
 			'title'   => 'required|min:3',
+			'slug'   => "unique:posts,id,$postId",
 			'content' => 'required|min:3',
 		);
+
+		if (Input::get('slug')) {
+			$post->slug             = e(Input::get('slug'));
+		} else {
+			$post->slug             = e(Str::slug(Input::get('title')));
+		}
 
 		// Create a new validator instance from our validation rules
 		$validator = Validator::make(Input::all(), $rules);
@@ -135,7 +149,7 @@ class BlogsController extends AdminController {
 
 		// Update the blog post data
 		$post->title            = e(Input::get('title'));
-		$post->slug             = e(Str::slug(Input::get('title')));
+
 		$post->content          = e(Input::get('content'));
 		$post->meta_title       = e(Input::get('meta-title'));
 		$post->meta_description = e(Input::get('meta-description'));
