@@ -13,7 +13,7 @@ Blog Management ::
 		Blog Management
 
 		<div class="pull-right">
-			<a href="{{ route('create/blog') }}" class="btn btn-small btn-info"><i class="icon-plus-sign icon-white"></i> Create</a>
+			<a href="{{ route('create/blog') }}" class="btn btn-small btn-info"><i class="icon-plus-sign icon-white"></i> @lang('button.create')</a>
 		</div>
 	</h3>
 </div>

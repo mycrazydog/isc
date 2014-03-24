@@ -27,8 +27,8 @@ Forgot Password ::
 	<!-- Form actions -->
 	<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-			<a class="btn" href="{{ route('home') }}">Cancel</a>
-		  <button type="submit" class="btn btn-default">Submit</button>
+			<a class="btn" href="{{ route('home') }}">@lang('button.cancel')</a>
+		  <button type="submit" class="btn btn-default">@lang('button.submit')</button>
 		</div>
 	</div>
 

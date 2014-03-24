@@ -75,8 +75,8 @@ Account Sign up ::
 		<!-- Form actions -->
 		<div class="form-group">
 			<div class="col-sm-offset-2 col-sm-10">
-				<a class="btn" href="{{ route('home') }}">Cancel</a>
-			  	<button type="submit" class="btn btn-default">Sign-Up</button>
+				<a class="btn" href="{{ route('home') }}">@lang('button.cancel')</a>
+			  	<button type="submit" class="btn btn-default">@lang('button.signup')</button>
 			</div>
 		</div>
 

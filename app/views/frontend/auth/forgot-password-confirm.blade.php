@@ -36,9 +36,9 @@ Forgot Password ::
 	<!-- Form actions -->
 	<div class="control-group">
 		<div class="controls">
-			<a class="btn" href="{{ route('home') }}">Cancel</a>
+			<a class="btn" href="{{ route('home') }}">@lang('button.cancel')</a>
 
-			<button type="submit" class="btn btn-info">Submit</button>
+			<button type="submit" class="btn btn-info">@lang('button.submit')</button>
 		</div>
 	</div>
 </form>

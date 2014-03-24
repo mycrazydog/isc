@@ -40,7 +40,7 @@ Account Sign in ::
 			<div class="col-sm-2">
 			</div>
 			<label for="remember-me">
-			 	<input type="checkbox" name="remember-me" id="remember-me" value="1" /> Remember me
+			 	<input type="checkbox" name="remember-me" id="remember-me" value="1" /> @lang('button.rememberme')
 			</label>
 		</div>
 
@@ -49,8 +49,8 @@ Account Sign in ::
 		<!-- Form actions -->
 		<div class="form-group">
 		<div class="col-sm-offset-2 col-sm-10">
-		  <button type="submit" class="btn btn-default">Sign in</button>
-		  <a href="{{ route('forgot-password') }}" class="btn btn-link">I forgot my password</a>
+		  <button type="submit" class="btn btn-default">@lang('button.signin')</button>
+		  <a href="{{ route('forgot-password') }}" class="btn btn-link">@lang('button.forgotpassword')</a>
 		</div>
 
   	</div>
