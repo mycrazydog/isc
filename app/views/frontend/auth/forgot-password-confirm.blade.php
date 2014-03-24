@@ -17,7 +17,7 @@ Forgot Password ::
 
 	<!-- New Password -->
 	<div class="control-group{{ $errors->first('password', ' error') }}">
-		<label class="control-label" for="password">New Password</label>
+		<label class="control-label" for="password">@lang('account/form.newpassword')</label>
 		<div class="controls">
 			<input type="password" name="password" id="password" value="{{ Input::old('password') }}" />
 			{{ $errors->first('password', '<span class="help-block">:message</span>') }}
