@@ -144,8 +144,9 @@ class AuthController extends BaseController {
 				$m->subject('Welcome ' . $user->first_name);
 			});
 
-			// Redirect to the register page
-			return Redirect::back()->with('success', Lang::get('auth/message.signup.success'));
+			// Redirect to the home page with sucess menu
+			return Redirect::to("auth/signin")->with('success', Lang::get('auth/message.signup.success'));
+
 		}
 		catch (Cartalyst\Sentry\Users\UserExistsException $e)
 		{
