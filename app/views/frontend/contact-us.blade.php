@@ -18,25 +18,29 @@ Contact us ::
 
 	<div class="form-group {{ $errors->first('name', 'has-error') }}">
 		<label for="name" class="col-sm-2 control-label">Name</label>
-			<div class="col-sm-10">
-			<input type="text" class="form-control" id="name" placeholder="Your Name">
-			{{ $errors->first('name', '<span class="help-block">:message</span>') }}
+			<div class="col-sm-5">
+				<input type="text" class="form-control" id="name" placeholder="Your Name">
+			</div>
+			<div class="col-sm-4">
+				{{ $errors->first('name', '<span class="help-block">:message</span>') }}
 			</div>
 	</div>
 
   	<div class="form-group {{ $errors->first('email', 'has-error') }}">
 		<label for="email" class="col-sm-2 control-label">Email</label>
-			<div class="col-sm-10">
-			<input type="email" id="email" name="email" class="form-control" placeholder="Email">
-			{{ $errors->first('email', '<span class="help-block">:message</span>') }}
+			<div class="col-sm-5">
+				<input type="email" id="email" name="email" class="form-control" placeholder="Email">
+			</div>
+			<div class="col-sm-4">
+				{{ $errors->first('email', '<span class="help-block">:message</span>') }}
 			</div>
 	</div>
 
 	<div class="form-group {{ $errors->first('description', 'has-error') }}">
 			<label for="description" class="col-sm-2 control-label">Description</label>
-			<div class="col-sm-10">
+			<div class="col-sm-10">{{ $errors->first('description', '<span class="help-block">:message</span>') }}
 			<textarea rows="4" id="description" name="description" class="form-control" placeholder="Type your message here"></textarea>
-			{{ $errors->first('description', '<span class="help-block">:message</span>') }}
+
 			</div>
 	</div>
 
