@@ -24,7 +24,7 @@ User Update ::
 	<li><a href="#tab-permissions" data-toggle="tab">Permissions</a></li>
 </ul>
 
-<form class="form-horizontal" method="post" action="" autocomplete="off">
+<form class="form-horizontal" role="form" method="post" action="">
 	<!-- CSRF Token -->
 	<input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
