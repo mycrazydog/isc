@@ -172,6 +172,7 @@ class AppCommand extends Command {
 
 			// Store the email address
 			$this->userData['email'] = $email;
+			$this->userData['gravatar'] = $email;
 		}
 		while ( ! $email);
 	}
