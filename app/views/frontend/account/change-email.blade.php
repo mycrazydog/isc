@@ -8,7 +8,9 @@ Change your Email
 {{-- Account page content --}}
 @section('account-content')
 <div class="page-header">
-  <h3>Edit Profile <small>Change Your Email Address</small></h3>
+  <h3>@lang('account/title.editprofile')
+  <small>@lang('account/title.changeemailsubtitle')</small>
+  </h3>
 </div>
 
 <form class="form-horizontal" role="form" method="post" action="" autocomplete="off">
@@ -44,7 +46,6 @@ Change your Email
 			{{ $errors->first('current_password', '<span class="help-block">:message</span>') }}
 			</div>
 	</div>
-
 
 	<hr>
 

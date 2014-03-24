@@ -8,7 +8,9 @@ Change your Password
 {{-- Account page content --}}
 @section('account-content')
 <div class="page-header">
-  <h3>Edit Profile <small>Change Your Password</small></h3>
+  <h3>@lang('account/title.editprofile')
+  <small>@lang('account/title.editprofilesubtitle')</small>
+  </h3>
 </div>
 
 <form class="form-horizontal" role="form" method="post" action="" autocomplete="off">
