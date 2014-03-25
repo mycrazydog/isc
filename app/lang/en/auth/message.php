@@ -6,10 +6,10 @@
 
 return array(
 
-	'account_already_exists' => 'An account with the provided email, already exists.',
-	'account_not_found'      => 'This user account was not found.',
+	'account_already_exists' => 'An account with this email already exists.',
+	'account_not_found'      => 'Username or password is incorrect.',
 	'account_not_activated'  => 'This user account is not activated.',
-	'account_suspended'      => 'This user account is suspended.',
+	'account_suspended'      => 'User account suspended because of too many login attempts. Try again later.',
 	'account_banned'         => 'This user account is banned.',
 
 	'signin' => array(
