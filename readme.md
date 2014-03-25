@@ -26,6 +26,7 @@ packages, like the awesome [Sentry 2](https://github.com/cartalyst/sentry) packa
 * Back-end
 	* User and Group management
 	* Manage blog posts and comments
+	* Login brute-force prevention via [Sentry 2](https://github.com/cartalyst/sentry) - default lockout is 5 failed login attempts
 * Front-end
 	* User login, registration, activation and forgot password
 	* User account area
