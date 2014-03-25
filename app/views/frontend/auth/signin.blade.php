@@ -32,7 +32,7 @@
 		<div class="form-group {{ $errors->first('password', 'has-error') }}">
 			<label for="password" class="col-sm-2 control-label">@lang('account/form.password')</label>
 			<div class="col-sm-4">
-				<input type="text" class="form-control" name="password" id="password">
+				<input type="password" class="form-control" name="password" id="password">
 			</div>
 			<div class="col-sm-4">
 				{{ $errors->first('password', '<span class="help-block">:message</span>') }}
