@@ -8,7 +8,7 @@ class PracticeTest extends PHPUnit_Framework_TestCase {
 	}
 
 	public function testLaravelDevsIncludesDayle() {
-		$names = ['Taylor', 'Shawn', 'Dayle'];
+		$names = array('Taylor', 'Shawn', 'Dayle');
 		$this->assertContains('Dayle', $names);
 	}
 
