@@ -52,9 +52,9 @@ class BlogsController extends AdminController {
 		);
 
 		if (Input::get('slug')) {
-			$post_slug             = e(Input::get('slug'));
+			Input::merge(array('slug' => Input::get('slug')));
 		} else {
-			$post_slug             = e(Str::slug(Input::get('title')));
+			Input::merge(array('slug' => Str::slug(Input::get('title'))));
 		}
 
 		// Create a new validator instance from our validation rules
@@ -73,7 +73,7 @@ class BlogsController extends AdminController {
 		// Update the blog post data
 		$post->title            = e(Input::get('title'));
 		$post->content          = e(Input::get('content'));
-		$post->slug             = $post_slug;
+		$post->slug             = e(Input::get('slug'));
 		$post->meta_title       = e(Input::get('meta-title'));
 		$post->meta_description = e(Input::get('meta-description'));
 		$post->meta_keywords    = e(Input::get('meta-keywords'));
@@ -132,9 +132,9 @@ class BlogsController extends AdminController {
 		);
 
 		if (Input::get('slug')) {
-			$post->slug             = e(Input::get('slug'));
+			Input::merge(array('slug' => Input::get('slug')));
 		} else {
-			$post->slug             = e(Str::slug(Input::get('title')));
+			Input::merge(array('slug' => Str::slug(Input::get('title'))));
 		}
 
 		// Create a new validator instance from our validation rules
@@ -149,7 +149,7 @@ class BlogsController extends AdminController {
 
 		// Update the blog post data
 		$post->title            = e(Input::get('title'));
-
+		$post->slug             = e(Input::get('slug'));
 		$post->content          = e(Input::get('content'));
 		$post->meta_title       = e(Input::get('meta-title'));
 		$post->meta_description = e(Input::get('meta-description'));
