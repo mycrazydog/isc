@@ -101,13 +101,21 @@ Use the following command to create your default user, user groups and run all t
 
 ### 6) Accessing the Administration
 
-To access the administration page, you just need to access `http://your-host/admin` in your browser and it will redirect you to the login page.
+To access the administration page, you just need to access `http://your-host/admin` in your browser and it
+will redirect you to the login page.
 
 After being authenticated, you will be redirected back to the administration page.
 
 -----
 
-### 7) Contact
+### 7) Brute-force Lockout Settings
+
+The default Sentry setting is to lockout the user for 15 minutes after 5 failed login attempts. To
+change these settings, edit your `/vendor/cartalyst/sentry/src/config/config.php` file locally.
+
+-----
+
+### 8) Contact
 If you have questions about this project, you can reach me at snipe@snipe.net, or on Twitter at [@snipeyhead](https://twitter.com/snipeyhead).
 
 -----
