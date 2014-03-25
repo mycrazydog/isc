@@ -10,5 +10,8 @@ Please submit all issues and pull requests to the [snipe/laravel4-starter](https
 ### Tests
 The original repo this starter site came from did not have any test cases. We're working on fixing that, and would appreciate it if you include test cases wherever possible for any new features you introduce. **We use [Travis CI](https://travis-ci.org/snipe/laravel4-starter) for testing, and if your pull request breaks the build, it won't be accepted**.
 
+### Contact
+If you have questions about this project, you can reach me at snipe@snipe.net, or on Twitter at [@snipeyhead](https://twitter.com/snipeyhead).
+
 ### The Laravel Framework
 Please submit issues and pull requests for the Laravel framework itself (not specific to this sample application) should be made on the [laravel/framework](http://github.com/laravel/framework) repository.

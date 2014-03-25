@@ -79,9 +79,11 @@ Now that you have the Starter Kit cloned and all the dependencies installed, you
 
 ### 4) Setup Mail Settings
 
-Now, you need to setup your mail settings by just opening and updating the following file `app/config/mail.php`.
+Setup your mail settings by  opening and updating `app/config/mail.php`.
 
 This will be used to send emails to your users, when they register and they request a password reset.
+
+While testing locally, you can set `'pretend' => true,` in `app/config/mail.php` to simulate email being sent.
 
 -----
 
@@ -93,13 +95,20 @@ Use the following command to create your default user, user groups and run all t
 
 	php artisan app:install
 
+(Note that the Travis CI file skips this step and instead calls the individual setup methods and just inserts the example user, since [the CI build](https://travis-ci.org/snipe/laravel4-starter.svg?branch=master)] isn't interactive.)
+
 -----
 
 ### 6) Accessing the Administration
 
-To access the administration page, you just need to access `http://your-host/admin` on your browser and it will automatically redirect you to the login page, in the login page, just fill in and submit the form.
+To access the administration page, you just need to access `http://your-host/admin` in your browser and it will redirect you to the login page.
 
 After being authenticated, you will be redirected back to the administration page.
+
+-----
+
+### 7) Contact
+If you have questions about this project, you can reach me at snipe@snipe.net, or on Twitter at [@snipeyhead](https://twitter.com/snipeyhead).
 
 -----
 
