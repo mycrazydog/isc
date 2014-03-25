@@ -21,23 +21,28 @@ User Management ::
   <li><a class="btn btn-medium" href="{{ URL::to('admin/users?withTrashed=true') }}">Include Deleted Users</a></li>
   <li><a class="btn btn-medium" href="{{ URL::to('admin/users?onlyTrashed=true') }}">Include Only Deleted Users</a></li>
 </ul>
-
-<table class="table table-striped table-hover">
+<div class="table-responsive">
+<table class="table table-hover">
 	<thead>
 		<tr>
-			<th class="span1"></th>
-			<th class="span1">@lang('admin/users/table.id')</th>
-			<th class="span2">@lang('admin/users/table.first_name')</th>
-			<th class="span2">@lang('admin/users/table.last_name')</th>
-			<th class="span3">@lang('admin/users/table.email')</th>
-			<th class="span2">@lang('admin/users/table.activated')</th>
-			<th class="span2">@lang('admin/users/table.created_at')</th>
-			<th class="span1"></th>
+			<th></th>
+			<th>@lang('admin/users/table.id')</th>
+			<th>@lang('admin/users/table.first_name')</th>
+			<th>@lang('admin/users/table.last_name')</th>
+			<th>@lang('admin/users/table.email')</th>
+			<th>@lang('admin/users/table.activated')</th>
+			<th>@lang('admin/users/table.created_at')</th>
+			<th></th>
 		</tr>
 	</thead>
 	<tbody>
 		@foreach ($users as $user)
-		<tr>
+		<tr
+		@if ($user->accountStatus()=='suspended')
+				<?php echo ' class="warning"'; ?>
+			@elseif ($user->accountStatus()=='banned')
+				<?php echo ' class="danger"'; ?>
+			@endif>
 			<td><a href="{{ route('update/user', $user->id) }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
 			<td>{{ $user->id }}</td>
 			<td>{{ $user->first_name }}</td>
@@ -60,6 +65,7 @@ User Management ::
 		@endforeach
 	</tbody>
 </table>
+</div>
 
 @if (count($users))
 <div class="row">
