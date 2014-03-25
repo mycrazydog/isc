@@ -8,11 +8,11 @@
 * Country macro
 * Generates the dropdown menu of countries for the profile form
 */
-Form::macro('countries', function($name = "country", $selected = null, $class = null) {
+Form::macro('countries', function ($name = "country", $selected = null, $class = null) {
 
-	$countries = array(
-	''=>"Select a Country",
-	'ac'=>'Ascension Island',
+    $countries = array(
+    ''=>"Select a Country",
+    'ac'=>'Ascension Island',
     'ad'=>'Andorra',
     'ae'=>'United Arab Emirates',
     'af'=>'Afghanistan',
@@ -260,17 +260,16 @@ Form::macro('countries', function($name = "country", $selected = null, $class = 
     'za'=>'South Africa',
     'zm'=>'Zambia',
     'zw'=>'Zimbabwe'
-	);
+    );
 
-	$select = '<select name="'.$name.'" class="'.$class.'">';
+    $select = '<select name="'.$name.'" class="'.$class.'">';
 
-	foreach ($countries as $abbr => $country)
-	{
-		$select .= '<option value="'.$abbr.'"'.($selected == $abbr ? ' selected="selected"' : '').'>'.$country.'</option> ';
-	}
+    foreach ($countries as $abbr => $country) {
+        $select .= '<option value="'.$abbr.'"'.($selected == $abbr ? ' selected="selected"' : '').'>'.$country.'</option> ';
+    }
 
-	$select .= '</select>';
+    $select .= '</select>';
 
-	return $select;
+    return $select;
 
 });

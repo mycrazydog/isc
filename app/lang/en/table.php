@@ -5,6 +5,6 @@
 */
 return array(
 
-	'actions' => 'Actions'
+    'actions' => 'Actions'
 
 );

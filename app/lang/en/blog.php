@@ -6,10 +6,9 @@
 
 return array(
 
-	'addcomment'			=> 'Add a Comment',
-	'comment'				=> 'Comment',
-	'comments'				=> 'Comments',
-	'postcomment'			=> 'Post Comment',
-
+    'addcomment'			=> 'Add a Comment',
+    'comment'				=> 'Comment',
+    'comments'				=> 'Comments',
+    'postcomment'			=> 'Post Comment',
 
 );

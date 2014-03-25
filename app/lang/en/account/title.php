@@ -6,12 +6,12 @@
 
 return array(
 
-	'editprofile'				=> 'Edit Profile',
-	'changepasswordsubtitle'	=> 'Change Your Password',
-	'editprofilesubtitle'		=> 'Change Profile Details',
-	'changeemailsubtitle'		=> 'Update Your Email',
-	'signin'					=> 'Sign In',
-	'signup'					=> 'Sign Up for an Account',
-	'forgotpassword'			=> 'Forgot Password',
+    'editprofile'				=> 'Edit Profile',
+    'changepasswordsubtitle'	=> 'Change Your Password',
+    'editprofilesubtitle'		=> 'Change Profile Details',
+    'changeemailsubtitle'		=> 'Update Your Email',
+    'signin'					=> 'Sign In',
+    'signup'					=> 'Sign Up for an Account',
+    'forgotpassword'			=> 'Forgot Password',
 
 );

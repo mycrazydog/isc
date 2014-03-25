@@ -5,8 +5,8 @@
 */
 return array(
 
-	'yes' => 'Yes',
-	'no'  => 'No',
-	'noresults'  => 'No Results'
+    'yes' => 'Yes',
+    'no'  => 'No',
+    'noresults'  => 'No Results'
 
 );
