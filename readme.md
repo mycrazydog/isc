@@ -95,7 +95,7 @@ Use the following command to create your default user, user groups and run all t
 
 	php artisan app:install
 
-(Note that the Travis CI file skips this step and instead calls the individual setup methods and just inserts the example user, since [the CI build](https://travis-ci.org/snipe/laravel4-starter.svg?branch=master)] isn't interactive.)
+(Note that [the Travis CI file](https://github.com/snipe/laravel4-starter/blob/master/.travis.yml) skips this step and instead calls the individual setup methods and just inserts the example user, since [the CI build](https://travis-ci.org/snipe/laravel4-starter.svg?branch=master) isn't interactive.)
 
 -----
 
