@@ -36,4 +36,21 @@ class User extends SentryUserModel {
 		return "//gravatar.org/avatar/{$gravatar}";
 	}
 
+	public function accountStatus() {
+
+		$throttle = Sentry::findThrottlerByUserId($this->id);
+
+		if ($throttle->isBanned()) {
+			return 'banned';
+		} elseif ($throttle->isSuspended()) {
+			return 'suspended';
+		} else {
+			return '';
+		}
+
+
+	}
+
+
+
 }
