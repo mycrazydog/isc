@@ -9,7 +9,7 @@ return array(
 	'first_name' => 'First Name',
 	'last_name'  => 'Last Name',
 	'email'      => 'Email',
-	'activated'  => 'Activated',
+	'activated'  => 'Active',
 	'created_at' => 'Created at',
 
 );
