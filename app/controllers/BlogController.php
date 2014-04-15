@@ -2,6 +2,14 @@
 
 class BlogController extends BaseController
 {
+
+      protected $post;
+
+      public function __construct(Post $post)
+      {
+          $this->post = $post;
+      }
+
     /**
      * Returns all the blog posts.
      *
@@ -16,8 +24,9 @@ class BlogController extends BaseController
             },
         ))->orderBy('created_at', 'DESC')->paginate();
 
-        // Show the page
-        return View::make('frontend/blog/index', compact('posts'));
+        return View::make('frontend/blog/index')
+          ->with('posts', $posts);
+
     }
 
     /**
