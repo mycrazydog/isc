@@ -26,7 +26,7 @@ return array(
     |
     */
 
-    'url' => 'http://localhost',
+    'url' => 'http://laravel-starter-fork:8888',
 
     /*
     |--------------------------------------------------------------------------
@@ -107,6 +107,7 @@ return array(
         'Illuminate\View\ViewServiceProvider',
         'Illuminate\Workbench\WorkbenchServiceProvider',
         'Cartalyst\Sentry\SentryServiceProvider',
+        'Barryvdh\Debugbar\ServiceProvider',
 
     ),
 
