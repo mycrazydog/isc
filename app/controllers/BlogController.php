@@ -80,34 +80,33 @@ class BlogController extends BaseController
 
         // Get this blog post data
         $post = $this->post->where('slug', $slug)->first();
-
-        // Declare the rules for the form validation
-        $rules = array(
-            'comment' => 'required|min:3',
-        );
-
-        // Create a new validator instance from our dynamic rules
-        $validator = Validator::make(Input::all(), $rules);
+        
+        // get the  data
+		$new = Input::all();
+        $comment = new Comment;
 
         // If validation fails, we'll exit the operation now
-        if ($validator->fails()) {
-            // Redirect to this blog post page
-            return Redirect::to("blog/$slug#comments")->withInput()->withErrors($validator);
-        }
-
-        // Save the comment
-        $comment = new Comment;
-        $comment->user_id = Sentry::getUser()->id;
-        $comment->content = e(Input::get('comment'));
-
-        // Was the comment saved with success?
-        if ($post->comments()->save($comment)) {
-            // Redirect to this blog post page
-            return Redirect::to("blog/$slug#comments")->with('success', 'Your comment was successfully added.');
+        if ($comment->validate($new))
+		{
+            // Save the comment     
+			$comment->user_id = Sentry::getUser()->id;
+			$comment->content = e(Input::get('comment'));
+			
+			 	// Was the comment saved with success?
+		        if ($post->comments()->save($comment)) {
+		            // Redirect to this blog post page
+		            return Redirect::to("blog/$slug#comments")->with('success', 'Your comment was successfully added.');
+		        }
+		        
+        } else {
+	        // failure, get errors
+			return Redirect::to("blog/$slug#comments")->withInput()->withErrors($comment->errors());
         }
 
         // Redirect to this blog post page
-        return Redirect::to("blog/$slug#comments")->with('error', 'There was a problem adding your comment, please try again.');
+        return Redirect::to("blog/$slug#comments")->with('error', 'There was a problem adding your comment, please try again.');        
+		
+        
     }
 
 }
