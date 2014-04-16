@@ -2,7 +2,7 @@
 
 # app/tests/controllers/PostsControllerTest.php
 
-class BlogControllerTest extends TestCase
+class PostControllerTest extends TestCase
 {
 
   public function testIndex()
