@@ -2,11 +2,10 @@
 
 class Comment extends Elegant
 {
-	protected $rules = array(
+    protected $rules = array(
        'comment' => 'required|min:3'
     );
-    
-    
+
     /**
      * Get the comment's content.
      *
