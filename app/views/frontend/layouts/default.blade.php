@@ -89,7 +89,7 @@
                 </ul>
             </li>
 
-            @if(Sentry::getUser()->hasAccess('admin'))
+            @if(Sentry::getUser()->hasAccess('posts.write'))
             <li{{ (Request::is('admin/posts*') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/posts') }}"><i class="icon-list-alt icon-white"></i> Blog Posts</a></li>
 
             <li class="dropdown {{ (Request::is('admin/users*|admin/groups*') ? ' active' : '') }}">

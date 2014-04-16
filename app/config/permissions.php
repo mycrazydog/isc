@@ -16,4 +16,15 @@ return array(
         ),
     ),
 
+    'Posts' => array(
+        array(
+            'permission' => 'post.read',
+            'label'      => 'Read',
+        ),
+        array(
+            'permission' => 'post.create',
+            'label'      => 'Create',
+        ),
+    ),
+
 );
