@@ -12,6 +12,14 @@ use View;
 
 class BlogsController extends AdminController
 {
+
+    protected $post;
+
+      public function __construct(Post $post)
+      {
+          $this->post = $post;
+      }
+
     /**
      * Show a list of all the blog posts.
      *
