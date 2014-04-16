@@ -217,14 +217,52 @@ class AppCommand extends Command
             $group = Sentry::getGroupProvider()->create(array(
                 'name'        => 'Admin',
                 'permissions' => array(
-                    'admin' => 1,
-                    'users' => 1
+                 	'superuser' 	=> 1,
+                    'admin' 		=> 1,
+                    'posts.write' 	=> 1,
+                    'posts.read' 	=> 1,
+                    'users' 		=> 1
                 )
             ));
 
             // Show the success message.
             $this->comment('');
             $this->info('Admin group created successfully.');
+
+
+            // Create the blog author group
+            $group = Sentry::getGroupProvider()->create(array(
+                'name'        => 'Authors',
+                'permissions' => array(
+                	'superuser' 	=> 0,
+                    'admin' 		=> 0,
+                    'posts.write' 	=> 1,
+                    'posts.read' 	=> 1,
+                    'users' 		=> 0
+                )
+            ));
+
+            // Show the success message.
+            $this->comment('');
+            $this->info('Author group created successfully.');
+
+
+            // Create the user group
+            $group = Sentry::getGroupProvider()->create(array(
+                'name'        		=> 'User',
+                'permissions' 		=> array(
+                	'superuser' 	=> 0,
+                    'admin' 		=> 0,
+                    'posts.write' 	=> 0,
+                    'posts.read' 	=> 1,
+                    'users' 		=> 0
+                )
+            ));
+
+            // Show the success message.
+            $this->comment('');
+            $this->info('User group created successfully.');
+
         } catch (Cartalyst\Sentry\Groups\GroupExistsException $e) {
             $this->error('Group already exists.');
         }
@@ -239,10 +277,13 @@ class AppCommand extends Command
     {
         // Prepare the user data array.
         $data = array_merge($this->userData, array(
-            'activated'   => 1,
-            'permissions' => array(
-                'admin' => 1,
-                'user'  => 1,
+            'activated'   		=> 1,
+            'permissions' 		=> array(
+                'superuser' 	=> 1,
+                'admin' 		=> 1,
+                'posts.write' 	=> 1,
+                'posts.read' 	=> 1,
+                'user'  		=> 1,
             ),
         ));
 
@@ -275,13 +316,20 @@ class AppCommand extends Command
             'password'   => 'johndoe',
             'gravatar'   => 'example@example.com',
             'permissions' => array(
-                'admin' => 1
+                'superuser' 	=> 0,
+                'admin' 		=> 0,
+                'posts.write' 	=> 1,
+                'posts.read' 	=> 1,
+                'users' 		=> 0
             ),
             'activated'  => 1,
         );
 
-        // Create the user
-        Sentry::getUserProvider()->create($data);
+        // Create the dummy user
+        $user = Sentry::getUserProvider()->create($data);
+        // Associate the Author group to this user
+        $group = Sentry::getGroupProvider()->findById(2);
+        $user->addGroup($group);
     }
 
 }
