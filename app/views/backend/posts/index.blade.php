@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-@lang('admin/blogs/title.blogmanagement') ::
+@lang('admin/posts/title.blogmanagement') ::
 @parent
 @stop
 
@@ -10,10 +10,10 @@
 @section('content')
 <div class="page-header">
     <h3>
-        @lang('admin/blogs/title.blogmanagement')
+        @lang('admin/posts/title.blogmanagement')
 
         <div class="pull-right">
-            <a href="{{ route('create/blog') }}" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span> @lang('button.create')</a>
+            <a href="{{ route('create/post') }}" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span> @lang('button.create')</a>
         </div>
     </h3>
 </div>
@@ -24,20 +24,20 @@
     <thead>
         <tr>
             <th class="span1"></th>
-            <th class="span6">@lang('admin/blogs/table.title')</th>
-            <th class="span2">@lang('admin/blogs/table.comments')</th>
-            <th class="span2">@lang('admin/blogs/table.created_at')</th>
+            <th class="span6">@lang('admin/posts/table.title')</th>
+            <th class="span2">@lang('admin/posts/table.comments')</th>
+            <th class="span2">@lang('admin/posts/table.created_at')</th>
             <th class="span1"></th>
         </tr>
     </thead>
     <tbody>
         @foreach ($posts as $post)
         <tr>
-            <td><a href="{{ route('update/blog', $post->id) }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+            <td><a href="{{ route('update/post', $post->id) }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
             <td><a href="{{ $post->url() }}">{{ $post->title }}</a></td>
             <td>{{ $post->comments()->count() }}</td>
             <td>{{ $post->created_at->diffForHumans() }}</td>
-            <td><a href="{{ route('delete/blog', $post->id) }}"><span class="glyphicon glyphicon-trash"></span></a></td>
+            <td><a href="{{ route('delete/post', $post->id) }}"><span class="glyphicon glyphicon-trash"></span></a></td>
         </tr>
         @endforeach
     </tbody>

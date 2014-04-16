@@ -1,6 +1,6 @@
 <?php
 
-class BlogController extends BaseController
+class PostController extends BaseController
 {
 
       protected $post;
@@ -25,7 +25,7 @@ class BlogController extends BaseController
             },
         ))->orderBy('created_at', 'DESC')->paginate();
 
-        return View::make('frontend/blog/index')
+        return View::make('frontend/posts/index')
           ->with('posts', $posts);
 
     }
@@ -62,7 +62,7 @@ class BlogController extends BaseController
         ))->orderBy('created_at', 'DESC')->get();
 
         // Show the page
-        return View::make('frontend/blog/view-post', compact('post', 'comments'));
+        return View::make('frontend/posts/view-post', compact('post', 'comments'));
     }
 
     /**
@@ -75,7 +75,7 @@ class BlogController extends BaseController
     {
         // The user needs to be logged in, make that check please
         if ( ! Sentry::check()) {
-            return Redirect::to("blog/$slug#comments")->with('error', Lang::get('blog.messages.login'));
+            return Redirect::to("blog/$slug#comments")->with('error', Lang::get('post.messages.login'));
         }
 
         // Get this blog post data
@@ -103,7 +103,7 @@ class BlogController extends BaseController
         }
 
         // Redirect to this blog post page
-        return Redirect::to("blog/$slug#comments")->with('error', Lang::get('blog.messages.generic'));
+        return Redirect::to("blog/$slug#comments")->with('error', Lang::get('post.messages.generic'));
 
     }
 

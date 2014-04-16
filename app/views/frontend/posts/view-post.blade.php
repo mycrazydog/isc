@@ -32,14 +32,14 @@
 
 <div>
     <span class="badge badge-info" title="{{ $post->created_at }}">
-    @lang('blog.posted') 
+    @lang('post.posted')
     {{ $post->created_at->diffForHumans() }}</span>
 </div>
 
 <hr />
 
 <a id="comments"></a>
-<h4>{{ $comments->count() }} @lang('blog.comments')</h4>
+<h4>{{ $comments->count() }} @lang('post.comments')</h4>
 
 @if ($comments->count())
 @foreach ($comments as $comment)
@@ -62,11 +62,11 @@
 @endif
 
 @if ( ! Sentry::check())
-@lang('blog.messages.login')
+@lang('post.messages.login')
 <br /><br />
-@lang('blog.messages.loginprompt', array('signin' => route('signin')))
+@lang('post.messages.loginprompt', array('signin' => route('signin')))
 @else
-<h4>@lang('blog.addcomment')</h4>
+<h4>@lang('post.addcomment')</h4>
 <form class="form-horizontal" role="form" method="post" action="{{ route('view-post', $post->slug) }}">
 
     <!-- CSRF Token -->
@@ -81,7 +81,7 @@
     </div>
     <div class="form-group">
         <div class="col-sm-offset-10 col-sm-1">
-          <button type="submit" class="btn btn-default">@lang('blog.postcomment')</button>
+          <button type="submit" class="btn btn-default">@lang('post.postcomment')</button>
         </div>
     </div>
 

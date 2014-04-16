@@ -90,7 +90,7 @@
             </li>
 
             @if(Sentry::getUser()->hasAccess('admin'))
-            <li{{ (Request::is('admin/blogs*') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/blogs') }}"><i class="icon-list-alt icon-white"></i> Blog Posts</a></li>
+            <li{{ (Request::is('admin/posts*') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/posts') }}"><i class="icon-list-alt icon-white"></i> Blog Posts</a></li>
 
             <li class="dropdown {{ (Request::is('admin/users*|admin/groups*') ? ' active' : '') }}">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="{{ URL::to('admin/users') }}">

@@ -10,7 +10,7 @@ use Str;
 use Validator;
 use View;
 
-class BlogsController extends AdminController
+class PostsController extends AdminController
 {
 
     protected $post;
@@ -31,7 +31,7 @@ class BlogsController extends AdminController
         $posts = $this->post->orderBy('created_at', 'DESC')->paginate(10);
 
         // Show the page
-        return View::make('backend/blogs/index', compact('posts'));
+        return View::make('backend/posts/index', compact('posts'));
     }
 
     /**
@@ -42,7 +42,7 @@ class BlogsController extends AdminController
     public function getCreate()
     {
         // Show the page
-        return View::make('backend/blogs/create');
+        return View::make('backend/posts/create');
     }
 
     /**
@@ -89,11 +89,11 @@ class BlogsController extends AdminController
         // Was the blog post created?
         if ($post->save()) {
             // Redirect to the new blog post page
-            return Redirect::to("admin/blogs/$post->id/edit")->with('success', Lang::get('admin/blogs/message.create.success'));
+            return Redirect::to("admin/posts/$post->id/edit")->with('success', Lang::get('admin/posts/message.create.success'));
         }
 
         // Redirect to the blog post create page
-        return Redirect::to('admin/blogs/create')->with('error', Lang::get('admin/blogs/message.create.error'));
+        return Redirect::to('admin/posts/create')->with('error', Lang::get('admin/posts/message.create.error'));
     }
 
     /**
@@ -107,11 +107,11 @@ class BlogsController extends AdminController
         // Check if the blog post exists
         if (is_null($post = $this->post->find($postId))) {
             // Redirect to the blogs management page
-            return Redirect::to('admin/blogs')->with('error', Lang::get('admin/blogs/message.does_not_exist'));
+            return Redirect::to('admin/blogs')->with('error', Lang::get('admin/posts/message.does_not_exist'));
         }
 
         // Show the page
-        return View::make('backend/blogs/edit', compact('post'));
+        return View::make('backend/posts/edit', compact('post'));
     }
 
     /**
@@ -125,7 +125,7 @@ class BlogsController extends AdminController
         // Check if the blog post exists
         if (is_null($post = $this->post->find($postId))) {
             // Redirect to the blogs management page
-            return Redirect::to('admin/blogs')->with('error', Lang::get('admin/blogs/message.does_not_exist'));
+            return Redirect::to('admin/blogs')->with('error', Lang::get('admin/posts/message.does_not_exist'));
         }
 
         // Declare the rules for the form validation
@@ -161,11 +161,11 @@ class BlogsController extends AdminController
         // Was the blog post updated?
         if ($post->save()) {
             // Redirect to the new blog post page
-            return Redirect::to("admin/blogs/$postId/edit")->with('success', Lang::get('admin/blogs/message.update.success'));
+            return Redirect::to("admin/posts/$postId/edit")->with('success', Lang::get('admin/posts/message.update.success'));
         }
 
         // Redirect to the blogs post management page
-        return Redirect::to("admin/blogs/$postId/edit")->with('error', Lang::get('admin/blogs/message.update.error'));
+        return Redirect::to("admin/posts/$postId/edit")->with('error', Lang::get('admin/posts/message.update.error'));
     }
 
     /**
@@ -179,14 +179,14 @@ class BlogsController extends AdminController
         // Check if the blog post exists
         if (is_null($post = $this->post->find($postId))) {
             // Redirect to the blogs management page
-            return Redirect::to('admin/blogs')->with('error', Lang::get('admin/blogs/message.not_found'));
+            return Redirect::to('admin/posts')->with('error', Lang::get('admin/posts/message.not_found'));
         }
 
         // Delete the blog post
         $post->delete();
 
         // Redirect to the blog posts management page
-        return Redirect::to('admin/blogs')->with('success', Lang::get('admin/blogs/message.delete.success'));
+        return Redirect::to('admin/posts')->with('success', Lang::get('admin/posts/message.delete.success'));
     }
 
 }

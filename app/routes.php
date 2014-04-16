@@ -11,15 +11,15 @@
 
 Route::group(array('prefix' => 'admin'), function () {
 
-    # Blog Management
-    Route::group(array('prefix' => 'blogs'), function () {
-        Route::get('/', array('as' => 'blogs', 'uses' => 'Controllers\Admin\BlogsController@getIndex'));
-        Route::get('create', array('as' => 'create/blog', 'uses' => 'Controllers\Admin\BlogsController@getCreate'));
-        Route::post('create', 'Controllers\Admin\BlogsController@postCreate');
-        Route::get('{blogId}/edit', array('as' => 'update/blog', 'uses' => 'Controllers\Admin\BlogsController@getEdit'));
-        Route::post('{blogId}/edit', 'Controllers\Admin\BlogsController@postEdit');
-        Route::get('{blogId}/delete', array('as' => 'delete/blog', 'uses' => 'Controllers\Admin\BlogsController@getDelete'));
-        Route::get('{blogId}/restore', array('as' => 'restore/blog', 'uses' => 'Controllers\Admin\BlogsController@getRestore'));
+    # Post Management
+    Route::group(array('prefix' => 'posts'), function () {
+        Route::get('/', array('as' => 'posts', 'uses' => 'Controllers\Admin\PostsController@getIndex'));
+        Route::get('create', array('as' => 'create/post', 'uses' => 'Controllers\Admin\PostsController@getCreate'));
+        Route::post('create', 'Controllers\Admin\PostsController@postCreate');
+        Route::get('{blogId}/edit', array('as' => 'update/post', 'uses' => 'Controllers\Admin\PostsController@getEdit'));
+        Route::post('{blogId}/edit', 'Controllers\Admin\PostsController@postEdit');
+        Route::get('{blogId}/delete', array('as' => 'delete/post', 'uses' => 'Controllers\Admin\PostsController@getDelete'));
+        Route::get('{blogId}/restore', array('as' => 'restore/post', 'uses' => 'Controllers\Admin\PostsController@getRestore'));
     });
 
     # User Management
@@ -131,8 +131,8 @@ Route::get('about-us', function () {
 Route::get('contact-us', array('as' => 'contact-us', 'uses' => 'ContactUsController@getIndex'));
 Route::post('contact-us', 'ContactUsController@postIndex');
 
-Route::get('blog/{postSlug}', array('as' => 'view-post', 'uses' => 'BlogController@getView'));
-Route::post('blog/{postSlug}', 'BlogController@postView');
+Route::get('blog/{postSlug}', array('as' => 'view-post', 'uses' => 'PostController@getView'));
+Route::post('blog/{postSlug}', 'PostController@postView');
 
-Route::get('/', array('as' => 'home', 'uses' => 'BlogController@getIndex'));
-Route::get('home', array('as' => 'home', 'uses' => 'BlogController@getIndex'));
+Route::get('/', array('as' => 'home', 'uses' => 'PostController@getIndex'));
+Route::get('home', array('as' => 'home', 'uses' => 'PostController@getIndex'));
