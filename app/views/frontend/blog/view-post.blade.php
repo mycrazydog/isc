@@ -31,7 +31,9 @@
 <p>{{ $post->content() }}</p>
 
 <div>
-    <span class="badge badge-info" title="{{ $post->created_at }}">Posted {{ $post->created_at->diffForHumans() }}</span>
+    <span class="badge badge-info" title="{{ $post->created_at }}">
+    @lang('blog.posted') 
+    {{ $post->created_at->diffForHumans() }}</span>
 </div>
 
 <hr />

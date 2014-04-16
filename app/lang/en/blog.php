@@ -9,6 +9,7 @@ return array(
     'addcomment'			=> 'Add a Comment',
     'comment'				=> 'Comment',
     'comments'				=> 'Comments',
+    'posted'				=> 'Posted',
     'postcomment'			=> 'Post Comment',
     	'messages' 			=> array(
 					        'login'   		=> 'You need to be logged in to post comments.',
