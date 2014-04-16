@@ -10,7 +10,7 @@ class BlogControllerTest extends TestCase
         $response = $this->call('GET', '/');
 
         $this->assertViewHas('posts');
-        
+
         // getData() returns all vars attached to the response.
         $posts = $response->original->getData()['posts'];
 
