@@ -13,7 +13,7 @@
         @lang('admin/groups/title.create')
 
         <div class="pull-right">
-            <a href="{{ route('groups') }}" class="btn btn-small btn-inverse"><i class="icon-circle-arrow-left icon-white"></i> Back</a>
+            <a href="{{ route('groups') }}" class="btn btn-small btn-inverse"><i class="icon-circle-arrow-left icon-white"></i> @lang('button.back')</a>
         </div>
     </h3>
 </div>
