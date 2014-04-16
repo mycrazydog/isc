@@ -115,8 +115,7 @@ class AppCommand extends Command
 
             // Store the user first name
             $this->userData['first_name'] = $first_name;
-        }
-        while( ! $first_name);
+        } while ( ! $first_name);
     }
 
     /**
@@ -139,8 +138,7 @@ class AppCommand extends Command
 
             // Store the user last name
             $this->userData['last_name'] = $last_name;
-        }
-        while( ! $last_name);
+        } while ( ! $last_name);
     }
 
     /**
