@@ -2,7 +2,7 @@
 /*
  * Handy trick to move validation into models
  * via http://daylerees.com/trick-validation-within-models
- *  
+ *
 */
 class Elegant extends Eloquent
 {
@@ -15,10 +15,10 @@ class Elegant extends Eloquent
         $v = Validator::make($data, $this->rules);
 
         // check for failure
-        if ($v->fails())
-        {
+        if ($v->fails()) {
             // set errors and return false
             $this->errors = $v->errors();
+
             return false;
         }
 
