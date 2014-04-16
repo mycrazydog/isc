@@ -1,6 +1,6 @@
 <?php
 
-class Post extends Eloquent
+class Post extends Elegant
 {
     /**
      * Deletes a blog post and all the associated comments.
