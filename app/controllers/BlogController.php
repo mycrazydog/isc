@@ -18,7 +18,8 @@ class BlogController extends BaseController
     public function getIndex()
     {
         // Get all the blog posts
-        $posts = Post::with(array(
+        // return $this->post->all();
+        $posts = $this->post->with(array(
             'author' => function ($query) {
                 $query->withTrashed();
             },
@@ -39,7 +40,7 @@ class BlogController extends BaseController
     public function getView($slug)
     {
         // Get this blog post data
-        $post = Post::with(array(
+        $post = $this->post->with(array(
             'author' => function ($query) {
                 $query->withTrashed();
             },
@@ -78,7 +79,7 @@ class BlogController extends BaseController
         }
 
         // Get this blog post data
-        $post = Post::where('slug', $slug)->first();
+        $post = $this->post->where('slug', $slug)->first();
 
         // Declare the rules for the form validation
         $rules = array(
