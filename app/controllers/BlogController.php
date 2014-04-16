@@ -75,38 +75,36 @@ class BlogController extends BaseController
     {
         // The user needs to be logged in, make that check please
         if ( ! Sentry::check()) {
-            return Redirect::to("blog/$slug#comments")->with('error', 'You need to be logged in to post comments!');
+            return Redirect::to("blog/$slug#comments")->with('error', Lang::get('blog.messages.login'));
         }
 
         // Get this blog post data
         $post = $this->post->where('slug', $slug)->first();
-        
+
         // get the  data
-		$new = Input::all();
+        $new = Input::all();
         $comment = new Comment;
 
         // If validation fails, we'll exit the operation now
-        if ($comment->validate($new))
-		{
-            // Save the comment     
-			$comment->user_id = Sentry::getUser()->id;
-			$comment->content = e(Input::get('comment'));
-			
-			 	// Was the comment saved with success?
-		        if ($post->comments()->save($comment)) {
-		            // Redirect to this blog post page
-		            return Redirect::to("blog/$slug#comments")->with('success', 'Your comment was successfully added.');
-		        }
-		        
+        if ($comment->validate($new)) {
+            // Save the comment
+            $comment->user_id = Sentry::getUser()->id;
+            $comment->content = e(Input::get('comment'));
+
+                // Was the comment saved with success?
+                if ($post->comments()->save($comment)) {
+                    // Redirect to this blog post page
+                    return Redirect::to("blog/$slug#comments")->with('success', 'Your comment was successfully added.');
+                }
+
         } else {
-	        // failure, get errors
-			return Redirect::to("blog/$slug#comments")->withInput()->withErrors($comment->errors());
+            // failure, get errors
+            return Redirect::to("blog/$slug#comments")->withInput()->withErrors($comment->errors());
         }
 
         // Redirect to this blog post page
-        return Redirect::to("blog/$slug#comments")->with('error', 'There was a problem adding your comment, please try again.');        
-		
-        
+        return Redirect::to("blog/$slug#comments")->with('error', Lang::get('blog.messages.generic'));
+
     }
 
 }

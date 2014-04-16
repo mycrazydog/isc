@@ -60,8 +60,9 @@
 @endif
 
 @if ( ! Sentry::check())
-You need to be logged in to add comments.<br /><br />
-Click <a href="{{ route('signin') }}">here</a> to login into your account.
+@lang('blog.messages.login')
+<br /><br />
+@lang('blog.messages.loginprompt', array('signin' => route('signin')))
 @else
 <h4>@lang('blog.addcomment')</h4>
 <form class="form-horizontal" role="form" method="post" action="{{ route('view-post', $post->slug) }}">
