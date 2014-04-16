@@ -52,12 +52,10 @@ class PostsController extends AdminController
      */
     public function postCreate()
     {
-        // Declare the rules for the form validation
-        $rules = array(
-            'title'   => 'required|min:3',
-            'slug'   => "unique:posts",
-            'content' => 'required|min:3',
-        );
+
+         // get the  data
+        $new = Input::all();
+        $post = new Post;
 
         if (Input::get('slug')) {
             Input::merge(array('slug' => Input::get('slug')));
@@ -65,31 +63,27 @@ class PostsController extends AdminController
             Input::merge(array('slug' => Str::slug(Input::get('title'))));
         }
 
-        // Create a new validator instance from our validation rules
-        $validator = Validator::make(Input::all(), $rules);
 
-        // If validation fails, we'll exit the operation now.
-        if ($validator->fails()) {
-            // Ooops.. something went wrong
-            return Redirect::back()->withInput()->withErrors($validator);
-        }
+        if ($post->validate($new)) {
 
-        // Create a new blog post
-        $post = new Post;
+			 // Update the blog post data
+			$post->title            = e(Input::get('title'));
+			$post->content          = e(Input::get('content'));
+			$post->slug             = e(Input::get('slug'));
+			$post->meta_title       = e(Input::get('meta-title'));
+			$post->meta_description = e(Input::get('meta-description'));
+			$post->meta_keywords    = e(Input::get('meta-keywords'));
+			$post->user_id          = Sentry::getUser()->id;
 
-        // Update the blog post data
-        $post->title            = e(Input::get('title'));
-        $post->content          = e(Input::get('content'));
-        $post->slug             = e(Input::get('slug'));
-        $post->meta_title       = e(Input::get('meta-title'));
-        $post->meta_description = e(Input::get('meta-description'));
-        $post->meta_keywords    = e(Input::get('meta-keywords'));
-        $post->user_id          = Sentry::getUser()->id;
+			// Was the blog post created?
+			if ($post->save()) {
+				// Redirect to the new blog post page
+				return Redirect::to("admin/posts/$post->id/edit")->with('success', Lang::get('admin/posts/message.create.success'));
+			}
 
-        // Was the blog post created?
-        if ($post->save()) {
-            // Redirect to the new blog post page
-            return Redirect::to("admin/posts/$post->id/edit")->with('success', Lang::get('admin/posts/message.create.success'));
+        } else {
+			// If validation fails, we'll exit the operation now with errors
+			return Redirect::back()->withInput()->withErrors($post->errors());
         }
 
         // Redirect to the blog post create page

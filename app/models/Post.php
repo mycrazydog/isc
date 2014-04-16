@@ -2,6 +2,12 @@
 
 class Post extends Elegant
 {
+	protected $rules = array(
+            'title'   => 'required|min:3',
+            'slug'   => "unique:posts",
+            'content' => 'required|min:3',
+    );
+
     /**
      * Deletes a blog post and all the associated comments.
      *
