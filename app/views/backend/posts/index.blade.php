@@ -25,9 +25,9 @@
         <tr>
             <th class="span1"></th>
             <th class="span6">@lang('admin/posts/table.title')</th>
-            <th class="span2">@lang('admin/posts/table.comments')</th>
+            <th class="span1"><i class="fa fa-comments"></i></th>
             <th class="span2">@lang('admin/posts/table.created_at')</th>
-            <th class="span1"></th>
+            <th class="span2"></th>
         </tr>
     </thead>
     <tbody>
