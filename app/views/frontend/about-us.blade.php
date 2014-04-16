@@ -10,7 +10,7 @@ About us ::
 @section('content')
 
 <div class="page-header">
-  <h1>About Us <small>Your about subtitle</small></h1>
+  <h3>About Us <small>Your about subtitle</small></h3>
 </div>
 
 <p>
