@@ -28,7 +28,7 @@ class BlogsController extends AdminController
     public function getIndex()
     {
         // Grab all the blog posts
-        $posts = Post::orderBy('created_at', 'DESC')->paginate(10);
+        $posts = $this->post->orderBy('created_at', 'DESC')->paginate(10);
 
         // Show the page
         return View::make('backend/blogs/index', compact('posts'));
@@ -84,7 +84,7 @@ class BlogsController extends AdminController
         $post->meta_title       = e(Input::get('meta-title'));
         $post->meta_description = e(Input::get('meta-description'));
         $post->meta_keywords    = e(Input::get('meta-keywords'));
-        $post->user_id          = Sentry::getId();
+        $post->user_id          = Sentry::getUser()->id;
 
         // Was the blog post created?
         if ($post->save()) {
@@ -105,7 +105,7 @@ class BlogsController extends AdminController
     public function getEdit($postId = null)
     {
         // Check if the blog post exists
-        if (is_null($post = Post::find($postId))) {
+        if (is_null($post = $this->post->find($postId))) {
             // Redirect to the blogs management page
             return Redirect::to('admin/blogs')->with('error', Lang::get('admin/blogs/message.does_not_exist'));
         }
@@ -123,7 +123,7 @@ class BlogsController extends AdminController
     public function postEdit($postId = null)
     {
         // Check if the blog post exists
-        if (is_null($post = Post::find($postId))) {
+        if (is_null($post = $this->post->find($postId))) {
             // Redirect to the blogs management page
             return Redirect::to('admin/blogs')->with('error', Lang::get('admin/blogs/message.does_not_exist'));
         }
@@ -177,7 +177,7 @@ class BlogsController extends AdminController
     public function getDelete($postId)
     {
         // Check if the blog post exists
-        if (is_null($post = Post::find($postId))) {
+        if (is_null($post = $this->post->find($postId))) {
             // Redirect to the blogs management page
             return Redirect::to('admin/blogs')->with('error', Lang::get('admin/blogs/message.not_found'));
         }
