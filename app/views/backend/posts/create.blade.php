@@ -38,7 +38,7 @@
             <div class="form-group {{ $errors->first('title', 'has-error') }}">
                 <label for="title" class="col-sm-2 control-label">@lang('admin/posts/form.posttitle')</label>
                     <div class="col-sm-5">
-                        <input type="email" id="title" name="title" class="form-control" placeholder="Post Title" value="{{ Input::old('title') }}">
+                        <input type="text" id="title" name="title" class="form-control" placeholder="Post Title" value="{{ Input::old('title') }}">
                     </div>
                     <div class="col-sm-4">
                     {{ $errors->first('title', '<span class="help-block">:message</span>') }}
