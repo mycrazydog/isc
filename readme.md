@@ -1,14 +1,18 @@
 ## Laravel 4 Bootstrap Starter Site
 
 [![Build Status](https://travis-ci.org/snipe/laravel4-starter.svg?branch=master)](https://travis-ci.org/snipe/laravel4-starter)
+[![Flattr this git repo](http://api.flattr.com/button/flattr-badge-large.png)](https://flattr.com/submit/auto?user_id=snipe&url=https://github.com/snipe/laravel4-starter&title=laravel4-starter&language=PHP&tags=github&category=software)
+
 
 This is a Laravel 4 Starter Site and it will help you getting started with Laravel 4.
 It's based off the great [Laravel Starter Kit](https://github.com/brunogaspar/laravel4-starter-kit)
-from [brunogaspar](https://github.com/brunogaspar), with some additional refinements,
-bugfixes and a cleaner, more modern UX.
+from [brunogaspar](https://github.com/brunogaspar), with some __additional refinements__,
+__bugfixes__, __more secure defaults__ and a __cleaner, more modern UX__ using Bootstrap 3.
 
 It includes examples on how to use the framework itself and how to use some
 packages, like the awesome [Sentry 2](https://github.com/cartalyst/sentry) package.
+
+###Be sure to [check out the full documentation site](http://snipe.github.io/laravel4-starter/) which has more in-depth installation and development details.
 
 -----
 
