@@ -7,6 +7,7 @@ use Cartalyst\Sentry\Groups\NameRequiredException;
 use Config;
 use Input;
 use Lang;
+use URL;
 use Redirect;
 use Sentry;
 use Validator;
@@ -179,6 +180,30 @@ class GroupsController extends AdminController
 
         // Redirect to the group page
         return Redirect::route('update/group', $id)->withInput()->with('error', $error);
+    }
+
+    /**
+     * Delete confirmation for the given group.
+     *
+     * @param  int      $id
+     * @return View
+     */
+    public function getModalDelete($id = null)
+    {
+        $model = 'groups';
+        $confirm_route = $error = null;
+        try {
+            // Get group information
+            $group = Sentry::getGroupProvider()->findById($id);
+
+
+            $confirm_route =  URL::action('delete/group', array('id'=>$group->id));
+            return View::make('backend/layouts/modal_confirmation', compact('error', 'model', 'confirm_route'));
+        } catch (GroupNotFoundException $e) {
+
+            $error = Lang::get('admin/groups/message.group_not_found', compact('id'));
+            return View::make('backend/layouts/modal_confirmation', compact('error', 'model', 'confirm_route'));
+        }
     }
 
     /**

@@ -19,6 +19,7 @@ Route::group(array('prefix' => 'admin'), function () {
         Route::get('{blogId}/edit', array('as' => 'update/post', 'uses' => 'Controllers\Admin\PostsController@getEdit'));
         Route::post('{blogId}/edit', 'Controllers\Admin\PostsController@postEdit');
         Route::get('{blogId}/delete', array('as' => 'delete/post', 'uses' => 'Controllers\Admin\PostsController@getDelete'));
+        Route::get('{blogId}/confirm-delete', array('as' => 'confirm-delete/post', 'uses' => 'Controllers\Admin\PostsController@getModalDelete'));
         Route::get('{blogId}/restore', array('as' => 'restore/post', 'uses' => 'Controllers\Admin\PostsController@getRestore'));
     });
 
@@ -30,6 +31,7 @@ Route::group(array('prefix' => 'admin'), function () {
         Route::get('{userId}/edit', array('as' => 'update/user', 'uses' => 'Controllers\Admin\UsersController@getEdit'));
         Route::post('{userId}/edit', 'Controllers\Admin\UsersController@postEdit');
         Route::get('{userId}/delete', array('as' => 'delete/user', 'uses' => 'Controllers\Admin\UsersController@getDelete'));
+        Route::get('{userId}/confirm-delete', array('as' => 'confirm-delete/user', 'uses' => 'Controllers\Admin\UsersController@getModalDelete'));
         Route::get('{userId}/restore', array('as' => 'restore/user', 'uses' => 'Controllers\Admin\UsersController@getRestore'));
     });
 
@@ -41,6 +43,7 @@ Route::group(array('prefix' => 'admin'), function () {
         Route::get('{groupId}/edit', array('as' => 'update/group', 'uses' => 'Controllers\Admin\GroupsController@getEdit'));
         Route::post('{groupId}/edit', 'Controllers\Admin\GroupsController@postEdit');
         Route::get('{groupId}/delete', array('as' => 'delete/group', 'uses' => 'Controllers\Admin\GroupsController@getDelete'));
+        Route::get('{groupId}/confirm-delete', array('as' => 'confirm-delete/group', 'uses' => 'Controllers\Admin\GroupsController@getModalDelete'));
         Route::get('{groupId}/restore', array('as' => 'restore/group', 'uses' => 'Controllers\Admin\GroupsController@getRestore'));
     });
 

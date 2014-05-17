@@ -4,6 +4,7 @@ use AdminController;
 use Input;
 use Lang;
 use Post;
+use URL;
 use Redirect;
 use Sentry;
 use Str;
@@ -160,6 +161,27 @@ class PostsController extends AdminController
 
         // Redirect to the blogs post management page
         return Redirect::to("admin/posts/$postId/edit")->with('error', Lang::get('admin/posts/message.update.error'));
+    }
+
+    /**
+     * Delete confirmation for the given blog post.
+     *
+     * @param  int      $postId
+     * @return View
+     */
+    public function getModalDelete($postId)
+    {
+        $model = 'posts';
+        $confirm_route = $error = null;
+        // Check if the blog post exists
+        if (is_null($post = $this->post->find($postId))) {
+
+            $error = Lang::get('admin/posts/message.not_found');
+            return View::make('backend/layouts/modal_confirmation', compact('error', 'model', 'confirm_route'));
+        }
+
+        $confirm_route =  URL::action('delete/post', array('id'=>$post->id));
+        return View::make('backend/layouts/modal_confirmation', compact('error', 'model', 'confirm_route'));
     }
 
     /**
