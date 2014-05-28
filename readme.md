@@ -103,7 +103,18 @@ Use the following command to create your default user, user groups and run all t
 
 -----
 
-### 6) Accessing the Administration
+### 6) Set up the debugbar
+
+In dev mode, I use the fabulous [Laravel Debugbar](https://github.com/barryvdh/laravel-debugbar) by @barryvdh. After you've installed/updated composer, you'll need to publish the assets for the debugbar:
+
+	php artisan debugbar:publish
+
+The profiler is enabled by default if you have debug set to true in your app.php. You certainly don't have to use it, but it's pretty handy for troubleshooting queries, seeing how much memory your pages are using, etc.
+
+
+-----
+
+### 7) Accessing the Administration
 
 To access the administration page, you just need to access `http://your-host/admin` in your browser and it
 will redirect you to the login page.
@@ -112,14 +123,14 @@ After being authenticated, you will be redirected back to the administration pag
 
 -----
 
-### 7) Brute-force Lockout Settings
+### 8) Brute-force Lockout Settings
 
 The default Sentry setting is to lockout the user for 15 minutes after 5 failed login attempts. To
 change these settings, edit your `/vendor/cartalyst/sentry/src/config/config.php` file locally.
 
 -----
 
-### 8) Contact
+### 9) Contact
 If you have questions about this project, you can reach me at snipe@snipe.net, or on Twitter at [@snipeyhead](https://twitter.com/snipeyhead).
 
 -----
