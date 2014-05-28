@@ -8,6 +8,7 @@ use Cartalyst\Sentry\Users\UserNotFoundException;
 use Config;
 use Input;
 use Lang;
+use URL;
 use Redirect;
 use Sentry;
 use Validator;
@@ -277,6 +278,43 @@ class UsersController extends AdminController
 
         // Redirect to the user page
         return Redirect::route('update/user', $id)->withInput()->with('error', $error);
+    }
+
+
+    /**
+     * Delete Confirm
+     *
+     * @param   int   $id
+     * @return  View
+     */
+    public function getModalDelete($id = null)
+    {
+        $model = 'users';
+        $confirm_route = $error = null;
+        try {
+            // Get user information
+            $user = Sentry::getUserProvider()->findById($id);
+
+            // Check if we are not trying to delete ourselves
+            if ($user->id === Sentry::getId()) {
+                // Prepare the error message
+                $error = Lang::get('admin/users/message.error.delete');
+
+                return View::make('backend/layouts/modal_confirmation', compact('error', 'model', 'confirm_route'));
+            }
+
+            // Do we have permission to delete this user?
+            if ($user->isSuperUser() and ! Sentry::getUser()->isSuperUser()) {
+                $error = Lang::get('admin/users/message.insufficient_permissions', compact('id' ));
+                return View::make('backend/layouts/modal_confirmation', compact('error', 'model', 'confirm_route'));
+            }
+        } catch (UserNotFoundException $e) {
+            // Prepare the error message
+            $error = Lang::get('admin/users/message.user_not_found', compact('id' ));
+            return View::make('backend/layouts/modal_confirmation', compact('error', 'model', 'confirm_route'));
+        }
+        $confirm_route =  URL::action('delete/user', array('id'=>$user->id));
+        return View::make('backend/layouts/modal_confirmation', compact('error', 'model', 'confirm_route'));
     }
 
     /**

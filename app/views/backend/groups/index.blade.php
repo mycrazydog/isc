@@ -39,7 +39,7 @@
             <td>{{ $group->users()->count() }}</td>
             <td>{{ $group->created_at->diffForHumans() }}</td>
             <td>
-                <td><a href="{{ route('delete/group', $group->id) }}"><span class="glyphicon glyphicon-trash"></span></a></td>
+                <td><a href="{{ route('confirm-delete/group', $group->id) }}" data-toggle="modal" data-target="#delete_confirm"><span class="glyphicon glyphicon-trash"></span></a></td>
             </td>
         </tr>
         @endforeach
@@ -51,4 +51,15 @@
 @else
     @lang('general.noresults')
 @endif
+@stop
+
+{{-- Body Bottom confirm modal --}}
+@section('body_bottom')
+<div class="modal fade" id="delete_confirm" tabindex="-1" role="dialog" aria-labelledby="user_delete_confirm_title" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+    </div>
+  </div>
+</div>
+<script>$(function(){$('body').on('hidden.bs.modal', '.modal', function () {$(this).removeData('bs.modal');});});</script>
 @stop
