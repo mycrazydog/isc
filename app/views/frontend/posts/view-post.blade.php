@@ -28,8 +28,8 @@
 @section('content')
 <h3>{{{ $post->title }}}</h3>
 
-@if ($post->thumbnail())
-<img class="media-object" src="{{{ $post->thumbnail() }}}." alt="...">
+@if ($post->img())
+<img class="media-object" src="{{{ $post->img() }}}" alt="...">
 @endif
 <p>{{ nl2br(e($post->content())) }}</p>
 
