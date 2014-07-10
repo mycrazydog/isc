@@ -10,23 +10,26 @@
         <!-- Post Content -->
 
         <div class="media">
-          <a class="pull-left" href="{{ $post->url() }}">
-            <img class="media-object" src="{{ $post->thumbnail() }}." alt="...">
+          <a class="pull-left" href="{{{ $post->url() }}}">
+          @if ($post->thumbnail())
+            <img class="media-object" src="{{{ $post->thumbnail() }}}." alt="...">
+          @endif
           </a>
           <div class="media-body">
-            <h4 class="media-heading"><a href="{{ $post->url() }}">{{ $post->title }}</a></h4>
-            {{ Str::limit($post->content, 200) }}
+            <h4 class="media-heading"><a href="{{{ $post->url() }}}">{{{ $post->title }}}</a></h4>
+            {{{ Str::limit($post->content, 200) }}}
           </div>
           <div class="media-footer">
                 <p></p>
                 <p>
                     <i class="icon-user"></i> by
-                    @if ($post->author) {{ $post->author->first_name }}
+                    @if ($post->author) {{{ $post->author->first_name }}}
                      @else
                         discontinued user
                      @endif
-                    | <i class="icon-calendar"></i> {{ $post->created_at->diffForHumans() }}
-                    | <i class="icon-comment"></i> <a href="{{ $post->url() }}#comments">Comments <span class="badge">{{ $post->comments()->count() }}</span></a>
+                    | <i class="icon-calendar"></i> {{{ $post->created_at->diffForHumans() }}}
+                    | <i class="icon-comment"></i> <a href="{{ $post->url() }}#comments">Comments
+                    <span class="badge">{{ $post->comments()->count() }}</span></a>
                 </p>
             </div>
         </div>

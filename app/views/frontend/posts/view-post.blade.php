@@ -31,7 +31,7 @@
 <p>{{ $post->content() }}</p>
 
 <div>
-    <span class="badge badge-info" title="{{ $post->created_at }}">
+    <span class="badge badge-info" title="{{{ $post->created_at }}}">
     @lang('post.posted')
     {{ $post->created_at->diffForHumans() }}</span>
 </div>
@@ -45,13 +45,13 @@
 @foreach ($comments as $comment)
 <div class="row">
     <div class="col-sm-1">
-        <img class="img-thumbnail pull-left" src="{{ $comment->author->gravatar() }}" alt="">
+        <img class="img-thumbnail pull-left" src="{{{ $comment->author->gravatar() }}}" alt="">
     </div>
     <div class="col-sm-11">
-                <span class="muted">{{ $comment->author->fullName() }}</span>
+                <span class="muted">{{{ $comment->author->fullName() }}}</span>
                 &bull;
-                <span title="{{ $comment->created_at }}">{{ $comment->created_at->diffForHumans() }}</span>
-                <p>{{ $comment->content() }}</p>
+                <span title="{{{ $comment->created_at }}}">{{{ $comment->created_at->diffForHumans() }}}</span>
+                <p>{{{ $comment->content() }}}</p>
 
     </div>
 </div>
