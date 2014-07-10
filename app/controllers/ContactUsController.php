@@ -21,7 +21,7 @@ class ContactUsController extends BaseController
     {
         // Declare the rules for the form validation
         $rules = array(
-            'name'        => 'required',
+            'name'        => 'required|min:2',
             'email'       => 'required|email',
             'description' => 'required',
         );
@@ -31,7 +31,7 @@ class ContactUsController extends BaseController
 
         // If validation fails, we'll exit the operation now.
         if ($validator->fails()) {
-            return Redirect::route('contact-us')->withErrors($validator);
+            return Redirect::route('contact-us')->withInput()->withErrors($validator);
         }
 
         # TODO !
