@@ -5,8 +5,9 @@
 */
 return array(
 
-    'yes' => 'Yes',
-    'no'  => 'No',
-    'noresults'  => 'No Results'
+    'no'  			=> 'No',
+    'noresults'  	=> 'No Results',
+    'site_name'		=> 'Laravel Starter Site',
+    'yes' 			=> 'Yes',
 
 );
