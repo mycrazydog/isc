@@ -76,4 +76,13 @@ class Post extends Elegant
         return 'http://lorempixel.com/130/90/business/';
     }
 
+
+     public function img()
+    {
+        # you should save the image url on the database
+        # and return that url here.
+
+        return 'http://lorempixel.com/600/300/business/';
+    }
+
 }
