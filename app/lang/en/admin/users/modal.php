@@ -6,9 +6,9 @@
 */
 return array(
 
-    'title'         => 'Delete User',
     'body'			=> 'Are you sure to delete this user? This operation is irreversible.',
     'cancel'		=> 'Cancel',
     'confirm'		=> 'Delete',
+    'title'         => 'Delete User',
 
 );

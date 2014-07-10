@@ -16,12 +16,9 @@ return array(
     |
     */
 
-    "password" => "Passwords must be at least six characters and match the confirmation.",
-
-    "user" => "Invalid username or password.",
-
-    "token" => "This password reset token is invalid.",
-
-    "sent" => "Password reminder sent!",
+    "password" 		=> "Passwords must be at least six characters and match the confirmation.",
+    "user" 			=> "Invalid username or password.",
+    "token" 		=> "This password reset token is invalid.",
+    "sent" 			=> "Password reminder sent!",
 
 );
