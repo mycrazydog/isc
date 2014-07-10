@@ -6,7 +6,7 @@
         <meta charset="utf-8" />
         <title>
             @section('title')
-            Project Name
+            @lang('general.site_name')
             @show
         </title>
         <meta name="keywords" content="your, awesome, keywords, here" />
@@ -65,7 +65,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home"></span> Project name</a>
+          <a class="navbar-brand" href="/"><span class="glyphicon glyphicon-home"></span> @lang('general.site_name')</a>
         </div>
         <div class="navbar-collapse collapse">
           <ul class="nav navbar-nav">

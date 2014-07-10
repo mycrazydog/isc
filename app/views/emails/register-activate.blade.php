@@ -9,5 +9,5 @@
 
 <p>Best regards,</p>
 
-<p>SiteNameHere Team</p>
+<p>@lang('general.site_name') Team</p>
 @stop
