@@ -13,7 +13,7 @@ class Comment extends Elegant
      */
     public function content()
     {
-        return nl2br($this->content);
+        return $this->content;
     }
 
     /**
