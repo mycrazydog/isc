@@ -26,9 +26,12 @@
 
 {{-- Page content --}}
 @section('content')
-<h3>{{ $post->title }}</h3>
+<h3>{{{ $post->title }}}</h3>
 
-<p>{{ $post->content() }}</p>
+@if ($post->thumbnail())
+<img class="media-object" src="{{{ $post->thumbnail() }}}." alt="...">
+@endif
+<p>{{{ $post->content() }}}</p>
 
 <div>
     <span class="badge badge-info" title="{{{ $post->created_at }}}">
