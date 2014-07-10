@@ -20,7 +20,7 @@
     <div class="form-group {{ $errors->first('first_name', 'has-error') }}">
         <label for="first_name" class="col-sm-3 control-label">@lang('account/form.firstname')</label>
             <div class="col-sm-5">
-                <input type="text" id="first_name" name="first_name" class="form-control" placeholder="First Name" value="{{ Input::old('first_name', $user->first_name) }}">
+                <input type="text" id="first_name" name="first_name" class="form-control" placeholder="First Name" value="{{{ Input::old('first_name', $user->first_name) }}}">
             </div>
             <div class="col-sm-4">
                 {{ $errors->first('first_name', '<span class="help-block">:message</span>') }}
@@ -31,7 +31,7 @@
     <div class="form-group {{ $errors->first('last_name', 'has-error') }}">
         <label for="last_name" class="col-sm-3 control-label">@lang('account/form.lastname')</label>
             <div class="col-sm-5">
-                <input type="text" id="last_name" name="last_name" class="form-control" placeholder="Last Name" value="{{ Input::old('last_name', $user->last_name) }}">
+                <input type="text" id="last_name" name="last_name" class="form-control" placeholder="Last Name" value="{{{ Input::old('last_name', $user->last_name) }}}">
             </div>
             <div class="col-sm-4">
                 {{ $errors->first('last_name', '<span class="help-block">:message</span>') }}
@@ -42,7 +42,7 @@
     <div class="form-group {{ $errors->first('website', 'has-error') }}">
         <label for="website" class="col-sm-3 control-label">@lang('account/form.website')</label>
             <div class="col-sm-5">
-                <input type="text" id="website" name="website" class="form-control" placeholder="http://www.yoursite.com" value="{{ Input::old('website', $user->website) }}">
+                <input type="text" id="website" name="website" class="form-control" placeholder="http://www.yoursite.com" value="{{{ Input::old('website', $user->website) }}}">
             </div>
             <div class="col-sm-4">
                 {{ $errors->first('website', '<span class="help-block">:message</span>') }}
@@ -64,7 +64,7 @@
     <div class="form-group {{ $errors->first('gravatar', 'has-error') }}">
         <label for="gravatar" class="col-sm-3 control-label">@lang('account/form.gravataremail')</label>
             <div class="col-sm-5">
-            <input type="email" id="gravatar" name="gravatar" class="form-control" value="{{ Input::old('gravatar', $user->gravatar) }}">
+            <input type="email" id="gravatar" name="gravatar" class="form-control" value="{{{ Input::old('gravatar', $user->gravatar) }}}">
             <p>
             <img src="{{ $user->gravatar() }}" width="30" height="30" />
             <a href="http://gravatar.com">@lang('account/form.changegravatar')</a>.

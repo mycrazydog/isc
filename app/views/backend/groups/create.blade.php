@@ -37,7 +37,7 @@
             <div class="form-group {{ $errors->first('name', 'has-error') }}">
                 <label for="title" class="col-sm-2 control-label">@lang('admin/groups/form.name')</label>
                     <div class="col-sm-5">
-                        <input type="text" id="name" name="name" class="form-control" placeholder="Group Name" value="{{ Input::old('name') }}">
+                        <input type="text" id="name" name="name" class="form-control" placeholder="Group Name" value="{{{ Input::old('name') }}}">
                     </div>
                     <div class="col-sm-4">
                         {{ $errors->first('name', '<span class="help-block">:message</span>') }}
@@ -53,17 +53,17 @@
                     @foreach ($permissions as $area => $permissions)
                     <fieldset>
                         <div class="col-sm-12">
-                        <h4>{{ $area }}</h4>
+                        <h4>{{{ $area }}}</h4>
                         </div>
 
                         @foreach ($permissions as $permission)
                          <div class="form-group">
-                            <label class="control-label radio-inline col-sm-2">{{ $permission['label'] }} </label>
-                            <label for="{{ $permission['permission'] }}_allow" onclick="" class="radio-inline control-label col-sm-1">
-                                <input type="radio" value="1" id="{{ $permission['permission'] }}_allow" name="permissions[{{ $permission['permission'] }}]"{{ (array_get($selectedPermissions, $permission['permission']) === 1 ? ' checked="checked"' : '') }}> Allow
+                            <label class="control-label radio-inline col-sm-2">{{{ $permission['label'] }}} </label>
+                            <label for="{{{ $permission['permission'] }}}_allow" onclick="" class="radio-inline control-label col-sm-1">
+                                <input type="radio" value="1" id="{{{ $permission['permission'] }}}_allow" name="permissions[{{{ $permission['permission'] }}}]"{{ (array_get($selectedPermissions, $permission['permission']) === 1 ? ' checked="checked"' : '') }}> Allow
                             </label>
 
-                            <label for="{{ $permission['permission'] }}_deny" onclick="" class="radio-inline control-label   col-sm-1">
+                            <label for="{{{ $permission['permission'] }}}_deny" onclick="" class="radio-inline control-label   col-sm-1">
                                     <input type="radio" value="0" id="{{ $permission['permission'] }}_deny" name="permissions[{{ $permission['permission'] }}]"{{ ( ! array_get($selectedPermissions, $permission['permission']) ? ' checked="checked"' : '') }}>
                                     Deny
                                 </label>

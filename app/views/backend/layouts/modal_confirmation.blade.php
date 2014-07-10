@@ -4,7 +4,7 @@
 </div>
 <div class="modal-body">
 	@if($error)
-		<div>{{ $error }}</div>
+		<div>{{{ $error }}}</div>
 	@else
  		@lang('admin/'.$model.'/modal.body')
  	@endif

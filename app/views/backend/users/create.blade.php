@@ -38,7 +38,7 @@ Create a User ::
             <div class="form-group {{ $errors->first('first_name', 'has-error') }}">
                 <label for="first_name" class="col-sm-2 control-label">@lang('admin/users/form.firstname')</label>
                     <div class="col-sm-5">
-                        <input type="text" id="first_name" name="first_name" class="form-control" placeholder="First Name" value="{{ Input::old('first_name') }}">
+                        <input type="text" id="first_name" name="first_name" class="form-control" placeholder="First Name" value="{{{ Input::old('first_name') }}}">
                     </div>
                     <div class="col-sm-4">
                         {{ $errors->first('first_name', '<span class="help-block">:message</span>') }}
@@ -49,7 +49,7 @@ Create a User ::
             <div class="form-group {{ $errors->first('last_name', 'has-error') }}">
                 <label for="last_name" class="col-sm-2 control-label">@lang('admin/users/form.lastname')</label>
                     <div class="col-sm-5">
-                        <input type="text" id="last_name" name="last_name" class="form-control" placeholder="Last Name" value="{{ Input::old('last_name') }}">
+                        <input type="text" id="last_name" name="last_name" class="form-control" placeholder="Last Name" value="{{{ Input::old('last_name') }}}">
                     </div>
                     <div class="col-sm-4">
                         {{ $errors->first('last_name', '<span class="help-block">:message</span>') }}
@@ -60,7 +60,7 @@ Create a User ::
             <div class="form-group {{ $errors->first('email', 'has-error') }}">
                 <label for="email" class="col-sm-2 control-label">@lang('admin/users/form.email')</label>
                     <div class="col-sm-5">
-                        <input type="email" id="email" name="email" class="form-control" placeholder="Email" value="{{ Input::old('email') }}">
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Email" value="{{{ Input::old('email') }}}">
                     </div>
                     <div class="col-sm-4">
                         {{ $errors->first('email', '<span class="help-block">:message</span>') }}
@@ -71,7 +71,7 @@ Create a User ::
             <div class="form-group {{ $errors->first('password', 'has-error') }}">
                 <label for="password" class="col-sm-2 control-label">@lang('admin/users/form.password')</label>
                     <div class="col-sm-5">
-                        <input type="password" id="password" name="password" class="form-control" value="{{ Input::old('password') }}">
+                        <input type="password" id="password" name="password" class="form-control" value="{{{ Input::old('password') }}}">
                     </div>
                     <div class="col-sm-4">
                         {{ $errors->first('password', '<span class="help-block">:message</span>') }}
@@ -82,7 +82,7 @@ Create a User ::
             <div class="form-group {{ $errors->first('password_confirm', 'has-error') }}">
                 <label for="password_confirm" class="col-sm-2 control-label">@lang('admin/users/form.confirmpassword')</label>
                     <div class="col-sm-5">
-                        <input type="password" id="password_confirm" name="password_confirm" class="form-control" value="{{ Input::old('password') }}">
+                        <input type="password" id="password_confirm" name="password_confirm" class="form-control" value="{{{ Input::old('password') }}}">
                     </div>
                     <div class="col-sm-4">
                         {{ $errors->first('password_confirm', '<span class="help-block">:message</span>') }}
@@ -109,7 +109,7 @@ Create a User ::
                     <div class="col-sm-5">
                         <select name="groups[]" id="groups[]" multiple="multiple">
                         @foreach ($groups as $group)
-                        <option value="{{ $group->id }}"{{ (in_array($group->id, $selectedGroups) ? ' selected="selected"' : '') }}>{{ $group->name }}</option>
+                        <option value="{{{ $group->id }}}"{{ (in_array($group->id, $selectedGroups) ? ' selected="selected"' : '') }}>{{ $group->name }}</option>
                         @endforeach
                     </select>
                     <span class="help-block">@lang('admin/users/form.grouphelp')</span>
@@ -135,23 +135,23 @@ Create a User ::
                             <label class="control-group">{{ $permission['label'] }}</label>
 
                             <div class="radio inline">
-                                <label for="{{ $permission['permission'] }}_allow" onclick="">
-                                    <input type="radio" value="1" id="{{ $permission['permission'] }}_allow" name="permissions[{{ $permission['permission'] }}]"{{ (array_get($selectedPermissions, $permission['permission']) === 1 ? ' checked="checked"' : '') }}>
+                                <label for="{{{ $permission['permission'] }}}_allow" onclick="">
+                                    <input type="radio" value="1" id="{{{ $permission['permission'] }}}_allow" name="permissions[{{{ $permission['permission'] }}}]"{{ (array_get($selectedPermissions, $permission['permission']) === 1 ? ' checked="checked"' : '') }}>
                                     Allow
                                 </label>
                             </div>
 
                             <div class="radio inline">
-                                <label for="{{ $permission['permission'] }}_deny" onclick="">
-                                    <input type="radio" value="-1" id="{{ $permission['permission'] }}_deny" name="permissions[{{ $permission['permission'] }}]"{{ (array_get($selectedPermissions, $permission['permission']) === -1 ? ' checked="checked"' : '') }}>
+                                <label for="{{{ $permission['permission'] }}}_deny" onclick="">
+                                    <input type="radio" value="-1" id="{{{ $permission['permission'] }}}_deny" name="permissions[{{{ $permission['permission'] }}}]"{{ (array_get($selectedPermissions, $permission['permission']) === -1 ? ' checked="checked"' : '') }}>
                                     Deny
                                 </label>
                             </div>
 
                             @if ($permission['can_inherit'])
                             <div class="radio inline">
-                                <label for="{{ $permission['permission'] }}_inherit" onclick="">
-                                    <input type="radio" value="0" id="{{ $permission['permission'] }}_inherit" name="permissions[{{ $permission['permission'] }}]"{{ ( ! array_get($selectedPermissions, $permission['permission']) ? ' checked="checked"' : '') }}>
+                                <label for="{{{ $permission['permission'] }}}_inherit" onclick="">
+                                    <input type="radio" value="0" id="{{{ $permission['permission'] }}}_inherit" name="permissions[{{{ $permission['permission'] }}}]"{{ ( ! array_get($selectedPermissions, $permission['permission']) ? ' checked="checked"' : '') }}>
                                     Inherit
                                 </label>
                             </div>
