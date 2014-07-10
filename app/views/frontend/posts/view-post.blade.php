@@ -31,7 +31,7 @@
 @if ($post->thumbnail())
 <img class="media-object" src="{{{ $post->thumbnail() }}}." alt="...">
 @endif
-<p>{{{ $post->content() }}}</p>
+<p>{{ nl2br(e($post->content())) }}</p>
 
 <div>
     <span class="badge badge-info" title="{{{ $post->created_at }}}">
@@ -54,7 +54,9 @@
                 <span class="muted">{{{ $comment->author->fullName() }}}</span>
                 &bull;
                 <span title="{{{ $comment->created_at }}}">{{{ $comment->created_at->diffForHumans() }}}</span>
-                <p>{{{ $comment->content() }}}</p>
+                <p>
+ 				{{ nl2br(e($comment->content())) }}
+                </p>
 
     </div>
 </div>
