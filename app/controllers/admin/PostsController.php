@@ -67,24 +67,24 @@ class PostsController extends AdminController
 
         if ($post->validate($new)) {
 
-			 // Update the blog post data
-			$post->title            = e(Input::get('title'));
-			$post->content          = e(Input::get('content'));
-			$post->slug             = e(Input::get('slug'));
-			$post->meta_title       = e(Input::get('meta-title'));
-			$post->meta_description = e(Input::get('meta-description'));
-			$post->meta_keywords    = e(Input::get('meta-keywords'));
-			$post->user_id          = Sentry::getUser()->id;
+             // Update the blog post data
+            $post->title            = e(Input::get('title'));
+            $post->content          = e(Input::get('content'));
+            $post->slug             = e(Input::get('slug'));
+            $post->meta_title       = e(Input::get('meta-title'));
+            $post->meta_description = e(Input::get('meta-description'));
+            $post->meta_keywords    = e(Input::get('meta-keywords'));
+            $post->user_id          = Sentry::getUser()->id;
 
-			// Was the blog post created?
-			if ($post->save()) {
-				// Redirect to the new blog post page
-				return Redirect::to("admin/posts/$post->id/edit")->with('success', Lang::get('admin/posts/message.create.success'));
-			}
+            // Was the blog post created?
+            if ($post->save()) {
+                // Redirect to the new blog post page
+                return Redirect::to("admin/posts/$post->id/edit")->with('success', Lang::get('admin/posts/message.create.success'));
+            }
 
         } else {
-			// If validation fails, we'll exit the operation now with errors
-			return Redirect::back()->withInput()->withErrors($post->errors());
+            // If validation fails, we'll exit the operation now with errors
+            return Redirect::back()->withInput()->withErrors($post->errors());
         }
 
         // Redirect to the blog post create page

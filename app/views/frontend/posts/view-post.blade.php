@@ -55,7 +55,7 @@
                 &bull;
                 <span title="{{{ $comment->created_at }}}">{{{ $comment->created_at->diffForHumans() }}}</span>
                 <p>
- 				{{ nl2br(e($comment->content())) }}
+                {{ nl2br(e($comment->content())) }}
                 </p>
 
     </div>

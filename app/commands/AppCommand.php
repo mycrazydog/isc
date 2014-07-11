@@ -217,7 +217,7 @@ class AppCommand extends Command
             $group = Sentry::getGroupProvider()->create(array(
                 'name'        => 'Admin',
                 'permissions' => array(
-                 	'superuser' 	=> 1,
+                     'superuser' 	=> 1,
                     'admin' 		=> 1,
                     'posts.write' 	=> 1,
                     'posts.read' 	=> 1,
@@ -234,7 +234,7 @@ class AppCommand extends Command
             $group = Sentry::getGroupProvider()->create(array(
                 'name'        => 'Authors',
                 'permissions' => array(
-                	'superuser' 	=> 0,
+                    'superuser' 	=> 0,
                     'admin' 		=> 0,
                     'posts.write' 	=> 1,
                     'posts.read' 	=> 1,
@@ -251,7 +251,7 @@ class AppCommand extends Command
             $group = Sentry::getGroupProvider()->create(array(
                 'name'        		=> 'User',
                 'permissions' 		=> array(
-                	'superuser' 	=> 0,
+                    'superuser' 	=> 0,
                     'admin' 		=> 0,
                     'posts.write' 	=> 0,
                     'posts.read' 	=> 1,

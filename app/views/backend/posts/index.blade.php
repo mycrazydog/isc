@@ -54,5 +54,5 @@
     </div>
   </div>
 </div>
-<script>$(function(){$('body').on('hidden.bs.modal', '.modal', function () {$(this).removeData('bs.modal');});});</script>
+<script>$(function () {$('body').on('hidden.bs.modal', '.modal', function () {$(this).removeData('bs.modal');});});</script>
 @stop
