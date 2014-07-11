@@ -1,6 +1,7 @@
-/bootstrap/compiled.php
-/vendor
-/public/packages
+bootstrap/compiled.php
+vendor
+public/packages
 composer.phar
 .DS_Store
-/app/config/local/*.php
+app/config/local/*.php
+app/storage
