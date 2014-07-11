@@ -87,7 +87,7 @@ Setup your mail settings by copying `app/config/local/mail.php.dist` to `app/con
 
 This will be used to send emails to your users, when they register and they request a password reset.
 
-While testing locally, you can set `'pretend' => true,` in `app/config/local/mail.php` to simulate email being sent if you don't have easy access to a mail server. (If you need an easy way to actually send test mails, SendGrid and Mandrill both offer free-tiered accounts.
+While testing locally, you can set `'pretend' => true,` in `app/config/local/mail.php` to simulate email being sent if you don't have easy access to a mail server. (If you need an easy way to actually send test mails, [SendGrid](http://www.sendgrid.com) and [Mandrill](http://mandrillapp.com) both offer free-tiered accounts.
 
 -----
 
