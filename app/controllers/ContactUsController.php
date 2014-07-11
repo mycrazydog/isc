@@ -21,7 +21,7 @@ class ContactUsController extends BaseController
     {
         // Declare the rules for the form validation
         $rules = array(
-            'name'        => 'required|min:2',
+            'name'        => 'required',
             'email'       => 'required|email',
             'description' => 'required',
         );
@@ -31,10 +31,30 @@ class ContactUsController extends BaseController
 
         // If validation fails, we'll exit the operation now.
         if ($validator->fails()) {
-            return Redirect::route('contact-us')->withInput()->withErrors($validator);
-        }
+            return Redirect::route('contact-us')->withErrors($validator);
+        } else {
 
-        # TODO !
+			// Data to be used on the email view
+			$data = array(
+				'name'				=>  e(Input::get('name')),
+				'email'				=>  e(Input::get('email')),
+				'description'		=>  e(Input::get('description'))
+			);
+
+			$from = Config::get('mail.from');
+
+			// Send the activation code through email
+			Mail::send('emails.contact-us', $data, function ($m) use ($from, $data) {
+				$m->to($from['address'], $from['name']);
+				$m->subject('Contact Form Submission');
+				$m->from($data['email'], $data['name']);
+			});
+
+			return Redirect::route('contact-us')->with('success', Lang::get('contact.sent_success'));
+
+
+		}
+
     }
 
 }
