@@ -77,17 +77,17 @@ packages, like the awesome [Sentry 2](https://github.com/cartalyst/sentry) packa
 
 ### 3) Setup Database
 
-Now that you have the Starter Kit cloned and all the dependencies installed, you need to create a database and update the file `app/config/database.php`.
+Now that you have the Starter Kit cloned and all the dependencies installed, copy the file `app/config/local/database.php.dist` to `app/config/local/database.php` and update the settings to reflect your own database configuration.
 
 -----
 
 ### 4) Setup Mail Settings
 
-Setup your mail settings by  opening and updating `app/config/mail.php`.
+Setup your mail settings by copying `app/config/local/mail.php.dist` to `app/config/local/mail.php` and update it with your own mail settings.
 
 This will be used to send emails to your users, when they register and they request a password reset.
 
-While testing locally, you can set `'pretend' => true,` in `app/config/mail.php` to simulate email being sent.
+While testing locally, you can set `'pretend' => true,` in `app/config/local/mail.php` to simulate email being sent if you don't have easy access to a mail server. (If you need an easy way to actually send test mails, SendGrid and Mandrill both offer free-tiered accounts.
 
 -----
 
