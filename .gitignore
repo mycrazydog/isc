@@ -3,3 +3,5 @@
 /public/packages
 composer.phar
 .DS_Store
+/app/config/local/*.php
+.env.local.php
