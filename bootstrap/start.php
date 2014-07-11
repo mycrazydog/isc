@@ -25,9 +25,7 @@ $app = new Illuminate\Foundation\Application;
 */
 
 $env = $app->detectEnvironment(array(
-
-    'local' => array('AlisonMBP'),
-
+    'local' => array(gethostname()),
 ));
 
 /*
