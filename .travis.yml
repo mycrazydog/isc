@@ -10,8 +10,8 @@ before_script:
   -utravis; fi
 - curl -s http://getcomposer.org/installer | php
 - mkdir -p app/config/production
-- cp app/config/production/database.php.dist app/config/production/database.php
-- cp app/config/production/mail.php.dist app/config/production/mail.php
+- cp app/config/local/database.php.dist app/config/production/database.php
+- cp app/config/local/mail.php.dist app/config/production/mail.php
 - php composer.phar self-update
 - php composer.phar install --prefer-source --no-interaction --dev
 - php artisan key:generate
