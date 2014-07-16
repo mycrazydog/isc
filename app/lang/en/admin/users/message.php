@@ -29,7 +29,7 @@ return array(
         'create'    => 'There was an issue creating the user. Please try again.',
         'update'    => 'There was an issue updating the user. Please try again.',
         'delete'    => 'There was an issue deleting the user. Please try again.',
-        'unsospend' => 'There was an issue unsospending the user. Please try again.'
+        'unsuspend' => 'There was an issue unsuspending the user. Please try again.'
     ),
 
 );

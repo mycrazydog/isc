@@ -53,7 +53,7 @@ User Management ::
             <td>{{{ $user->created_at->diffForHumans() }}}</td>
             <td>
                 @if ($user->accountStatus()=='suspended')
-                    <a href="{{ route('unsospend/user', $user->id) }}"><span class="glyphicon glyphicon-play"></span></a>
+                    <a href="{{ route('unsuspend/user', $user->id) }}"><span class="glyphicon glyphicon-play"></span></a>
                 @endif
             </td>
             <td>
