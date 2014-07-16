@@ -33,6 +33,7 @@ User Management ::
             <th>@lang('admin/users/table.activated')</th>
             <th>@lang('admin/users/table.created_at')</th>
             <th></th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
@@ -50,6 +51,11 @@ User Management ::
             <td>{{{ $user->email }}}</td>
             <td>@lang('general.' . ($user->isActivated() ? 'yes' : 'no'))</td>
             <td>{{{ $user->created_at->diffForHumans() }}}</td>
+            <td>
+                @if ($user->accountStatus()=='suspended')
+                    <a href="{{ route('unsospend/user', $user->id) }}"><span class="glyphicon glyphicon-play"></span></a>
+                @endif
+            </td>
             <td>
                 @if ( ! is_null($user->deleted_at))
                 <a href="{{ route('restore/user', $user->id) }}"><span class="glyphicon glyphicon-ok"></span></a>

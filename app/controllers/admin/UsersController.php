@@ -390,4 +390,50 @@ class UsersController extends AdminController
         }
     }
 
+    /**
+     * Unsospend the given user.
+     *
+     * @param  int      $id
+     * @return Redirect
+     */
+    public function getUnsospend($id = null)
+    {
+        try {
+            // Get user information
+            $user = Sentry::getUserProvider()->findById($id);
+
+            // Check if we are not trying to unsospend ourselves
+            if ($user->id === Sentry::getId()) {
+                // Prepare the error message
+                $error = Lang::get('admin/users/message.error.unsospend');
+
+                // Redirect to the user management page
+                return Redirect::route('users')->with('error', $error);
+            }
+
+            // Do we have permission to unsospend this user?
+            if ($user->isSuperUser() and ! Sentry::getUser()->isSuperUser()) {
+                // Redirect to the user management page
+                return Redirect::route('users')->with('error', 'Insufficient permissions!');
+            }
+
+            // Unsospend the user
+            $throttle = Sentry::findThrottlerByUserId($id);
+            $throttle->unsuspend();
+
+            // Prepare the success message
+            $success = Lang::get('admin/users/message.success.unsospend');
+
+            // Redirect to the user management page
+            return Redirect::route('users')->with('success', $success);
+        } catch (UserNotFoundException $e) {
+            // Prepare the error message
+            $error = Lang::get('admin/users/message.user_not_found', compact('id' ));
+
+            // Redirect to the user management page
+            return Redirect::route('users')->with('error', $error);
+        }
+    }
+
+
 }
