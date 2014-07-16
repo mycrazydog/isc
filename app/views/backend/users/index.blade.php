@@ -54,8 +54,6 @@ User Management ::
             <td>
                 @if ($user->accountStatus()=='suspended')
                     <a href="{{ route('unsospend/user', $user->id) }}"><span class="glyphicon glyphicon-play"></span></a>
-                @elseif ($user->accountStatus()=='banned')
-                    <?php echo ' class="danger"'; ?>
                 @endif
             </td>
             <td>
