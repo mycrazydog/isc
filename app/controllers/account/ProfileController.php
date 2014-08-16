@@ -32,9 +32,9 @@ class ProfileController extends AuthorizedController
     {
         // Declare the rules for the form validation
         $rules = array(
-            'first_name' => 'required|min:3',
-            'last_name'  => 'required|min:3',
-            'website'    => 'url',
+            'first_name' => 'required|alpha_space|min:2',
+            'last_name'  => 'required|alpha_space|min:2',
+            'website'    => 'url|alpha_space|min:10',
             'gravatar'   => 'email',
         );
 
