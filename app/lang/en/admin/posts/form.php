@@ -6,12 +6,17 @@
 return array(
 
     'content'  			=> 'Content',
+    'yearsavailable'	=> 'Years available',
+    'notescleaning'		=> 'Notes on data cleaning',
+    'notessource'		=> 'Notes on data source',
+    'notesversion'		=> 'Version notes',
     'general' 			=> 'General',
-    'metadata'			=> 'Meta Data',
-    'metadescription'  	=> 'Meta Description',
-    'metakeywords' 		=> 'Meta Keywords',
-    'metatitle'      	=> 'Meta Title',
-    'posttitle'			=> 'Post Title',
+    'metadata'			=> 'Meta data',
+    'metadescription'  	=> 'Meta description',
+    'metakeywords' 		=> 'Meta keywords',
+    'metatitle'      	=> 'Meta title',
+    'posttitle'			=> 'Partner title',
+    'partnerwebsite'	=> 'Partner website',
     'slug' 				=> 'Slug',
 
 );
