@@ -18,5 +18,6 @@ return array(
     'posttitle'			=> 'Partner title',
     'partnerwebsite'	=> 'Partner website',
     'slug' 				=> 'Slug',
+    'status'            => 'Collection status',
 
 );

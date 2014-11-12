@@ -67,21 +67,20 @@
                     </div>
             </div>
 
-            <!-- fix later ***** Collection status -->
-            <div class="form-group {{ $errors->first('groups', 'has-error') }}">
-                <label for="groups" class="col-sm-2 control-label">@lang('admin/users/form.groups')</label>
+            <!-- status -->
+            <div class="form-group {{ $errors->first('status', 'has-error') }}">
+                <label for="status" class="col-sm-2 control-label">@lang('admin/posts/form.status')</label>
                     <div class="col-sm-5">
-                        <select name="groups[]" id="groups[]" multiple>
-                        @foreach ($groups as $group)
-                        <option value="{{{ $group->id }}}"{{ (array_key_exists($group->id, $userGroups) ? ' selected="selected"' : '') }}>{{ $group->name }}</option>
-                        @endforeach
+                        <select name="status" id="status">
+                        <option value="2"{{ (Input::old('status', 0) === 2 ? ' selected="selected"' : '') }}>@lang('admin/posts/statuses.new')</option>
+                        <option value="1"{{ (Input::old('status', 0) === 1 ? ' selected="selected"' : '') }}>@lang('admin/posts/statuses.available')</option>
+                        <option value="0"{{ (Input::old('status', 0) === 0 ? ' selected="selected"' : '') }}>@lang('admin/posts/statuses.coming')</option>
                     </select>
-                    <span class="help-block">@lang('admin/users/form.grouphelp')</span>
                     </div>
                     <div class="col-sm-4">
-                        {{ $errors->first('groups', '<span class="help-block">:message</span>') }}
+                        {{ $errors->first('status', '<span class="help-block">:message</span>') }}
                     </div>
-            </div>                        
+            </div>                      
 
             <!-- Content / years -->
             <div class="form-group {{ $errors->first('yearsavailable', 'has-error') }}">

@@ -140,3 +140,5 @@ Route::post('blog/{postSlug}', 'PostController@postView');
 
 Route::get('/', array('as' => 'home', 'uses' => 'PostController@getIndex'));
 Route::get('home', array('as' => 'home', 'uses' => 'PostController@getIndex'));
+
+Route::get('export', array('as' => 'xls', 'uses' => 'PostController@xls'));

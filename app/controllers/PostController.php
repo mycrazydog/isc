@@ -107,4 +107,41 @@ class PostController extends BaseController
 
     }
 
+    /**
+     * Export posts.
+     *http://duvidas.laravel.com.br/bin/82m
+     * 
+     * @return Redirect
+     */
+    public function xls () {
+
+      $posts = Post::all();
+
+      $headers = $this->getColumnNames($posts);
+
+      //$posts_array = array_merge((array)$headers, (array)$posts->toArray());
+      $posts_array = (array)$posts->toArray();
+
+      Excel::create('export')
+      -> sheet('Posts')
+      -> with($posts_array)
+      -> export('xls');
+
+      // Redirect to the users page
+      // not working return Redirect::route('home')->with('success', 'You farted very loudly!');
+    }
+
+    
+    public function getColumnNames($object) {
+      $rip_headers = $object->toArray();
+
+      $keys = array_keys($rip_headers[0]);
+
+      foreach ($keys as $value) {
+      $headers[$value] = $value;
+      }
+
+      return array($headers);
+    }
+
 }

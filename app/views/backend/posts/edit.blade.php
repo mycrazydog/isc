@@ -55,8 +55,78 @@
                 </div>
             </div>
 
-            <!-- Content -->
+            <!--$post->partnerwebsite   = e(Input::get('partnerwebsite'));
+                $post->status           = e(Input::get('status'));
+                $post->yearsavailable   = e(Input::get('yearsavailable'));
+                $post->notescleaning    = e(Input::get('notescleaning'));
+                $post->notessource      = e(Input::get('notessource'));
+                $post->notesversion     = e(Input::get('notesversion')); 
+            -->
+            <div class="form-group {{ $errors->first('partnerwebsite', 'has-error') }}">
+                    <label for="partnerwebsite" class="col-sm-3 control-label">@lang('admin/posts/form.partnerwebsite')</label>
+                    <div class="col-sm-9">
+                    {{ $errors->first('partnerwebsite', '<span class="help-block">:message</span>') }}
+                    <textarea rows="4" id="partnerwebsite" name="partnerwebsite" class="form-control">{{{ Input::old('partnerwebsite', $post->partnerwebsite) }}}</textarea>
+                    {{ $errors->first('partnerwebsite', '<span class="help-block">:message</span>') }}
+                    </div>
+            </div>
 
+            <!--STATUS GOES HERE-->
+            <div class="form-group {{ $errors->first('status', 'has-error') }}">
+                <label for="status" class="col-sm-2 control-label">@lang('admin/posts/form.status')</label>
+                    <div class="col-sm-5">
+                        <select name="status" id="status">
+                        <option value="2"{{ (Input::old('status', 2) === 2 ? ' selected="selected"' : '') }}>@lang('admin/posts/statuses.new')</option>
+                        <option value="1"{{ (Input::old('status', 1) === 1 ? ' selected="selected"' : '') }}>@lang('admin/posts/statuses.available')</option>
+                        <option value="0"{{ (Input::old('status', 0) === 0 ? ' selected="selected"' : '') }}>@lang('admin/posts/statuses.coming')</option>
+                    </select>
+                    </div>
+                    <div class="col-sm-4">
+                        {{ $errors->first('status', '<span class="help-block">:message</span>') }}
+                    </div>
+            </div> 
+
+            <!-- yearsavailable-->
+            <div class="form-group {{ $errors->first('yearsavailable', 'has-error') }}">
+                    <label for="yearsavailable" class="col-sm-3 control-label">@lang('admin/posts/form.yearsavailable')</label>
+                    <div class="col-sm-9">
+                    {{ $errors->first('yearsavailable', '<span class="help-block">:message</span>') }}
+                    <textarea rows="4" id="yearsavailable" name="yearsavailable" class="form-control">{{{ Input::old('yearsavailable', $post->yearsavailable) }}}</textarea>
+                    {{ $errors->first('yearsavailable', '<span class="help-block">:message</span>') }}
+                    </div>
+            </div>
+
+            <!--notescleaning-->
+            <div class="form-group {{ $errors->first('notescleaning', 'has-error') }}">
+                    <label for="notescleaning" class="col-sm-3 control-label">@lang('admin/posts/form.notescleaning')</label>
+                    <div class="col-sm-9">
+                    {{ $errors->first('notescleaning', '<span class="help-block">:message</span>') }}
+                    <textarea rows="4" id="notescleaning" name="notescleaning" class="form-control">{{{ Input::old('notescleaning', $post->notescleaning) }}}</textarea>
+                    {{ $errors->first('notescleaning', '<span class="help-block">:message</span>') }}
+                    </div>
+            </div>
+
+            <!--notessource-->
+            <div class="form-group {{ $errors->first('notessource', 'has-error') }}">
+                    <label for="notessource" class="col-sm-3 control-label">@lang('admin/posts/form.notessource')</label>
+                    <div class="col-sm-9">
+                    {{ $errors->first('notessource', '<span class="help-block">:message</span>') }}
+                    <textarea rows="4" id="notessource" name="notessource" class="form-control">{{{ Input::old('notessource', $post->notessource) }}}</textarea>
+                    {{ $errors->first('notessource', '<span class="help-block">:message</span>') }}
+                    </div>
+            </div>
+
+            <!--notesversion-->    
+            <div class="form-group {{ $errors->first('notesversion', 'has-error') }}">
+                    <label for="notesversion" class="col-sm-3 control-label">@lang('admin/posts/form.notesversion')</label>
+                    <div class="col-sm-9">
+                    {{ $errors->first('notesversion', '<span class="help-block">:message</span>') }}
+                    <textarea rows="4" id="notesversion" name="notesversion" class="form-control">{{{ Input::old('notesversion', $post->notesversion) }}}</textarea>
+                    {{ $errors->first('notesversion', '<span class="help-block">:message</span>') }}
+                    </div>
+            </div>
+
+            <!-- Content -->
             <div class="form-group {{ $errors->first('content', 'has-error') }}">
                     <label for="content" class="col-sm-3 control-label">@lang('admin/posts/form.content')</label>
                     <div class="col-sm-9">
@@ -66,7 +136,12 @@
                     </div>
             </div>
 
-        </div>
+
+
+
+
+
+        </div><!--/.tab-pane -->
 
         <!-- Meta Data tab -->
         <div class="tab-pane" id="tab-meta-data">

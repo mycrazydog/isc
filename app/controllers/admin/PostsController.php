@@ -75,6 +75,12 @@ class PostsController extends AdminController
             $post->meta_description = e(Input::get('meta-description'));
             $post->meta_keywords    = e(Input::get('meta-keywords'));
             $post->user_id          = Sentry::getUser()->id;
+                $post->partnerwebsite   = e(Input::get('partnerwebsite'));
+                $post->status           = e(Input::get('status'));
+                $post->yearsavailable   = e(Input::get('yearsavailable'));
+                $post->notescleaning    = e(Input::get('notescleaning'));
+                $post->notessource      = e(Input::get('notessource'));
+                $post->notesversion     = e(Input::get('notesversion'));
 
             // Was the blog post created?
             if ($post->save()) {
@@ -148,10 +154,16 @@ class PostsController extends AdminController
         // Update the blog post data
         $post->title            = e(Input::get('title'));
         $post->slug             = e(Input::get('slug'));
-        $post->content          = e(Input::get('content'));
+        $post->content          = e(Input::get('content'));        
         $post->meta_title       = e(Input::get('meta-title'));
         $post->meta_description = e(Input::get('meta-description'));
         $post->meta_keywords    = e(Input::get('meta-keywords'));
+            $post->partnerwebsite   = e(Input::get('partnerwebsite'));
+            $post->status           = e(Input::get('status'));
+            $post->yearsavailable   = e(Input::get('yearsavailable'));
+            $post->notescleaning    = e(Input::get('notescleaning'));
+            $post->notessource      = e(Input::get('notessource'));
+            $post->notesversion     = e(Input::get('notesversion'));
 
         // Was the blog post updated?
         if ($post->save()) {
