@@ -13,13 +13,17 @@ Route::group(array('prefix' => 'admin'), function () {
 
     # Post Management
     Route::group(array('prefix' => 'posts'), function () {
+    
         Route::get('/', array('as' => 'posts', 'uses' => 'Controllers\Admin\PostsController@getIndex'));
         Route::get('create', array('as' => 'create/post', 'uses' => 'Controllers\Admin\PostsController@getCreate'));
         Route::post('create', 'Controllers\Admin\PostsController@postCreate');
+        
         Route::get('{blogId}/edit', array('as' => 'update/post', 'uses' => 'Controllers\Admin\PostsController@getEdit'));
         Route::post('{blogId}/edit', 'Controllers\Admin\PostsController@postEdit');
+        
         Route::get('{blogId}/delete', array('as' => 'delete/post', 'uses' => 'Controllers\Admin\PostsController@getDelete'));
         Route::get('{blogId}/confirm-delete', array('as' => 'confirm-delete/post', 'uses' => 'Controllers\Admin\PostsController@getModalDelete'));
+        
         Route::get('{blogId}/restore', array('as' => 'restore/post', 'uses' => 'Controllers\Admin\PostsController@getRestore'));
     });
 
