@@ -6,8 +6,8 @@
 
 return array(
 
-    'blogmanagement'	=> 'Manage Blog Posts',
-    'create'			=> 'Create New Blog Post',
-    'edit' 				=> 'Edit Blog Post',
+    'blogmanagement'	=> 'Manage partners',
+    'create'			=> 'Create New Partner',
+    'edit' 				=> 'Edit Partner',
 
 );

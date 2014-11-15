@@ -11,6 +11,10 @@
 
 Route::group(array('prefix' => 'admin'), function () {
 
+	Route::get('directory', array('as' => 'directory', 'uses' => 'PostController@getIndex'));	
+	Route::get('directory/{postSlug}', array('as' => 'view-post', 'uses' => 'PostController@getView'));
+	Route::post('directory/{postSlug}', 'PostController@postView');
+
     # Post Management
     Route::group(array('prefix' => 'posts'), function () {
     
@@ -24,7 +28,7 @@ Route::group(array('prefix' => 'admin'), function () {
         Route::get('{blogId}/delete', array('as' => 'delete/post', 'uses' => 'Controllers\Admin\PostsController@getDelete'));
         Route::get('{blogId}/confirm-delete', array('as' => 'confirm-delete/post', 'uses' => 'Controllers\Admin\PostsController@getModalDelete'));
         
-        Route::get('{blogId}/restore', array('as' => 'restore/post', 'uses' => 'Controllers\Admin\PostsController@getRestore'));
+        Route::get('{blogId}/restore', array('as' => 'restore/post', 'uses' => 'Controllers\Admin\PostsController@getRestore'));        
     });
 
     # User Management
@@ -132,17 +136,17 @@ Route::group(array('prefix' => 'account'), function () {
 */
 
 Route::get('about-us', function () {
-    //
     return View::make('frontend/about-us');
 });
 
 Route::get('contact-us', array('as' => 'contact-us', 'uses' => 'ContactUsController@getIndex'));
 Route::post('contact-us', 'ContactUsController@postIndex');
 
-Route::get('blog/{postSlug}', array('as' => 'view-post', 'uses' => 'PostController@getView'));
-Route::post('blog/{postSlug}', 'PostController@postView');
+Route::get('/', function () {
+	return View::make('frontend/home');
+});
 
-Route::get('/', array('as' => 'home', 'uses' => 'PostController@getIndex'));
-Route::get('home', array('as' => 'home', 'uses' => 'PostController@getIndex'));
+
+//Route::get('home', array('as' => 'home', 'uses' => 'PostController@getIndex'));
 
 Route::get('export', array('as' => 'xls', 'uses' => 'PostController@xls'));

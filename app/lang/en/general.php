@@ -7,7 +7,7 @@ return array(
 
     'no'  			=> 'No',
     'noresults'  	=> 'No Results',
-    'site_name'		=> 'Laravel Starter Site',
+    'site_name'		=> 'UNC Charlotte Institute for Social Capital',
     'yes' 			=> 'Yes',
 
 );

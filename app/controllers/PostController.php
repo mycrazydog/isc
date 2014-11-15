@@ -25,7 +25,7 @@ class PostController extends BaseController
             },
         ))->orderBy('created_at', 'DESC')->paginate();
 
-        return View::make('frontend/posts/index')
+        return View::make('backend/posts/directory')
           ->with('posts', $posts);
 
     }
@@ -62,7 +62,7 @@ class PostController extends BaseController
         ))->orderBy('created_at', 'DESC')->get();
 
         // Show the page
-        return View::make('frontend/posts/view-post', compact('post', 'comments'));
+        return View::make('backend/posts/view-post', compact('post', 'comments'));
     }
 
     /**
