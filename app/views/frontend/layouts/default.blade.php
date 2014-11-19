@@ -100,13 +100,13 @@
 		              <ul class="sidebar-menu" id="nav-accordion">
 		              @if (Sentry::check())
 		              		
-		              	  <p class="centered"><a href="profile.html">
-		              	  <img src="" width="60" src="#" class="img-circle" />
+		              	  <p class="centered">
+		              	  	<a href="{{ route('profile') }}"><img width="60" src="{{{ Sentry::getUser()->gravatar() }}}" class="img-circle" /></a>
+		              	  </p>
 		              	  
-		              	  </a></p>
 		              	  <h5 class="centered">Welcome, {{ Sentry::getUser()->first_name }}</h5>
 		
-		                  <li class="sub-menu"><a class="{{ (Request::is('directory') ? ' active' : '') }}" href="{{ URL::to('directory') }}"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
+		                  <li class="sub-menu"><a class="{{ (Request::is('directory') ? ' active' : '') }}" href="{{ route('directory') }}"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
 		                  
                           @if(Sentry::getUser()->hasAccess('posts.write'))
                           <li class="sub-menu"><a class="{{ (Request::is('admin/posts*') ? ' active' : '') }}" href="{{ URL::to('admin/posts') }}"><i class="fa fa-th"></i><span>Manage partners</span></a></li>

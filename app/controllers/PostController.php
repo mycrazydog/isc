@@ -107,6 +107,9 @@ class PostController extends BaseController
 
     }
 
+ 
+    
+
     /**
      * Export posts.
      *http://duvidas.laravel.com.br/bin/82m

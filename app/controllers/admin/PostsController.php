@@ -42,8 +42,41 @@ class PostsController extends AdminController
      */
     public function getCreate()
     {
-        // Show the page
-        return View::make('backend/posts/create');
+    
+    		return View::make('backend/posts/create');
+    		
+    	 	/*
+    		//Individual permission check
+    		if ( Sentry::getUser()->hasAnyAccess(['posts.create']) )
+    		{
+    		   //They do have access
+    		   return Redirect::to('admin/posts')->with('error', 'This individual does not have the proper permissions');
+    		}else{
+    			//They do NOT have access    		
+    		}
+    		
+    	
+    	
+    		//Group permission check
+    		// Find the user using the user id
+    	    $user = Sentry::getUser();
+    	        	        	
+    	    // Find the group
+    	    $admin = Sentry::findGroupByName('Admin');
+    	    $authors = Sentry::findGroupByName('Authors');   	    
+    	
+    	    // Check if the user is in the administrator or authors group
+    	    if (($user->inGroup($admin)) || ($user->inGroup($authors)))
+    	    {
+			    // Show the page
+			    return View::make('backend/posts/create');
+			    //return Redirect::to('admin/posts')->with('error', $user.'<hr>'.$admin);
+			}else {
+				return Redirect::to('admin/posts')->with('error', Lang::get('general.denied'));
+			}*/
+    	
+    	
+        
     }
 
     /**

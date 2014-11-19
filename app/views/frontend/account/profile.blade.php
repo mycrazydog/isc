@@ -64,16 +64,14 @@
     <div class="form-group {{ $errors->first('gravatar', 'has-error') }}">
         <label for="gravatar" class="col-sm-3 control-label">@lang('account/form.gravataremail')</label>
             <div class="col-sm-5">
-            <input type="email" id="gravatar" name="gravatar" class="form-control" value="{{{ Input::old('gravatar', $user->gravatar) }}}">
-            <p>
-            <img src="{{ $user->gravatar() }}" width="30" height="30" />
-            <a href="http://gravatar.com">@lang('account/form.changegravatar')</a>.
+	            <input type="email" id="gravatar" name="gravatar" class="form-control" value="{{{ Input::old('gravatar', $user->gravatar) }}}">
+	            <br/>
+	            <img src="{{ $user->gravatar() }}" width="30" height="30" />
+	            <a href="http://gravatar.com">@lang('account/form.changegravatar')</a>.
             </div>
             <div class="col-sm-4">
-            {{ $errors->first('gravatar', '<span class="help-block">:message</span>') }}
-
-            </div>
-        </p>
+            	{{ $errors->first('gravatar', '<span class="help-block">:message</span>') }}
+            </div>      
     </div>
 
     <hr>

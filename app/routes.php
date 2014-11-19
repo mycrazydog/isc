@@ -14,6 +14,8 @@ Route::group(array('prefix' => 'admin'), function () {
 	Route::get('directory', array('as' => 'directory', 'uses' => 'PostController@getIndex'));	
 	Route::get('directory/{postSlug}', array('as' => 'view-post', 'uses' => 'PostController@getView'));
 	Route::post('directory/{postSlug}', 'PostController@postView');
+	
+	
 
     # Post Management
     Route::group(array('prefix' => 'posts'), function () {
@@ -28,8 +30,29 @@ Route::group(array('prefix' => 'admin'), function () {
         Route::get('{blogId}/delete', array('as' => 'delete/post', 'uses' => 'Controllers\Admin\PostsController@getDelete'));
         Route::get('{blogId}/confirm-delete', array('as' => 'confirm-delete/post', 'uses' => 'Controllers\Admin\PostsController@getModalDelete'));
         
-        Route::get('{blogId}/restore', array('as' => 'restore/post', 'uses' => 'Controllers\Admin\PostsController@getRestore'));        
+        Route::get('{blogId}/restore', array('as' => 'restore/post', 'uses' => 'Controllers\Admin\PostsController@getRestore'));
+        
+               
     });
+    
+    # licenses Management
+    Route::group(array('prefix' => 'licenses'), function () {
+    
+        Route::get('/', array('as' => 'licenses', 'uses' => 'Controllers\Admin\LicensesController@getIndex'));
+        Route::get('create', array('as' => 'create/license', 'uses' => 'Controllers\Admin\LicensesController@getCreate'));
+        Route::post('create', 'Controllers\Admin\LicensesController@licenseCreate');
+        
+        Route::get('{licenseId}/edit', array('as' => 'update/license', 'uses' => 'Controllers\Admin\LicensesController@getEdit'));
+        Route::post('{licenseId}/edit', 'Controllers\Admin\LicensesController@licenseEdit');
+        
+        Route::get('{licenseId}/delete', array('as' => 'delete/license', 'uses' => 'Controllers\Admin\LicensesController@getDelete'));
+        Route::get('{licenseId}/confirm-delete', array('as' => 'confirm-delete/license', 'uses' => 'Controllers\Admin\LicensesController@getModalDelete'));
+        
+        Route::get('{licenseId}/restore', array('as' => 'restore/license', 'uses' => 'Controllers\Admin\LicensesController@getRestore'));
+        
+               
+    });
+    
 
     # User Management
     Route::group(array('prefix' => 'users'), function () {
@@ -131,7 +154,7 @@ Route::group(array('prefix' => 'account'), function () {
 |
 | Here is where you can register all of the routes for an application.
 | It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the Closure to execute when that URI is requested.
+| and give it the Closure to execute when that URI is licenseed.
 |
 */
 
@@ -146,7 +169,7 @@ Route::get('/', function () {
 	return View::make('frontend/home');
 });
 
-
+//Route::get('/', array('as' => 'home', 'uses' => 'PostController@getIndex'));
 //Route::get('home', array('as' => 'home', 'uses' => 'PostController@getIndex'));
 
 Route::get('export', array('as' => 'xls', 'uses' => 'PostController@xls'));

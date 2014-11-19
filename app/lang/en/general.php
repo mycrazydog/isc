@@ -9,5 +9,6 @@ return array(
     'noresults'  	=> 'No Results',
     'site_name'		=> 'UNC Charlotte Institute for Social Capital',
     'yes' 			=> 'Yes',
+    'denied' 			=> 'Permission denied: you are not a member of the approved group(s)',
 
 );

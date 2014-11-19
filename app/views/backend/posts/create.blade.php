@@ -25,7 +25,11 @@
     <li><a href="#tab-meta-data" data-toggle="tab">@lang('admin/posts/form.metadata')</a></li>
 </ul>
 
-{{ Form::open(['files'=> true]) }}
+
+
+{{ Form::open(array('class'=>'form-horizontal')) }}
+
+
 	<!-- CSRF Token -->
 	{{ Form::token() }}
 	
