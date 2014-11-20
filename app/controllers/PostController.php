@@ -146,5 +146,28 @@ class PostController extends BaseController
 
       return array($headers);
     }
+    
+    
+    /**
+     * Export posts.
+     *http://duvidas.laravel.com.br/bin/82m
+     * 
+     * @return Redirect
+     */
+    public function xlsImport () {
+//    	Excel::load('public/file.xls')->toArray();
+    	
+		Excel :: load ( 'public/file.xls' , function ($file){
+			
+			$result = $file->get();			
+			foreach ($result  as  $key => $value) {
+				echo  $value ->id .' --- '. $value ->name .' --- '. $value ->amount .'<br/>';
+			}
+			
+		})->get();
+		// Return View :: make ('index');
+    	
+    	    
+    }
 
 }

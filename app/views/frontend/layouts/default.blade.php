@@ -26,6 +26,7 @@
         <link href="{{ asset('assets/css/custom/style.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/custom/style-responsive.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/custom/to-do.css') }}" rel="stylesheet" >
+        <link href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css" rel="stylesheet">
 
         <style>
         @section('styles')
@@ -41,7 +42,7 @@
           margin-top: 60px;
           padding-top: 10px;
         }
-        @show
+        @show         
         </style>
 
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -186,6 +187,7 @@
             <script type="text/javascript" src="{{ asset('assets/js/custom/jquery.dcjqaccordion.2.7.js') }}"></script>
             <script type="text/javascript" src="{{ asset('assets/js/custom/jquery.scrollTo.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('assets/js/custom/jquery.nicescroll.js') }}"></script>
+            <script type="text/javascript" src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
         
         
             <!--common script for all pages-->
@@ -194,6 +196,8 @@
             <!--script for this page-->
         	<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
             <script type="text/javascript" src="{{ asset('assets/js/custom/tasks.js') }}"></script>
+            
+            
         
 
           <!--/new-->

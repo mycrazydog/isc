@@ -4,7 +4,7 @@
         "Read more about it at http://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "290f4080e0a34ce47c68c879ab89b2b6",
+    "hash": "dc7aa4cc4e4a1b9b3ddafb4d48876c61",
     "packages": [
         {
             "name": "barryvdh/laravel-debugbar",
@@ -12,12 +12,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/barryvdh/laravel-debugbar.git",
-                "reference": "7fff16d257fe2a28383daa5ffa13f945ce7f5569"
+                "reference": "b7c87125eb61d89b703a11481249840c61b96dfd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/7fff16d257fe2a28383daa5ffa13f945ce7f5569",
-                "reference": "7fff16d257fe2a28383daa5ffa13f945ce7f5569",
+                "url": "https://api.github.com/repos/barryvdh/laravel-debugbar/zipball/b7c87125eb61d89b703a11481249840c61b96dfd",
+                "reference": "b7c87125eb61d89b703a11481249840c61b96dfd",
                 "shasum": ""
             },
             "require": {
@@ -58,7 +58,62 @@
                 "profiler",
                 "webprofiler"
             ],
-            "time": "2014-11-18 14:13:38"
+            "time": "2014-11-19 09:46:18"
+        },
+        {
+            "name": "bllim/datatables",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/bllim/laravel4-datatables-package.git",
+                "reference": "4013d18bf000ac2be16ce885c5f08e7741521fde"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/bllim/laravel4-datatables-package/zipball/4013d18bf000ac2be16ce885c5f08e7741521fde",
+                "reference": "4013d18bf000ac2be16ce885c5f08e7741521fde",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/database": ">=4.0.0",
+                "illuminate/filesystem": ">=4.0.0",
+                "illuminate/support": ">=4.0.0",
+                "illuminate/view": ">=4.0.0",
+                "php": ">=5.3.0"
+            },
+            "require-dev": {
+                "laravel/laravel": ">=4.0.0",
+                "mockery/mockery": "0.7.2",
+                "phpunit/phpunit": "3.7.*"
+            },
+            "type": "library",
+            "autoload": {
+                "classmap": [
+                    "src/migrations"
+                ],
+                "psr-0": {
+                    "Bllim\\Datatables": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Bilal Gultekin",
+                    "email": "bilal@bilal.im"
+                }
+            ],
+            "description": "Server-side handler of DataTables Jquery Plugin for Laravel 4",
+            "keywords": [
+                "datatable",
+                "datatables",
+                "datatables jquery plugin",
+                "laravel",
+                "laravel4"
+            ],
+            "time": "2014-11-19 15:21:57"
         },
         {
             "name": "cartalyst/sentry",

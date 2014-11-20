@@ -165,11 +165,20 @@ Route::get('about-us', function () {
 Route::get('contact-us', array('as' => 'contact-us', 'uses' => 'ContactUsController@getIndex'));
 Route::post('contact-us', 'ContactUsController@postIndex');
 
-Route::get('/', function () {
+Route::get('/', array('as' => 'home', function () {
 	return View::make('frontend/home');
-});
+}));
 
 //Route::get('/', array('as' => 'home', 'uses' => 'PostController@getIndex'));
 //Route::get('home', array('as' => 'home', 'uses' => 'PostController@getIndex'));
 
-Route::get('export', array('as' => 'xls', 'uses' => 'PostController@xls'));
+//Route::get('export', array('as' => 'xls', 'uses' => 'PostController@xlsImport'));
+
+//Import
+Route::get('import', 'ImportController@getImport');
+Route::post('import', 'ImportController@postImport');
+Route::get('import/data', 'ImportController@getData');
+Route::get('import/missing', 'ImportController@getMissing');
+Route::post('import/upload', 'ImportController@toDatabase');
+Route::get('import/template', 'ImportController@getTemplate');
+Route::get('import/example', 'ImportController@getExample');
