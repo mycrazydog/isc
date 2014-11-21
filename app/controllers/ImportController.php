@@ -91,8 +91,8 @@ public function postImport() {
 				////////////////////////////////////////////////////////////////////////////////////////////////
 				foreach ($results0 as $value) {				 						 	
 					 	$temp0 = array(						 	
-								'table_name'  => $value['table_name'],
-								'column_name' 	  => $value['column_name'],
+								'table_name'  => trim($value['table_name']),
+								'column_name' 	  => trim($value['column_name']),
 								'system_data_type' 	  => $value['system_data_type'],
 								'max_length' 		  => $value['max_length'],
 								'precision' 	  => $value['precision'],
@@ -104,8 +104,8 @@ public function postImport() {
 				}//end foreach
 				foreach ($results1 as $value) {				 						 	
 					 	$temp1 = array(						 	
-					 			'table_name'  => $value['table_name'],
-					 			'column_name' 	  => $value['column_name'],
+					 			'table_name'  => trim($value['table_name']),
+					 			'column_name' 	  => trim($value['column_name']),
 					 			'data_value' 	  => $value['data_value'],
 					 			'batch_id'		=> $batch_id
 					 	);					 						 				 	
@@ -138,8 +138,9 @@ public function postImport() {
 				return Redirect::to('import')->with('message' , 'file incorrect');				
 			}//end outer-catch	
 		
-		$this->getDistinct($batch_id);
-		return View::make('backend/import.preview')->with('fileName','<code>'.$fileName.'</code>')->with('batch_id',$batch_id);			
+		$distinct_check =$this->getDistinct($batch_id);		
+		
+		return View::make('backend/import.preview')->with('fileName','<code>'.$fileName.'</code>')->with('batch_id',$batch_id)->with('distinct_check',$distinct_check);			
 	
 	}//end if-validator
 			
@@ -258,12 +259,55 @@ public function postImport() {
 	 */	
 	public function getDistinct($batch_id)
 	{	
-		$result1 = DB::table('tabDataParent')->select(array('column_name'))->where('batch_id', '=', $batch_id)->distinct()->get();
+		//$table_name_parent = DB::table('tabDataParent')->select(array('table_name'))->where('batch_id', '=', $batch_id)->distinct()->get();
+		$table_name_parent =DB::table('tabDataParent')->where('batch_id', '=', $batch_id)->distinct()->lists('table_name');	
+		$table_name_child = DB::table('tabDataChild')->where('batch_id', '=', $batch_id)->distinct()->lists('table_name');	
+		
+		$column_name_parent = DB::table('tabDataParent')->where('batch_id', '=', $batch_id)->distinct()->lists('column_name');		
+		$column_name_child = DB::table('tabDataChild')->where('batch_id', '=', $batch_id)->distinct()->lists('column_name');
+		
+		//dd($table_name_child);	
+		//dd($column_name_parent);
+		
+		if($table_name_parent == $table_name_child){
+		//OK table_name		
+			//dd($column_name_child);		
+			if(array_diff($column_name_child, $column_name_parent)){
+			  //echo "true";
+			  //problem child has columns the parent doesn't
+			  $arr_diff = array_diff($column_name_child, $column_name_parent);
+			      
+			  	$output = NULL;
+			  	
+			      foreach($arr_diff as $value) {
+			         $output .= ' - '.$value.' - ';
+			      }	
+			      	  
+			      		  
+				return "FAILED: The child table has columns the parent does not. See column(s): ".$output;
+			}else{
+				return 'PASSED';
+			}
+		}
+		return 'FAILED: The parent and child table names do not match';
+		
+		
+		
+		
+		
+		
 		////$result2 =ImportForm::where('batch_id', '=', $batch_id)->distinct()->get(array('max_temp'));
+		
+		// array_unique()
+		
 							
 		//Log::info('This is some useful information-'.$result1);
 		// LOG.info: This is some useful information.[{"max_temp":"30.5"},{"max_temp":"31.1"},{"max_temp":"31"}]-----[{"max_temp":"30.5"},{"max_temp":"31.1"},{"max_temp":"31"}]		
 	}	
+	
+	
+	
+	
 	
 	
 	
