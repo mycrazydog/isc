@@ -10,20 +10,22 @@
 @section('content')
 
 	<ol class="breadcrumb">
-	  	<li><a href="#">Home</a></li>
+	  	<li><a href="{{ route('home') }}">Home</a></li>
 	  	<li class="active">Import</li>
 	</ol>
 		
 	
 	
 	<?php 
-	if ($errors->first('file') != NULL)echo "<div class='alert alert-danger' role='alert'>".$errors->first('file') ."</div>";
-	echo $message;	
+	if ($errors->first('file') != NULL) {
+		echo "<div class='alert alert-danger' role='alert'>lll".$errors->first('file') ."</div>";
+		echo $message;
+	}
+		
 	?>	
+	{{$message}}
 	
 {{ Form::open(array('url' => 'import','files' => true, 'class'=>'form-horizontal')) }}
-
-
 
 			<div class="form-group">
 				
@@ -31,19 +33,13 @@
 				<div class="col-md-3">
 					<div class="fileinput fileinput-new input-group" data-provides="fileinput">
 						
-						<div class="form-control" data-trigger="fileinput">
-				  			<i class="glyphicon glyphicon-file fileinput-exists"></i> 
-				  			<span class="fileinput-filename"></span>
-				  		</div>
+
 				  		
-				  		<span class="input-group-addon btn btn-default btn-file">
-				  			<span class="fileinput-new"><span class="glyphicon glyphicon-search"></span>
-				   		</span>
-						<span class="fileinput-exists">
-							<a><span class="glyphicon glyphicon-repeat"></a></span>
-							<input type="file" name="file">
-						</span>
-				  		<a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput"><span class="glyphicon glyphicon-remove-circle"></span></a>
+				  		<div class="form-control">				  				 
+				  				<input type="file" name="file">
+				  		</div>					
+						
+				  		<!--<a href="#" class="input-group-addon btn btn-default fileinput-exists" data-dismiss="fileinput"><span class="glyphicon glyphicon-remove-circle"></span></a>-->
 					</div>
 				</div>
 				<div class="col-md-6"></div>

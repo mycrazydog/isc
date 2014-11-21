@@ -16,40 +16,49 @@
 
 
 	<ol class="breadcrumb">
-  	<li><a href="#">Home</a></li>
-  	<li><a href="#">Import</a></li>
+  	<li><a href="{{ route('home') }}">Home</a></li>
+  	<li><a href="{{ URL::to('import') }}">Import</a></li>
   	<li class="active">Preview</li>
 	</ol>
 	
-	<div class="page-header">Original filename:{{$fileName}}	/ Import Batch-id {{$batch_id}}</div>
+	<div class="page-header">Original filename:{{$fileName}}	/ Import Batch-id: {{$batch_id}}</div>
 	
 	
 		<ul class="nav nav-tabs" id="Tab_" >
-		  	<li class="active"><a href="#Data" data-toggle="tab">Preview</a></li>
-	  		<li ><a href="#Missing" data-toggle="tab">Missing</a></li>
+		  	<li class="active"><a href="#Data" data-toggle="tab">Parent</a></li>
+	  		<li ><a href="#Missing" data-toggle="tab">Child</a></li>
 		</ul>
 
 		<div class="tab-content"> 				
   				<div class="tab-pane fade in active" id="Data" >
 				<!-- Preview Tabs -->  		
 						<br><br>				
-						<table class="table table-striped table-hover" >
+						<table  id="gridview-parent" class="table table-striped table-bordered table-hover ">
 						<thead>
-								<tr>
-									<th class="col-md-1">meas_id</th>
-									<th class="col-md-3">meas_date</th>
-									<th class="col-md-1">station_id</th>
-									<th class="col-md-3">name</th>
-									<th class="col-md-1">max_temp</th>
-									<th class="col-md-1">min_temp</th>
-									<th class="col-md-1">rain</th>
-									<th class="col-md-1">avgrh</th>
-									<th class="col-md-1">evapor</th>
-									<th class="col-md-1">mean_temp</th>
-									<th class="col-md-1">source_name</th>							
-								</tr>
+					       <tr>	        
+								<th>table_name</th>
+						        <th>column_name</th>
+						         <th>system_data_type</th>
+						        <th>complete</th>
+						        <th>percentage</th>						        
+							</tr>
 							</thead>
-						</table>
+					  	<tbody>
+					  
+					   	<?php 
+							$missingg = DB::table('tabDataParent')->select('table_name', 'column_name', 'system_data_type', 'complete', 'percentage')->get();
+							
+							foreach ($missingg as $row) {
+								echo '<tr>';
+								foreach ($row as $key => $cell) {
+									if($cell == NULL) $cell ='<span class="glyphicon glyphicon-remove"></span>';
+									echo '<td> '.$cell.' </td>';						
+								}
+								echo '</tr>';		
+							}								
+						?>
+					  	</tbody>
+						</table> 
 
 				</div><!--/end tab-pane-->
   				
@@ -57,40 +66,30 @@
   				<div class="tab-pane fade " id="Missing">
   				 <!-- Missing Tabs --> 
   				 	<br><br>
-					<table  id="gridview" class="table table-striped table-bordered table-hover ">
+					<table  id="gridview-child" class="table table-striped table-bordered table-hover ">
 					<thead>
 				        <tr>	        
-		      				<th>dt</th>
-		        	        <th>meas_date</th>
-		        	        <th>station_id</th>
-		        	        <th>max_temp</th>
-		        	        <th>min_temp</th>
-		        	        <th>rain</th>
-		        	        <th>avgrh</th>
-		        	        <th>evapor</th>
-		        	        <th>mean_temp</th>
-		        	        <th>source</th>
-		        	        <th>batch</th>
+		      				<th>table_name</th>
+		        	        <th>column_name</th>
+		        	        <th>data_value</th>
 	        			</tr>
-      			</thead>
-      	     	<tbody>
-      	     
-      	      	<?php 
-					$missingg = DB::table('tbl_temp_measurement')
-					->select('meas_id', 'meas_date','station_id','max_temp','min_temp',
-					'rain','avgrh','evapor','mean_temp','source','batch_id')->get();
-					
-					foreach ($missingg as $row) {
-						echo '<tr>';
-						foreach ($row as $key => $cell) {
-							if($cell == NULL) $cell ='<span class="glyphicon glyphicon-remove"></span>';
-							echo '<td> '.$cell.' </td>';						
-						}
-						echo '</tr>';		
-					}								
-				?>
-      	     	</tbody>
-				</table>  				 	
+	      			</thead>
+	      	     	<tbody>
+	      	     
+	      	      	<?php 
+						$missingg = DB::table('tabDataChild')->select('table_name', 'column_name', 'data_value')->get();
+						
+						foreach ($missingg as $row) {
+							echo '<tr>';
+							foreach ($row as $key => $cell) {
+								if($cell == NULL) $cell ='<span class="glyphicon glyphicon-remove"></span>';
+								echo '<td> '.$cell.' </td>';						
+							}
+							echo '</tr>';		
+						}								
+					?>
+	      	     	</tbody>
+					</table>  				 	
 							
   				</div><!--/end tab-pane-->
 		</div><!--/end tab-content-->
@@ -127,7 +126,7 @@
 	{{ HTML::script('packages/datatables/js/dataTables.bootstrap.js')}}
 
 	<script type="text/javascript">
-		var oTable;
+		var ParentTable;
 		$(document).ready(function() {
 			
 //			oTable = $('#gridview').dataTable( {
@@ -143,7 +142,8 @@
 //		        "sAjaxSource": "{{ URL::to('import/data') }}",
 //		    
 //			});
-			oTable = $('#gridview').DataTable();
+			ParentTable = $('#gridview-parent').DataTable();
+			ChildTable = $('#gridview-child').DataTable();
 
 		});
 	</script>

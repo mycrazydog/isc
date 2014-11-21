@@ -177,6 +177,7 @@ Route::get('/', array('as' => 'home', function () {
 //Import
 Route::get('import', 'ImportController@getImport');
 Route::post('import', 'ImportController@postImport');
+
 Route::get('import/data', 'ImportController@getData');
 Route::get('import/missing', 'ImportController@getMissing');
 Route::post('import/upload', 'ImportController@toDatabase');

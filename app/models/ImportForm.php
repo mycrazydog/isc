@@ -10,7 +10,7 @@ class ImportForm extends Eloquent{
 	 * @var string
 	 */
 	
-	protected $table = 'tbl_temp_measurement';
+	protected $table = 'tabDataParent';
 	
 	
 	public static $rules = array(

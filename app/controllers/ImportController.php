@@ -28,14 +28,10 @@ class ImportController extends BaseController
 			$message ="<div class='alert alert-info' role='alert'>Please select a file</div>";
 		}
 		
-		$this->Clear();//Remove all Tempfile and Session	
-		
-		
+		$this->Clear();//Remove all Tempfile and Session		
 		
 		//populate the partner dropbox
-		$partner_options = DB::table('posts')->orderBy('title', 'asc')->lists('title','id');
-
-			
+		$partner_options = DB::table('posts')->orderBy('title', 'asc')->lists('title','id');			
 
 		// Render Import
 		return View::make('backend/import.import', array('partner_options' => $partner_options))->with('message',$message);
@@ -46,90 +42,109 @@ class ImportController extends BaseController
 	 * Imports spreadsheet
 	 *
 	 */
-	public function postImport() {
-		
-		//check input paramiter or file type input		
-       $validator = ImportForm::validate(Input::all());
-       
-        if($validator->fails()) {
-			//if file display error message
-			return View::make('backend/import.import')->withErrors($validator)->with('message',' ');			
-		}
-					
-		
-		//EXCEL Import		
-		if ($validator->passes() && Input::file('file')->getMimeType() == "application/vnd.ms-excel") {	
-		
-			//Create a batch and get it's id
-			$user_id = Sentry::getUser()->id;
-			$partner_id = e(Input::get('partner_id'));
-			$batch_description = e(Input::get('batch_description'));			
-			$batch_id = $this->createBatch($user_id, $partner_id, $batch_description);
+public function postImport() {
 
 	
-			//Handle the file
-			$file = Input::file('file');
-			$fileName = $this->checkName($file->getClientOriginalName(),'xls');
-			Session::put('filename',$fileName);
-			Input::file('file')->move( base_path('temp'),$fileName); // import to temp folder
-					
-			$results = Excel::load(base_path('temp/'.$fileName), function($reader) {
-			})->get()->toArray();//end Excel::load
-			
-			
-				/////////////////
-				$arr = array();
-			
-				try {
-		
-					foreach ($results as $value) {
-						if(isset($value['year']) && isset($value['month']) && isset($value['dday'])  ) {						
-						 						 	
-						 	$temp = array(						 	
-						 			'meas_date'   => $value['year'].'-'.$value['month'].'-'.$value['dday'],
-						 			'station_id'  => $value['stncode'],
-						 			'max_temp' 	  => $value['maxtmp'],
-						 			'min_temp' 	  => $value['mintmp'],
-						 			'rain' 		  => $value['rain'],
-						 			'avgrh' 	  => $value['avgrh'],
-						 			'evapor'      => $value['evapor'],
-						 			'mean_temp'	  => $value['meantemp'],
-						 			'source'	  => 1,
-						 			'meas_year'   => $value['year'],
-						 			'meas_month'  => $value['month'],
-						 			'meas_day'    => $value['dday'],
-						 			'batch_id'		=> $batch_id
-						 	);
-						 						 				 	
-						 	$arr[$value['stncode']][] = $temp;
-						 	
-					 	}//end if			
-					}//end foreach					
-					 	
-					 	try {			 					 	
-					 		//insert all data
-					 		foreach ($arr as $station => $value) {					 			
-					 			DB::table('tbl_temp_measurement')->insert($value); 			
-					 		} //end foreach			 		
-					 		
-					 	}// end inner-try 
-					 	catch (Exception $e) {	 			 	
-						 	// Problem inserting values
-						 	return Redirect::to('import')->with('message' , 'problem inserting values');	
-					 	}//end inner-catch
-					 						 	
-				}//end outer-try
-				catch (Exception $e){
-					// file incorrect
-					return Redirect::to('import')->with('message' , 'file incorrect	');				
-				}//end outer-catch	
-			
-			$this->getDistinct($batch_id);
-			return View::make('backend/import.preview')->with('fileName','<code>'.$fileName.'</code>')->with('batch_id',$batch_id);			
-		
-		}//end if-validator
+	
+	//check input paramiter or file type input		
+   $validator = ImportForm::validate(Input::all());
+   
+    if($validator->fails()) {
+		//if file display error message
+		return View::make('backend/import.import')->withErrors($validator)->with('message',' ');			
+	}
+	
 				
-	}//end function postImport
+	
+	//EXCEL Import		
+	if ($validator->passes() && Input::file('file')->getMimeType() == "application/vnd.ms-excel") {	
+	
+		
+	
+		//Create a batch and get it's id
+		$user_id = Sentry::getUser()->id;
+		$partner_id = e(Input::get('partner_id'));
+		$batch_description = e(Input::get('batch_description'));			
+		$batch_id = $this->createBatch($user_id, $partner_id, $batch_description);
+
+		//Handle the file
+		$file = Input::file('file');
+		$fileName = $this->checkName($file->getClientOriginalName(),'xls');
+		Session::put('filename',$fileName);
+		Input::file('file')->move( base_path('temp'),$fileName); // import to temp folder
+		
+		
+		
+		$results0 = Excel::selectSheetsByIndex(0)->load(base_path('temp/'.$fileName), function($reader) {
+		})->get()->toArray();//end Excel::load
+		
+		$results1 = Excel::selectSheetsByIndex(1)->load(base_path('temp/'.$fileName), function($reader) {
+		})->get()->toArray();//end Excel::load
+		
+		
+			/////////////////
+			$arr0 = array();
+			$arr1 = array();
+		
+			try {
+				
+				////////////////////////////////////////////////////////////////////////////////////////////////
+				foreach ($results0 as $value) {				 						 	
+					 	$temp0 = array(						 	
+								'table_name'  => $value['table_name'],
+								'column_name' 	  => $value['column_name'],
+								'system_data_type' 	  => $value['system_data_type'],
+								'max_length' 		  => $value['max_length'],
+								'precision' 	  => $value['precision'],
+								'complete'      => $value['complete'],
+								'percentage'	  => $value['percentage'],
+								'batch_id'		=> $batch_id
+					 	);					 						 				 	
+					 	$arr0[$value['table_name']][] = $temp0;				 		
+				}//end foreach
+				foreach ($results1 as $value) {				 						 	
+					 	$temp1 = array(						 	
+					 			'table_name'  => $value['table_name'],
+					 			'column_name' 	  => $value['column_name'],
+					 			'data_value' 	  => $value['data_value'],
+					 			'batch_id'		=> $batch_id
+					 	);					 						 				 	
+					 	$arr1[$value['table_name']][] = $temp1;				 		
+				}//end foreach
+				/////////////////////////////////////////////////////////////////////////////////////////////////						
+				
+				 	try {
+				 					 					 	
+				 		//dd($arr0);
+				 		//Log::info('This is some useful information-');	
+				 		
+				 		//insert all data
+				 		foreach ($arr0 as $station => $value) {					 			
+				 			DB::table('tabDataParent')->insert($value);				 			 			
+				 		} //end foreach
+			 			foreach ($arr1 as $station => $value) {					 			
+			 				DB::table('tabDataChild')->insert($value); 	
+			 			} //end foreach
+				 		
+				 	}// end inner-try 
+				 	catch (Exception $e) {	 			 	
+					 	// Problem inserting values
+					 	return Redirect::to('import')->with('message' , 'problem inserting values');	
+				 	}//end inner-catch
+				 						 	
+			}//end outer-try
+			catch (Exception $e){
+				// file incorrect
+				return Redirect::to('import')->with('message' , 'file incorrect');				
+			}//end outer-catch	
+		
+		$this->getDistinct($batch_id);
+		return View::make('backend/import.preview')->with('fileName','<code>'.$fileName.'</code>')->with('batch_id',$batch_id);			
+	
+	}//end if-validator
+			
+}//end function postImport
+                         
 	
 
 
@@ -243,10 +258,11 @@ class ImportController extends BaseController
 	 */	
 	public function getDistinct($batch_id)
 	{	
-		$result1 =ImportForm::select(array('max_temp'))->where('batch_id', '=', $batch_id)->distinct()->get();
-		$result2 =ImportForm::where('batch_id', '=', $batch_id)->distinct()->get(array('max_temp'));
-					
-		Log::info('This is some useful information.'.$result1.'-----'.$result2);		
+		$result1 = DB::table('tabDataParent')->select(array('column_name'))->where('batch_id', '=', $batch_id)->distinct()->get();
+		////$result2 =ImportForm::where('batch_id', '=', $batch_id)->distinct()->get(array('max_temp'));
+							
+		//Log::info('This is some useful information-'.$result1);
+		// LOG.info: This is some useful information.[{"max_temp":"30.5"},{"max_temp":"31.1"},{"max_temp":"31"}]-----[{"max_temp":"30.5"},{"max_temp":"31.1"},{"max_temp":"31"}]		
 	}	
 	
 	
