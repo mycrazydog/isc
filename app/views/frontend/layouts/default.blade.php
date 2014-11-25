@@ -44,6 +44,10 @@
         }
         @show         
         </style>
+        
+        <!-- Put these JS files up here for datatable-->
+        <script src="{{ asset('assets/js/jquery.1.10.2.min.js') }}"></script>
+        <script type="text/javascript" src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
 
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
@@ -180,14 +184,14 @@
 
         <!-- Javascripts
         ================================================== -->
-        <script src="{{ asset('assets/js/jquery.1.10.2.min.js') }}"></script>
+        
         <script src="{{ asset('assets/js/bootstrap/bootstrap.min.js') }}"></script>
         
         	<!--new-->
             <script type="text/javascript" src="{{ asset('assets/js/custom/jquery.dcjqaccordion.2.7.js') }}"></script>
             <script type="text/javascript" src="{{ asset('assets/js/custom/jquery.scrollTo.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('assets/js/custom/jquery.nicescroll.js') }}"></script>
-            <script type="text/javascript" src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+            
         
         
             <!--common script for all pages-->
@@ -196,6 +200,7 @@
             <!--script for this page-->
         	<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
             <script type="text/javascript" src="{{ asset('assets/js/custom/tasks.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('assets/js/custom/modal.js') }}"></script>
             
             
         

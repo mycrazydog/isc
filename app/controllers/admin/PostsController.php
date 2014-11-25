@@ -30,9 +30,11 @@ class PostsController extends AdminController
     {
         // Grab all the blog posts
         $posts = $this->post->orderBy('created_at', 'DESC')->paginate(10);
-
+		
+		//Log::info('This is some useful information-');
         // Show the page
         return View::make('backend/posts/index', compact('posts'));
+        
     }
 
     /**
@@ -46,6 +48,8 @@ class PostsController extends AdminController
     		return View::make('backend/posts/create');
     		
     	 	/*
+    	 	
+    	 	WES CODE TO COME BACK TO
     		//Individual permission check
     		if ( Sentry::getUser()->hasAnyAccess(['posts.create']) )
     		{

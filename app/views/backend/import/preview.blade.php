@@ -31,34 +31,10 @@
 
 		<div class="tab-content"> 				
   				<div class="tab-pane fade in active" id="Data" >
-				<!-- Preview Tabs -->  		
-						<br><br>				
-						<table  id="gridview-parent" class="table table-striped table-bordered table-hover ">
-						<thead>
-					       <tr>	        
-								<th>table_name</th>
-						        <th>column_name</th>
-						         <th>system_data_type</th>
-						        <th>complete</th>
-						        <th>percentage</th>						        
-							</tr>
-							</thead>
-					  	<tbody>
-					  
-					   	<?php 
-							$missingg = DB::table('tabDataParent')->select('table_name', 'column_name', 'system_data_type', 'complete', 'percentage')->get();
-							
-							foreach ($missingg as $row) {
-								echo '<tr>';
-								foreach ($row as $key => $cell) {
-									if($cell == NULL) $cell ='<span class="glyphicon glyphicon-remove"></span>';
-									echo '<td> '.$cell.' </td>';						
-								}
-								echo '</tr>';		
-							}								
-						?>
-					  	</tbody>
-						</table> 
+					{{ Datatable::table()
+					   ->addColumn('TBL', 'CLM')  
+					   ->setUrl(route('datatables'))
+					   ->render() }}
 
 				</div><!--/end tab-pane-->
   				
@@ -122,31 +98,8 @@
 {{-- body_bottom --}}
 @section('body_bottom')
   
-   
-	{{ HTML::script('packages/datatables/js/dataTables.bootstrap.js')}}
 
-	<script type="text/javascript">
-		var ParentTable;
-		$(document).ready(function() {
-			
-//			oTable = $('#gridview').dataTable( {
-//				"sDom": "<'row'<'col-md-6'l><'col-md-6'f>r>t<'row'<'col-md-6'i><'col-md-6'p>>",
-//				
-//				"oLanguage": {
-//					"sLengthMenu": "_MENU_"
-//				},
-//				"bProcessing": true,
-//		        "bServerSide": true,
-//		        "iDisplayLength": 25,		        
-//		        		        
-//		        "sAjaxSource": "{{ URL::to('import/data') }}",
-//		    
-//			});
-			ParentTable = $('#gridview-parent').DataTable();
-			ChildTable = $('#gridview-child').DataTable();
-
-		});
-	</script>
+  
 @endsection
 
 

@@ -109,7 +109,7 @@ return array(
         'Cartalyst\Sentry\SentryServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
 	'Maatwebsite\Excel\ExcelServiceProvider',
-	'Bllim\Datatables\DatatablesServiceProvider',
+	'Chumper\Datatable\DatatableServiceProvider',
     ),
 
     /*
@@ -177,7 +177,7 @@ return array(
         'View'            => 'Illuminate\Support\Facades\View',
         'Sentry' => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
 	'Excel' => 'Maatwebsite\Excel\Facades\Excel',
-	'Datatables'      => 'Bllim\Datatables\Facade\Datatables',
+	'Datatable' => 'Chumper\Datatable\Facades\DatatableFacade',
     ),
 
 );

@@ -82,7 +82,7 @@ class Post extends Elegant
         # you should save the image url on the database
         # and return that url here.
 
-        return 'http://lorempixel.com/600/300/business/';
+        return 'http://placehold.it/150x150';
     }
 
 }

@@ -1,10 +1,17 @@
 <?php
 
-//use Maatwebsite\Excel\Excel;
-//use Illuminate\Redis\Database;
+//Maatwebsite\Excel\Excel;
+//Illuminate\Redis\Database;
 
 class ImportController extends BaseController 
 {
+
+//    protected $partner_id;
+//
+//      public function __construct(partner_id $partner_id)
+//      {
+//          $this->partner_id = $partner_id;
+//      }	
 	
 	/**
 	 * Returns all the blog graph.
@@ -86,27 +93,35 @@ public function postImport() {
 			$arr0 = array();
 			$arr1 = array();
 		
+		
 			try {
 				
 				////////////////////////////////////////////////////////////////////////////////////////////////
 				foreach ($results0 as $value) {				 						 	
-					 	$temp0 = array(						 	
+					 	$temp0 = array(
+					 			'partner_id' =>$partner_id,						 	
 								'table_name'  => trim($value['table_name']),
-								'column_name' 	  => trim($value['column_name']),
-								'system_data_type' 	  => $value['system_data_type'],
+								'column_name' 	  => Str::slug(trim($value['column_name'])),
+								'system_data_type' 	  => trim($value['system_data_type']),
 								'max_length' 		  => $value['max_length'],
 								'precision' 	  => $value['precision'],
 								'complete'      => $value['complete'],
 								'percentage'	  => $value['percentage'],
 								'batch_id'		=> $batch_id
 					 	);					 						 				 	
-					 	$arr0[$value['table_name']][] = $temp0;				 		
+					 	$arr0[$value['table_name']][] = $temp0;	
+					 		 		
 				}//end foreach
+				
+				//Could change database structure, later.
+				
+				
 				foreach ($results1 as $value) {				 						 	
-					 	$temp1 = array(						 	
+					 	$temp1 = array(	
+					 			'partner_id' =>$partner_id,						 	
 					 			'table_name'  => trim($value['table_name']),
-					 			'column_name' 	  => trim($value['column_name']),
-					 			'data_value' 	  => $value['data_value'],
+					 			'column_name' 	  => Str::slug(trim($value['column_name'])),
+					 			'data_value' 	  => trim($value['data_value']),
 					 			'batch_id'		=> $batch_id
 					 	);					 						 				 	
 					 	$arr1[$value['table_name']][] = $temp1;				 		
@@ -153,31 +168,68 @@ public function postImport() {
 	 * Returns data from import to preview
 	 *
 	 */
-	public function getData()
+	public function getDatatable()
 	{
-		
-			$data = DB::table('tbl_temp_measurement');
-//				->leftJoin('tbl_rain_station',
-//				'tbl_temp_measurement.station_id','=','tbl_rain_station.stationid')
-//				->leftJoin('tbl_source',
-//						'tbl_temp_measurement.source','=','tbl_source.source_id')
-//				->select(array(						
-//				'tbl_temp_measurement.meas_id',
-//				'tbl_temp_measurement.meas_date',
-//				'tbl_temp_measurement.station_id',
-//				'tbl_rain_station.name',		
-//				'tbl_temp_measurement.max_temp',
-//				'tbl_temp_measurement.min_temp',
-//				'tbl_temp_measurement.rain',
-//				'tbl_temp_measurement.avgrh',
-//				'tbl_temp_measurement.evapor',
-//				'tbl_temp_measurement.mean_temp',
-//				'tbl_source.source_name'										
-//
-//		));
+		$collection = DB::table('tabDataParent')->select("table_name as TBL","column_name as CLM");
+		//$collection = DB::table('tabDataParent')->select('table_name as Table Name','column_name as Column Name')->get();
 
-		return  Datatables::of($data)->make();
+		//return Datatable::from(DB::table('tabDataParent')->select('table_name as Table Name','column_name as Column Name'))
+		return Datatable::query($collection)		
+		        ->showColumns('TBL', 'CLM')
+		        ->setSearchWithAlias()
+		        ->orderColumns('TBL', 'CLM')
+		        ->make();
 	}
+	
+		/**
+		 * Returns data from import to preview
+		 *
+		 */
+		public function getPartnerDatatable($partner_id)		
+		{
+			
+			$data['partner_id'] = $partner_id;
+			Log::info('This is some useful information-'.$partner_id);
+			$collection = DB::table('tabDataParent')->select("table_name as TBL","column_name as CLM", "partner_id")->where('partner_id', '=', $partner_id);
+			//$collection = DB::table('tabDataParent')->select('table_name as Table Name','column_name as Column Name')->get();
+	
+			//return Datatable::from(DB::table('tabDataParent')->select('table_name as Table Name','column_name as Column Name'))
+			return Datatable::query($collection)		
+			        ->showColumns('TBL', 'CLM')			        		        
+					->addColumn('actived',function($model)
+					{
+					   
+					    	//return '<a href="'. URL::to('parkingcompany/update/'.$model->CLM.'/'.$model->partner_id) .'">Details</a>';
+					    	return '<a class="open-DetailDialog btn btn-primary" data-toggle="modal" data-target="#DetailModal" data-id="'.$model->partner_id.'" data-column="'.$model->CLM.'" >Details</a>';
+					    
+					})
+
+			        ->make();
+		}
+		
+		/**
+		 * Returns data from import to preview
+		 *
+		 */
+		public function getPartnerColumnDatatable($partner_id, $column_name)		
+		{
+			
+			$data['partner_id'] = $partner_id;
+			$data['column_name'] = $column_name;
+			
+
+			$collection = DB::table('tabDataChild')->select("table_name as TBL","column_name as CLM", "partner_id", "data_value")->where('partner_id', '=', $partner_id) ->where('column_name', '=', $column_name);
+			////$collection = DB::table('tabDataChild')->select("table_name as TBL","column_name as CLM", "partner_id", "data_value")->where('partner_id', '=', $partner_id) ->where('column_name', '=', $column_name)->get();
+	
+			//return Datatable::from(DB::table('tabDataParent')->select('table_name as Table Name','column_name as Column Name'))
+			return Datatable::query($collection)		
+			        ->showColumns('TBL', 'CLM', 'data_value')			        		        
+			        ->make();
+
+			////return Response::json($collection, 200);
+
+
+		}
 	
 
 	

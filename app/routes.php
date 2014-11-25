@@ -15,6 +15,8 @@ Route::group(array('prefix' => 'admin'), function () {
 	Route::get('directory/{postSlug}', array('as' => 'view-post', 'uses' => 'PostController@getView'));
 	Route::post('directory/{postSlug}', 'PostController@postView');
 	
+	//Route::get('directory/{postSlug}', array('as' => 'view-detail', 'uses' => 'PostController@getViewDetail'));
+	
 	
 
     # Post Management
@@ -178,7 +180,16 @@ Route::get('/', array('as' => 'home', function () {
 Route::get('import', 'ImportController@getImport');
 Route::post('import', 'ImportController@postImport');
 
-Route::get('import/data', 'ImportController@getData');
+
+
+//Route::get('import/data', 'ImportController@getData');
+Route::get('datatables', array('as'=>'datatables', 'uses'=>'ImportController@getDatatable'));
+Route::get('datatables/partner/{partner_id}', array('as'=>'datatables/partner', 'uses'=>'ImportController@getPartnerDatatable'));
+Route::get('datatables/partner/{partner_id}/column/{column_name}', array('as'=>'datatables/partner/column', 'uses'=>'ImportController@getPartnerColumnDatatable'));
+
+
+
+
 Route::get('import/missing', 'ImportController@getMissing');
 Route::post('import/upload', 'ImportController@toDatabase');
 Route::get('import/template', 'ImportController@getTemplate');
