@@ -37,7 +37,7 @@
 						<div class="row">
 						<div class="col-sm-4 col-xs-4 goright">
 							@if ($post->img())
-							<img class="media-object" src="{{{ $post->img() }}}" alt="...">
+							<img class="media-object" src="/logos/{{{ $post->filePartnerLogo }}}" alt="{{{ $post->filePartnerLogo }}}">
 							@endif						
 						</div>						
 						<div class="col-sm-8 col-xs-8">

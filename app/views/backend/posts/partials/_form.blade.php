@@ -4,6 +4,22 @@
         <!-- General tab -->
         <div class="tab-pane active" id="tab-general">
             <br>
+            
+            <div class="form-group">
+            	<div class="col-sm-12">
+            <p>{{ Form::file('filePartnerLogo') }}</p>
+            <?php	
+            if (isset($post->filePartnerLogo)) {	
+            if (($post->filePartnerLogo != '')){
+            	echo "<div class='alert alert-block'><h4>Previously uploaded file:</h4><img src='/logos/".$post->filePartnerLogo."'></div>";	
+            }
+            }			
+            ?>	
+            </div>
+            </div>
+            
+            
+            
             <!-- Post Title -->
             <div class="form-group {{ $errors->first('title', 'has-error') }}">
                 <label for="title" class="col-sm-3 control-label">@lang('admin/posts/form.posttitle')</label>

@@ -164,6 +164,10 @@ Route::get('about-us', function () {
     return View::make('frontend/about-us');
 });
 
+Route::get('faq', function () {
+    return View::make('frontend/faq');
+});
+
 Route::get('contact-us', array('as' => 'contact-us', 'uses' => 'ContactUsController@getIndex'));
 Route::post('contact-us', 'ContactUsController@postIndex');
 

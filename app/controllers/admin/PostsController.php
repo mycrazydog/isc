@@ -118,6 +118,17 @@ class PostsController extends AdminController
                 $post->notescleaning    = e(Input::get('notescleaning'));
                 $post->notessource      = e(Input::get('notessource'));
                 $post->notesversion     = e(Input::get('notesversion'));
+                
+		
+                if (Input::hasFile('filePartnerLogo')) {
+                	$file = Input::file('filePartnerLogo');
+                	$name = 'filePartnerLogo-' . $file->getClientOriginalName();			
+                	$file = $file->move(base_path('public/logos'), $name);		
+                	$post->filePartnerLogo = $name;                	
+                }	
+                
+                
+                
 
             // Was the blog post created?
             if ($post->save()) {
@@ -201,6 +212,13 @@ class PostsController extends AdminController
             $post->notescleaning    = e(Input::get('notescleaning'));
             $post->notessource      = e(Input::get('notessource'));
             $post->notesversion     = e(Input::get('notesversion'));
+            
+            if (Input::hasFile('filePartnerLogo')) {
+            	$file = Input::file('filePartnerLogo');
+            	$name = 'filePartnerLogo-' . $file->getClientOriginalName();			
+            	$file = $file->move(base_path('public/logos'), $name);		
+            	$post->filePartnerLogo = $name;                	
+            }	
 
         // Was the blog post updated?
         if ($post->save()) {

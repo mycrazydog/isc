@@ -74,8 +74,8 @@
                     
                     
                     
-
-                    <li><a class="page-scroll" href="{{ URL::to('about-us') }}">About ISC</a></li>
+					<li><a class="page-scroll" href="{{ URL::to('about-us') }}">About ISC</a></li>
+                    <li><a class="page-scroll" href="{{ URL::to('faq') }}">FAQ</a></li>
                     <li><a class="page-scroll" href="{{ URL::to('contact-us') }}">Contact us</a></li>
                    
                                       
@@ -84,8 +84,8 @@
                    @if (Sentry::check())
                    <li><a class="page-scroll"  href="{{ route('logout') }}">Logout</a></li>
                    @else
-                  <li><a class="page-scroll" href="{{ route('signin') }}">Login</a></li>
-                  <li><a class="page-scroll" href="{{ route('signup') }}">Sign up</a></li>
+                  <li><a href="{{ route('signin') }}">Login</a></li>
+                  <li><a href="{{ route('signup') }}">Sign up</a></li>
                   @endif
                     
                     
@@ -107,8 +107,8 @@
             	
                 <div class="intro-lead-in">Welcome to The Institute for Social Capital<br/> Database Information Portal</div>
                 <div  class="intro-heading" style="font-size:23px;line-height:40px;">Our online information portal where you can access our data dictionary and download our data license request form. </div>
-                <a href="#services" class="page-scroll btn btn-xl btn-yellow">Tell Me More</a>
-                <a href="#services" class="page-scroll btn btn-primary btn-xl">Request access</a>
+                <a href="FAQ" class="page-scroll btn btn-xl btn-yellow">Learn more</a>
+                <a href="{{ route('signup') }}" class="page-scroll btn btn-primary btn-xl">Request access</a>
             </div>
         </div>
     </header>
@@ -141,7 +141,7 @@ Sharing creates more accurate evaluation of policy options, improved stewardship
                         <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
                     </span>
                     <h4 class="service-heading">Integrated data system</h4>
-                    <p class="text-muted">An integrated data system holds administrative data from numerous organizations and can match information across these organizations at the individual level. - See more at: http://ui.uncc.edu/programs/isc/faq#sthash.tIPdDTRQ.dpuf</p>
+                    <p class="text-muted">An integrated data system holds administrative data from numerous organizations and can match information across these organizations at the individual level.</p>
                 </div>
                 <div class="col-md-4">
                     <span class="fa-stack fa-4x">

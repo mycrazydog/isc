@@ -74,8 +74,8 @@
                     
                     
                     
-
-                    <li><a class="page-scroll" href="{{ URL::to('about-us') }}">About ISC</a></li>
+					 <li><a class="page-scroll" href="{{ URL::to('about-us') }}">About ISC</a></li>
+                    <li><a class="page-scroll" href="{{ URL::to('faq') }}">FAQ</a></li>
                     <li><a class="page-scroll" href="{{ URL::to('contact-us') }}">Contact us</a></li>
                    
                                       
