@@ -62,7 +62,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="/home"><img src="/assets/img/custom/logo.png"></a>
+                <a class="navbar-brand page-scroll" href="/"><img src="/assets/img/custom/logo.png"></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -82,7 +82,8 @@
                    
                    
                    @if (Sentry::check())
-                   <li><a class="page-scroll"  href="{{ route('logout') }}">Logout</a></li>
+                   <li><a class="page-scroll"  href="{{ URL::to('admin/directory')  }}">Directory</a></li>
+                   <li><a class="page-scroll"  href="{{ route('logout') }}">Logout</a></li>                   
                    @else
                   <li><a class="page-scroll" href="{{ route('signin') }}">Login</a></li>
                   <li><a class="page-scroll" href="{{ route('signup') }}">Sign up</a></li>

@@ -230,6 +230,29 @@ public function postImport() {
 
 
 		}
+		
+		
+				/**
+				 * Returns data from import to preview
+				 *
+				 */
+				public function getStatusesDatatable($status_id)		
+				{
+					
+					$data['status_id'] = $status_id;
+					Log::info('This is some useful information-'.$status_id);
+					$collection = DB::table('posts')->select("title", "slug")->where('status_id', '=', $status_id);
+			
+					return Datatable::query($collection)		
+					        ->showColumns('title')	
+					        ->addColumn('view',function($model)
+					        {					           
+					            	return '<a class="open-DetailDialog btn btn-primary" href="'. URL::to('admin/directory/'.$model->slug) .'">View</a>';
+					            						            
+					        })
+					        ->make();
+				}
+		
 	
 
 	

@@ -35,18 +35,19 @@
                   	  <h4 class="mb"><i class="fa fa-angle-right"></i> Profile</h4>
 						
 						<div class="row">
-						<div class="col-sm-4 col-xs-4 goright">
+						<div class="col-sm-4 col-xs-4 ">
 							@if ($post->img())
 							<img class="media-object" src="/logos/{{{ $post->filePartnerLogo }}}" alt="{{{ $post->filePartnerLogo }}}">
-							@endif						
+							@endif
+							<br/>
+							<a class="btn btn-primary" href="{{{ $post->partnerwebsite }}}" target="_blank">visit website</a>						
 						</div>						
 						<div class="col-sm-8 col-xs-8">
-							<a class="btn btn-primary" href="{{{ $post->partnerwebsite }}}" target="_blank">visit website</a>
+							<h5><i class="fa fa-angle-right"></i> Status</h5>
+							<span class="label label-info">{{{ Status::find($post->status_id)->status }}}</span>							
 
 							<br/><br/>
 							<h5><i class="fa fa-angle-right"></i> Years Available</h5>
-							<span class="label label-default">2006-2007</span>
-							<span class="label label-default">2012-2013</span>
 							{{{ $post->yearsavailable }}}
 							
 						</div>

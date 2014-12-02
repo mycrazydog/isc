@@ -28,7 +28,7 @@ class PostsController extends AdminController
      */
     public function getIndex()
     {
-        // Grab all the blog posts
+        // Grab all the blog posts            
         $posts = $this->post->orderBy('created_at', 'DESC')->paginate(10);
 		
 		//Log::info('This is some useful information-');
@@ -114,6 +114,7 @@ class PostsController extends AdminController
             $post->user_id          = Sentry::getUser()->id;
                 $post->partnerwebsite   = e(Input::get('partnerwebsite'));
                 $post->status           = e(Input::get('status'));
+                $post->tags           = e(Input::get('tags'));
                 $post->yearsavailable   = e(Input::get('yearsavailable'));
                 $post->notescleaning    = e(Input::get('notescleaning'));
                 $post->notessource      = e(Input::get('notessource'));
@@ -207,7 +208,8 @@ class PostsController extends AdminController
         $post->meta_description = e(Input::get('meta-description'));
         $post->meta_keywords    = e(Input::get('meta-keywords'));
             $post->partnerwebsite   = e(Input::get('partnerwebsite'));
-            $post->status           = e(Input::get('status'));
+            $post->status_id           = e(Input::get('status'));
+            $post->tags           = e(Input::get('tags'));
             $post->yearsavailable   = e(Input::get('yearsavailable'));
             $post->notescleaning    = e(Input::get('notescleaning'));
             $post->notessource      = e(Input::get('notessource'));
@@ -222,6 +224,11 @@ class PostsController extends AdminController
 
         // Was the blog post updated?
         if ($post->save()) {
+        	
+
+        	//$post->status()->sync(Input::get('status'));
+
+        	
             // Redirect to the new blog post page
             return Redirect::to("admin/posts/$postId/edit")->with('success', Lang::get('admin/posts/message.update.success'));
         }

@@ -55,7 +55,18 @@
             <div class="form-group {{ $errors->first('status', 'has-error') }}">
                 <label for="status" class="col-sm-3 control-label">@lang('admin/posts/form.status')</label>
                     <div class="col-sm-5">
-                    {{ Form::select('status', array('default' => 'Please Select', '2' => 'New', '1' => 'available', '0' => 'Coming'), null, array('id' => 'Status')) }}
+                    {{ Form::select('status_id', array('2' => 'Coming', '1' => 'Processing', '0' => 'Available'), null, array('id' => 'Status')) }}
+                    </div>
+                    <div class="col-sm-4">
+                        {{ $errors->first('status', '<span class="help-block">:message</span>') }}
+                    </div>
+            </div>
+            
+            <!--TAGS GOES HERE-->
+            <div class="form-group {{ $errors->first('tags', 'has-error') }}">
+                <label for="tags" class="col-sm-3 control-label">@lang('admin/posts/form.tags')</label>
+                    <div class="col-sm-5">
+                    {{ Form::select('tags', array('' => 'Please Select', '0' => 'Arts, Recreation and Cultural Life', '1' => 'Demographics', '2' => 'Economy', '3' => 'Education', '4' => 'Environment', '5' => 'Government and Citizen Participation', '6' => 'Health', '7' => 'Housing', '8' => 'Public Safety', '9' => 'Social Well-Being', '10' => 'Transportation'), null, array('id' => 'tags')) }}
                     </div>
                     <div class="col-sm-4">
                         {{ $errors->first('status', '<span class="help-block">:message</span>') }}

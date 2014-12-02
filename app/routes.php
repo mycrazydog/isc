@@ -171,9 +171,11 @@ Route::get('faq', function () {
 Route::get('contact-us', array('as' => 'contact-us', 'uses' => 'ContactUsController@getIndex'));
 Route::post('contact-us', 'ContactUsController@postIndex');
 
-Route::get('/', array('as' => 'home', function () {
-	return View::make('frontend/home');
-}));
+Route::get('/', ['as' => 'home', function()
+{
+    return View::make('frontend/home');
+}]);
+
 
 //Route::get('/', array('as' => 'home', 'uses' => 'PostController@getIndex'));
 //Route::get('home', array('as' => 'home', 'uses' => 'PostController@getIndex'));
@@ -191,6 +193,7 @@ Route::get('datatables', array('as'=>'datatables', 'uses'=>'ImportController@get
 Route::get('datatables/partner/{partner_id}', array('as'=>'datatables/partner', 'uses'=>'ImportController@getPartnerDatatable'));
 Route::get('datatables/partner/{partner_id}/column/{column_name}', array('as'=>'datatables/partner/column', 'uses'=>'ImportController@getPartnerColumnDatatable'));
 
+Route::get('datatables/statuses/{status_id}', array('as'=>'datatables/statuses', 'uses'=>'ImportController@getStatusesDatatable'));
 
 
 

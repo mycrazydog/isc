@@ -2,6 +2,9 @@
 
 class Post extends Elegant
 {
+    
+    protected $table = 'posts';
+    
     protected $rules = array(
             'title'   => 'required|min:3',
             'slug'   => "unique:posts",
@@ -21,8 +24,21 @@ class Post extends Elegant
         // Delete the blog post
         return parent::delete();
     }
-
-    /**
+    
+    
+ /**
+  * A post model might have one status
+  *
+  *
+  * @return 
+  */    
+    public function statuses()
+    {
+        return $this->hasMany('Status');
+    }
+    
+    
+/**
      * Returns a formatted post content entry, this ensures that
      * line breaks are returned.
      *

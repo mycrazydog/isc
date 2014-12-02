@@ -29,11 +29,11 @@ a, a:hover, a:focus {
 }
 ::selection {
 
-    background: #68dff0;
+    background: #F0CB00;
     color: #fff;
 }
 ::-moz-selection {
-    background: #68dff0;
+    background: #F0CB00;
     color: #fff;
 }
 
@@ -44,7 +44,7 @@ a, a:hover, a:focus {
 
 /* Bootstrap Modifications */
 .modal-header {
-	background: #68dff0;
+	background: #F0CB00;
 }
 
 .modal-title {
@@ -69,6 +69,14 @@ a, a:hover, a:focus {
 	text-decoration: none;
 }
 
+.dataTables_wrapper table thead{
+   display:none;
+}
+.dataTables_wrapper table td{
+    font-size: 16px;
+    color: EBEBEB;
+    width: 50%;
+}
 
 
 /*Theme Backgrounds*/
@@ -325,7 +333,7 @@ ul.sidebar-menu li ul.sub li a:hover {
 }
 
 ul.sidebar-menu li ul.sub li.active a {
-    color: #68dff0;
+    color: #F0CB00;
     -webkit-transition: all 0.3s ease;
     -moz-transition: all 0.3s ease;
     -o-transition: all 0.3s ease;
@@ -364,7 +372,7 @@ ul.sidebar-menu li a{
 }
 
 ul.sidebar-menu li a.active, ul.sidebar-menu li a:hover, ul.sidebar-menu li a:focus {
-    background: #68dff0;
+    background: #F0CB00;
     color: #fff;
     display: block;
 
@@ -413,8 +421,8 @@ ul.sidebar-menu li a.active i {
 }
 
 .black-bg {
-    background: #fed136;
-    border-bottom: 1px solid #c9aa5f;
+    background: #00703C;
+    border-bottom: 1px solid #C3D7A4;
 }
 
 .wrapper {

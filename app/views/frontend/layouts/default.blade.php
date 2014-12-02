@@ -149,7 +149,8 @@
 					  
 					  
 					  <li class="sub-menu {{ (Request::is('faq') ? ' active' : '') }}"><a href="{{ URL::to('faq') }}"><i class="fa fa-tasks"></i><span>FAQ</span></a></li>
-					  <li class="sub-menu"><a href="{{ URL::to('about-us') }}"><i class="fa fa-book"></i><span>About us</span></a></li>
+					  <li class="sub-menu"><a href="{{ URL::to('about-us') }}"><i class="fa fa-user"></i><span>About us</span></a></li>
+					  <li class="sub-menu"><a href="{{ URL::to('contact-us') }}"><i class="fa fa-envelope"></i><span>Contact us</span></a></li>
 					  <li class="sub-menu"><a href="/"><i class="fa fa-home"></i> <span>Homepage</span></a></li>
 					  
 		              </ul>		              

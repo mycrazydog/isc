@@ -16,7 +16,6 @@ class AddCustomFieldsToPosts extends Migration {
 		{
 			//
 			$table->text('partnerwebsite');
-			$table->text('status');
 			$table->text('yearsavailable');
 			$table->text('notescleaning');
 			$table->text('notessource');
@@ -36,7 +35,6 @@ class AddCustomFieldsToPosts extends Migration {
 		{
 			//
 			$table->dropColumn('partnerwebsite');
-			$table->dropColumn('status');
 			$table->dropColumn('yearsavailable');
 			$table->dropColumn('notescleaning');
 			$table->dropColumn('notessource');

@@ -5,48 +5,55 @@
 
 License request status: fldLicenseRequest Approved / Processing / Request
 
-
 @if (count($posts))
-@foreach ($posts as $post)
-<div class="row">
-    <div class="span8">
 
-        <!-- Post Content -->
-
-        <div class="media">
-          <a class="pull-left" href="{{{ $post->url() }}}">
-          @if ($post->thumbnail())
-            <img class="media-object" src="{{{ $post->thumbnail() }}}." alt="...">
-          @endif
-          </a>
-          <div class="media-body">
-            <h4 class="media-heading"><a href="{{{ $post->url() }}}">{{{ $post->title }}}</a></h4>
-            {{{ Str::limit($post->content, 200) }}}
-          </div>
-          <div class="media-footer">
-                <p></p>
-                <p>
-                    <i class="icon-user"></i> by
-                    @if ($post->author) {{{ $post->author->first_name }}}
-                     @else
-                        discontinued user
-                     @endif
-                    | <i class="icon-calendar"></i> {{{ $post->created_at->diffForHumans() }}}
-                    | <i class="icon-comment"></i> <a href="{{ $post->url() }}#comments">Comments
-                    <span class="badge">{{ $post->comments()->count() }}</span></a>
-                </p>
-            </div>
-        </div>
-
-    </div>
-</div>
-
-<hr />
-@endforeach
-
-{{ $posts->links() }}
+	@foreach ($statuses as $status)
+	<div class="row mt">
+		<div class="col-lg-12">
+			<div class="content-panel" style="padding: 15px;">	
+		
+			<h4 class="mb"><i class="fa fa-angle-right"></i> Data {{$status->status}}</h4>
+			
+			<?php
+			//$ajaxRouteToTableData = 'datatables/partner/'.$post->id;
+			$status_id = $status->id;
+			$ajaxRouteToTableData = 'datatables/statuses';
+			//echo $partner_id.'-----'.$ajaxRouteToTableData;
+			$arrWidths = '"width": "50%"';
+			
+			if($status_id == 3){
+				$colorByStatus = 'danger';
+			}elseif($status_id == 2){
+				$colorByStatus = 'warning';
+			}else{
+				$colorByStatus = '';
+			}
+			
+			?>
+			
+			{{ Datatable::table()
+				->addColumn('Partner','Details')  
+				->setUrl(route($ajaxRouteToTableData, $status_id))
+				->setOptions('paging', false) 
+				->setOptions('searching', false) 
+				->setOptions('info', false)  
+				->setOptions('AutoWidth', false)
+				->setOptions('aoColumns', [[ "sWidth"=> "70%" ], [ "sWidth"=> "30%" ]]) 
+				->setOptions('aoColumns', [[ "className"=> "$colorByStatus"  ], [ "className"=> "none" ]]) 	
+				 
+			   ->render() }}
+			   
+			   
+			</div>
+		</div>	   
+	</div>
+		
+	@endforeach
+		
+	{{ $posts->links() }}
 
 @else
-<h1>Oops. That page number is invalid.</h1>
+	<h1>Oops. That page number is invalid.</h1>
 @endif
+
 @stop

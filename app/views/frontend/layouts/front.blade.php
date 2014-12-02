@@ -82,6 +82,7 @@
                    
                    
                    @if (Sentry::check())
+                   <li><a class="page-scroll"  href="{{ URL::to('admin/directory')  }}">Directory</a></li>
                    <li><a class="page-scroll"  href="{{ route('logout') }}">Logout</a></li>
                    @else
                   <li><a href="{{ route('signin') }}">Login</a></li>
@@ -108,7 +109,7 @@
                 <div class="intro-lead-in">Welcome to The Institute for Social Capital<br/> Database Information Portal</div>
                 <div  class="intro-heading" style="font-size:23px;line-height:40px;">Our online information portal where you can access our data dictionary and download our data license request form. </div>
                 <a href="FAQ" class="page-scroll btn btn-xl btn-yellow">Learn more</a>
-                <a href="{{ route('signup') }}" class="page-scroll btn btn-primary btn-xl">Request access</a>
+                <a href="{{ route('signup') }}" class="page-scroll btn btn-green btn-xl">Request access</a>
             </div>
         </div>
     </header>
@@ -128,7 +129,7 @@
             <div class="row text-center">
                 <div class="col-md-4">
                     <span class="fa-stack fa-4x">
-                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-circle fa-stack-2x text-yellow"></i>
                         <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
                     </span>
                     <h4 class="service-heading">The value of data sharing</h4>
@@ -137,7 +138,7 @@ Sharing creates more accurate evaluation of policy options, improved stewardship
                 </div>
                 <div class="col-md-4">
                     <span class="fa-stack fa-4x">
-                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-circle fa-stack-2x text-yellow"></i>
                         <i class="fa fa-laptop fa-stack-1x fa-inverse"></i>
                     </span>
                     <h4 class="service-heading">Integrated data system</h4>
@@ -145,7 +146,7 @@ Sharing creates more accurate evaluation of policy options, improved stewardship
                 </div>
                 <div class="col-md-4">
                     <span class="fa-stack fa-4x">
-                        <i class="fa fa-circle fa-stack-2x text-primary"></i>
+                        <i class="fa fa-circle fa-stack-2x text-yellow"></i>
                         <i class="fa fa-lock fa-stack-1x fa-inverse"></i>
                     </span>
                     <h4 class="service-heading">Data protection</h4>

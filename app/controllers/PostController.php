@@ -24,9 +24,13 @@ class PostController extends BaseController
                 $query->withTrashed();
             },
         ))->orderBy('created_at', 'DESC')->paginate();
+        
+        
+        $statuses = DB::table('statuses')->get();        
 
-        return View::make('backend/posts/directory')
-          ->with('posts', $posts);
+        return View::make('backend/posts/directory')->with('posts', $posts)->with('statuses', $statuses);
+        
+        //return View::make('backend/posts/directory', compact('posts'));
 
     }
 

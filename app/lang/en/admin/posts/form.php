@@ -19,5 +19,6 @@ return array(
     'partnerwebsite'	=> 'Partner website',
     'slug' 				=> 'Slug',
     'status'            => 'Collection status',
+    'tags'            => 'Data topic',
 
 );

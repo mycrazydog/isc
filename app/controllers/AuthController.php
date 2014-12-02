@@ -52,7 +52,7 @@ class AuthController extends BaseController
 
             // Redirect to the users page
             //return Redirect::to($redirect)->with('success', Lang::get('auth/message.signin.success'));
-            return Redirect::to("/")->with('success', Lang::get('auth/message.signin.success'));
+            return Redirect::to("/admin/directory")->with('success', Lang::get('auth/message.signin.success'));
         } catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
             $this->messageBag->add('email', Lang::get('auth/message.account_not_found'));
         } catch (Cartalyst\Sentry\Users\UserNotActivatedException $e) {
