@@ -253,6 +253,17 @@ class LicensesController extends AdminController
             	$msgToAdmin = 'You have approved the license request for XXX.<br/> <a href=>Click this link to review</a>';
             	$msgToUser = 'Congratulations! Your license request has been approved. We will contact you will with more information soon';             
             }    
+            
+            
+            
+            
+            foreach($to as $receipt){
+                //Mail::queue('mail', array('key' => $todos1), function($message) use ($receipt)
+                Mail::send('mail', array('key' => $todos1), function($message) use ($receipt)
+                {
+                    $message->to($receipt)->subject('Welcome!');
+                });
+            }  
     
 
 			
