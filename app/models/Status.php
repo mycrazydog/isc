@@ -10,9 +10,14 @@ class Status extends Elegant
   *
   * @return 
   */    
-    public function post()
-    {
-        return $this->belongsTo('Post');
-    }
-  
+//    public function post()
+//    {
+//        return $this->belongsTo('Post');
+//    }
+
+	public function posts()
+	{
+	    return $this->hasMany('Post', 'status_id');
+	}
+
 }

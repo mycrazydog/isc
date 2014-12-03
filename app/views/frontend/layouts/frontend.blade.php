@@ -62,7 +62,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="/"><img src="/assets/img/custom/logo.png"></a>
+                <a class="navbar-brand page-scroll" href="{{ route('home') }}"><img src="/assets/img/custom/logo.png"></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->
@@ -72,9 +72,8 @@
                         <a href="#page-top"></a>
                     </li>
                     
-                    
-                    
-					 <li><a class="page-scroll" href="{{ URL::to('about-us') }}">About ISC</a></li>
+                    <li><a class="page-scroll" href="{{ URL::to('about-us') }}">About ISC</a></li>
+                    <li><a class="page-scroll" href="{{ URL::to('partners') }}">Partners</a></li>					
                     <li><a class="page-scroll" href="{{ URL::to('faq') }}">FAQ</a></li>
                     <li><a class="page-scroll" href="{{ URL::to('contact-us') }}">Contact us</a></li>
                    
@@ -83,10 +82,10 @@
                    
                    @if (Sentry::check())
                    <li><a class="page-scroll"  href="{{ URL::to('admin/directory')  }}">Directory</a></li>
-                   <li><a class="page-scroll"  href="{{ route('logout') }}">Logout</a></li>                   
+                   <li><a class="page-scroll"  href="{{ route('logout') }}">Logout</a></li>
                    @else
-                  <li><a class="page-scroll" href="{{ route('signin') }}">Login</a></li>
-                  <li><a class="page-scroll" href="{{ route('signup') }}">Sign up</a></li>
+                  <li><a href="{{ route('signin') }}">Login</a></li>
+                  <li><a href="{{ route('signup') }}">Sign up</a></li>
                   @endif
                     
                     
@@ -102,11 +101,8 @@
     <!-- Header -->
     <header>
         <div class="container">
-            <div class="page-topper">
-            	<!-- Notifications -->
-            	    @include('frontend/notifications')  	
-                
-            </div>
+        	<!-- Header section -->
+        	@yield('header')
         </div>
     </header>
     
@@ -126,6 +122,7 @@
             </div>
         </div>
     </section>
+
 
 
 

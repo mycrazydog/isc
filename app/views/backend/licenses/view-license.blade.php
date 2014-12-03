@@ -26,13 +26,11 @@
 
 {{-- Page content --}}
 @section('content')
-<h3>{{{ $license->title }}}</h3>
+<h3>{{{ $license->id }}} --- {{{ $license->user_id }}}</h3>
 
-@if ($license->img())
-<img class="media-object" src="{{{ $license->img() }}}" alt="...">
-@endif
 
-<p>{{ nl2br(e($license->content())) }}</p>
+
+
 
 <div>
     <span class="badge badge-info" title="{{{ $license->created_at }}}">

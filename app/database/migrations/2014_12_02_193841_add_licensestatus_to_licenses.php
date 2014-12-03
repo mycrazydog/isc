@@ -3,7 +3,7 @@
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddStatusesTable extends Migration {
+class AddLicensestatusToLicenses extends Migration {
 
 	/**
 	 * Run the migrations.
@@ -12,10 +12,9 @@ class AddStatusesTable extends Migration {
 	 */
 	public function up()
 	{
-	    // Create the `status` table
-	    Schema::create('statuses', function ($table) {
-				$table->increments('id')->unsigned();
-				$table->string('status');
+		Schema::table('licenses', function(Blueprint $table)
+		{
+			$table->string('licensestatus')->after('user_id');
 		});
 	}
 
@@ -26,7 +25,10 @@ class AddStatusesTable extends Migration {
 	 */
 	public function down()
 	{
-			Schema::drop('statuses');
+		Schema::table('licenses', function(Blueprint $table)
+		{
+			$table->dropColumn('licensestatus');
+		});
 	}
 
 }

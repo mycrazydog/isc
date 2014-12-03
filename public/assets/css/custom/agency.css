@@ -35,7 +35,7 @@ a.active {
 }
 
 a {
-    color: #fed136;
+    color: #00703C;
 }
 
 a:hover,
@@ -367,7 +367,7 @@ section h3.section-subheading {
 
 @media(min-width:768px) {
     section {
-        padding: 60px 0;
+        padding: 30px 0 60px 0;
     }
 }
 

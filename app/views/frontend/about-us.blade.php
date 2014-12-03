@@ -1,9 +1,17 @@
-@extends('frontend/layouts/page')
+@extends('frontend/layouts/frontend')
 
 {{-- Page title --}}
 @section('title')
 About us ::
 @parent
+@stop
+
+{{-- Header section --}}
+@section('header')
+	<div class="page-topper">
+		<!-- Notifications -->
+		@include('frontend/notifications')                
+	</div>
 @stop
 
 {{-- Page content --}}

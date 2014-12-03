@@ -5,14 +5,30 @@
         <div class="tab-pane active" id="tab-general">
             <br>
             
+            @if(Sentry::getUser()->hasAccess('admin'))
+            <div class="row">
+            
+            	<div class="col-lg-3"></div>
+            	<div class="col-lg-6">             
+		            <div class="form-panel {{ $errors->first('licensestatus', 'has-error') }}"> 
+		            	<h4 class="mb">License status</h4>            
+		                    {{ Form::select('licensestatus', array('Approved' => 'Approved', 'Processing' => 'Processing', 'Submitted' => 'Submitted'), null, array('id' => 'licensestatus', 'class' => 'form-control')) }}
+		                    {{ $errors->first('licensestatus', '<span class="help-block">:message</span>') }}
+		            </div>
+		        </div>
+		        <div class="col-lg-3"></div>
+		        
+            </div>
+            @endif
+            
             
             
             <h4>Improving the process or outcomes</h4>
             <p>The proposed project will provide some direction for improving the process or outcomes that the Charlotte Mecklenburg community can use for</p>
             
             <div class="form-group {{ $errors->first('funding', 'has-error') }}">
-                    <label for="partnerwebsite" class="col-sm-1 control-label">Label</label>
-                    <div class="col-sm-10">
+                    <div class="col-sm-1"></div>
+                    <div class="col-sm-11">
                      {{ Form::checkbox('funding', true) }} funding<br/>
                      {{ Form::checkbox('policy', true) }} policy<br/>
                      {{ Form::checkbox('program', true) }} program
@@ -74,8 +90,8 @@
 			
 			
 			<div class="form-group {{ $errors->first('initial', 'has-error') }}">
-			        <label for="initial" class="col-sm-3 control-label">@lang('admin/licenses/form.partnerwebsite')</label>
-			        <div class="col-sm-9">
+			        <label for="initial" class="col-sm-1 control-label">@lang('admin/licenses/form.partnerwebsite')</label>
+			        <div class="col-sm-10">
 			         {{ Form::text('initial', null, ['class' => 'form-control']) }}
 			        {{ $errors->first('initial', '<span class="help-block">:message</span>') }}
 			        </div>
@@ -92,7 +108,7 @@
 
     <!-- Form Actions -->
     <div class="form-group">
-      <div class="col-sm-offset-2 col-sm-10">
+      <div class="col-sm-offset-1 col-sm-11">
         <a class="btn btn-link" href="{{ route('licenses') }}">@lang('button.cancel')</a>
         <button type="submit" class="btn btn-default">@lang('button.publish')</button>
       </div>

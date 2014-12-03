@@ -1,9 +1,17 @@
-@extends('frontend/layouts/page')
+@extends('frontend/layouts/frontend')
 
 {{-- Page title --}}
 @section('title')
 @lang('account/title.signin') ::
 @parent
+@stop
+
+{{-- Header section --}}
+@section('header')
+	<div class="page-topper">
+		<!-- Notifications -->
+		@include('frontend/notifications')                
+	</div>
 @stop
 
 {{-- Page content --}}

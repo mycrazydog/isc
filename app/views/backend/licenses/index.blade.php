@@ -25,6 +25,7 @@
         <tr>
             <th class="span1"></th>
             <th class="span6">@lang('admin/licenses/table.title')</th>
+            <th class="span1">License status</th>
             <th class="span2">@lang('admin/licenses/table.created_at')</th>
             <th class="span2"></th>
         </tr>
@@ -33,7 +34,8 @@
         @foreach ($licenses as $license)
         <tr>
             <td><a href="{{ route('update/license', $license->id) }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
-            <td><a href="">{{ $license->initial }}</a></td>
+            <td><a href="{{ route('view-license', $license->id) }}">{{ $license->initial }}</a></td>
+            <td>{{ $license->licensestatus }}</td>
             <td>{{{ $license->created_at->diffForHumans() }}}</td>
             <td><a href="{{ route('confirm-delete/license', $license->id) }}" data-toggle="modal" data-target="#delete_confirm"><span class="glyphicon glyphicon-trash"></span></a></td>
         </tr>

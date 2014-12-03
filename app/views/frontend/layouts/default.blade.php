@@ -113,19 +113,30 @@
 		
 		                  <li class="sub-menu"><a class="{{ (Request::is('directory') ? ' active' : '') }}" href="{{ route('directory') }}"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
 		                  
-                          @if(Sentry::getUser()->hasAccess('posts.write'))
-                          <li class="sub-menu"><a class="{{ (Request::is('admin/posts*') ? ' active' : '') }}" href="{{ URL::to('admin/posts') }}"><i class="fa fa-th"></i><span>Manage partners</span></a></li>
-              
-                          <li class="sub-menu">
-                              <a class="{{ (Request::is('admin/users*') ? ' active' : '') }} {{ (Request::is('admin/groups*') ? ' active' : '') }}" href="{{ URL::to('admin/users') }}">
-                                  <i class="fa fa-cogs"></i>
-                                  <span>Manage users</span>
-                              </a>
-                              <ul class="sub">
-                                  <li{{ (Request::is('admin/users*') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/users') }}">Users</a></li>
-                                  <li{{ (Request::is('admin/groups*') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/groups') }}">Groups</a></li>
-                              </ul>
-                          </li>
+		                   
+		                   
+		                   
+		                   @if(Sentry::getUser()->hasAccess('admin')) 
+		                   <li class="sub-menu"><a class="{{ (Request::is('admin/licenses') ? ' active' : '') }}" href="{{ URL::to('admin/licenses') }}"><i class="fa fa-unlock-alt"></i><span>Manage licenses</span></a></li>
+		                   @else
+		                   <li class="sub-menu"><a class="{{ (Request::is('create/license') ? ' active' : '') }}" href="{{ route('create/license') }}"><i class="fa fa-unlock-alt"></i><span> Request license</span></a></li>
+		                   @endif
+		                   
+		                   
+		                  
+                          @if(Sentry::getUser()->hasAccess('admin'))     
+	                          <li class="sub-menu"><a class="{{ (Request::is('admin/posts*') ? ' active' : '') }}" href="{{ URL::to('admin/posts') }}"><i class="fa fa-th"></i><span>Manage partners</span></a></li>
+	              
+	                          <li class="sub-menu">
+	                              <a class="{{ (Request::is('admin/users*') ? ' active' : '') }} {{ (Request::is('admin/groups*') ? ' active' : '') }}" href="{{ URL::to('admin/users') }}">
+	                                  <i class="fa fa-users"></i>
+	                                  <span>Manage users</span>
+	                              </a>
+	                              <ul class="sub">
+	                                  <li{{ (Request::is('admin/users*') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/users') }}">Users</a></li>
+	                                  <li{{ (Request::is('admin/groups*') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/groups') }}">Groups</a></li>
+	                              </ul>
+	                          </li>
                           @endif	                  
 		                  
 		                  

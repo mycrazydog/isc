@@ -10,6 +10,8 @@ use Sentry;
 use Str;
 use Validator;
 use View;
+use Config;
+use Mail;
 
 class LicensesController extends AdminController
 {
@@ -60,7 +62,8 @@ class LicensesController extends AdminController
         if ($license->validate($new)) {
 
              // Update the blog license data            
-            $license->user_id          = Sentry::getUser()->id;           
+            $license->user_id          = Sentry::getUser()->id;  
+            $license->licensestatus       	= 'Submitted';         
             $license->funding       	= e(Input::get('funding'));
             $license->policy          	= e(Input::get('policy'));
             $license->program      	= e(Input::get('program'));
@@ -75,8 +78,15 @@ class LicensesController extends AdminController
 
             // Was the blog license created?
             if ($license->save()) {
-                // Redirect to the new blog license page
-                return Redirect::to("admin/licenses/$license->id/edit")->with('success', Lang::get('admin/licenses/message.create.success'));
+            
+            	            	
+            	$the_id = $license->id;
+            	$the_status = $license->licensestatus;
+            	
+            	$this->sendMail($the_id, $the_status);
+            
+                // Redirect to the new blog license page                
+                return Redirect::to("admin/directory")->with('success', Lang::get('admin/licenses/message.create.success'));
             }
 
         } else {
@@ -144,7 +154,8 @@ class LicensesController extends AdminController
             return Redirect::back()->withInput()->withErrors($validator);
         }
 
-        // Update the blog license data     
+        // Update the blog license data
+        $license->licensestatus       	= e(Input::get('licensestatus'));        
         $license->funding       	= e(Input::get('funding'));
         $license->policy          	= e(Input::get('policy'));
         $license->program      	= e(Input::get('program'));
@@ -207,5 +218,66 @@ class LicensesController extends AdminController
         // Redirect to the blog licenses management page
         return Redirect::to('admin/licenses')->with('success', Lang::get('admin/licenses/message.delete.success'));
     }
+    
+        /**
+         * Send mail notifying user or admin of license status
+         *
+         * @return Redirect
+         */
+        public function sendMail($licenceId, $licensestatus)
+        {
+        
+        	// Id of user who submitted the license request
+        	$user_id = License::select('user_id')->where('id', $licenceId)->first();
+        	$user = Sentry::findUserById($user_id->user_id);
+        	$user_email = $user->email;
+        	//dd($user->email);
+        	
+        	$from = Config::get('mail.from');
+        	
+        	
+        	// Data to be used on the email view
+        	$data_user = array(
+        		'email'				=>  $user->email,
+        		'description'		=> $msgToUser
+        	);	
+        		
+        
+            
+            if($licensestatus == 'Submitted'){            
+	            $msgToAdmin = 'A new license request has been submitted by XXXX. <a href=>Click this link to review</a>';
+	            $msgToUser = 'Thank you for submitting your license request. We will notify you by email when we have begun processing.';           
+            }elseif($licensestatus == 'Processing'){
+				$msgToUser = 'We have begun processing your request. If we have any questions we will contact you.';             
+            }elseif($licensestatus == 'Approved'){
+            	$msgToAdmin = 'You have approved the license request for XXX.<br/> <a href=>Click this link to review</a>';
+            	$msgToUser = 'Congratulations! Your license request has been approved. We will contact you will with more information soon';             
+            }    
+    
+
+			
+			
+
+			//return Redirect::route('contact-us')->with('success', Lang::get('contact.sent_success'));
+    
+        }
+        
+        /**
+         * Send mail notifying user or admin of license status
+         *
+         * @return Redirect
+         */
+        public function mailHandler()
+        {     	
+	        
+	        Mail::send('emails.license', $data, function ($m) use ($from, $data, $user) {
+	        	$m->to($email);
+	        	$m->subject('License Submission');
+	        	$m->from($from['address'], $from['name']);
+	        });
+        
+        }
+        
+        
 
 }

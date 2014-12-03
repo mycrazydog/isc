@@ -25,7 +25,7 @@
         <tr>
             <th class="span1"></th>
             <th class="span6">@lang('admin/posts/table.title')</th>
-            <th class="span1"><i class="fa fa-comments"></i></th>
+            <!--<th class="span1"><i class="fa fa-comments"></i></th>-->
             <th class="span2">@lang('admin/posts/table.created_at')</th>
             <th class="span2"></th>
         </tr>
@@ -35,7 +35,7 @@
         <tr>
             <td><a href="{{ route('update/post', $post->id) }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
             <td><a href="{{ $post->url() }}">{{ $post->title }}</a></td>
-            <td>{{{ $post->comments()->count() }}}</td>
+            <!--<td>{{{ $post->comments()->count() }}}</td>-->
             <td>{{{ $post->created_at->diffForHumans() }}}</td>
             <td><a href="{{ route('confirm-delete/post', $post->id) }}" data-toggle="modal" data-target="#delete_confirm"><span class="glyphicon glyphicon-trash"></span></a></td>
         </tr>
