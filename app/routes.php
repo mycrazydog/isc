@@ -182,10 +182,12 @@ Route::post('contact-us', 'ContactUsController@postIndex');
 
 Route::get('partners', array('as' => 'partners', 'uses' => 'PartnersController@getIndex'));
 
-Route::get('/', ['as' => 'home', function()
-{
-    return View::make('frontend/home');
-}]);
+Route::get('/', array('as' => 'home', 'uses' => 'HomeController@getIndex'));
+
+//Route::get('/', ['as' => 'home', function()
+//{
+//    return View::make('frontend/home');
+//}]);
 
 
 //Route::get('/', array('as' => 'home', 'uses' => 'PostController@getIndex'));

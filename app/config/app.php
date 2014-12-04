@@ -26,7 +26,7 @@ return array(
     |
     */
 
-    'url' => 'http://laravel-starter-fork:8888',
+    'url' => 'http://charlotteresearch.info',
 
     /*
     |--------------------------------------------------------------------------

@@ -27,7 +27,7 @@ class ImportController extends BaseController
 		Session::forget('FRIST_DATE'); //for missing row	
 		
 		// send message if upload success
-		if (!empty(Session::get('success'))) {
+		if (Session::get('success')) {
 			$message = Session::get('success');				
 		}		
 		// default message for get /import
