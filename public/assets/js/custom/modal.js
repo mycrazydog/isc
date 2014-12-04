@@ -17,7 +17,7 @@ $(document).on("click", ".open-DetailDialog", function () {
      
      //$(".modal-body #bookId").val( myId+'='+myColumn  );
      
-  	var dataURL =  "http://homestead.app:8000/datatables/partner/"+myId+"/column/"+myColumn; 
+  	var dataURL =  "/admin/datatables/partner/"+myId+"/column/"+myColumn; 
  
 		//So we can have a new version
 		table = $('#exampleTable').DataTable();    

@@ -3,7 +3,7 @@
 {{-- Page content --}}
 @section('content')
 
-License request status: fldLicenseRequest Approved / Processing / Request
+
 
 @if (count($posts))
 

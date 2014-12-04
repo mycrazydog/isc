@@ -13,7 +13,7 @@
         @lang('admin/licenses/title.blogmanagement')
 
         <div class="pull-right">
-            <a href="{{ route('create/license') }}" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span> @lang('button.create')</a>
+            <a href="{{ route('create/license') }}" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span>Create</a>
         </div>
     </h3>
 </div>

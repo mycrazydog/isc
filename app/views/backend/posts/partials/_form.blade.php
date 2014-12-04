@@ -11,7 +11,7 @@
             <?php	
             if (isset($post->filePartnerLogo)) {	
             if (($post->filePartnerLogo != '')){
-            	echo "<div class='alert alert-block'><h4>Previously uploaded file:</h4><img src='/logos/".$post->filePartnerLogo."'></div>";	
+            	echo "<div class='alert alert-block'><h4>Previously uploaded file:</h4><img style='width:200px' src='/logos/".$post->filePartnerLogo."'></div>";	
             }
             }			
             ?>	
@@ -52,13 +52,13 @@
             </div>
 
             <!--STATUS GOES HERE-->
-            <div class="form-group {{ $errors->first('status', 'has-error') }}">
+            <div class="form-group {{ $errors->first('status_id', 'has-error') }}">
                 <label for="status" class="col-sm-3 control-label">@lang('admin/posts/form.status')</label>
                     <div class="col-sm-5">
-                    {{ Form::select('status_id', array('2' => 'Coming', '1' => 'Processing', '0' => 'Available'), null, array('id' => 'Status')) }}
+                    {{ Form::select('status_id', array('3' => 'Coming', '2' => 'Processing', '1' => 'Available'), null, array('id' => 'status_id')) }}
                     </div>
                     <div class="col-sm-4">
-                        {{ $errors->first('status', '<span class="help-block">:message</span>') }}
+                        {{ $errors->first('status_id', '<span class="help-block">:message</span>') }}
                     </div>
             </div>
             

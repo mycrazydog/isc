@@ -37,7 +37,7 @@
 						<div class="row">
 						<div class="col-sm-4 col-xs-4 ">
 							@if ($post->img())
-							<img class="media-object" src="/logos/{{{ $post->filePartnerLogo }}}" alt="{{{ $post->filePartnerLogo }}}">
+							<img class="media-object" src="/logos/{{{ $post->filePartnerLogo }}}" alt="{{{ $post->filePartnerLogo }}}" style="width: 200px;">
 							@endif
 							<br/>
 							<a class="btn btn-primary" href="{{{ $post->partnerwebsite }}}" target="_blank">visit website</a>						

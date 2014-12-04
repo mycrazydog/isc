@@ -113,7 +113,7 @@ class PostsController extends AdminController
             $post->meta_keywords    = e(Input::get('meta-keywords'));
             $post->user_id          = Sentry::getUser()->id;
                 $post->partnerwebsite   = e(Input::get('partnerwebsite'));
-                $post->status           = e(Input::get('status'));
+                $post->status_id           = e(Input::get('status'));
                 $post->tags           = e(Input::get('tags'));
                 $post->yearsavailable   = e(Input::get('yearsavailable'));
                 $post->notescleaning    = e(Input::get('notescleaning'));
@@ -208,7 +208,7 @@ class PostsController extends AdminController
         $post->meta_description = e(Input::get('meta-description'));
         $post->meta_keywords    = e(Input::get('meta-keywords'));
             $post->partnerwebsite   = e(Input::get('partnerwebsite'));
-            $post->status_id           = e(Input::get('status'));
+            $post->status_id           = e(Input::get('status_id'));
             $post->tags           = e(Input::get('tags'));
             $post->yearsavailable   = e(Input::get('yearsavailable'));
             $post->notescleaning    = e(Input::get('notescleaning'));
