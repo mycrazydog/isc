@@ -2,7 +2,7 @@
 
 @section('content')
 
-<p>From: {{{ $name }}} (<a href="mailto:{{{ $email }}}">{{{ $email }}}</a>)</p>
+<p>From: (<a href="mailto:{{{ $email }}}">{{{ $email }}}</a>)</p>
 
 <p>{{{ $description }}}</p>
 

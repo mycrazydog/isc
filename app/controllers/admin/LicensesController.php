@@ -231,64 +231,57 @@ class LicensesController extends AdminController
         	$user_id = License::select('user_id')->where('id', $licenceId)->first();
         	$user = Sentry::findUserById($user_id->user_id);
         	$user_email = $user->email;
-        	//dd($user->email);
         	
-        	$from = Config::get('mail.from');
-        	
-        	
-        	// Data to be used on the email view
-        	$data_user = array(
-        		'email'				=>  $user->email,
-        		'description'		=> $msgToUser
-        	);	
-        		
-        
+        	$from = Config::get('mail.from');        	
             
             if($licensestatus == 'Submitted'){            
 	            $msgToAdmin = 'A new license request has been submitted by XXXX. <a href=>Click this link to review</a>';
 	            $msgToUser = 'Thank you for submitting your license request. We will notify you by email when we have begun processing.';           
             }elseif($licensestatus == 'Processing'){
+				$msgToAdmin = 'Status changed to processing';
 				$msgToUser = 'We have begun processing your request. If we have any questions we will contact you.';             
             }elseif($licensestatus == 'Approved'){
             	$msgToAdmin = 'You have approved the license request for XXX.<br/> <a href=>Click this link to review</a>';
             	$msgToUser = 'Congratulations! Your license request has been approved. We will contact you will with more information soon';             
-            }    
-            
-            
-            
-            
-            foreach($to as $receipt){
-                //Mail::queue('mail', array('key' => $todos1), function($message) use ($receipt)
-                Mail::send('mail', array('key' => $todos1), function($message) use ($receipt)
-                {
-                    $message->to($receipt)->subject('Welcome!');
-                });
-            }  
-    
+            } 
 
-			
-			
+            $combined_arr = array();
+            // Data to be used on the email view
+        	$data_user = array(
+        		'email'				=> $user->email,
+        		'description'		=> $msgToUser
+        	); 
+
+        	$data_admin = array(
+        		'email'				=> $user->email,
+        		'description'		=> $msgToAdmin
+        	); 
+
+        	$combined_arr = array($data_user, $data_admin);
+        	dd($combined_arr);          
+            
+			foreach ($combined_arr as $row) {
+			    //echo $row['email'];
+			    //echo $row['description'];
+
+			    Mail::send('emails.license', $row, function ($m) use ($from, $row, $user)
+	            {
+		        	$m->to($row['email']);
+		        	$m->subject('License Submission');
+		        	$m->from($from['address'], $from['name']);
+		        });
+			}            
+            
+            //foreach($to as $receipt){
+                //Mail::queue('mail', array('key' => $todos1), function($message) use ($receipt)
+                //Mail::send('mail', array('key' => $todos1), function($message) use ($receipt) {
+                //    $message->to($receipt)->subject('Welcome!');
+                //});
+            //}  
 
 			//return Redirect::route('contact-us')->with('success', Lang::get('contact.sent_success'));
     
         }
-        
-        /**
-         * Send mail notifying user or admin of license status
-         *
-         * @return Redirect
-         */
-        public function mailHandler()
-        {     	
-	        
-	        Mail::send('emails.license', $data, function ($m) use ($from, $data, $user) {
-	        	$m->to($email);
-	        	$m->subject('License Submission');
-	        	$m->from($from['address'], $from['name']);
-	        });
-        
-        }
-        
-        
+  
 
 }
