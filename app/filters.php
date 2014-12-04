@@ -13,6 +13,28 @@
 
 App::before(function ($request) {
     //
+    $clientIP = Request::getClientIp();
+
+    if(!isIPValid($clientIP)) {
+    $vip = $clientIP;
+        header ( 'Location: http://' . $_SERVER['HTTP_HOST'] . '/error.html#'.$vip );
+        exit ();
+    }
+
+    function isIPValid($ipaddr) {
+        /* make a valid ip array to test here and add ip addresses as necessary  */
+        $ip = array('152.15.112.*','152.15.206.*','152.15.112.37', '127.0.0.1', '10.17.14.*', '64.149.141.*');
+        //$ip = array('152.15.141.*');
+        $ip = str_replace('*', '', $ip);
+        for ($i = 0; $i < sizeof($ip); $i++) {
+            if (preg_match('/^' . preg_quote($ip[$i], '/') . '/', $ipaddr) > 0) {
+              return true;
+            }
+        }
+        return false;
+    }
+
+
 });
 
 App::after(function ($request, $response) {
