@@ -81,7 +81,7 @@
                    
                    
                    @if (Sentry::check())
-                   <li><a class="page-scroll"  href="{{ URL::to('admin/directory')  }}">Directory</a></li>
+                   <li><a class="page-scroll"  href="{{ URL::to('admin/dictionary')  }}">Data Dictionary</a></li>
                    <li><a class="page-scroll"  href="{{ route('logout') }}">Logout</a></li>
                    @else
                   <li><a href="{{ route('signin') }}">Login</a></li>

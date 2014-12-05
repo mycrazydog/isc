@@ -111,7 +111,7 @@
 		              	  
 		              	  <h5 class="centered">Welcome, {{ Sentry::getUser()->first_name }}</h5>
 		
-		                  <li class="sub-menu"><a class="{{ (Request::is('directory') ? ' active' : '') }}" href="{{ route('directory') }}"><i class="fa fa-dashboard"></i><span>Dashboard</span></a></li>
+		                  <li class="sub-menu"><a class="{{ (Request::is('dictionary') ? ' active' : '') }}" href="{{ route('dictionary') }}"><i class="fa fa-dashboard"></i><span>Dictionary dashboard</span></a></li>
 		                  
 		                   
 		                   

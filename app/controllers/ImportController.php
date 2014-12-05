@@ -247,7 +247,7 @@ public function postImport() {
 					        ->showColumns('title')	
 					        ->addColumn('view',function($model)
 					        {					           
-					            	return '<a class="open-DetailDialog btn btn-primary" href="'. URL::to('admin/directory/'.$model->slug) .'">View</a>';
+					            	return '<a class="open-DetailDialog btn btn-primary" href="'. URL::to('admin/dictionary/'.$model->slug) .'">View</a>';
 					            						            
 					        })
 					        ->make();

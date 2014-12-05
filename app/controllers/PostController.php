@@ -28,9 +28,9 @@ class PostController extends BaseController
         
         $statuses = DB::table('statuses')->get();        
 
-        return View::make('backend/posts/directory')->with('posts', $posts)->with('statuses', $statuses);
+        return View::make('backend/posts/dictionary')->with('posts', $posts)->with('statuses', $statuses);
         
-        //return View::make('backend/posts/directory', compact('posts'));
+        //return View::make('backend/posts/dictionary', compact('posts'));
 
     }
 

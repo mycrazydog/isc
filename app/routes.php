@@ -11,9 +11,9 @@
 
 Route::group(array('prefix' => 'admin', 'before' => 'auth'), function () {
 
-	//Directory
-	Route::group(array('prefix' => 'directory'), function () {
-		Route::get('/', array('as' => 'directory', 'uses' => 'PostController@getIndex'));	
+	//Dictionary
+	Route::group(array('prefix' => 'dictionary'), function () {
+		Route::get('/', array('as' => 'dictionary', 'uses' => 'PostController@getIndex'));	
 		Route::get('{postSlug}', array('as' => 'view-post', 'uses' => 'PostController@getView'));
 		Route::post('{postSlug}', 'PostController@postView');
 	});
