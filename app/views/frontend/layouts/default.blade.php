@@ -77,7 +77,7 @@
 		                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
 		              </div>
 		            <!--logo start-->
-		            <a href="index.html" class="logo"><b>ISC Database</b></a>
+		            <a href="/" class="logo"><b>ISC Database</b></a>
 		            <!--logo end-->
 		            <div class="nav notify-row" id="top_menu">
 		
@@ -126,6 +126,7 @@
 		                  
                           @if(Sentry::getUser()->hasAccess('admin'))     
 	                          <li class="sub-menu"><a class="{{ (Request::is('admin/posts*') ? ' active' : '') }}" href="{{ URL::to('admin/posts') }}"><i class="fa fa-th"></i><span>Manage partners</span></a></li>
+	                          <li class="sub-menu"><a class="{{ (Request::is('admin/import*') ? ' active' : '') }}" href="{{ URL::route('import') }}"><i class="fa fa-th"></i><span>Import</span></a></li>
 	              
 	                          <li class="sub-menu">
 	                              <a class="{{ (Request::is('admin/users*') ? ' active' : '') }} {{ (Request::is('admin/groups*') ? ' active' : '') }}" href="{{ URL::to('admin/users') }}">

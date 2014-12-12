@@ -27,8 +27,8 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function () {
 	
     //Import
     Route::group(array('prefix' => 'import', 'before' => 'admin-auth'), function () {
-	    Route::get('/', 'ImportController@getImport');
-	    Route::post('/', 'ImportController@postImport');
+	    Route::get('/', array('as' => 'import', 'uses' =>'ImportController@getImport'));	    
+	    Route::get('/', 'ImportController@getImport');	    
 	    Route::get('missing', array('as' => 'missing', 'uses' =>'ImportController@getMissing'));
 	    Route::post('upload',array('as' => 'upload', 'uses' => 'ImportController@toDatabase'));
 	    Route::get('template', array('as' => 'template', 'uses' =>'ImportController@getTemplate'));

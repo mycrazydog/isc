@@ -32,8 +32,9 @@ class User extends SentryUserModel
         // Generate the Gravatar hash
         $gravatar = md5(strtolower(trim($this->gravatar)));
 
-        // Return the Gravatar url
-        return "//gravatar.org/avatar/{$gravatar}";
+       
+        return "//gravatar.org/avatar/{$gravatar}?d=//charlotteresearch.info/assets/img/custom/sq_uncc_crown.jpg";	
+        
     }
 
     public function accountStatus()

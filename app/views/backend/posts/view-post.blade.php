@@ -118,7 +118,7 @@ http://stackoverflow.com/questions/10626885/passing-data-to-a-bootstrap-modal
 					        <thead>
 					            <tr>
 					                <th>Table Name</th>
-					                <th>Column Name</th>
+					                <th>Column Name</th>					                
 					                <th>Data Value</th>
 					            </tr>
 					        </thead>
@@ -132,7 +132,7 @@ http://stackoverflow.com/questions/10626885/passing-data-to-a-bootstrap-modal
 		</div>
 		
 		
-			<h4 class="mb"><i class="fa fa-angle-right"></i> Partner data</h4>
+	<h4 class="mb"><i class="fa fa-angle-right"></i> Partner data</h4>
 	<!--<a href="{{ route('update/post', $post->id) }}"><span class="glyphicon glyphicon-pencil"></span></a><br/>-->
 	
 	<?php
@@ -142,7 +142,8 @@ http://stackoverflow.com/questions/10626885/passing-data-to-a-bootstrap-modal
 	//echo $partner_id.'-----'.$ajaxRouteToTableData;
 	?>
 	{{ Datatable::table()
-	   ->addColumn('TBL', 'CLM', '')  
+	   ->addColumn('Table name', 'Fields', 'Percent Complete', '')
+	   ->setOptions('AutoWidth', false)   	 
 	   ->setUrl(route($ajaxRouteToTableData, $partner_id))
 	   ->render() }}
 		</div>

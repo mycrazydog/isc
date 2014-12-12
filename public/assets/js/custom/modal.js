@@ -31,10 +31,10 @@ $(document).on("click", ".open-DetailDialog", function () {
 		    "searching": false,
 		    "ajax": dataURL,
 		    "columns": [
-		        { "aaData": "TBL" },
-		        { "aaData": "CLM" },
-		        { "aaData": "data_value" }
-		        ]
+		       { "title": "Table name" },
+		       { "title": "Fields" },
+		       { "title": "Value" }
+		     ]
 		});    
      
 });

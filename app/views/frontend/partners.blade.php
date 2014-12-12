@@ -23,7 +23,7 @@ About us ::
   <h3>Partners <small>who we work with?</small></h3>
 </div>
 
-<img class="media-object img-responsive" alt="Responsive image"src="http://placekitten.com/1140/300">
+<img class="media-object img-responsive" alt="Charlotte Skyline - photo: James Willamor" src="/assets/img/custom/skyline.jpg">
 
 
 	@foreach ($statuses as $status)

@@ -21,7 +21,7 @@ About us ::
   <h3>About Us <small>who are we?</small></h3>
 </div>
 
-<img class="media-object img-responsive" alt="Responsive image"src="http://placekitten.com/1140/300">
+<img class="media-object img-responsive" alt="Charlotte Skyline - photo: James Willamor"src="/assets/img/custom/skyline.jpg"><br/>
 
 <p>
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas nec lorem nibh. Nullam lobortis porta augue, at luctus nibh commodo vel. Vivamus a laoreet velit. Praesent vulputate lacus ante, eu lacinia nunc volutpat et. Donec eros turpis, ornare vitae sollicitudin in, consectetur non justo. Donec luctus et ante eget sodales. Praesent id lectus in libero suscipit porta. Praesent posuere augue a erat pulvinar venenatis. Ut auctor lorem interdum, convallis libero a, egestas augue. In ut nulla odio. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Duis faucibus lectus metus, non mollis elit mattis eget. In ornare arcu quis elementum auctor. Donec a ipsum vehicula, tempor nulla a, fermentum dolor. Maecenas ac hendrerit leo. Donec tempor elit elit, sit amet pharetra lectus volutpat ac.

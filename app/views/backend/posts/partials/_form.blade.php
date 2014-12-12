@@ -72,6 +72,15 @@
                         {{ $errors->first('status', '<span class="help-block">:message</span>') }}
                     </div>
             </div>
+            
+            <!-- Content/Description -->
+            <div class="form-group {{ $errors->first('content', 'has-error') }}">
+                    <label for="content" class="col-sm-3 control-label">Description</label>
+                    <div class="col-sm-9">
+                    {{ Form::textarea('content', null, ['class' => 'form-control']) }}
+                    {{ $errors->first('content', '<span class="help-block">:message</span>') }}
+                    </div>
+            </div>
 
             <!-- yearsavailable-->
             <div class="form-group {{ $errors->first('yearsavailable', 'has-error') }}">
@@ -106,15 +115,6 @@
                     <div class="col-sm-9">
                     {{ Form::textarea('notesversion', null, ['class' => 'form-control']) }}
                     {{ $errors->first('notesversion', '<span class="help-block">:message</span>') }}
-                    </div>
-            </div>
-
-            <!-- Content -->
-            <div class="form-group {{ $errors->first('content', 'has-error') }}">
-                    <label for="content" class="col-sm-3 control-label">@lang('admin/posts/form.content')</label>
-                    <div class="col-sm-9">
-                    {{ Form::textarea('content', null, ['class' => 'form-control']) }}
-                    {{ $errors->first('content', '<span class="help-block">:message</span>') }}
                     </div>
             </div>
 

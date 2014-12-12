@@ -190,12 +190,12 @@ public function postImport() {
 			
 			$data['partner_id'] = $partner_id;
 			Log::info('This is some useful information-'.$partner_id);
-			$collection = DB::table('tabDataParent')->select("table_name as TBL","column_name as CLM", "partner_id")->where('partner_id', '=', $partner_id);
+			$collection = DB::table('tabDataParent')->select("table_name as TBL","column_name as CLM", "percentage", "partner_id")->where('partner_id', '=', $partner_id);
 			//$collection = DB::table('tabDataParent')->select('table_name as Table Name','column_name as Column Name')->get();
 	
 			//return Datatable::from(DB::table('tabDataParent')->select('table_name as Table Name','column_name as Column Name'))
 			return Datatable::query($collection)		
-			        ->showColumns('TBL', 'CLM')			        		        
+			        ->showColumns('TBL', 'CLM', 'percentage')		        		        		        
 					->addColumn('actived',function($model)
 					{
 					   
@@ -247,7 +247,7 @@ public function postImport() {
 					        ->showColumns('title')	
 					        ->addColumn('view',function($model)
 					        {					           
-					            	return '<a class="open-DetailDialog btn btn-primary" href="'. URL::to('admin/dictionary/'.$model->slug) .'">View</a>';
+					            	return '<a class="open-DetailDialog btn btn-primary" href="'. URL::to('admin/dictionary/'.$model->slug) .'">View codebook</a>';
 					            						            
 					        })
 					        ->make();
@@ -461,9 +461,12 @@ public function postImport() {
 		Session::forget('success'); //Remove all of the items from the session.
 		Session::forget('filename');
 		$files = glob(base_path('temp/*')); // get all file names
-		foreach($files as $file){ // iterate files
-			if(is_file($file))
-				unlink($file); // delete file
+
+		if($files){
+			foreach($files as $file){ // iterate files
+				if(is_file($file))
+					unlink($file); // delete file
+			}
 		}
 	}
 	

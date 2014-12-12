@@ -48,7 +48,4 @@ class HomeController extends BaseController
         return false;
 	}        
     
-    
-    
-
 }
