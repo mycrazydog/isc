@@ -21,7 +21,7 @@
   	<li class="active">Preview</li>
 	</ol>
 
-	<div class="page-header">Original filename:{{$fileNameParent}} / {{$fileNameChild}}	 <br/>Import Batch-id: {{$batch_id}} <!--/ Distinct Check: -distinct_check--></div>
+	<div class="page-header">Original 	 <br/>Import Batch-id: {{$batch_id}} <!--/ Distinct Check: -distinct_check--></div>
 
 
 		<ul class="nav nav-tabs" id="Tab_" >

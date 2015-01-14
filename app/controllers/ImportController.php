@@ -69,144 +69,156 @@ class ImportController extends BaseController
 	 * Imports spreadsheet
 	 *
 	 */
-public function postImport() {
+	public function postImport() {
 
-	$partner_options = DB::table('posts')->orderBy('title', 'asc')->lists('title','id');
+		$partner_options = DB::table('posts')->orderBy('title', 'asc')->lists('title','id');
 
-	// Check input paramiter or file type input
-   $validator = ImportForm::validate(Input::all());
+		// Check input paramiter or file type input
+	   $validator = ImportForm::validate(Input::all());
 
-    if($validator->fails()) {
-			//if file display error message
-			return View::make('backend/import.import')->withErrors($validator)->with('message',' FAILED ')->with('partner_options',$partner_options);
-		}
-
-
+	    if($validator->fails()) {
+				//if file display error message
+				return View::make('backend/import.import')->withErrors($validator)->with('message',' FAILED ')->with('partner_options',$partner_options);
+			}
 
 
-	//EXCEL Import
-	if ($validator->passes()) {
+			///Log::info('This is some useful information-'.$fileNameParent.'--'.$fileNameChild);
 
-		// Create a batch and get it's id
-		$user_id = Sentry::getUser()->id;
-		$partner_id = e(Input::get('partner_id'));
-		$batch_description = e(Input::get('batch_description'));
-		$batch_id = $this->createBatch($user_id, $partner_id, $batch_description);
+		//EXCEL Import
+		if ($validator->passes()) {
 
-		// Handle the file
-		$file_parent = Input::file('file_parent');
-		$file_child = Input::file('file_child');
+			// Create a batch and get it's id
+			$user_id = Sentry::getUser()->id;
+			$partner_id = e(Input::get('partner_id'));
+			$batch_description = e(Input::get('batch_description'));
+			$batch_id = $this->createBatch($user_id, $partner_id, $batch_description);
 
-		$fileNameParent = $this->checkName($file_parent->getClientOriginalName(),'xls');
-		$fileNameChild = $this->checkName($file_child->getClientOriginalName(),'xls');
+			// Handle the file
+			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			if (Input::file('file_parent')){
+				$this->importFile($batch_id, 'file_parent', 'tabDataParent', $partner_id, $partner_options);
+			}
+			if (Input::file('file_child')){
+				$this->importFile($batch_id, 'file_child', 'tabDataChild', $partner_id, $partner_options);
+			}
+			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		Session::put('filenameparent',$fileNameParent);
-		Session::put('filenamechild',$fileNameChild);
+			// Told do imports independently and not do $distinct_check
+			//$distinct_check =$this->getDistinct($batch_id);
 
-		Input::file('file_parent')->move( base_path('temp'),$fileNameParent); // import to temp folder
-		Input::file('file_child')->move( base_path('temp'),$fileNameChild); // import to temp folder
+			//return View::make('backend/import.preview')->with('fileName','<code>'.$fileName.'</code>')->with('batch_id',$batch_id)->with('distinct_check',$distinct_check);
+
+			Log::info('This is some useful information-2');
+			return View::make('backend/import.import')->with('batch_id',$batch_id)->with('message', 'Import Successful')->with('partner_options',$partner_options);
+
+		}//end if-validator
+
+	}//end function postImport
 
 
-		Log::info('This is some useful information-'.$fileNameParent.'--'.$fileNameChild);
+	/**
+	* Creates an entry in the batch table for the import, which is appended to the data for the
+	*
+	*/
+	public function createBatch($user_id, $partner_id, $batch_description)
+	{
+		$batch_id = DB::table('tabDataBatch')->insertGetId(
+		array('user_id' => $user_id, 'partner_id' => $partner_id, 'batch_description' => $batch_description)
+	);
+	return $batch_id;
+	}
 
-		$results0 = Excel::selectSheetsByIndex(0)->load(base_path('temp/'.$fileNameParent), function($reader) {
+
+	/**
+	* Returns data from import to preview
+	*
+	*/
+	public function deleteBatch($batch_id)
+	{
+		DB::table('tabDataBatch')->delete($batch_id);
+	}
+
+	/**
+	* Imports the CSV/Excel file
+	*
+	*/
+	public function importFile($batch_id, $vInput, $vTable, $partner_id, $partner_options)
+	{
+		Log::info('This is some useful information-'.$batch_id.'--'.$vInput.'--'.$vTable);
+
+		$vFile = Input::file($vInput);
+		$vFileName = $this->checkName($vFile->getClientOriginalName(),'xls');
+		Session::put('filenameparent',$vFileName);
+		Input::file($vInput)->move( base_path('temp'),$vFileName); // import to temp folder
+
+		$results = Excel::selectSheetsByIndex(0)->load(base_path('temp/'.$vFileName), function($reader) {
 		})->get()->toArray();//end Excel::load
 
-		$results1 = Excel::selectSheetsByIndex(0)->load(base_path('temp/'.$fileNameChild), function($reader) {
-		})->get()->toArray();//end Excel::load
+		$arr = array();
 
-		//Second sheet inside excel file (not using)
-		//$results1 = Excel::selectSheetsByIndex(1)->load(base_path('temp/'.$fileName), function($reader) {
-		//})->get()->toArray();//end Excel::load
+		try {
+			if($vInput == 'file_parent'){
 
+				foreach ($results as $value) {
+					$temp = array(
+						'partner_id'  => $partner_id,
+						'table_name'  => trim($value['table_name']),
+						'column_name' => Str::slug(trim($value['column_name'])),
+						'data_type' 	=> trim($value['data_type']),
+						'max_length' 	=> $value['max_length'],
+						'complete'    => $value['complete'],
+						'total_rows'  => $value['total_rows'],
+						'pct_complete'=> $value['pct_complete'],
+						'batch_id'		=> $batch_id
+					);
+					$arr[$value['table_name']][] = $temp;
+				}//end foreach
+			}else{
 
-			/////////////////
-			$arr0 = array();
-			$arr1 = array();
-
+				foreach ($results as $value) {
+					$temp = array(
+						'partner_id'  => $partner_id,
+						'table_name'  => trim($value['table_name']),
+						'column_name' => Str::slug(trim($value['column_name'])),
+						'data_value' 	=> trim($value['data_value']),
+						'data_type' 	=> trim($value['data_type']),
+						'batch_id'		=> $batch_id
+					);
+					$arr[$value['table_name']][] = $temp;
+				}//end foreach
+			}//endif
 
 			try {
 
-				////////////////////////////////////////////////////////////////////////////////////////////////
+				//dd($arr);
+				// Insert all data
+				foreach ($arr as $station => $value) {
+					DB::table($vTable)->insert($value);
+				} //end foreach
 
-					foreach ($results0 as $value) {
-						 	$temp0 = array(
-						 			'partner_id' =>$partner_id,
-									'table_name'  => trim($value['table_name']),
-									'column_name' 	  => Str::slug(trim($value['column_name'])),
-									'data_type' 	  => trim($value['data_type']),
-									'max_length' 	  => $value['max_length'],
-									'complete'      => $value['complete'],
-									'total_rows'      => $value['total_rows'],
-									'pct_complete' 		  => $value['pct_complete'],
-									'batch_id'		=> $batch_id
-						 	);
-						 	$arr0[$value['table_name']][] = $temp0;
+			}// end inner-try
+			catch (Exception $e) {
 
-					}//end foreach
-
-					foreach ($results1 as $value) {
-						 	$temp1 = array(
-						 			'partner_id' =>$partner_id,
-						 			'table_name'  => trim($value['table_name']),
-						 			'column_name' 	  => Str::slug(trim($value['column_name'])),
-						 			'data_value' 	  => trim($value['data_value']),
-									'data_type' 	  => trim($value['data_type']),
-						 			'batch_id'		=> $batch_id
-						 	);
-						 	$arr1[$value['table_name']][] = $temp1;
-					}//end foreach
-
-				/////////////////////////////////////////////////////////////////////////////////////////////////
-
-				 	try {
-
-				 		//dd($arr0);
-
-				 		// Insert all data
-				 		foreach ($arr0 as $station => $value) {
-				 			DB::table('tabDataParent')->insert($value);
-				 		} //end foreach
-						foreach ($arr1 as $station => $value) {
-			 				DB::table('tabDataChild')->insert($value);
-			 			} //end foreach
-
-
-				 	}// end inner-try
-				 	catch (Exception $e) {
-					 	// Problem inserting values
-						$this->deleteBatch($batch_id);
-					 	return View::make('backend/import.import')->with('message' , 'Problem inserting values - '.$e->getMessage())->with('partner_options',$partner_options);
-				 	}//end inner-catch
-
-			}//end outer-try
-			catch (Exception $e){
-				// file incorrect
+				// Problem inserting values
 				$this->deleteBatch($batch_id);
-				return View::make('backend/import.import')->with('message' , 'Field formatting incorrect - '.$e->getMessage())->with('partner_options',$partner_options);
-			}//end outer-catch
+				return View::make('backend/import.import')->with('message' , 'Problem inserting values - '.$e->getMessage())->with('partner_options',$partner_options);
+
+			}//end inner-catch
+
+		}//end outer-try
+		catch (Exception $e){
+
+			// file incorrect
+			$this->deleteBatch($batch_id);
+			return View::make('backend/import.import')->with('message' , 'Field formatting incorrect - '.$e->getMessage())->with('partner_options',$partner_options);
+
+		}//end outer-catch
+
+	}
 
 
-		// Told do imports independently and not do $distinct_check
-		//$distinct_check =$this->getDistinct($batch_id);
 
-		//return View::make('backend/import.preview')->with('fileName','<code>'.$fileName.'</code>')->with('batch_id',$batch_id)->with('distinct_check',$distinct_check);
 
-		Log::info('This is some useful information-2');
-		return View::make('backend/import.preview')->with('fileNameParent','<code>'.$fileNameParent.'</code>')->with('fileNameChild','<code>'.$fileNameChild.'</code>')->with('batch_id',$batch_id);
-
-	}//end if-validator
-
-}//end function postImport
-
-/**
-* Returns data from import to preview
-*
-*/
-public function deleteBatch($batch_id)
-{
-	DB::table('tabDataBatch')->delete($batch_id);
-}
 
 
 
@@ -363,17 +375,7 @@ public function deleteBatch($batch_id)
 		return $Name;
 	}
 
-	/**
-	 * Creates an entry in the batch table for the import, which is appended to the data for the
-	 *
-	 */
-	public function createBatch($user_id, $partner_id, $batch_description)
-	{
-		$batch_id = DB::table('tabDataBatch')->insertGetId(
-		    array('user_id' => $user_id, 'partner_id' => $partner_id, 'batch_description' => $batch_description)
-		);
-		return $batch_id;
-	}
+
 
 	/**
 	 * Creates an entry in the batch table for the import, which is appended to the data for the

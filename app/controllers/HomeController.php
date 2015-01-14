@@ -23,7 +23,7 @@ class HomeController extends BaseController
     public function getIndex()
     {
 
-
+/*
         $clientIP = Request::getClientIp();
 
         if(!$this->isIPValid($clientIP)) {
@@ -31,7 +31,8 @@ class HomeController extends BaseController
             header ( 'Location: http://ui.uncc.edu/programs/isc?error='.$vip );
             exit ();
         }
-        
+*/
+
 
         return View::make('frontend/home');
     }

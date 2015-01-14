@@ -25,7 +25,7 @@
 	?>
 
 @if ($message <> 'NA')
-<div class="alert alert-danger">{{ $message }}</div>
+<div class="alert alert-success">{{ $message }}</div>
 @endif
 
 

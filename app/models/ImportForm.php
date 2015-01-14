@@ -14,8 +14,7 @@ class ImportForm extends Eloquent{
 
 
 	public static $rules = array(
-			'file_parent' => 'required',
-			'file_child' => 'required',
+		
 	);
 
 	public static function validate($data) {
