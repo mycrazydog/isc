@@ -551,7 +551,7 @@ class ImportController extends BaseController
 	*/
 	public function getModalDelete($BatchId)
 	{
-		$model = 'Import';
+		$model = 'import';
 
 		$confirm_route = $error = null;
 		// Check if the blog post exists
