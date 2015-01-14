@@ -78,6 +78,13 @@ a, a:hover, a:focus {
     width: 50%;
 }
 
+table.dataTable,
+table.dataTable th,
+table.dataTable td{
+  background-color:#fff;
+  text-align:left;
+}
+
 
 /*Theme Backgrounds*/
 
@@ -1009,7 +1016,7 @@ PANELS CONFIGURATIONS
 	background: #dfdfe1;
 }
 .grey-panel .grey-header {
-	background: #ccd1d9;
+	/*background: #ccd1d9;*/
 	padding: 3px;
 	margin-bottom: 15px;
 }
@@ -1032,54 +1039,54 @@ PANELS CONFIGURATIONS
 	font-size: 38px;
 }
 
-/* Dark Blue*/
+/* Dark Grey*/
 
-.darkblue-panel {
+.darkgrey-panel {
 	text-align: center;
-	background: #444c57;
+	background: #727272;
 }
-.darkblue-panel .darkblue-header {
+.darkgrey-panel .darkgrey-header {
 	background: transparent;
 	padding: 3px;
 	margin-bottom: 15px;
 }
-.darkblue-panel h1 {
+.darkgrey-panel h1 {
 	color: #f2f2f2;
 }
-.darkblue-panel h5 {
+.darkgrey-panel h5 {
 	font-weight: 200;
 	margin-top: 10px;
 	color: white;
 }
-.darkblue-panel footer {
+.darkgrey-panel footer {
 	color: white;
 }
-.darkblue-panel footer h5 {
+.darkgrey-panel footer h5 {
 	margin-left:10px;
 	margin-right: 10px;
 	font-weight: 700;
 }
 
-/*Green Panel*/
-.green-panel {
+/*Beige Panel*/
+.beige-panel {
 	text-align: center;
-	background: #68dff0;
+	background: #FFF9C4;
 }
-.green-panel .green-header {
-	background: #43b1a9;
+.beige-panel .beige-header {
+	background: #FFF6DC  ;
 	padding: 3px;
 	margin-bottom: 15px;
 }
-.green-panel h5 {
-	color: white;
+.beige-panel h5 {
+	color: #000;
 	font-weight: 200;
 	margin-top: 10px;
 }
-.green-panel h3 {
+.beige-panel h3 {
 	color: white;
 	font-weight: 100;
 }
-.green-panel p {
+.beige-panel p {
 	color: white;
 }
 
@@ -1087,7 +1094,7 @@ PANELS CONFIGURATIONS
 .white-panel {
 	text-align: center;
 	background: #ffffff;
-	color: #ccd1d9;
+	/*color: #ccd1d9;*/
 }
 
 .white-panel p {
@@ -1096,10 +1103,10 @@ PANELS CONFIGURATIONS
 	margin-left: 15px;
 }
 .white-panel .white-header {
-	background: #f4f4f4;
+	/*background: #f4f4f4;*/
 	padding: 3px;
 	margin-bottom: 15px;
-	color: #c6c6c6;
+	color: #000;
 }
 .white-panel .small {
 	font-size: 10px;

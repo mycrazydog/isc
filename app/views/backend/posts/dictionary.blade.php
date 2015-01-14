@@ -8,48 +8,54 @@
 @if (count($posts))
 
 	@foreach ($statuses as $status)
-	<div class="row mt">
-		<div class="col-lg-12">
-			<div class="content-panel" style="padding: 15px;">	
-		
-			<h4 class="mb"><i class="fa fa-angle-right"></i> Data {{$status->status}}</h4>
-			
-			<?php
-			//$ajaxRouteToTableData = 'datatables/partner/'.$post->id;
-			$status_id = $status->id;
-			$ajaxRouteToTableData = 'datatables/statuses';
-			//echo $partner_id.'-----'.$ajaxRouteToTableData;
-			$arrWidths = '"width": "50%"';
-			
-			if($status_id == 3){
-				$colorByStatus = 'danger';
-			}elseif($status_id == 2){
-				$colorByStatus = 'warning';
-			}else{
-				$colorByStatus = '';
-			}
-			
-			?>
-			
-			{{ Datatable::table()
-				->addColumn('Partner','Details')  
-				->setUrl(route($ajaxRouteToTableData, $status_id))
-				->setOptions('paging', false) 
-				->setOptions('searching', false) 
-				->setOptions('info', false)  
-				->setOptions('AutoWidth', false)
-				->setOptions('aoColumns', [[ "sWidth"=> "70%" ], [ "sWidth"=> "30%" ]]) 
-				->setOptions('aoColumns', [[ "className"=> "$colorByStatus"  ], [ "className"=> "none" ]]) 	
-				 
-			   ->render() }}
-			   
-			   
+
+
+	<?php
+	//$ajaxRouteToTableData = 'datatables/partner/'.$post->id;
+	$status_id = $status->id;
+	$ajaxRouteToTableData = 'datatables/statuses';
+	//echo $partner_id.'-----'.$ajaxRouteToTableData;
+	$arrWidths = '"width": "50%"';
+
+		if($status_id == 4){
+			$colorByStatus = 'darkgrey';
+		}elseif($status_id == 3){
+			$colorByStatus = 'beige';
+		}elseif($status_id == 2){
+			$colorByStatus = 'grey';
+		}else{
+			$colorByStatus = 'white';
+		}
+
+
+
+	?>
+
+
+	<div class="row">
+		<div class="col-lg-12 mb">
+			<div class="{{ $colorByStatus }}-panel" style="padding: 15px;">
+
+			<div class="{{ $colorByStatus }}-header">
+				<h5>{{$status->status}}</h5>
 			</div>
-		</div>	   
+
+			{{ Datatable::table()
+				->addColumn('Partner','Tags/Topics','Details')
+				->setUrl(route($ajaxRouteToTableData, $status_id))
+				->setOptions('paging', false)
+				->setOptions('searching', true)
+				->setOptions('info', false)
+				->setOptions('AutoWidth', false)
+				->setOptions('aoColumns', [[ "sWidth"=> "40%" ], [ "sWidth"=> "40%" ], [ "sWidth"=> "20%" ]])
+			  ->render() }}
+
+			</div>
+		</div>
 	</div>
-		
+
 	@endforeach
-		
+
 	{{ $posts->links() }}
 
 @else

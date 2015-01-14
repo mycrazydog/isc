@@ -4,22 +4,23 @@
         <!-- General tab -->
         <div class="tab-pane active" id="tab-general">
             <br>
-            
+
             <div class="form-group">
             	<div class="col-sm-12">
+                <strong>Partner Logo</strong>
             <p>{{ Form::file('filePartnerLogo') }}</p>
-            <?php	
-            if (isset($post->filePartnerLogo)) {	
+            <?php
+            if (isset($post->filePartnerLogo)) {
             if (($post->filePartnerLogo != '')){
-            	echo "<div class='alert alert-block'><h4>Previously uploaded file:</h4><img style='width:200px' src='/logos/".$post->filePartnerLogo."'></div>";	
+            	echo "<div class='alert alert-block'>Previously uploaded logo:<br/><img style='width:200px' src='/logos/".$post->filePartnerLogo."'></div>";
             }
-            }			
-            ?>	
+            }
+            ?>
             </div>
             </div>
-            
-            
-            
+
+
+
             <!-- Post Title -->
             <div class="form-group {{ $errors->first('title', 'has-error') }}">
                 <label for="title" class="col-sm-3 control-label">@lang('admin/posts/form.posttitle')</label>
@@ -55,24 +56,24 @@
             <div class="form-group {{ $errors->first('status_id', 'has-error') }}">
                 <label for="status" class="col-sm-3 control-label">@lang('admin/posts/form.status')</label>
                     <div class="col-sm-5">
-                    {{ Form::select('status_id', array('3' => 'Coming', '2' => 'Processing', '1' => 'Available'), null, array('id' => 'status_id')) }}
+                    {{ Form::select('status_id', $status_options , Input::old('status_id'), ['class' => 'form-control']) }}
                     </div>
                     <div class="col-sm-4">
                         {{ $errors->first('status_id', '<span class="help-block">:message</span>') }}
                     </div>
             </div>
-            
+
             <!--TAGS GOES HERE-->
             <div class="form-group {{ $errors->first('tags', 'has-error') }}">
-                <label for="tags" class="col-sm-3 control-label">@lang('admin/posts/form.tags')</label>
+                <label for="tags" class="col-sm-3 control-label">Tags to describe data</label>
                     <div class="col-sm-5">
-                    {{ Form::select('tags', array('' => 'Please Select', '0' => 'Arts, Recreation and Cultural Life', '1' => 'Demographics', '2' => 'Economy', '3' => 'Education', '4' => 'Environment', '5' => 'Government and Citizen Participation', '6' => 'Health', '7' => 'Housing', '8' => 'Public Safety', '9' => 'Social Well-Being', '10' => 'Transportation'), null, array('id' => 'tags')) }}
+                      {{ Form::text('tags', null, ['class' => 'form-control', 'placeholder' => 'Use a comma separted list. Example: Demographics, Environmont, Economy']) }}
                     </div>
                     <div class="col-sm-4">
                         {{ $errors->first('status', '<span class="help-block">:message</span>') }}
                     </div>
             </div>
-            
+
             <!-- Content/Description -->
             <div class="form-group {{ $errors->first('content', 'has-error') }}">
                     <label for="content" class="col-sm-3 control-label">Description</label>
@@ -120,10 +121,9 @@
 
         </div><!--/.tab-pane -->
 
-        <!-- Meta Data tab -->
+        <!-- Meta Data tab
         <div class="tab-pane" id="tab-meta-data">
             <br>
-            <!-- Meta Title -->
             <div class="form-group {{ $errors->first('meta-title', 'has-error') }}">
                 <label for="meta-title" class="col-sm-3 control-label">@lang('admin/posts/form.metatitle')</label>
                 <div class="col-sm-5">
@@ -133,8 +133,6 @@
                     {{ $errors->first('meta-title', '<span class="help-block">:message</span>') }}
                 </div>
             </div>
-
-            <!-- Meta Description -->
             <div class="form-group {{ $errors->first('meta-description', 'has-error') }}">
                 <label for="meta-description" class="col-sm-3 control-label">@lang('admin/posts/form.metadescription')</label>
                 <div class="col-sm-5">
@@ -144,8 +142,6 @@
                     {{ $errors->first('meta-description', '<span class="help-block">:message</span>') }}
                 </div>
             </div>
-
-            <!-- Meta Keywords -->
             <div class="form-group {{ $errors->first('meta-keywords', 'has-error') }}">
                 <label for="meta-keywords" class="col-sm-3 control-label">@lang('admin/posts/form.metakeywords')</label>
                 <div class="col-sm-5">
@@ -156,7 +152,7 @@
                 </div>
             </div>
 
-        </div><!--/.tab-pane -->
+        </div>/.tab-pane -->
 
      </div><!--/.tab-content -->
 

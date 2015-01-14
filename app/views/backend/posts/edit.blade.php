@@ -18,11 +18,12 @@
     </h3>
 </div>
 
-<!-- Tabs -->
+<!-- Tabs
 <ul class="nav nav-tabs">
     <li class="active"><a href="#tab-general" data-toggle="tab">@lang('admin/posts/form.general')</a></li>
     <li><a href="#tab-meta-data" data-toggle="tab">@lang('admin/posts/form.metadata')</a></li>
 </ul>
+!/ Tabs -->
 
 {{ Form::model($post, [
         'route' => ['update/post', $post->id],

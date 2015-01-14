@@ -11,59 +11,64 @@
 
 Route::group(array('prefix' => 'admin', 'before' => 'auth'), function () {
 
-	//Dictionary
+	# Dictionary
 	Route::group(array('prefix' => 'dictionary'), function () {
-		Route::get('/', array('as' => 'dictionary', 'uses' => 'PostController@getIndex'));	
+		Route::get('/', array('as' => 'dictionary', 'uses' => 'PostController@getIndex'));
 		Route::get('{postSlug}', array('as' => 'view-post', 'uses' => 'PostController@getView'));
 		Route::post('{postSlug}', 'PostController@postView');
 	});
-	
+
 	Route::group(array('prefix' => 'datatables'), function () {
 		Route::get('/', array('as'=>'datatables', 'uses'=>'ImportController@getDatatable'));
 		Route::get('partner/{partner_id}', array('as'=>'datatables/partner', 'uses'=>'ImportController@getPartnerDatatable'));
 		Route::get('partner/{partner_id}/column/{column_name}', array('as'=>'datatables/partner/column', 'uses'=>'ImportController@getPartnerColumnDatatable'));
-		Route::get('statuses/{status_id}', array('as'=>'datatables/statuses', 'uses'=>'ImportController@getStatusesDatatable'));	
+		Route::get('statuses/{status_id}', array('as'=>'datatables/statuses', 'uses'=>'ImportController@getStatusesDatatable'));
 	});
-	
-    //Import
+
+    # Import
     Route::group(array('prefix' => 'import', 'before' => 'admin-auth'), function () {
-	    Route::get('/', array('as' => 'import', 'uses' =>'ImportController@getImport'));	    
-	    Route::get('/', 'ImportController@getImport');	    
-	    Route::get('missing', array('as' => 'missing', 'uses' =>'ImportController@getMissing'));
+		  Route::get('/', array('as' => 'import', 'uses' => 'ImportController@getIndex'));
+	    Route::get('create', array('as' => 'create/import', 'uses' =>'ImportController@getImport'));
+			Route::post('create', 'ImportController@postImport');
+
+			Route::get('missing', array('as' => 'missing', 'uses' =>'ImportController@getMissing'));
 	    Route::post('upload',array('as' => 'upload', 'uses' => 'ImportController@toDatabase'));
 	    Route::get('template', array('as' => 'template', 'uses' =>'ImportController@getTemplate'));
 	    Route::get('example', array('as' => 'example', 'uses' =>'ImportController@getExample'));
+			Route::get('{BatchId}/delete', array('as' => 'delete/import', 'uses' => 'ImportController@getDelete'));
+			Route::get('{BatchId}/confirm-delete', array('as' => 'confirm-delete/import', 'uses' => 'ImportController@getModalDelete'));
     });
-    
+
     # Post Management
     Route::group(array('prefix' => 'posts', 'before' => 'admin-auth'), function () {
-    	Route::get('/', array('as' => 'posts', 'uses' => 'Controllers\Admin\PostsController@getIndex'));       
+    	  Route::get('/', array('as' => 'posts', 'uses' => 'Controllers\Admin\PostsController@getIndex'));
         Route::get('create', array('as' => 'create/post', 'uses' => 'Controllers\Admin\PostsController@getCreate'));
-        Route::post('create', 'Controllers\Admin\PostsController@postCreate');        
+        Route::post('create', 'Controllers\Admin\PostsController@postCreate');
         Route::get('{blogId}/edit', array('as' => 'update/post', 'uses' => 'Controllers\Admin\PostsController@getEdit'));
-        Route::post('{blogId}/edit', 'Controllers\Admin\PostsController@postEdit');        
+        Route::post('{blogId}/edit', 'Controllers\Admin\PostsController@postEdit');
         Route::get('{blogId}/delete', array('as' => 'delete/post', 'uses' => 'Controllers\Admin\PostsController@getDelete'));
-        Route::get('{blogId}/confirm-delete', array('as' => 'confirm-delete/post', 'uses' => 'Controllers\Admin\PostsController@getModalDelete'));        
-        Route::get('{blogId}/restore', array('as' => 'restore/post', 'uses' => 'Controllers\Admin\PostsController@getRestore')); 
+        Route::get('{blogId}/confirm-delete', array('as' => 'confirm-delete/post', 'uses' => 'Controllers\Admin\PostsController@getModalDelete'));
+        Route::get('{blogId}/restore', array('as' => 'restore/post', 'uses' => 'Controllers\Admin\PostsController@getRestore'));
     });
-    
+
     # licenses Management
-    Route::group(array('prefix' => 'licenses'), function () {   
+    Route::group(array('prefix' => 'licenses'), function () {
         //Make so view only own license
-        Route::get('{licenseId}/view', array('as' => 'view-license', 'uses' => 'LicenseController@getView'));        
-        
+        Route::get('{licenseId}/view', array('as' => 'view-license', 'uses' => 'LicenseController@getView'));
         Route::get('create', array('as' => 'create/license', 'uses' => 'Controllers\Admin\LicensesController@getCreate'));
         Route::post('create', 'Controllers\Admin\LicensesController@licenseCreate');
-    });    
-    Route::group(array('prefix' => 'licenses', 'before' => 'admin-auth'), function () {    
-        Route::get('/', array('as' => 'licenses', 'uses' => 'Controllers\Admin\LicensesController@getIndex'));        
+				Route::get('/status', array('as' => 'status/license', 'uses' => 'Controllers\Admin\LicensesController@getStatus'));
+    });
+    Route::group(array('prefix' => 'licenses', 'before' => 'admin-auth'), function () {
+        Route::get('/', array('as' => 'licenses', 'uses' => 'Controllers\Admin\LicensesController@getIndex'));
+
         Route::get('{licenseId}/edit', array('as' => 'update/license', 'uses' => 'Controllers\Admin\LicensesController@getEdit'));
-        Route::post('{licenseId}/edit', 'Controllers\Admin\LicensesController@licenseEdit');        
+        Route::post('{licenseId}/edit', 'Controllers\Admin\LicensesController@licenseEdit');
         Route::get('{licenseId}/delete', array('as' => 'delete/license', 'uses' => 'Controllers\Admin\LicensesController@getDelete'));
-        Route::get('{licenseId}/confirm-delete', array('as' => 'confirm-delete/license', 'uses' => 'Controllers\Admin\LicensesController@getModalDelete'));        
+        Route::get('{licenseId}/confirm-delete', array('as' => 'confirm-delete/license', 'uses' => 'Controllers\Admin\LicensesController@getModalDelete'));
         Route::get('{licenseId}/restore', array('as' => 'restore/license', 'uses' => 'Controllers\Admin\LicensesController@getRestore'));
     });
-    
+
 
     # User Management
     Route::group(array('prefix' => 'users', 'before' => 'admin-auth'), function () {
@@ -196,4 +201,3 @@ Route::get('/', array('as' => 'home', 'uses' => 'HomeController@getIndex'));
 //Route::get('export', array('as' => 'xls', 'uses' => 'PostController@xlsImport'));
 
 //Route::get('import/data', 'ImportController@getData');
-

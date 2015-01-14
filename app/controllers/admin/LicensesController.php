@@ -34,7 +34,7 @@ class LicensesController extends AdminController
         $licenses = $this->license->orderBy('created_at', 'DESC')->paginate(10);
 
         // Show the page
-        return View::make('backend/licenses/index', compact('licenses'));               
+        return View::make('backend/licenses/index', compact('licenses'));
     }
 
     /**
@@ -61,9 +61,9 @@ class LicensesController extends AdminController
 
         if ($license->validate($new)) {
 
-             // Update the blog license data            
-            $license->user_id          = Sentry::getUser()->id;  
-            $license->licensestatus       	= 'Submitted';         
+             // Update the blog license data
+            $license->user_id          = Sentry::getUser()->id;
+            $license->licensestatus       	= 'Submitted';
             $license->funding       	= e(Input::get('funding'));
             $license->policy          	= e(Input::get('policy'));
             $license->program      	= e(Input::get('program'));
@@ -73,20 +73,20 @@ class LicensesController extends AdminController
             $license->irb            		= e(Input::get('irb'));
             $license->benefit        	= e(Input::get('benefit'));
             $license->credentials		= e(Input::get('credentials'));
-            $license->initial      		= e(Input::get('initial')); 
- 
+            $license->initial      		= e(Input::get('initial'));
+
 
             // Was the blog license created?
             if ($license->save()) {
-            
-            	            	
+
+
             	$the_id = $license->id;
             	$the_status = $license->licensestatus;
-            	
+
             	$this->sendMail($the_id, $the_status);
-            
-                // Redirect to the new blog license page                
-                return Redirect::to("admin/directory")->with('success', Lang::get('admin/licenses/message.create.success'));
+
+                // Redirect to the new blog license page
+                return Redirect::to("admin/dictionary")->with('success', Lang::get('admin/licenses/message.create.success'));
             }
 
         } else {
@@ -98,11 +98,11 @@ class LicensesController extends AdminController
         return Redirect::to('admin/licenses/create')->with('error', Lang::get('admin/licenses/message.create.error'));
     }
 
-    
-    
-    
-    
-    
+
+
+
+
+
     /**
      * Blog license update.
      *
@@ -155,7 +155,7 @@ class LicensesController extends AdminController
         }
 
         // Update the blog license data
-        $license->licensestatus       	= e(Input::get('licensestatus'));        
+        $license->licensestatus       	= e(Input::get('licensestatus'));
         $license->funding       	= e(Input::get('funding'));
         $license->policy          	= e(Input::get('policy'));
         $license->program      	= e(Input::get('program'));
@@ -165,7 +165,7 @@ class LicensesController extends AdminController
         $license->irb            		= e(Input::get('irb'));
         $license->benefit        	= e(Input::get('benefit'));
         $license->credentials		= e(Input::get('credentials'));
-        $license->initial      		= e(Input::get('initial')); 
+        $license->initial      		= e(Input::get('initial'));
 
         // Was the blog license updated?
         if ($license->save()) {
@@ -176,6 +176,43 @@ class LicensesController extends AdminController
         // Redirect to the blogs license management page
         return Redirect::to("admin/licenses/$licenseId/edit")->with('error', Lang::get('admin/licenses/message.update.error'));
     }
+
+
+
+
+
+
+
+
+
+    /**
+    * Check license status.
+    *
+    * @param  int  $licenseId
+    * @return View
+    */
+    public function getStatus($licenseId = null)
+    {
+      // Grab all the blog licenses
+      $user = Sentry::getUser()->id;
+
+      $licenses = $this->license->where('user_id', $user)->orderBy('created_at', 'DESC')->paginate(10);
+
+
+
+      // Show the page
+      return View::make('backend/licenses/status', compact('licenses'));
+    }
+
+
+
+
+
+
+
+
+
+
 
     /**
      * Delete confirmation for the given blog license.
@@ -198,6 +235,8 @@ class LicensesController extends AdminController
         return View::make('backend/layouts/modal_confirmation', compact('error', 'model', 'confirm_route'));
     }
 
+
+
     /**
      * Delete the given blog license.
      *
@@ -218,7 +257,7 @@ class LicensesController extends AdminController
         // Redirect to the blog licenses management page
         return Redirect::to('admin/licenses')->with('success', Lang::get('admin/licenses/message.delete.success'));
     }
-    
+
         /**
          * Send mail notifying user or admin of license status
          *
@@ -226,40 +265,40 @@ class LicensesController extends AdminController
          */
         public function sendMail($licenceId, $licensestatus)
         {
-        
+
         	// Id of user who submitted the license request
         	$user_id = License::select('user_id')->where('id', $licenceId)->first();
         	$user = Sentry::findUserById($user_id->user_id);
         	$user_email = $user->email;
-        	
-        	$from = Config::get('mail.from');        	
-            
-            if($licensestatus == 'Submitted'){            
-	            $msgToAdmin = 'A new license request has been submitted by XXXX. <a href=>Click this link to review</a>';
-	            $msgToUser = 'Thank you for submitting your license request. We will notify you by email when we have begun processing.';           
+
+        	$from = Config::get('mail.from');
+
+            if($licensestatus == 'Submitted'){
+	            $msgToAdmin = 'A new license request has been submitted. <a href="http://homestead.app:8000/admin/licenses/'. $licenceId .'/view">Click this link to review</a>';
+	            $msgToUser = 'Thank you for submitting your license request. We will notify you by email when we have begun processing.';
             }elseif($licensestatus == 'Processing'){
 				$msgToAdmin = 'Status changed to processing';
-				$msgToUser = 'We have begun processing your request. If we have any questions we will contact you.';             
+				$msgToUser = 'We have begun processing your request. If we have any questions we will contact you.';
             }elseif($licensestatus == 'Approved'){
-            	$msgToAdmin = 'You have approved the license request for XXX.<br/> <a href=>Click this link to review</a>';
-            	$msgToUser = 'Congratulations! Your license request has been approved. We will contact you will with more information soon';             
-            } 
+            	$msgToAdmin = 'You have approved the license request.<br/> <a href="http://homestead.app:8000/admin/licenses/'. $licenceId . '/view">Click this link to review</a>';
+            	$msgToUser = 'Congratulations! Your license request has been approved. We will contact you will with more information soon';
+            }
 
             $combined_arr = array();
             // Data to be used on the email view
         	$data_user = array(
         		'email'				=> $user->email,
         		'description'		=> $msgToUser
-        	); 
+        	);
 
         	$data_admin = array(
-        		'email'				=> $user->email,
+        		'email'				=> 'rlawing2@uncc.edu',
         		'description'		=> $msgToAdmin
-        	); 
+        	);
 
         	$combined_arr = array($data_user, $data_admin);
-        	dd($combined_arr);          
-            
+        	//dd($combined_arr);
+
 			foreach ($combined_arr as $row) {
 			    //echo $row['email'];
 			    //echo $row['description'];
@@ -270,18 +309,18 @@ class LicensesController extends AdminController
 		        	$m->subject('License Submission');
 		        	$m->from($from['address'], $from['name']);
 		        });
-			}            
-            
+			}
+
             //foreach($to as $receipt){
                 //Mail::queue('mail', array('key' => $todos1), function($message) use ($receipt)
                 //Mail::send('mail', array('key' => $todos1), function($message) use ($receipt) {
                 //    $message->to($receipt)->subject('Welcome!');
                 //});
-            //}  
+            //}
 
 			//return Redirect::route('contact-us')->with('success', Lang::get('contact.sent_success'));
-    
+
         }
-  
+
 
 }

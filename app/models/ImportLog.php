@@ -8,7 +8,19 @@ class ImportLog extends Eloquent{
 	 *
 	 * @var string
 	 */
-	protected $table = 'tbl_import_log';
+	protected $table = 'tabDataBatch';
+
+
+	/**
+	* Deletes a batch
+	*
+	* @return bool
+	*/
+	public function delete()
+	{
+
+		// Delete the blog post
+		return parent::delete();
+	}
 
 }
-

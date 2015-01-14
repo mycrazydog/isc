@@ -13,10 +13,8 @@ class License extends Elegant
      */
     public function delete()
     {
-        // Delete the comments
-        $this->comments()->delete();
 
-        // Delete the blog license
+        // Delete the license
         return parent::delete();
     }
 
@@ -40,7 +38,7 @@ class License extends Elegant
     {
         return URL::route('view-license', $this->slug);
     }
-    
+
     /**
      * Return the current author.
      *
@@ -50,6 +48,13 @@ class License extends Elegant
     {
         return $this->belongsTo('User', 'user_id');
     }
+
+    public function post()
+    {
+      //return $this->belongsTo('User', 'user_id');
+      return $this->belongsToMany('Post');
+    }
+
 
 
 

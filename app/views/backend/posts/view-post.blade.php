@@ -33,27 +33,27 @@
 				<div class="col-lg-6">
           			<div class="form-panel">
                   	  <h4 class="mb"><i class="fa fa-angle-right"></i> Profile</h4>
-						
+
 						<div class="row">
 						<div class="col-sm-4 col-xs-4 ">
 							@if ($post->img())
 							<img class="media-object" src="/logos/{{{ $post->filePartnerLogo }}}" alt="{{{ $post->filePartnerLogo }}}" style="width: 200px;">
 							@endif
 							<br/>
-							<a class="btn btn-primary" href="{{{ $post->partnerwebsite }}}" target="_blank">visit website</a>						
-						</div>						
+							<a class="btn btn-primary" href="{{{ $post->partnerwebsite }}}" target="_blank">visit website</a>
+						</div>
 						<div class="col-sm-8 col-xs-8">
 							<h5><i class="fa fa-angle-right"></i> Status</h5>
-							<span class="label label-info">{{{ Status::find($post->status_id)->status }}}</span>							
+							<span class="label label-info">{{{ Status::find($post->status_id)->status }}}</span>
 
 							<br/><br/>
 							<h5><i class="fa fa-angle-right"></i> Years Available</h5>
 							{{{ $post->yearsavailable }}}
-							
+
 						</div>
 						</div>
-						
-						
+
+
           			</div><!-- /form-panel -->
           		</div>
 
@@ -75,16 +75,16 @@
 	                  	  <h4 class="mb"><i class="fa fa-angle-right"></i> Notes on data source</h4>
 							<p>{{ nl2br(e($post->notessource)) }}</p>
 						</div>
-							
+
 						<div class="form-group">
 					  	  <h4 class="mb"><i class="fa fa-angle-right"></i> Notes on data cleaning</h4>
 					     <p>{{ nl2br(e($post->notescleaning)) }}</p>
 					    </div>
-					    
+
 					    <div class="form-group">
 					    	  <h4 class="mb"><i class="fa fa-angle-right"></i> Version notes</h4>
 					      <p>{{ nl2br(e($post->notesversion)) }}</p>
-					    </div>  		      
+					    </div>
 					</div><!-- /form-panel -->
 				</div>
 
@@ -93,18 +93,18 @@
 <div class="row mt">
 	<div class="col-lg-12">
 		<div class="content-panel" style="padding: 15px;">
-		
-		
-	
+
+
+
 <!--
 http://stackoverflow.com/questions/10626885/passing-data-to-a-bootstrap-modal
 <a class="open-DetailDialog btn btn-primary" data-toggle="modal" data-target="#DetailModal" data-id="DUMB" data-column="ASS" >Details</a>
 -->
 
 
-		
-		
-		
+
+
+		<!--MODAL BOX -->
 		<div class="modal fade" id="DetailModal" tabindex="-1" role="dialog" aria-labelledby="DetailModalLabel" aria-hidden="true">
 		  <div class="modal-dialog">
 		    <div class="modal-content">
@@ -118,8 +118,9 @@ http://stackoverflow.com/questions/10626885/passing-data-to-a-bootstrap-modal
 					        <thead>
 					            <tr>
 					                <th>Table Name</th>
-					                <th>Column Name</th>					                
+					                <th>Column Name</th>
 					                <th>Data Value</th>
+													<th>Data Type</th>
 					            </tr>
 					        </thead>
 					    </table>
@@ -130,11 +131,11 @@ http://stackoverflow.com/questions/10626885/passing-data-to-a-bootstrap-modal
 		    </div>
 		  </div>
 		</div>
-		
-		
+		<!--END MODAL BOX -->
+
 	<h4 class="mb"><i class="fa fa-angle-right"></i> Partner data</h4>
 	<!--<a href="{{ route('update/post', $post->id) }}"><span class="glyphicon glyphicon-pencil"></span></a><br/>-->
-	
+
 	<?php
 	//$ajaxRouteToTableData = 'datatables/partner/'.$post->id;
 	$partner_id = $post->id;
@@ -142,12 +143,12 @@ http://stackoverflow.com/questions/10626885/passing-data-to-a-bootstrap-modal
 	//echo $partner_id.'-----'.$ajaxRouteToTableData;
 	?>
 	{{ Datatable::table()
-	   ->addColumn('Table name', 'Fields', 'Percent Complete', '')
-	   ->setOptions('AutoWidth', false)   	 
+	   ->addColumn('Table name', 'Fields', 'Data Type', 'Max Length', 'Complete', 'Total Rows', '% Complete', '')
+	   ->setOptions('AutoWidth', false)
 	   ->setUrl(route($ajaxRouteToTableData, $partner_id))
 	   ->render() }}
 		</div>
-	</div>	   
+	</div>
 </div>
 
 
@@ -197,9 +198,9 @@ http://stackoverflow.com/questions/10626885/passing-data-to-a-bootstrap-modal
 @else
 <h4>@lang('post.addcomment')</h4>
 <form class="form-horizontal" role="form" method="post" action="{{ route('view-post', $post->slug) }}">
-    
+
     <input type="hidden" name="_token" value="{{ csrf_token() }}" />
-  
+
     <div class="form-group {{ $errors->first('comment', 'has-error') }}">
         <div class="col-sm-20">
             {{ $errors->first('comment', '<span class="help-block">:message</span>') }}

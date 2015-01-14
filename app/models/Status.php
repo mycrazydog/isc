@@ -2,14 +2,14 @@
 
 class Status extends Elegant
 {
-    
-	protected $table = 'statuses';    
+
+	protected $table = 'statuses';
  /**
   * A post model might have one status
   *
   *
-  * @return 
-  */    
+  * @return
+  */
 //    public function post()
 //    {
 //        return $this->belongsTo('Post');

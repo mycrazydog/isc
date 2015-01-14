@@ -10,6 +10,7 @@ use Sentry;
 use Str;
 use Validator;
 use View;
+use Status;
 
 class PostsController extends AdminController
 {
@@ -28,13 +29,13 @@ class PostsController extends AdminController
      */
     public function getIndex()
     {
-        // Grab all the blog posts            
+        // Grab all the blog posts
         $posts = $this->post->orderBy('created_at', 'DESC')->paginate(10);
-		
+
 		//Log::info('This is some useful information-');
         // Show the page
         return View::make('backend/posts/index', compact('posts'));
-        
+
     }
 
     /**
@@ -44,11 +45,13 @@ class PostsController extends AdminController
      */
     public function getCreate()
     {
-    
-    		return View::make('backend/posts/create');
-    		
+
+        $status_options = Status::lists('status', 'id');
+
+        return View::make('backend/posts/create')->with('status_options',$status_options);
+
     	 	/*
-    	 	
+
     	 	WES CODE TO COME BACK TO
     		//Individual permission check
     		if ( Sentry::getUser()->hasAnyAccess(['posts.create']) )
@@ -56,19 +59,19 @@ class PostsController extends AdminController
     		   //They do have access
     		   return Redirect::to('admin/posts')->with('error', 'This individual does not have the proper permissions');
     		}else{
-    			//They do NOT have access    		
+    			//They do NOT have access
     		}
-    		
-    	
-    	
+
+
+
     		//Group permission check
     		// Find the user using the user id
     	    $user = Sentry::getUser();
-    	        	        	
+
     	    // Find the group
     	    $admin = Sentry::findGroupByName('Admin');
-    	    $authors = Sentry::findGroupByName('Authors');   	    
-    	
+    	    $authors = Sentry::findGroupByName('Authors');
+
     	    // Check if the user is in the administrator or authors group
     	    if (($user->inGroup($admin)) || ($user->inGroup($authors)))
     	    {
@@ -78,9 +81,9 @@ class PostsController extends AdminController
 			}else {
 				return Redirect::to('admin/posts')->with('error', Lang::get('general.denied'));
 			}*/
-    	
-    	
-        
+
+
+
     }
 
     /**
@@ -119,17 +122,17 @@ class PostsController extends AdminController
                 $post->notescleaning    = e(Input::get('notescleaning'));
                 $post->notessource      = e(Input::get('notessource'));
                 $post->notesversion     = e(Input::get('notesversion'));
-                
-		
+
+
                 if (Input::hasFile('filePartnerLogo')) {
                 	$file = Input::file('filePartnerLogo');
-                	$name = 'filePartnerLogo-' . $file->getClientOriginalName();			
-                	$file = $file->move(base_path('public/logos'), $name);		
-                	$post->filePartnerLogo = $name;                	
-                }	
-                
-                
-                
+                	$name = 'filePartnerLogo-' . $file->getClientOriginalName();
+                	$file = $file->move(base_path('public/logos'), $name);
+                	$post->filePartnerLogo = $name;
+                }
+
+
+
 
             // Was the blog post created?
             if ($post->save()) {
@@ -160,8 +163,10 @@ class PostsController extends AdminController
             return Redirect::to('admin/blogs')->with('error', Lang::get('admin/posts/message.does_not_exist'));
         }
 
+        $status_options = Status::lists('status', 'id');
+
         // Show the page
-        return View::make('backend/posts/edit', compact('post'));
+        return View::make('backend/posts/edit', compact('post'))->with('status_options',$status_options);
     }
 
     /**
@@ -203,7 +208,7 @@ class PostsController extends AdminController
         // Update the blog post data
         $post->title            = e(Input::get('title'));
         $post->slug             = e(Input::get('slug'));
-        $post->content          = e(Input::get('content'));        
+        $post->content          = e(Input::get('content'));
         $post->meta_title       = e(Input::get('meta-title'));
         $post->meta_description = e(Input::get('meta-description'));
         $post->meta_keywords    = e(Input::get('meta-keywords'));
@@ -214,23 +219,23 @@ class PostsController extends AdminController
             $post->notescleaning    = e(Input::get('notescleaning'));
             $post->notessource      = e(Input::get('notessource'));
             $post->notesversion     = e(Input::get('notesversion'));
-            
+
             if (Input::hasFile('filePartnerLogo')) {
             	$file = Input::file('filePartnerLogo');
-            	$name = 'filePartnerLogo-' . $file->getClientOriginalName();			
-            	$file = $file->move(base_path('public/logos'), $name);		
-            	$post->filePartnerLogo = $name;                	
-            }	
+            	$name = 'filePartnerLogo-' . $file->getClientOriginalName();
+            	$file = $file->move(base_path('public/logos'), $name);
+            	$post->filePartnerLogo = $name;
+            }
 
         // Was the blog post updated?
         if ($post->save()) {
-        	
+
 
         	//$post->status()->sync(Input::get('status'));
 
-        	
+
             // Redirect to the new blog post page
-            return Redirect::to("admin/posts/$postId/edit")->with('success', Lang::get('admin/posts/message.update.success'));
+            return Redirect::to("admin/posts/$postId/edit")->with('success', 'Updated successfully');
         }
 
         // Redirect to the blogs post management page

@@ -10,11 +10,13 @@
 @section('content')
 <div class="page-header">
     <h3>
-        @lang('admin/licenses/title.blogmanagement')
+        Manage Licenses
 
-        <div class="pull-right">
-            <a href="{{ route('create/license') }}" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span>Create</a>
-        </div>
+
+        <!--<div class="pull-right">
+            <a href="{{ route('create/license') }}" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span>Create license</a>
+        </div>-->
+
     </h3>
 </div>
 
@@ -24,7 +26,7 @@
     <thead>
         <tr>
             <th class="span1"></th>
-            <th class="span6">@lang('admin/licenses/table.title')</th>
+            <th class="span6">Requesting User</th>
             <th class="span1">License status</th>
             <th class="span2">@lang('admin/licenses/table.created_at')</th>
             <th class="span2"></th>
@@ -34,7 +36,7 @@
         @foreach ($licenses as $license)
         <tr>
             <td><a href="{{ route('update/license', $license->id) }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
-            <td><a href="{{ route('view-license', $license->id) }}">{{ $license->initial }}</a></td>
+            <td>{{ Sentry::findUserById($license->user_id)->first_name  }} {{ Sentry::findUserById($license->user_id)->last_name }}</td>
             <td>{{ $license->licensestatus }}</td>
             <td>{{{ $license->created_at->diffForHumans() }}}</td>
             <td><a href="{{ route('confirm-delete/license', $license->id) }}" data-toggle="modal" data-target="#delete_confirm"><span class="glyphicon glyphicon-trash"></span></a></td>

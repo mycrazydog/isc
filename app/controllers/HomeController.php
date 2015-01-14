@@ -19,22 +19,24 @@ class HomeController extends BaseController
 //    {
 //        return View::make('hello');
 //    }
-    
+
     public function getIndex()
     {
-        
+
+
         $clientIP = Request::getClientIp();
-    
+
         if(!$this->isIPValid($clientIP)) {
         $vip = $clientIP;
             header ( 'Location: http://ui.uncc.edu/programs/isc?error='.$vip );
             exit ();
         }
         
+
         return View::make('frontend/home');
     }
-    
-    
+
+
     public function isIPValid($ipaddr) {
         /* make a valid ip array to test here and add ip addresses as necessary  */
         $ip = array('152.15.112.*','152.15.206.*','152.15.112.37', '127.0.0.1', '10.17.14.*', '64.149.141.*');
@@ -46,6 +48,6 @@ class HomeController extends BaseController
             }
         }
         return false;
-	}        
-    
+	}
+
 }

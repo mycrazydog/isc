@@ -21,7 +21,7 @@
         ================================================== -->
         <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
-        
+
         <!-- Custom styles for this template -->
         <link href="{{ asset('assets/css/custom/style.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/custom/style-responsive.css') }}" rel="stylesheet">
@@ -42,9 +42,9 @@
           margin-top: 60px;
           padding-top: 10px;
         }
-        @show         
+        @show
         </style>
-        
+
         <!-- Put these JS files up here for datatable-->
         <script src="{{ asset('assets/js/jquery.1.10.2.min.js') }}"></script>
         <script type="text/javascript" src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
@@ -80,54 +80,55 @@
 		            <a href="/" class="logo"><b>ISC Database</b></a>
 		            <!--logo end-->
 		            <div class="nav notify-row" id="top_menu">
-		
+
 		            </div>
-		            <div class="top-menu">            	
-		            	
+		            <div class="top-menu">
+
 		            	<ul class="nav pull-right top-menu">
 		                    @if (Sentry::check())
 		                     <li><a class="logout"  href="{{ route('logout') }}"><i class="icon-off"></i> Logout</a></li>
 		                     @endif
 		            	</ul>
-		            			            	          
+
 		            </div>
 		        </header>
 		      <!--header end-->
-		
+
 		      <!-- **********************************************************************************************************************************************************
 		      MAIN SIDEBAR MENU
 		      *********************************************************************************************************************************************************** -->
 		      <!--sidebar start-->
 		      <aside>
 		          <div id="sidebar"  class="nav-collapse ">
-		              
-		              <!-- sidebar menu start-->		              
+
+		              <!-- sidebar menu start-->
 		              <ul class="sidebar-menu" id="nav-accordion">
 		              @if (Sentry::check())
-		              		
+
 		              	  <p class="centered">
 		              	  	<a href="{{ route('profile') }}"><img width="60" src="{{{ Sentry::getUser()->gravatar() }}}" class="img-circle" /></a>
 		              	  </p>
-		              	  
+
 		              	  <h5 class="centered">Welcome, {{ Sentry::getUser()->first_name }}</h5>
-		
+
 		                  <li class="sub-menu"><a class="{{ (Request::is('dictionary') ? ' active' : '') }}" href="{{ route('dictionary') }}"><i class="fa fa-dashboard"></i><span>Dictionary dashboard</span></a></li>
-		                  
-		                   
-		                   
-		                   
-		                   @if(Sentry::getUser()->hasAccess('admin')) 
+
+
+
+
+		                   @if(Sentry::getUser()->hasAccess('admin'))
 		                   <li class="sub-menu"><a class="{{ (Request::is('admin/licenses') ? ' active' : '') }}" href="{{ URL::to('admin/licenses') }}"><i class="fa fa-unlock-alt"></i><span>Manage licenses</span></a></li>
 		                   @else
 		                   <li class="sub-menu"><a class="{{ (Request::is('create/license') ? ' active' : '') }}" href="{{ route('create/license') }}"><i class="fa fa-unlock-alt"></i><span> Request license</span></a></li>
+                       <li class="sub-menu"><a class="{{ (Request::is('status/license') ? ' active' : '') }}" href="{{ route('status/license') }}"><i class="fa fa-plus-square"></i><span> License request status</span></a></li>
 		                   @endif
-		                   
-		                   
-		                  
-                          @if(Sentry::getUser()->hasAccess('admin'))     
+
+
+
+                          @if(Sentry::getUser()->hasAccess('admin'))
 	                          <li class="sub-menu"><a class="{{ (Request::is('admin/posts*') ? ' active' : '') }}" href="{{ URL::to('admin/posts') }}"><i class="fa fa-th"></i><span>Manage partners</span></a></li>
-	                          <li class="sub-menu"><a class="{{ (Request::is('admin/import*') ? ' active' : '') }}" href="{{ URL::route('import') }}"><i class="fa fa-th"></i><span>Import</span></a></li>
-	              
+	                          <li class="sub-menu"><a class="{{ (Request::is('admin/import*') ? ' active' : '') }}" href="{{ URL::route('import') }}"><i class="fa fa-th"></i><span>Manage imports</span></a></li>
+
 	                          <li class="sub-menu">
 	                              <a class="{{ (Request::is('admin/users*') ? ' active' : '') }} {{ (Request::is('admin/groups*') ? ' active' : '') }}" href="{{ URL::to('admin/users') }}">
 	                                  <i class="fa fa-users"></i>
@@ -138,9 +139,9 @@
 	                                  <li{{ (Request::is('admin/groups*') ? ' class="active"' : '') }}><a href="{{ URL::to('admin/groups') }}">Groups</a></li>
 	                              </ul>
 	                          </li>
-                          @endif	                  
-		                  
-		                  
+                          @endif
+
+
 		                  <li class="sub-menu">
 								<a class="{{ (Request::is('account*') ? ' active' : '') }}" href="{{ route('account') }}" >
 								    <i class="fa fa-cogs"></i>
@@ -152,76 +153,76 @@
 		                          <li{{ Request::is('account/change-email') ? ' class="active"' : '' }}><a href="{{ URL::route('change-email') }}">Change Email</a></li>
 		                      </ul>
 		                  </li>
-		                  
 
 
 
-		
+
+
 					  @endif
-					  
-					  
+
+
 					  <li class="sub-menu {{ (Request::is('faq') ? ' active' : '') }}"><a href="{{ URL::to('faq') }}"><i class="fa fa-tasks"></i><span>FAQ</span></a></li>
 					  <li class="sub-menu"><a href="{{ URL::to('about-us') }}"><i class="fa fa-user"></i><span>About us</span></a></li>
 					  <li class="sub-menu"><a href="{{ URL::to('contact-us') }}"><i class="fa fa-envelope"></i><span>Contact us</span></a></li>
 					  <li class="sub-menu"><a href="/"><i class="fa fa-home"></i> <span>Homepage</span></a></li>
-					  
-		              </ul>		              
+
+		              </ul>
 		              <!-- sidebar menu end-->
-		              
+
 		          </div>
 		      </aside>
 		      <!--sidebar end-->
-		
+
 		      <!-- **********************************************************************************************************************************************************
 		      MAIN CONTENT
 		      *********************************************************************************************************************************************************** -->
 		      <!--main content start-->
 		      <section id="main-content">
-		          <section class="wrapper">         
-		          
+		          <section class="wrapper">
+
 		              <!-- Notifications -->
 		              @include('frontend/notifications')
-		          
+
 		              <!-- Content -->
 		              @yield('content')
-		          	
+
 				</section><! --/wrapper -->
 		      </section><!-- /MAIN CONTENT -->
-		
+
 		      <!--main content end-->
-		
+
 		  </section>
-   
+
 
 
 
         <!-- Javascripts
         ================================================== -->
-        
+
         <script src="{{ asset('assets/js/bootstrap/bootstrap.min.js') }}"></script>
-        
+
         	<!--new-->
             <script type="text/javascript" src="{{ asset('assets/js/custom/jquery.dcjqaccordion.2.7.js') }}"></script>
             <script type="text/javascript" src="{{ asset('assets/js/custom/jquery.scrollTo.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('assets/js/custom/jquery.nicescroll.js') }}"></script>
-            
-        
-        
+
+
+
             <!--common script for all pages-->
             <script type="text/javascript" src="{{ asset('assets/js/custom/common-scripts.js') }}"></script>
-        
+
             <!--script for this page-->
         	<script type="text/javascript" src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
             <script type="text/javascript" src="{{ asset('assets/js/custom/tasks.js') }}"></script>
             <script type="text/javascript" src="{{ asset('assets/js/custom/modal.js') }}"></script>
-            
-            
-        
+
+
+
 
           <!--/new-->
-        
-        
-        
+
+
+
         @section('body_bottom')
         @show
     </body>

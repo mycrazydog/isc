@@ -11,4 +11,3 @@ class ImportPreview extends Eloquent{
 	protected $table = 'tbl_temp_measurement';
 
 }
-
