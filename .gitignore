@@ -5,3 +5,4 @@ composer.phar
 .DS_Store
 app/config/local/*.php
 app/storage
+temp
