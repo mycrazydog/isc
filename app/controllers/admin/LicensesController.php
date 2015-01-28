@@ -34,7 +34,9 @@ class LicensesController extends AdminController
         $licenses = $this->license->orderBy('created_at', 'DESC')->paginate(10);
 
         // Show the page
-        return View::make('backend/licenses/index', compact('licenses'));
+        //return View::make('backend/licenses/index', compact('licenses'));
+        //temporary
+        return View::make('backend/licenses/welcome');
     }
 
 
@@ -48,7 +50,7 @@ class LicensesController extends AdminController
       return View::make('backend/licenses/welcome');
     }
 
-    
+
 
     /**
      * Blog license create.
