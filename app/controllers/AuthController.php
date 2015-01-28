@@ -52,7 +52,7 @@ class AuthController extends BaseController
 
             // Redirect to the users page
             //return Redirect::to($redirect)->with('success', Lang::get('auth/message.signin.success'));
-            return Redirect::to("/admin/dictionary")->with('success', Lang::get('auth/message.signin.success'));
+            return Redirect::to("/admin/welcome")->with('success', Lang::get('auth/message.signin.success'));
         } catch (Cartalyst\Sentry\Users\UserNotFoundException $e) {
             $this->messageBag->add('email', Lang::get('auth/message.account_not_found'));
         } catch (Cartalyst\Sentry\Users\UserNotActivatedException $e) {
@@ -98,6 +98,13 @@ class AuthController extends BaseController
             'email_confirm'    => 'required|email|same:email',
             'password'         => 'required|between:3,32',
             'password_confirm' => 'required|same:password',
+
+            'evaluate' => 'required',
+            'responsible' => 'required',
+            'confidential' => 'required',
+            'irb' => 'required',
+            'benefit' => 'required',
+            'credentials' => 'required',
         );
 
         // Create a new validator instance from our validation rules
@@ -129,6 +136,29 @@ class AuthController extends BaseController
                 $m->to($user->email, $user->first_name . ' ' . $user->last_name);
                 $m->subject('Welcome ' . $user->first_name);
             });
+
+
+            /***** SUCCESSFUL Register now insert userTerms ******/
+            $terms_entry = array(
+              'user_id'       => $user->id,
+              'funding'       => e(Input::get('funding')),
+              'policy'        => e(Input::get('policy')),
+              'program'      	=> e(Input::get('program')),
+              'evaluate'      => e(Input::get('evaluate')),
+              'responsible'  	=> e(Input::get('responsible')),
+              'confidential'  => e(Input::get('confidential')),
+              'irb'           => e(Input::get('irb')),
+              'benefit'       => e(Input::get('benefit')),
+              'credentials'		=> e(Input::get('credentials')),
+              'website'     	=> e(Input::get('website'))
+            );
+
+            DB::table('userTerms')->insert($terms_entry);
+            /***********/
+
+
+
+
 
             // Redirect to the home page with sucess menu
             return Redirect::to("auth/signin")->with('success', Lang::get('auth/message.signup.success'));

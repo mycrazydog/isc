@@ -37,6 +37,19 @@ class LicensesController extends AdminController
         return View::make('backend/licenses/index', compact('licenses'));
     }
 
+
+    /**
+    * Blog license welcome.
+    *
+    * @return View
+    */
+    public function getWelcome()
+    {
+      return View::make('backend/licenses/welcome');
+    }
+
+    
+
     /**
      * Blog license create.
      *

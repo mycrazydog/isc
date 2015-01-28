@@ -13,11 +13,13 @@
 	<div class="intro-text">
 		<!-- Notifications -->
 		    @include('frontend/notifications')
-		
+
 	    <div class="intro-lead-in">Welcome to The Institute for Social Capital<br/> Database Information Portal</div>
 	    <div  class="intro-heading" style="font-size:23px;line-height:40px;">Our online information portal where you can access our data dictionary and download our data license request form. </div>
-	    <a href="{{ route('partners') }}" class="page-scroll btn btn-xl btn-yellow">Partners</a>
-	    <a href="{{ route('signup') }}" class="page-scroll btn btn-green btn-xl">Request access</a>
+
+
+			<a href="" data-toggle="modal" data-target="#login_confirm" class="page-scroll btn btn-yellow btn-xl">Access codebook</a>
+
 	</div>
 
 @stop
@@ -42,7 +44,7 @@
                 <div class="col-md-4">
                     <span class="fa-stack fa-4x">
                         <i class="fa fa-circle fa-stack-2x text-green"></i>
-                        <i class="fa fa-shopping-cart fa-stack-1x fa-inverse"></i>
+                        <i class="fa fa-cubes fa-stack-1x fa-inverse"></i>
                     </span>
                     <h4 class="service-heading">The value of data sharing</h4>
                     <p class="text-muted">To best serve vulnerable individuals within our community, we must communicate across the silos of data created by governmental and community agencies.
@@ -70,4 +72,94 @@ The ISC Data and Research Oversight Committee (DAROC) always includes a member o
     </section>
 
 
+@stop
+
+
+{{-- Body Bottom confirm modal --}}
+@section('body_bottom')
+<div class="modal fade" id="login_confirm" tabindex="-1" role="dialog" aria-labelledby="user_login_confirm_title" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+
+			<div class="modal-header">
+				<button aria-hidden="true" data-dismiss="modal" class="close" type="button">×</button>
+				<h4 class="modal-title">Access codebook</h4>
+			</div>
+
+
+
+
+
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-lg-12 text-center">
+						<p><a href="{{ route('signup') }}" class="page-scroll btn btn-yellow btn-xl">Request access</a></p>
+					</div>
+				</div>
+
+				<div class="row">
+
+					<hr>
+
+					<div class="col-lg-12 text-center">
+						<p>Already have an account? Then please sign in below.</p>
+				  </div>
+
+					<form class="form-horizontal" role="form" method="post" action="{{ route('signin') }}">
+
+						<!-- CSRF Token -->
+						<input type="hidden" name="_token" value="{{ csrf_token() }}" />
+
+						<!-- Email -->
+						<div class="form-group {{ $errors->first('email', 'has-error') }}">
+							<label for="email" class="col-sm-2 control-label">@lang('account/form.email')</label>
+							<div class="col-sm-4">
+								<input type="email" class="form-control" name="email" id="email" value="{{ Input::old('email') }}">
+							</div>
+							<div class="col-sm-4">
+								{{ $errors->first('email', '<span class="help-block">:message</span>') }}
+							</div>
+						</div>
+
+						<!-- Password -->
+						<div class="form-group {{ $errors->first('password', 'has-error') }}">
+							<label for="password" class="col-sm-2 control-label">@lang('account/form.password')</label>
+							<div class="col-sm-4">
+								<input type="password" class="form-control" name="password" id="password">
+							</div>
+							<div class="col-sm-4">
+								{{ $errors->first('password', '<span class="help-block">:message</span>') }}
+							</div>
+						</div>
+
+						<!-- Remember me -->
+						<div class="checkbox">
+							<div class="col-sm-2">
+							</div>
+							<label for="remember-me">
+								<input type="checkbox" name="remember-me" id="remember-me" value="1" /> @lang('button.rememberme')
+							</label>
+						</div>
+
+						<hr/>
+
+						<!-- Form actions -->
+						<div class="form-group">
+							<div class="col-sm-offset-2 col-sm-10">
+								<button type="submit" class="btn btn-default">@lang('button.signin')</button>
+								<a href="{{ route('forgot-password') }}" class="btn btn-link">@lang('button.forgotpassword')</a>
+							</div>
+
+						</div>
+
+					</form>
+
+				</div>
+			</div><!--modal-body-->
+
+
+		</div>
+	</div>
+</div>
+<script>$(function () {$('body').on('hidden.bs.modal', '.modal', function () {$(this).removeData('bs.modal');});});</script>
 @stop

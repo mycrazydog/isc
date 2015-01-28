@@ -28,21 +28,27 @@
 @section('content')
 <h3>{{{ $post->title }}}</h3>
 
+
+
 <div class="row">
 
-				<div class="col-lg-6">
-          			<div class="form-panel">
-                  	  <h4 class="mb"><i class="fa fa-angle-right"></i> Profile</h4>
+				<div class="col-xs-2 col-min">
+        	<div class="form-panel">
 
-						<div class="row">
-						<div class="col-sm-4 col-xs-4 ">
 							@if ($post->img())
-							<img class="media-object" src="/logos/{{{ $post->filePartnerLogo }}}" alt="{{{ $post->filePartnerLogo }}}" style="width: 200px;">
+							<img class="img-responsive" src="/logos/{{{ $post->filePartnerLogo }}}" alt="{{{ $post->filePartnerLogo }}}">
 							@endif
 							<br/>
 							<a class="btn btn-primary" href="{{{ $post->partnerwebsite }}}" target="_blank">visit website</a>
-						</div>
-						<div class="col-sm-8 col-xs-8">
+
+
+
+          	</div><!-- /form-panel -->
+          </div>
+
+					<div class="col-xs-3 col-min">
+						<div class="form-panel">
+
 							<h5><i class="fa fa-angle-right"></i> Status</h5>
 							<span class="label label-info">{{{ Status::find($post->status_id)->status }}}</span>
 
@@ -50,21 +56,19 @@
 							<h5><i class="fa fa-angle-right"></i> Years Available</h5>
 							{{{ $post->yearsavailable }}}
 
-						</div>
-						</div>
+						</div><!-- /form-panel -->
+					</div>
 
 
-          			</div><!-- /form-panel -->
-          		</div>
-
-				<div class="col-lg-6">
-						<div class="form-panel">
-				  	  <h4 class="mb"><i class="fa fa-angle-right"></i> Partner Desciptions</h4>
-				      <p>{{ nl2br(e($post->content())) }}</p>
-					</div><!-- /form-panel -->
-				</div>
+					<div class="col-xs-7">
+							<div class="form-panel">
+					  	  <h4 class="mb"><i class="fa fa-angle-right"></i> Depositor Description</h4>
+					      <p>{{ nl2br(e($post->content())) }}</p>
+						</div><!-- /form-panel -->
+					</div>
 
 </div>
+
 
 
 <div class="row">
@@ -117,8 +121,6 @@ http://stackoverflow.com/questions/10626885/passing-data-to-a-bootstrap-modal
 						<table id="exampleTable" class="display" cellspacing="0" width="100%">
 					        <thead>
 					            <tr>
-					                <th>Table Name</th>
-					                <th>Column Name</th>
 					                <th>Data Value</th>
 													<th>Data Type</th>
 					            </tr>
@@ -133,7 +135,7 @@ http://stackoverflow.com/questions/10626885/passing-data-to-a-bootstrap-modal
 		</div>
 		<!--END MODAL BOX -->
 
-	<h4 class="mb"><i class="fa fa-angle-right"></i> Partner data</h4>
+	<h4 class="mb"><i class="fa fa-angle-right"></i> Depositor data</h4>
 	<!--<a href="{{ route('update/post', $post->id) }}"><span class="glyphicon glyphicon-pencil"></span></a><br/>-->
 
 	<?php
@@ -143,7 +145,7 @@ http://stackoverflow.com/questions/10626885/passing-data-to-a-bootstrap-modal
 	//echo $partner_id.'-----'.$ajaxRouteToTableData;
 	?>
 	{{ Datatable::table()
-	   ->addColumn('Table name', 'Fields', 'Data Type', 'Max Length', 'Complete', 'Total Rows', '% Complete', '')
+	   ->addColumn('Fields', 'Data Type <a title="This is a sentance explaining the difference between numeric and nvarchar"><i class="fa fa-question-circle"></i></a>', 'Max Length', 'Complete', 'Total Rows', '% Complete', '')
 	   ->setOptions('AutoWidth', false)
 	   ->setUrl(route($ajaxRouteToTableData, $partner_id))
 	   ->render() }}

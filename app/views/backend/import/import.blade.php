@@ -71,7 +71,7 @@
 
       <!--Status-->
       <div class="form-group {{ $errors->first('partner_id', 'has-error') }}">
-          <label for="partner_id" class="col-sm-3 control-label">Select partner</label>
+          <label for="partner_id" class="col-sm-3 control-label">Select depositor</label>
               <div class="col-sm-5">
               	{{ Form::select('partner_id', $partner_options , Input::old('partner_id'), ['id' => 'partner_id', 'class' => 'form-control']) }}
 

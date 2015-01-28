@@ -11,7 +11,7 @@ Contact us ::
 @section('header')
 	<div class="page-topper">
 		<!-- Notifications -->
-		@include('frontend/notifications')                
+		@include('frontend/notifications')
 	</div>
 @stop
 
@@ -22,8 +22,38 @@ Contact us ::
     <h3>Contact us</h3>
 </div>
 
-<form class="form-horizontal" role="form" method="post" action="">
-<!-- CSRF Token -->
+
+
+<div class="contact-links">
+
+	<p><strong>Amy Hawn Nelson</strong><br>
+	Director<br>
+	<a href="mailto:Amy.hawn.nelson@uncc.edu">amy.hawn.nelson@uncc.edu</a>
+	704-687-1197</p>
+
+	<p><strong>Ashley Clark</strong><br>
+	Data and Research Coordinator<br>
+	<a href="mailto:ashley.clark@uncc.edu">ashley.clark@uncc.edu</a>	704-687-1193</p>
+
+	<p><strong>David Hill</strong><br>
+	Research Associate/ Database Administrator<br>
+	<a href="mailto:dchill@uncc.edu">dchill@uncc.edu</a>	704-687-1190</p>
+
+	<p><strong>Diane Gavarkavich</strong><br/>
+		Data and Research Specialist<br>
+		<a href="mailto:D.Gavarkavich@uncc.edu">D.Gavarkavich@uncc.edu</a>		704.687.1194</p>
+
+
+	<p><strong>Ida Stavenger</strong><br>
+	Business Services Coordinator<br>
+	<a href="mailto:imstaven@uncc.edu?subject=ISC">imstaven@uncc.edu</a>	704-687-1208</p>
+
+</div>
+
+
+
+<!--<f class="form-horizontal" role="form" method="pt" action="">
+
 <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
     <div class="form-group {{ $errors->first('name', 'has-error') }}">
@@ -60,5 +90,5 @@ Contact us ::
         </div>
     </div>
 
-</form>
+</f-->
 @stop

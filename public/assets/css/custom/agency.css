@@ -35,7 +35,7 @@ a.active {
 }
 
 a {
-    color: #00703C;
+    color: #286d40;
 }
 
 a:hover,
@@ -127,12 +127,12 @@ fieldset[disabled] .btn-primary.active {
 }
 
 .btn-green{
-  border-color: #00703C;
-  background-color: #00703C;
+  border-color: #286d40;
+  background-color: #286d40;
 }
 
 .text-green {
-    color: #00703C;
+    color: #286d40;
 }
 
 
@@ -153,7 +153,7 @@ fieldset[disabled] .btn-primary.active {
 .btn-xl:active,
 .btn-xl.active,
 .open .dropdown-toggle.btn-xl {
-    border-color: #00703C;
+    border-color: #286d40;
     color: #fff;
     background-color: #F0CB00;
 }
@@ -273,7 +273,7 @@ fieldset[disabled] .btn-xl.active {
 
     .navbar-default.navbar-shrink {
         padding: 10px 0;
-        background-color: #00703C;
+        background-color: #286d40;
     }
 
     .navbar-default.navbar-shrink .navbar-brand {
@@ -743,7 +743,7 @@ section#contact .text-danger {
 }
 
 footer {
-	background: none repeat scroll 0 0 #00703C;
+	background: none repeat scroll 0 0 #286d40;
     color: #fff;
     padding: 25px 0;
     text-align: center;

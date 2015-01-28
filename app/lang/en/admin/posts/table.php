@@ -8,6 +8,6 @@ return array(
 
     'comments'   => '# of Comments',
     'created_at' => 'Created at',
-    'title'      => 'Partner Title',
+    'title'      => 'Depositor',
 
 );

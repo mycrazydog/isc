@@ -11,6 +11,11 @@
 
 Route::group(array('prefix' => 'admin', 'before' => 'auth'), function () {
 
+	# Welcome
+	Route::group(array('prefix' => 'welcome'), function () {
+		Route::get('/', array('as' => 'welcome', 'uses' => 'WelcomeController@getIndex'));
+	});
+
 	# Dictionary
 	Route::group(array('prefix' => 'dictionary'), function () {
 		Route::get('/', array('as' => 'dictionary', 'uses' => 'PostController@getIndex'));
@@ -55,8 +60,11 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function () {
     Route::group(array('prefix' => 'licenses'), function () {
         //Make so view only own license
         Route::get('{licenseId}/view', array('as' => 'view-license', 'uses' => 'LicenseController@getView'));
-        Route::get('create', array('as' => 'create/license', 'uses' => 'Controllers\Admin\LicensesController@getCreate'));
-        Route::post('create', 'Controllers\Admin\LicensesController@licenseCreate');
+
+				Route::get('create', array('as' => 'create/license', 'uses' => 'Controllers\Admin\LicensesController@getWelcome'));				
+				//Route::get('create', array('as' => 'create/license', 'uses' => 'Controllers\Admin\LicensesController@getCreate'));
+				Route::post('create', 'Controllers\Admin\LicensesController@licenseCreate');
+
 				Route::get('/status', array('as' => 'status/license', 'uses' => 'Controllers\Admin\LicensesController@getStatus'));
     });
     Route::group(array('prefix' => 'licenses', 'before' => 'admin-auth'), function () {

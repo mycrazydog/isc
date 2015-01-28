@@ -14,8 +14,12 @@ class ImportForm extends Eloquent{
 
 
 	public static $rules = array(
-		
+
 	);
+
+
+
+
 
 	public static function validate($data) {
 
@@ -50,5 +54,20 @@ class ImportForm extends Eloquent{
 		return Validator::make($data, static::$rules,$messages);
 
 	}
+
+	public function getCompleteAttribute($value)
+	{
+
+		return number_format($value);
+	}
+
+	public function getTotalRowsAttribute($value)
+	{
+
+		return number_format($value);
+	}
+
+
+
 
 }

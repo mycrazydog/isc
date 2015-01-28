@@ -12,7 +12,7 @@ return array(
     'save'	  			=> 'Save',
     'submit'	  		=> 'Submit',
     'cancel'  			=> 'Cancel',
-    'create'  			=> 'Create partner',
+    'create'  			=> 'Create',
     'back'    			=> 'Back',
     'signin'  			=> 'Sign in',
     'forgotpassword' 	=> 'I forgot my password',

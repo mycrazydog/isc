@@ -11,6 +11,7 @@
 // });
 
 
+
 $(document).on("click", ".open-DetailDialog", function () {
      var myId = $(this).data('id');
      var myColumn = $(this).data('column');
@@ -24,6 +25,7 @@ $(document).on("click", ".open-DetailDialog", function () {
 		table = $('#exampleTable').DataTable();
 		table.destroy();
 
+    $('#DetailModalLabel').text(myColumn);
 
 		table = $('#exampleTable').DataTable({
 		    "language": {"emptyTable": "No data available for column:"+myColumn},
@@ -32,9 +34,7 @@ $(document).on("click", ".open-DetailDialog", function () {
 		    "searching": false,
 		    "ajax": dataURL,
 		    "columns": [
-		       { "title": "Table name" },
-		       { "title": "Fields" },
-            { "title": "Value" },
+          { "title": "Value" },
           { "title": "Type" }
 		     ]
 		});

@@ -24,7 +24,7 @@
     <thead>
         <tr>
             <th class="span1">Batch Id</th>
-            <th class="span1">Partner</th>
+            <th class="span1">Depositor</th>
             <th class="span6">Description</th>
             <th class="span2"></th>
         </tr>

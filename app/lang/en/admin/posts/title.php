@@ -6,8 +6,8 @@
 
 return array(
 
-    'blogmanagement'	=> 'Manage partners',
-    'create'			=> 'Create New Partner',
-    'edit' 				=> 'Edit Partner',
+    'blogmanagement'	=> 'Manage depositors',
+    'create'			=> 'Create New depositor',
+    'edit' 				=> 'Edit depositor',
 
 );

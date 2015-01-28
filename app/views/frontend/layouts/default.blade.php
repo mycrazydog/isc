@@ -21,6 +21,10 @@
         ================================================== -->
         <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
         <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+        <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+        <link href='http://fonts.googleapis.com/css?family=Kaushan+Script' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
+        <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
         <!-- Custom styles for this template -->
         <link href="{{ asset('assets/css/custom/style.css') }}" rel="stylesheet">
@@ -49,6 +53,7 @@
         <script src="{{ asset('assets/js/jquery.1.10.2.min.js') }}"></script>
         <script type="text/javascript" src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
 
+
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
         <!--[if lt IE 9]>
         <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
@@ -74,7 +79,7 @@
 		      <!--header start-->
 		      <header class="header black-bg">
 		              <div class="sidebar-toggle-box">
-		                  <div class="fa fa-bars tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+		                  <div class="fa fa-bars btn-white tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
 		              </div>
 		            <!--logo start-->
 		            <a href="/" class="logo"><b>ISC Database</b></a>
@@ -119,14 +124,14 @@
 		                   @if(Sentry::getUser()->hasAccess('admin'))
 		                   <li class="sub-menu"><a class="{{ (Request::is('admin/licenses') ? ' active' : '') }}" href="{{ URL::to('admin/licenses') }}"><i class="fa fa-unlock-alt"></i><span>Manage licenses</span></a></li>
 		                   @else
-		                   <li class="sub-menu"><a class="{{ (Request::is('create/license') ? ' active' : '') }}" href="{{ route('create/license') }}"><i class="fa fa-unlock-alt"></i><span> Request license</span></a></li>
+		                   <li class="sub-menu"><a class="{{ (Request::is('create/license') ? ' active' : '') }}" href="{{ route('create/license') }}"><i class="fa fa-unlock-alt"></i><span> Request Data License</span></a></li>
                        <li class="sub-menu"><a class="{{ (Request::is('status/license') ? ' active' : '') }}" href="{{ route('status/license') }}"><i class="fa fa-plus-square"></i><span> License request status</span></a></li>
 		                   @endif
 
 
 
                           @if(Sentry::getUser()->hasAccess('admin'))
-	                          <li class="sub-menu"><a class="{{ (Request::is('admin/posts*') ? ' active' : '') }}" href="{{ URL::to('admin/posts') }}"><i class="fa fa-th"></i><span>Manage partners</span></a></li>
+	                          <li class="sub-menu"><a class="{{ (Request::is('admin/posts*') ? ' active' : '') }}" href="{{ URL::to('admin/posts') }}"><i class="fa fa-th"></i><span>Manage depositors</span></a></li>
 	                          <li class="sub-menu"><a class="{{ (Request::is('admin/import*') ? ' active' : '') }}" href="{{ URL::route('import') }}"><i class="fa fa-th"></i><span>Manage imports</span></a></li>
 
 	                          <li class="sub-menu">

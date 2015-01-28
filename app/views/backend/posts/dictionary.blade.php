@@ -3,60 +3,37 @@
 {{-- Page content --}}
 @section('content')
 
+<h3>Data depositors</h3>
 
 
 @if (count($posts))
 
-	@foreach ($statuses as $status)
+<?php
+$ajaxRouteToTableData = 'datatables/statuses';
+?>
 
-
-	<?php
-	//$ajaxRouteToTableData = 'datatables/partner/'.$post->id;
-	$status_id = $status->id;
-	$ajaxRouteToTableData = 'datatables/statuses';
-	//echo $partner_id.'-----'.$ajaxRouteToTableData;
-	$arrWidths = '"width": "50%"';
-
-		if($status_id == 4){
-			$colorByStatus = 'darkgrey';
-		}elseif($status_id == 3){
-			$colorByStatus = 'beige';
-		}elseif($status_id == 2){
-			$colorByStatus = 'grey';
-		}else{
-			$colorByStatus = 'white';
-		}
+<div class="row">
+	<div class="col-lg-12 mb">
+		<div class="white-panel" style="padding: 15px;">
 
 
 
-	?>
 
-
-	<div class="row">
-		<div class="col-lg-12 mb">
-			<div class="{{ $colorByStatus }}-panel" style="padding: 15px;">
-
-			<div class="{{ $colorByStatus }}-header">
-				<h5>{{$status->status}}</h5>
-			</div>
 
 			{{ Datatable::table()
-				->addColumn('Partner','Tags/Topics','Details')
-				->setUrl(route($ajaxRouteToTableData, $status_id))
+				->addColumn('Depositor','Tags/Topics','Deposit Status','Details')
+				->setUrl(route($ajaxRouteToTableData))
 				->setOptions('paging', false)
 				->setOptions('searching', true)
 				->setOptions('info', false)
 				->setOptions('AutoWidth', false)
-				->setOptions('aoColumns', [[ "sWidth"=> "40%" ], [ "sWidth"=> "40%" ], [ "sWidth"=> "20%" ]])
-			  ->render() }}
+				->setOptions('aoColumns', [[ "sWidth"=> "35%" ], [ "sWidth"=> "25%" ], [ "sWidth"=> "25%" ], [ "sWidth"=> "15%" ]])
+				->render() }}
 
 			</div>
 		</div>
 	</div>
 
-	@endforeach
-
-	{{ $posts->links() }}
 
 @else
 	<h1>Oops. That page number is invalid.</h1>

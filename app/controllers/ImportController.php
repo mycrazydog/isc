@@ -3,6 +3,7 @@
 //Maatwebsite\Excel\Excel;
 //Illuminate\Redis\Database;
 
+
 class ImportController extends BaseController
 {
 
@@ -13,6 +14,8 @@ class ImportController extends BaseController
 	{
 		$this->importlog = $importlog;
 	}
+
+
 
 	/**
 	* Show a list of all the blog posts.
@@ -249,12 +252,11 @@ class ImportController extends BaseController
 
 			$data['partner_id'] = $partner_id;
 			Log::info('This is some useful information-'.$partner_id);
-			$collection = DB::table('tabDataParent')->select("table_name as TBL","column_name as CLM", "data_type", "max_length", "complete", "total_rows", "pct_complete", "partner_id")->where('partner_id', '=', $partner_id);
-			//$collection = DB::table('tabDataParent')->select('table_name as Table Name','column_name as Column Name')->get();
+			$collection = ImportForm::select("table_name as TBL","column_name as CLM", "data_type", "max_length", "complete", "total_rows", "pct_complete", "partner_id")->where('partner_id', '=', $partner_id);
 
 			//return Datatable::from(DB::table('tabDataParent')->select('table_name as Table Name','column_name as Column Name'))
 			return Datatable::query($collection)
-			    ->showColumns('TBL', 'CLM', 'data_type', 'max_length', 'complete', 'total_rows', 'pct_complete')
+			    ->showColumns('CLM', 'data_type', 'max_length', 'complete', 'total_rows', 'pct_complete')
 					->addColumn('actived',function($model)
 					{
 
@@ -282,7 +284,7 @@ class ImportController extends BaseController
 
 			//return Datatable::from(DB::table('tabDataParent')->select('table_name as Table Name','column_name as Column Name'))
 			return Datatable::query($collection)
-			        ->showColumns('TBL', 'CLM', 'data_value', 'data_type')
+			        ->showColumns('data_value', 'data_type')
 			        ->make();
 
 			////return Response::json($collection, 200);
@@ -291,26 +293,46 @@ class ImportController extends BaseController
 		}
 
 
-				/**
-				 * Returns data from import to preview
-				 *
-				 */
-				public function getStatusesDatatable($status_id)
-				{
+		/**
+		 * Returns data from import to preview
+		 *
+		 */
+		public function getStatusesDatatable($status_id)
+		{
+			/* OLD WAY
+			$data['status_id'] = $status_id;
+			Log::info('This is some useful information-'.$status_id);
+			$collection = DB::table('posts')->select("title", "tags", "slug")->where('status_id', '=', $status_id);
 
-					$data['status_id'] = $status_id;
-					Log::info('This is some useful information-'.$status_id);
-					$collection = DB::table('posts')->select("title", "tags", "slug")->where('status_id', '=', $status_id);
+			return Datatable::query($collection)
+			        ->showColumns('title', 'tags')
+			        ->addColumn('view',function($model)
+			        {
+			            	return '<a class="open-DetailDialog btn btn-primary" href="'. URL::to('admin/dictionary/'.$model->slug) .'">View codebook</a>';
+			        })
+			        ->make();
+			*/
 
-					return Datatable::query($collection)
-					        ->showColumns('title', 'tags')
-					        ->addColumn('view',function($model)
-					        {
-					            	return '<a class="open-DetailDialog btn btn-primary" href="'. URL::to('admin/dictionary/'.$model->slug) .'">View codebook</a>';
+			/* NEW WAY */
 
-					        })
-					        ->make();
-				}
+
+
+			$collection = DB::table('posts')
+			->join('statuses', 'posts.status_id', '=', 'statuses.id')
+			->select("posts.title", "posts.tags", "statuses.status", "posts.slug")
+			->orderby('statuses.id');
+
+
+			return Datatable::query($collection)
+			->showColumns('title', 'tags', 'status')
+			->addColumn('view',function($model)
+			{
+				return '<a class="open-DetailDialog btn btn-primary" href="'. URL::to('admin/dictionary/'.$model->slug) .'">View codebook</a>';
+			})
+			->make();
+
+
+		}
 
 
 
