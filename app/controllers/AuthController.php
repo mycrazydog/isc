@@ -132,10 +132,10 @@ class AuthController extends BaseController
             );
 
 
-            $fromGlobal = Config::get('mail.from');
+            
             // Send the activation code through email to site admin
             Mail::send('emails.admin-notify-activate', $data, function ($m) use ($user) {
-                $m->to($fromGlobal, $user->first_name . ' ' . $user->last_name);
+                $m->to(Config::get('mail.from'), $user->first_name . ' ' . $user->last_name);
                 $m->subject('Account request - ' . $user->first_name);
             });
 
@@ -206,7 +206,7 @@ class AuthController extends BaseController
                 Mail::send('emails.approved-account', $user, function ($m) use ($user) {
                     $m->to($user->email, $user->first_name . ' ' . $user->last_name);
                     $m->subject('Account approved - ' . $user->first_name);
-                });                
+                });
 
                 // Redirect to the login page
                 return Redirect::route('signin')->with('success', Lang::get('auth/message.activate.success'));
