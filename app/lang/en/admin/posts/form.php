@@ -7,7 +7,7 @@ return array(
 
     'content'  			=> 'Content',
     'yearsavailable'	=> 'Years available',
-    'notescleaning'		=> 'Notes on data cleaning',
+    'notescleaning'		=> 'Notes on data',
     'notessource'		=> 'Notes on data source',
     'notesversion'		=> 'Version notes',
     'general' 			=> 'General',

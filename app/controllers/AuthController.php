@@ -131,11 +131,22 @@ class AuthController extends BaseController
                 'activationUrl' => URL::route('activate', $user->getActivationCode()),
             );
 
-            // Send the activation code through email
+
+            $fromGlobal = Config::get('mail.from');
+            // Send the activation code through email to site admin
+            Mail::send('emails.admin-notify-activate', $data, function ($m) use ($user) {
+                $m->to($fromGlobal, $user->first_name . ' ' . $user->last_name);
+                $m->subject('Account request - ' . $user->first_name);
+            });
+
+            // Send email to user letting know the admin is going to review and activate
             Mail::send('emails.register-activate', $data, function ($m) use ($user) {
                 $m->to($user->email, $user->first_name . ' ' . $user->last_name);
-                $m->subject('Welcome ' . $user->first_name);
+                $m->subject('Pending account request - ' . $user->first_name);
             });
+
+
+
 
 
             /***** SUCCESSFUL Register now insert userTerms ******/
@@ -190,6 +201,13 @@ class AuthController extends BaseController
 
             // Try to activate this user account
             if ($user->attemptActivation($activationCode)) {
+
+                // Send email to user letting know the admin is going to review and activate
+                Mail::send('emails.approved-account', $user, function ($m) use ($user) {
+                    $m->to($user->email, $user->first_name . ' ' . $user->last_name);
+                    $m->subject('Account approved - ' . $user->first_name);
+                });                
+
                 // Redirect to the login page
                 return Redirect::route('signin')->with('success', Lang::get('auth/message.activate.success'));
             }

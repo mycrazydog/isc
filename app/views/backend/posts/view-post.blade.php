@@ -39,7 +39,7 @@
 							<img class="img-responsive" src="/logos/{{{ $post->filePartnerLogo }}}" alt="{{{ $post->filePartnerLogo }}}">
 							@endif
 							<br/>
-							<a class="btn btn-primary" href="{{{ $post->partnerwebsite }}}" target="_blank">visit website</a>
+							<a class="btn btn-primary" href="{{{ $post->partnerwebsite }}}" target="_blank">visit website <i class="fa fa-share"></i></a>
 
 
 
@@ -50,7 +50,7 @@
 						<div class="form-panel">
 
 							<h5><i class="fa fa-angle-right"></i> Status</h5>
-							<span class="label label-info">{{{ Status::find($post->status_id)->status }}}</span>
+							<span class="btn btn-round btn-info">{{{ Status::find($post->status_id)->status }}}</span>
 
 							<br/><br/>
 							<h5><i class="fa fa-angle-right"></i> Years Available</h5>
@@ -81,7 +81,7 @@
 						</div>
 
 						<div class="form-group">
-					  	  <h4 class="mb"><i class="fa fa-angle-right"></i> Notes on data cleaning</h4>
+					  	  <h4 class="mb"><i class="fa fa-angle-right"></i> Notes on data</h4>
 					     <p>{{ nl2br(e($post->notescleaning)) }}</p>
 					    </div>
 
