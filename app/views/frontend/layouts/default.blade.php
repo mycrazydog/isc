@@ -124,7 +124,7 @@
 		                   @if(Sentry::getUser()->hasAccess('admin'))
 		                   <li class="sub-menu"><a class="{{ (Request::is('admin/licenses') ? ' active' : '') }}" href="{{ URL::to('admin/licenses') }}"><i class="fa fa-unlock-alt"></i><span>Manage licenses</span></a></li>
 		                   @else
-		                   <li class="sub-menu"><a class="{{ (Request::is('create/license') ? ' active' : '') }}" href="{{ route('create/license') }}"><i class="fa fa-unlock-alt"></i><span> Request Data License</span></a></li>
+		                   <li class="sub-menu"><a class="{{ (Request::is('download/license') ? ' active' : '') }}" href="{{ route('download/license') }}"><i class="fa fa-unlock-alt"></i><span> Request Data License</span></a></li>
                        <li class="sub-menu"><a class="{{ (Request::is('status/license') ? ' active' : '') }}" href="{{ route('status/license') }}"><i class="fa fa-plus-square"></i><span> License request status</span></a></li>
 		                   @endif
 

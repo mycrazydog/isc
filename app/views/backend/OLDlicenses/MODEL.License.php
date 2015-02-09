@@ -3,7 +3,7 @@
 class License extends Elegant
 {
     protected $rules = array(
-            'title'   => 'required|min:3',
+            'initial'   => 'required|min:3',
     );
 
     /**
@@ -54,5 +54,10 @@ class License extends Elegant
       //return $this->belongsTo('User', 'user_id');
       return $this->belongsToMany('Post');
     }
+
+
+
+
+
 
 }

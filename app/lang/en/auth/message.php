@@ -19,7 +19,7 @@ return array(
 
     'signup' => array(
         'error'   => 'There was a problem while trying to create your account, please try again.',
-        'success' => 'Account sucessfully created.',
+        'success' => 'Account request successfully sent. We are reviewing your account and will email you if your account is approved to access the codebook.',
     ),
 
         'forgot-password' => array(
@@ -34,7 +34,7 @@ return array(
 
     'activate' => array(
         'error'   => 'There was a problem while trying to activate your account, please try again.',
-        'success' => 'Your account has been successfully activated.',
+        'success' => 'The account has been successfully activated.',
     ),
 
 );

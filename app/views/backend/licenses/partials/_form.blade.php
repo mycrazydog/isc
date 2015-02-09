@@ -4,99 +4,106 @@
         <!-- General tab -->
         <div class="tab-pane active" id="tab-general">
 
-            @if(Sentry::getUser()->hasAccess('admin'))
-            <h4>Requesting User: <strong>{{ Sentry::findUserById($license->user_id)->first_name  }} {{ Sentry::findUserById($license->user_id)->last_name }}</strong></h4>
-            <div class="row">
 
-
-            	<div class="col-lg-11">
-		            <div class="alert alert-info {{ $errors->first('licensestatus', 'has-error') }}">
-		            	<h4 class="mb">License status</h4>
-		                    {{ Form::select('licensestatus', array('Approved' => 'Approved', 'Processing' => 'Processing', 'Submitted' => 'Submitted', 'Denied' => 'Denied'), null, array('id' => 'licensestatus', 'class' => 'form-control')) }}
-		                    {{ $errors->first('licensestatus', '<span class="help-block">:message</span>') }}
-		            </div>
-		        </div>
-		        <div class="col-lg-1"></div>
-
-            </div>
-            @endif
-
-
-
-            <h4>Improving the process or outcomes</h4>
-            <p>The proposed project will provide some direction for improving the process or outcomes that the Charlotte Mecklenburg community can use for</p>
-
-            <div class="form-group {{ $errors->first('funding', 'has-error') }}">
-                    <div class="col-sm-1"></div>
-                    <div class="col-sm-11">
-                     {{ Form::checkbox('funding', true) }} funding<br/>
-                     {{ Form::checkbox('policy', true) }} policy<br/>
-                     {{ Form::checkbox('program', true) }} program
-
-                    {{ $errors->first('funding', '<span class="help-block">:message</span>') }}
-                    </div>
-            </div>
-
-			<hr/>
-			<h4> Terms and Conditions of Use</h4>
-
-			<div class="form-group {{ $errors->first('evaluate', 'has-error') }}">
-			        <div class="col-sm-1">Agree: {{ Form::checkbox('evaluate') }}</div>
+			<h4> Study details</h4>
+			
+			<div class="form-group {{ $errors->first('title', 'has-error') }}">
+			        <label for="title" class="col-sm-1 control-label">Study title</label>
 			        <div class="col-sm-10">
-			        <p><strong>Critically Evaluative Research</strong> Proposed, in-progress, or completed research will be considered “critically evaluative” if, in the sole discretion of the DAROC, the primary purpose or a reasonable consequence of the research will be evaluation of how effective a Partner Agency or a specific program of a Partner Agency is, rather than evaluation of the overall well-being of children or effectiveness of intervention strategies and approaches more broadly. •	If a submitted data request is deemed “Critically Evaluative,” the research proposal will be submitted to DAROC for consideration and will be distributed to all members of the Data Depositors Council no later than one (1) week in advance of the DAROC meeting at which the proposal is reviewed. This research proposal information will contain the name of the project, the names and affiliations of the investigators, and the project abstract. •	DAROC will notify the primary contact at a Subject Agency, as identified in the datasharing agreement, upon the earliest indication, during request, research review or publication, of the specific research effort identified as critically evaluative. A Subject Agency has a right to review and respond to the critically evaluative research prior to publication.</p>
-			        {{ $errors->first('evaluate', '<span class="help-block">:message</span>') }}
+			        {{ Form::text('title', null, ['class' => 'form-control']) }}
+			        {{ $errors->first('title', '<span class="help-block">:message</span>') }}
 			        </div>
 			</div>
+			
+	      <div class="form-group {{ $errors->first('user_id', 'has-error') }}">
+	          	<div class="col-sm-1">Select user:</div>
+	            <div class="col-sm-9">
+	              	{{ Form::select('user_id', $user_options , Input::old('user_id'), ['id' => 'user_id', 'class' => 'form-control']) }}
 
-			<div class="form-group {{ $errors->first('responsible', 'has-error') }}">
-			        <div class="col-sm-1">Agree: {{ Form::checkbox('responsible') }}</div>
-			        <div class="col-sm-10">
-			        <p><strong>Researcher responsibilities before disseminating results</strong> Specific guidelines are required of the researcher before disseminating any results in any form,including publication and presentation. For further details, please see the “Requirements for Dissemination” section within the Frequently Asked Questions (FAQs). </p>
-			        {{ $errors->first('responsible', '<span class="help-block">:message</span>') }}
-			        </div>
-			</div>
-
-			<div class="form-group {{ $errors->first('confidential', 'has-error') }}">
-			        <div class="col-sm-1">Agree: {{ Form::checkbox('confidential') }}</div>
-			        <div class="col-sm-10">
-			        <p><strong>Privacy and Confidentiality</strong> Data released to the researcher must be kept secure and is not to be shared with unauthorized persons. Only de-identified data will be released pursuant to a written Limited Data License. Researchers must comply with all license provisions</p>
-			        {{ $errors->first('confidential', '<span class="help-block">:message</span>') }}
-			        </div>
-			</div>
+	                {{ $errors->first('user_id', '<span class="help-block">:message</span>') }}
+	            </div>
+	      </div>
 
 			<div class="form-group {{ $errors->first('irb', 'has-error') }}">
-			        <div class="col-sm-1">Agree: {{ Form::checkbox('irb') }}</div>
+			        <div class="col-sm-1">IRB approved:</div>
 			        <div class="col-sm-10">
-			        <p><strong>IRB Approval</strong> DAROC will not approve any data request for human subjects research unless the research has been reviewed and approved by a qualified Institutional Review Board (IRB).</p>
+			        {{ Form::select('irb', array('Approved' => 'Approved', 'Processing' => 'Processing', 'Submitted' => 'Submitted', 'Denied' => 'Denied', 'N/A' => 'N/A'), null, array('id' => 'irb', 'class' => 'form-control')) }}			        
 			        {{ $errors->first('irb', '<span class="help-block">:message</span>') }}
 			        </div>
 			</div>
-
-			<div class="form-group {{ $errors->first('benefit', 'has-error') }}">
-			        <div class="col-sm-1">Agree: {{ Form::checkbox('benefit') }}</div>
+			
+			<div class="form-group {{ $errors->first('investigator', 'has-error') }}">
+			        <div class="col-sm-1">Data license request and investigator checklist submitted:</div>
 			        <div class="col-sm-10">
-			        <p><strong>Benefit to the community and the common good</strong> Data requests should provide reasonable potential to benefit the community and the common good. Reasonable benefit to the community and the common good includes any research questions that, when answered, provides some direction for improving processes or outcomes for human service delivery, funding priorities, or policy development. The common good also includes the benefit of developing new knowledge and efforts leading to the development of evidence-based practice.</p>
-			        {{ $errors->first('benefit', '<span class="help-block">:message</span>') }}
+			        {{ Form::select('investigator', array('Approved' => 'Approved', 'Processing' => 'Processing', 'Submitted' => 'Submitted', 'Denied' => 'Denied', 'N/A' => 'N/A'), null, array('id' => 'investigator', 'class' => 'form-control')) }}			        
+			        {{ $errors->first('investigator', '<span class="help-block">:message</span>') }}
 			        </div>
 			</div>
-
-			<div class="form-group {{ $errors->first('credentials', 'has-error') }}">
-			        <div class="col-sm-1">Agree: {{ Form::checkbox('credentials') }}</div>
+			
+			<div class="form-group {{ $errors->first('reviewer', 'has-error') }}">
+			        <div class="col-sm-1">Reviewers' checklists completed:</div>
 			        <div class="col-sm-10">
-			        <p><strong>Researcher Credentials</strong> The Institute for Social Capital’s Data Research and Oversight Committee (DAROC) will review researcher’s credentials to determine whether the investigator(s) have the appropriate credentials to conduct the proposed research plan before releasing any data. • Credentials for all investigators must be evidenced by appropriate documentation (i.e., curriculum vitae). • Data can only be released to an appropriate agent from one of the following institutions: o An institution of higher education; o A Partner Agency; o An organization funding services and programs related to the Institute’s mission; or o A direct service provider that provides services related to the Institute’s mission.</p>
-			        {{ $errors->first('credentials', '<span class="help-block">:message</span>') }}
+			        {{ Form::select('reviewer', array('Approved' => 'Approved', 'Processing' => 'Processing', 'Submitted' => 'Submitted', 'Denied' => 'Denied', 'N/A' => 'N/A'), null, array('id' => 'reviewer', 'class' => 'form-control')) }}			        
+			        {{ $errors->first('reviewer', '<span class="help-block">:message</span>') }}
 			        </div>
 			</div>
-
-
-			<div class="form-group {{ $errors->first('initial', 'has-error') }}">
-			        <label for="initial" class="col-sm-1 control-label">Requesting User's Website</label>
+			
+			<div class="form-group {{ $errors->first('vote', 'has-error') }}">
+			        <div class="col-sm-1">DAROC vote approval:</div>
 			        <div class="col-sm-10">
-			         {{ Form::text('initial', null, ['class' => 'form-control']) }}
-			        {{ $errors->first('initial', '<span class="help-block">:message</span>') }}
+			        {{ Form::select('vote', array('Approved' => 'Approved', 'Processing' => 'Processing', 'Submitted' => 'Submitted', 'Denied' => 'Denied', 'N/A' => 'N/A'), null, array('id' => 'vote', 'class' => 'form-control')) }}			        
+			        {{ $errors->first('vote', '<span class="help-block">:message</span>') }}
 			        </div>
 			</div>
-
+			
+			<div class="form-group {{ $errors->first('establish', 'has-error') }}">
+			        <div class="col-sm-1">DQRC established:</div>
+			        <div class="col-sm-10">
+			        {{ Form::select('establish', array('Approved' => 'Approved', 'Processing' => 'Processing', 'Submitted' => 'Submitted', 'Denied' => 'Denied', 'N/A' => 'N/A'), null, array('id' => 'establish', 'class' => 'form-control')) }}			        
+			        {{ $errors->first('establish', '<span class="help-block">:message</span>') }}
+			        </div>
+			</div>
+			
+			<div class="form-group {{ $errors->first('data_extract', 'has-error') }}">
+			        <div class="col-sm-1">Data pulled:</div>
+			        <div class="col-sm-10">
+			        {{ Form::select('data_extract', array('Approved' => 'Approved', 'Processing' => 'Processing', 'Submitted' => 'Submitted', 'Denied' => 'Denied', 'N/A' => 'N/A'), null, array('id' => 'data_extract', 'class' => 'form-control')) }}			        
+			        {{ $errors->first('data_extract', '<span class="help-block">:message</span>') }}
+			        </div>
+			</div>
+			
+			<div class="form-group {{ $errors->first('meeting', 'has-error') }}">
+			        <div class="col-sm-1">DQRC meeting held:</div>
+			        <div class="col-sm-10">
+			        {{ Form::select('meeting', array('Approved' => 'Approved', 'Processing' => 'Processing', 'Submitted' => 'Submitted', 'Denied' => 'Denied', 'N/A' => 'N/A'), null, array('id' => 'meeting', 'class' => 'form-control')) }}			        
+			        {{ $errors->first('meeting', '<span class="help-block">:message</span>') }}
+			        </div>
+			</div>
+			
+			<div class="form-group {{ $errors->first('distribute', 'has-error') }}">
+			        <div class="col-sm-1">Data given to investigator:</div>
+			        <div class="col-sm-10">
+			        {{ Form::select('distribute', array('Approved' => 'Approved', 'Processing' => 'Processing', 'Submitted' => 'Submitted', 'Denied' => 'Denied', 'N/A' => 'N/A'), null, array('id' => 'distribute', 'class' => 'form-control')) }}			        
+			        {{ $errors->first('distribute', '<span class="help-block">:message</span>') }}
+			        </div>
+			</div>
+			
+			<div class="form-group {{ $errors->first('complete', 'has-error') }}">
+			        <div class="col-sm-1">Project complete:</div>
+			        <div class="col-sm-10">
+			        {{ Form::select('complete', array('Approved' => 'Approved', 'Processing' => 'Processing', 'Submitted' => 'Submitted', 'Denied' => 'Denied', 'N/A' => 'N/A'), null, array('id' => 'complete', 'class' => 'form-control')) }}			        
+			        {{ $errors->first('complete', '<span class="help-block">:message</span>') }}
+			        </div>
+			</div>
+			
+			<!-- Content/Description -->
+			<div class="form-group {{ $errors->first('notes', 'has-error') }}">
+			        <label for="notes" class="col-sm-1 control-label">Notes and comments:</label>
+			        <div class="col-sm-10">
+			        {{ Form::textarea('notes', null, ['class' => 'form-control']) }}
+			        {{ $errors->first('notes', '<span class="help-block">:message</span>') }}
+			        </div>
+			</div>
 
         </div><!--/.tab-pane -->
 

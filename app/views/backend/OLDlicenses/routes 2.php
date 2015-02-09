@@ -61,9 +61,8 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth'), function () {
         //Make so view only own license
         Route::get('{licenseId}/view', array('as' => 'view-license', 'uses' => 'LicenseController@getView'));
 
-				Route::get('download', array('as' => 'download/license', 'uses' => 'Controllers\Admin\LicensesController@getWelcome'));				
-				
-				Route::get('create', array('as' => 'create/license', 'uses' => 'Controllers\Admin\LicensesController@getCreate'));
+				Route::get('create', array('as' => 'create/license', 'uses' => 'Controllers\Admin\LicensesController@getWelcome'));				
+				//Route::get('create', array('as' => 'create/license', 'uses' => 'Controllers\Admin\LicensesController@getCreate'));
 				Route::post('create', 'Controllers\Admin\LicensesController@licenseCreate');
 
 				Route::get('/status', array('as' => 'status/license', 'uses' => 'Controllers\Admin\LicensesController@getStatus'));

@@ -13,6 +13,9 @@ use Redirect;
 use Sentry;
 use Validator;
 use View;
+use DB;
+use Log;
+use Mail;
 
 class UsersController extends AdminController
 {
@@ -166,6 +169,11 @@ class UsersController extends AdminController
             // Get all the available permissions
             $permissions = Config::get('permissions');
             $this->encodeAllPermissions($permissions);
+            
+            // Get user details, entered during registration
+            $details = DB::table('userTerms')->where('user_id', $id)->first();
+            
+            
         } catch (UserNotFoundException $e) {
             // Prepare the error message
             $error = Lang::get('admin/users/message.user_not_found', compact('id'));
@@ -175,7 +183,7 @@ class UsersController extends AdminController
         }
 
         // Show the page
-        return View::make('backend/users/edit', compact('user', 'groups', 'userGroups', 'permissions', 'userPermissions'));
+        return View::make('backend/users/edit', compact('user', 'groups', 'userGroups', 'permissions', 'userPermissions', 'details'));
     }
 
     /**
@@ -261,8 +269,24 @@ class UsersController extends AdminController
                 $user->removeGroup($group);
             }
 
+            
+            
+            
             // Was the user updated?
             if ($user->save()) {
+                
+                // If not previously set to active, then send email to user letting them know they are now active. 
+                $prevactivestatus =  Input::get('PreviousActivatedStatus');
+                if ( $prevactivestatus <> $user->activated ) {
+	            	$data = array( 'user' => $user);	
+	                // Send email to user letting know the account is now active
+	                Mail::send('emails.approved-account', $data, function ($m) use ($user) {
+	                    $m->to($user->email, $user->first_name . ' ' . $user->last_name);
+	                    $m->subject('Account approved - ' . $user->first_name);
+	                });               
+                }
+                
+                
                 // Prepare the success message
                 $success = Lang::get('admin/users/message.success.update');
 

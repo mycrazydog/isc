@@ -130,12 +130,10 @@ class AuthController extends BaseController
                 'user'          => $user,
                 'activationUrl' => URL::route('activate', $user->getActivationCode()),
             );
-
-
             
             // Send the activation code through email to site admin
             Mail::send('emails.admin-notify-activate', $data, function ($m) use ($user) {
-                $m->to(Config::get('mail.from'), $user->first_name . ' ' . $user->last_name);
+                $m->to(Config::get('mail.from.address'));
                 $m->subject('Account request - ' . $user->first_name);
             });
 
@@ -198,12 +196,16 @@ class AuthController extends BaseController
         try {
             // Get the user we are trying to activate
             $user = Sentry::getUserProvider()->findByActivationCode($activationCode);
+            
+            
 
             // Try to activate this user account
             if ($user->attemptActivation($activationCode)) {
+            
+            	$data = array( 'user' => $user);
 
                 // Send email to user letting know the admin is going to review and activate
-                Mail::send('emails.approved-account', $user, function ($m) use ($user) {
+                Mail::send('emails.approved-account', $data, function ($m) use ($user) {
                     $m->to($user->email, $user->first_name . ' ' . $user->last_name);
                     $m->subject('Account approved - ' . $user->first_name);
                 });

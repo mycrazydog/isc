@@ -13,39 +13,68 @@
         Manage Licenses
 
 
-        <!--<div class="pull-right">
+        <div class="pull-right">
             <a href="{{ route('create/license') }}" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span>Create license</a>
-        </div>-->
+        </div>
 
     </h3>
 </div>
 
-{{ $licenses->links() }}
+
 
 <table class="table table-striped table-hover">
     <thead>
         <tr>
-            <th class="span1"></th>
-            <th class="span6">Requesting User</th>
-            <th class="span1">License status</th>
-            <th class="span2">@lang('admin/licenses/table.created_at')</th>
-            <th class="span2"></th>
+            <th></th>
+            <th>Requesting User</th>
+            <th>Title</th>
+            <th>IRB approved</th>
+            <th>Data license request and investigator checklist submitted</th>
+            <th>Reviewers' checklists completed</th>
+            <th>DAROC vote approval</th>
+            <th>DQRC established</th>
+            <th>Data pulled</th>
+            <th>DQRC meeting held</th>
+            <th>Data given to investigator</th>
+            <th>Project complete</th>
+            <th>Created</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         @foreach ($licenses as $license)
         <tr>
-            <td><a href="{{ route('update/license', $license->id) }}"><span class="glyphicon glyphicon-pencil"></span></a></td>
+            <td>
+            @if(Sentry::getUser()->hasAccess('admin'))
+            <a href="{{ route('update/license', $license->id) }}"><span class="glyphicon glyphicon-pencil"></span></a>
+            @endif
+            </td>
             <td>{{ Sentry::findUserById($license->user_id)->first_name  }} {{ Sentry::findUserById($license->user_id)->last_name }}</td>
-            <td>{{ $license->licensestatus }}</td>
+            <td>{{ $license->title }}</td>
+            <td>{{ $license->irb }}</td>
+            <td>{{ $license->investigator }}</td>
+            <td>{{ $license->reviewer }}</td>
+            <td>{{ $license->vote }}</td>
+            <td>{{ $license->establish }}</td>
+            <td>{{ $license->data_extract }}</td>
+            <td>{{ $license->meeting }}</td>
+            <td>{{ $license->distribute }}</td>
+            <td>{{ $license->complete }}</td>
             <td>{{{ $license->created_at->diffForHumans() }}}</td>
-            <td><a href="{{ route('confirm-delete/license', $license->id) }}" data-toggle="modal" data-target="#delete_confirm"><span class="glyphicon glyphicon-trash"></span></a></td>
+            <td>
+            @if(Sentry::getUser()->hasAccess('admin'))
+            <a href="{{ route('confirm-delete/license', $license->id) }}" data-toggle="modal" data-target="#delete_confirm"><span class="glyphicon glyphicon-trash"></span></a>
+            @endif
+            </td>            
+        </tr>
+        <tr>
+        	<td colspan="14">Notes: <br/>{{ $license->notes }}</td>
         </tr>
         @endforeach
     </tbody>
 </table>
 
-{{ $licenses->links() }}
+
 @stop
 
 {{-- Body Bottom confirm modal --}}

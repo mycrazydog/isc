@@ -12,7 +12,6 @@ use Validator;
 use View;
 use Config;
 use Mail;
-use DB;
 
 class LicensesController extends AdminController
 {
@@ -35,8 +34,9 @@ class LicensesController extends AdminController
         $licenses = $this->license->orderBy('created_at', 'DESC')->paginate(10);
 
         // Show the page
-        return View::make('backend/licenses/index', compact('licenses'));
-        
+        //return View::make('backend/licenses/index', compact('licenses'));
+        //temporary
+        return View::make('backend/licenses/welcome');
     }
 
 
@@ -49,29 +49,6 @@ class LicensesController extends AdminController
     {
       return View::make('backend/licenses/welcome');
     }
-    
-    
-    
-    /**
-    * Check license status.
-    *
-    * @param  int  $licenseId
-    * @return View
-    */
-    public function getStatus($licenseId = null)
-    {
-      // Grab all the blog licenses
-      $user = Sentry::getUser()->id;
-
-      $licenses = $this->license->where('user_id', $user)->orderBy('created_at', 'DESC')->paginate(10);
-
-      // Show the page
-      //return View::make('backend/licenses/status', compact('licenses'));
-      return View::make('backend/licenses/index', compact('licenses'));
-    }
-
-    
-    
 
 
 
@@ -82,14 +59,8 @@ class LicensesController extends AdminController
      */
     public function getCreate()
     {
-    	//populate the users dropbox
-    	$user_options = DB::table('users')->select(DB::raw('concat (first_name," ",last_name) as full_name,id'))->orderBy('id', 'asc')->lists('full_name', 'id');
-    	
-    	return View::make('backend/licenses/create', compact('user_options'));
+    	return View::make('backend/licenses/create');
     }
-    
-    
-    
 
     /**
      * Blog license create form processing.
@@ -106,34 +77,35 @@ class LicensesController extends AdminController
         if ($license->validate($new)) {
 
              // Update the blog license data
-            //$license->user_id          = Sentry::getUser()->id;
-            $license->user_id          	= e(Input::get('user_id'));
-            $license->title   				= e(Input::get('title'));
-            $license->irb       	= e(Input::get('irb'));
-            $license->investigator          	= e(Input::get('investigator'));
-            $license->reviewer      	= e(Input::get('reviewer'));
-            $license->vote      	= e(Input::get('vote'));
-            $license->establish  	= e(Input::get('establish'));
-            $license->data_extract  	= e(Input::get('data_extract'));
-            $license->meeting            		= e(Input::get('meeting'));
-            $license->distribute        	= e(Input::get('distribute'));
-            $license->complete		= e(Input::get('complete'));
-            $license->notes      		= e(Input::get('notes'));
+            $license->user_id          = Sentry::getUser()->id;
+            $license->licensestatus       	= 'Submitted';
+            $license->funding       	= e(Input::get('funding'));
+            $license->policy          	= e(Input::get('policy'));
+            $license->program      	= e(Input::get('program'));
+            $license->evaluate      	= e(Input::get('evaluate'));
+            $license->responsible  	= e(Input::get('responsible'));
+            $license->confidential  	= e(Input::get('confidential'));
+            $license->irb            		= e(Input::get('irb'));
+            $license->benefit        	= e(Input::get('benefit'));
+            $license->credentials		= e(Input::get('credentials'));
+            $license->initial      		= e(Input::get('initial'));
 
 
             // Was the blog license created?
             if ($license->save()) {
 
-            	//$the_id = $license->id;
-            	//$the_status = $license->licensestatus;
-            	//$this->sendMail($the_id, $the_status);
+
+            	$the_id = $license->id;
+            	$the_status = $license->licensestatus;
+
+            	$this->sendMail($the_id, $the_status);
 
                 // Redirect to the new blog license page
                 return Redirect::to("admin/dictionary")->with('success', Lang::get('admin/licenses/message.create.success'));
             }
 
         } else {
-            // If validation fails, we'll exit the operation now with errors            
+            // If validation fails, we'll exit the operation now with errors
             return Redirect::back()->withInput()->withErrors($license->errors());
         }
 
@@ -159,12 +131,9 @@ class LicensesController extends AdminController
             // Redirect to the blogs management page
             return Redirect::to('admin/blogs')->with('error', Lang::get('admin/licenses/message.does_not_exist'));
         }
-        
-        //populate the users dropbox
-        $user_options = DB::table('users')->select(DB::raw('concat (first_name," ",last_name) as full_name,id'))->orderBy('id', 'asc')->lists('full_name', 'id');        
 
         // Show the page
-        return View::make('backend/licenses/edit', compact('license', 'user_options'));
+        return View::make('backend/licenses/edit', compact('license'));
     }
 
 
@@ -187,8 +156,9 @@ class LicensesController extends AdminController
 
         // Declare the rules for the form validation
         $rules = array(
-            'title'   => 'required|min:3',
+            'initial'   => 'required|min:3',
         );
+
 
         // Create a new validator instance from our validation rules
         $validator = Validator::make(Input::all(), $rules);
@@ -200,19 +170,18 @@ class LicensesController extends AdminController
         }
 
         // Update the blog license data
-		$license->user_id          	= e(Input::get('user_id'));
-		$license->title   				= e(Input::get('title'));
-		$license->irb       	= e(Input::get('irb'));
-		$license->investigator          	= e(Input::get('investigator'));
-		$license->reviewer      	= e(Input::get('reviewer'));
-		$license->vote      	= e(Input::get('vote'));
-		$license->establish  	= e(Input::get('establish'));
-		$license->data_extract  	= e(Input::get('data_extract'));
-		$license->meeting            		= e(Input::get('meeting'));
-		$license->distribute        	= e(Input::get('distribute'));
-		$license->complete		= e(Input::get('complete'));
-		$license->notes      		= e(Input::get('notes'));
-		
+        $license->licensestatus       	= e(Input::get('licensestatus'));
+        $license->funding       	= e(Input::get('funding'));
+        $license->policy          	= e(Input::get('policy'));
+        $license->program      	= e(Input::get('program'));
+        $license->evaluate      	= e(Input::get('evaluate'));
+        $license->responsible  	= e(Input::get('responsible'));
+        $license->confidential  	= e(Input::get('confidential'));
+        $license->irb            		= e(Input::get('irb'));
+        $license->benefit        	= e(Input::get('benefit'));
+        $license->credentials		= e(Input::get('credentials'));
+        $license->initial      		= e(Input::get('initial'));
+
         // Was the blog license updated?
         if ($license->save()) {
             // Redirect to the new blog license page
@@ -222,6 +191,41 @@ class LicensesController extends AdminController
         // Redirect to the blogs license management page
         return Redirect::to("admin/licenses/$licenseId/edit")->with('error', Lang::get('admin/licenses/message.update.error'));
     }
+
+
+
+
+
+
+
+
+
+    /**
+    * Check license status.
+    *
+    * @param  int  $licenseId
+    * @return View
+    */
+    public function getStatus($licenseId = null)
+    {
+      // Grab all the blog licenses
+      $user = Sentry::getUser()->id;
+
+      $licenses = $this->license->where('user_id', $user)->orderBy('created_at', 'DESC')->paginate(10);
+
+
+
+      // Show the page
+      return View::make('backend/licenses/status', compact('licenses'));
+    }
+
+
+
+
+
+
+
+
 
 
 
