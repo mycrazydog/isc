@@ -31,19 +31,36 @@ App::after(function ($request, $response) {
 */
 
 Route::filter('auth', function () {
+  
     // Check if the user is logged in
     if ( ! Sentry::check()) {
+    	// User is not logged in, or is not activated
+        
         // Store the current uri in the session
         Session::put('loginRedirect', Request::url());
 
         // Redirect to the login page
         return Redirect::route('signin');
-    }
+    }     
 });
 
 Route::filter('auth.basic', function () {
     return Auth::basic();
 });
+
+/* 
+| This was implemented to counter the browser back button. Also see logout route and the getLogout (redirect)
+| http://laravel.io/forum/03-22-2014-logged-out-user-goes-back-using-back-button-on-browser
+*/
+Route::filter('no-cache',function($route, $request, $response){	
+	
+	$response->headers->set('Cache-Control','nocache, no-store, max-age=0, must-revalidate');
+	$response->headers->set('Pragma','no-cache');
+	$response->headers->set('Expires','Fri, 01 Jan 1990 00:00:00 GMT');
+	
+});
+
+
 
 /*
 |--------------------------------------------------------------------------

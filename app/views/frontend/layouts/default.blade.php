@@ -30,7 +30,10 @@
         <link href="{{ asset('assets/css/custom/style.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/custom/style-responsive.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/custom/to-do.css') }}" rel="stylesheet" >
-        <link href="//cdn.datatables.net/1.10.4/css/jquery.dataTables.min.css" rel="stylesheet">
+        <link href="//cdn.datatables.net/1.10.6/css/jquery.dataTables.min.css" rel="stylesheet">
+        <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+        <link href="{{ asset('assets/css/custom/jquery.dataTables.yadcf.css') }}" rel="stylesheet" >
+        <link href="{{ asset('assets/css/custom/chosen.min.css') }}" rel="stylesheet" >
 
         <style>
         @section('styles')
@@ -50,8 +53,12 @@
         </style>
 
         <!-- Put these JS files up here for datatable-->
-        <script src="{{ asset('assets/js/jquery.1.10.2.min.js') }}"></script>
-        <script type="text/javascript" src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js"></script>
+    
+        <script src="{{ asset('assets/js/jquery.1.10.2.min.js') }}"></script>     
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
+        <script type="text/javascript" src="//cdn.datatables.net/1.10.6/js/jquery.dataTables.js"></script>
+        <script src="{{ asset('assets/js/custom/jquery.dataTables.yadcf.js') }}"></script> 
+        <script src="{{ asset('assets/js/custom/jquery.chosen.min.js') }}"></script>    
 
 
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -191,7 +198,7 @@
 		              <!-- Content -->
 		              @yield('content')
 
-				</section><! --/wrapper -->
+				</section>
 		      </section><!-- /MAIN CONTENT -->
 
 		      <!--main content end-->
@@ -210,6 +217,7 @@
             <script type="text/javascript" src="{{ asset('assets/js/custom/jquery.dcjqaccordion.2.7.js') }}"></script>
             <script type="text/javascript" src="{{ asset('assets/js/custom/jquery.scrollTo.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('assets/js/custom/jquery.nicescroll.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('assets/js/custom/bootstrap-session-timeout.min.js') }}"></script>
 
 
 

@@ -13,6 +13,9 @@ $(function() {
     });
 });
 
+
+
+
 var Script = function () {
 
 
@@ -74,6 +77,8 @@ var Script = function () {
     $("#sidebar").niceScroll({styler:"fb",cursorcolor:"#4ECDC4", cursorwidth: '3', cursorborderradius: '10px', background: '#404040', spacebarenabled:false, cursorborder: ''});
 
     $("html").niceScroll({styler:"fb",cursorcolor:"#4ECDC4", cursorwidth: '6', cursorborderradius: '10px', background: '#404040', spacebarenabled:false,  cursorborder: '', zindex: '1000'});
+  
+
 
 // widget tools
 
@@ -100,7 +105,19 @@ var Script = function () {
 //    popovers
 
     $('.popovers').popover();
-
+    
+    
+  // Page Timeout
+  //https://github.com/orangehill/bootstrap-session-timeout
+  $.sessionTimeout({
+      message: 'Your session will be locked in one minute.',
+      //keepAliveUrl: 'keep-alive.html',
+      keepAlive: false,
+      logoutUrl: 'http://charlotteresearch.info/auth/logout',
+      redirUrl: 'http://charlotteresearch.info/auth/logout',
+      warnAfter: 900000,
+      redirAfter: 1200000
+  }); 
 
 
 // custom bar chart

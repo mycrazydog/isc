@@ -9,7 +9,7 @@
 |
 */
 
-Route::group(array('prefix' => 'admin', 'before' => 'auth'), function () {
+Route::group(array('prefix' => 'admin', 'before' => 'auth', 'after' => 'no-cache'), function () {
 
 	# Welcome
 	Route::group(array('prefix' => 'welcome'), function () {
@@ -140,7 +140,7 @@ Route::group(array('prefix' => 'auth'), function () {
     Route::post('forgot-password/{passwordResetCode}', 'AuthController@postForgotPasswordConfirm');
 
     # Logout
-    Route::get('logout', array('as' => 'logout', 'uses' => 'AuthController@getLogout'));
+    Route::get('logout', array('as' => 'logout', 'uses' => 'AuthController@getLogout', 'after' => 'no-cache'));
 
 });
 

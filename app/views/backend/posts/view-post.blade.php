@@ -118,11 +118,12 @@ http://stackoverflow.com/questions/10626885/passing-data-to-a-bootstrap-modal
 		      </div>
 		      <div class="modal-body">
 					<!--<input type="text" name="bookId" id="bookId" value=""/>-->
-						<table id="exampleTable" class="display" cellspacing="0" width="100%">
+						<table id="detailTable" class="display" cellspacing="0" width="100%">
 					        <thead>
 					            <tr>
 					                <th>Data Value</th>
-													<th>Data Type</th>
+									<th>Data Type</th>
+									<th>Data Label</th>
 					            </tr>
 					        </thead>
 					    </table>
@@ -144,11 +145,20 @@ http://stackoverflow.com/questions/10626885/passing-data-to-a-bootstrap-modal
 	$ajaxRouteToTableData = 'datatables/partner';
 	//echo $partner_id.'-----'.$ajaxRouteToTableData;
 	?>
-	{{ Datatable::table()
-	   ->addColumn('Fields', 'Data Type <a title="This is a sentance explaining the difference between numeric and nvarchar"><i class="fa fa-question-circle"></i></a>', 'Max Length', 'Complete', 'Total Rows', '% Complete', '')
-	   ->setOptions('AutoWidth', false)
-	   ->setUrl(route($ajaxRouteToTableData, $partner_id))
-	   ->render() }}
+   	
+
+	   	<div id="filter"></div>
+	   <table id="partnerTable" class="display" cellspacing="0" width="100%">	   		
+	   </table>
+	   
+	   
+	  
+	   	   
+	   	   	   	
+	   	
+	   
+	   
+	   
 		</div>
 	</div>
 </div>
@@ -157,9 +167,11 @@ http://stackoverflow.com/questions/10626885/passing-data-to-a-bootstrap-modal
 
 <div class="row mt">
 	<div class="col-lg-12">
+		<div class="content-panel" style="padding: 15px;">
     <span class="badge badge-info" title="{{{ $post->created_at }}}">
     @lang('post.posted')
     {{ $post->created_at->diffForHumans() }}</span>
+    	</div>
 	</div>
 </div>
 
@@ -218,5 +230,53 @@ http://stackoverflow.com/questions/10626885/passing-data-to-a-bootstrap-modal
 </form>
 @endif
 -->
+
+@stop
+
+{{-- Page content --}}
+@section('body_bottom')
+
+	   	<script type="text/javascript">
+	   	$(document).ready(function() {
+	   	
+	
+			var dataURL = '{{ route($ajaxRouteToTableData, $partner_id) }}';
+			//console.log(dataURL);
+
+			
+			//$('#partnerTable').text(myColumn);
+			
+					var mytable = $('#partnerTable').DataTable({
+					    "language": {"emptyTable": "No data available for column:"},
+					    "processing": false,
+					    "paging": true,
+					    "searching": true,
+					    "bStateSave": true,
+					    "ajax": dataURL,
+					   // "sAjaxDataProp": "aaData",	
+					    "columns": [
+					  { "title": "Table"}, 
+			          { "title": "Fields"},
+			          { "title": "Data Type <a title='This is a sentence explaining the difference between numeric and nvarchar'><i class='a fa-question-circle'></i></a>" },
+			          { "title": "Max Length" },
+			          { "title": "Complete" },
+			          { "title": "Total Rows" },
+			          { "title": "% Complete" },
+			          { "title": "Description" },
+			          { "title": "" }			          
+					     ]
+					     
+					    	     
+				  });
+				  
+				  yadcf.init(mytable , [{column_number : 0, filter_type: "multi_select", select_type: "chosen", filter_default_label: "Select Tables"}]);
+
+
+				  	
+
+
+	   	});
+
+	   	</script>
 
 @stop

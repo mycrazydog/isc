@@ -172,6 +172,7 @@ class ImportController extends BaseController
 						'complete'    => $value['complete'],
 						'total_rows'  => $value['total_rows'],
 						'pct_complete'=> $value['pct_complete'],
+						'description'=> $value['description'],
 						'batch_id'		=> $batch_id
 					);
 					$arr[$value['table_name']][] = $temp;
@@ -185,6 +186,7 @@ class ImportController extends BaseController
 						'column_name' => Str::slug(trim($value['column_name'])),
 						'data_value' 	=> trim($value['data_value']),
 						'data_type' 	=> trim($value['data_type']),
+						'data_label' 	=> trim($value['data_label']),
 						'batch_id'		=> $batch_id
 					);
 					$arr[$value['table_name']][] = $temp;
@@ -252,11 +254,11 @@ class ImportController extends BaseController
 
 			$data['partner_id'] = $partner_id;
 			Log::info('This is some useful information-'.$partner_id);
-			$collection = ImportForm::select("table_name as TBL","column_name as CLM", "data_type", "max_length", "complete", "total_rows", "pct_complete", "partner_id")->where('partner_id', '=', $partner_id);
+			$collection = ImportForm::select("table_name as TBL","column_name as CLM", "data_type", "max_length", "complete", "total_rows", "pct_complete", "description", "partner_id")->where('partner_id', '=', $partner_id);
 
-			//return Datatable::from(DB::table('tabDataParent')->select('table_name as Table Name','column_name as Column Name'))
+			//OLDreturn Datatable::from(DB::table('tabDataParent')->select('table_name as Table Name','column_name as Column Name'))
 			return Datatable::query($collection)
-			    ->showColumns('CLM', 'data_type', 'max_length', 'complete', 'total_rows', 'pct_complete')
+			    ->showColumns('TBL','CLM', 'data_type', 'max_length', 'complete', 'total_rows', 'pct_complete', 'description')
 					->addColumn('actived',function($model)
 					{
 
@@ -266,6 +268,7 @@ class ImportController extends BaseController
 					})
 
 			        ->make();
+			        //)->get();return $collection;
 		}
 
 		/**
@@ -279,12 +282,12 @@ class ImportController extends BaseController
 			$data['column_name'] = $column_name;
 
 
-			$collection = DB::table('tabDataChild')->select("table_name as TBL","column_name as CLM", "partner_id", "data_value", "data_type")->where('partner_id', '=', $partner_id) ->where('column_name', '=', $column_name);
+			$collection = DB::table('tabDataChild')->select("table_name as TBL","column_name as CLM", "partner_id", "data_value", "data_type", "data_label")->where('partner_id', '=', $partner_id) ->where('column_name', '=', $column_name);
 			////$collection = DB::table('tabDataChild')->select("table_name as TBL","column_name as CLM", "partner_id", "data_value")->where('partner_id', '=', $partner_id) ->where('column_name', '=', $column_name)->get();
 
 			//return Datatable::from(DB::table('tabDataParent')->select('table_name as Table Name','column_name as Column Name'))
 			return Datatable::query($collection)
-			        ->showColumns('data_value', 'data_type')
+			        ->showColumns('data_value', 'data_type', 'data_label')
 			        ->make();
 
 			////return Response::json($collection, 200);

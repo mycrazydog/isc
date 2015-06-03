@@ -129,6 +129,7 @@
 			<li>complete</li>
 			<li>total_rows</li>
 			<li>pct_complete</li>
+			<li>description</li>
 
 			<h4>Detail/Child</h4>
 
@@ -136,6 +137,7 @@
 			<li>column_name</li>
 			<li>data_value</li>
 			<li>data_type</li>
+			<li>data_label</li>
 
 		</div>
   </div>

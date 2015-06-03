@@ -285,13 +285,13 @@ class LicensesController extends AdminController
         	$from = Config::get('mail.from');
 
             if($licensestatus == 'Submitted'){
-	            $msgToAdmin = 'A new license request has been submitted. <a href="http://homestead.app:8000/admin/licenses/'. $licenceId .'/view">Click this link to review</a>';
+	            $msgToAdmin = 'A new license request has been submitted. <a href="/admin/licenses/'. $licenceId .'/view">Click this link to review</a>';
 	            $msgToUser = 'Thank you for submitting your license request. We will notify you by email when we have begun processing.';
             }elseif($licensestatus == 'Processing'){
 				$msgToAdmin = 'Status changed to processing';
 				$msgToUser = 'We have begun processing your request. If we have any questions we will contact you.';
             }elseif($licensestatus == 'Approved'){
-            	$msgToAdmin = 'You have approved the license request.<br/> <a href="http://homestead.app:8000/admin/licenses/'. $licenceId . '/view">Click this link to review</a>';
+            	$msgToAdmin = 'You have approved the license request.<br/> <a href="/admin/licenses/'. $licenceId . '/view">Click this link to review</a>';
             	$msgToUser = 'Congratulations! Your license request has been approved. We will contact you will with more information soon';
             }
 
@@ -303,7 +303,7 @@ class LicensesController extends AdminController
         	);
 
         	$data_admin = array(
-        		'email'				=> 'rlawing2@uncc.edu',
+        		'email'				=> 'awill352@uncc.edu',
         		'description'		=> $msgToAdmin
         	);
 
