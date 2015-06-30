@@ -1,21 +1,15 @@
-<Limit GET POST PUT DELETE>
-Order Allow,Deny
-Allow from all
+<Limit GET POST PUT DELETE HEAD OPTIONS>
+    Order allow,deny
+    # You might want something a little more secure here, this is a dev setup
+    Allow from all
 </Limit>
-
+<LimitExcept POST PUT DELETE HEAD OPTIONS>
+    Order deny,allow
+    Deny from all
+</LimitExcept>
 
 <IfModule mod_rewrite.c>
-    <IfModule mod_negotiation.c>
-        Options -MultiViews
-    </IfModule>
-
     RewriteEngine On
-    RewriteBase /
-
-
-    # Redirect Trailing Slashes...
-    RewriteRule ^(.*)/$ /$1 [L,R=301]
-
     # Handle Front Controller...
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f

@@ -10,13 +10,32 @@
 | application. Here you may also register your custom route filters.
 |
 */
-
+/*
 App::before(function ($request) {
     //
 });
 
 App::after(function ($request, $response) {
     //
+});
+*/
+App::before(function($request)
+{
+    header('Access-Control-Allow-Origin', '*');
+    header('Allow', 'GET, POST, OPTIONS, PUT, DELETE');
+    header('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept, Authorization, X-Request-With');
+    header('Access-Control-Allow-Credentials', 'true');
+});
+
+
+App::after(function($request, $response)
+{
+    $response->headers->set('Access-Control-Allow-Origin', '*');
+    $response->headers->set('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+    $response->headers->set('Access-Control-Allow-Headers', 'Origin, Content-Type, Accept, Authorization, X-Requested-With');
+    $response->headers->set('Access-Control-Allow-Credentials', 'true');
+    $response->headers->set('Access-Control-Max-Age','86400');
+    return $response;
 });
 
 /*
