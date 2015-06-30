@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-@lang('admin/licenses/title.create') ::
+Create request ::
 @parent
 @stop
 
@@ -11,7 +11,7 @@
 
 <div class="page-header">
     <h3>
-        license for data license
+        Create request for data license
 
         <div class="pull-right">
             <a href="{{ route('licenses') }}" class="btn btn-small btn-inverse"><i class="icon-circle-arrow-left icon-white"></i> @lang('button.back')</a>

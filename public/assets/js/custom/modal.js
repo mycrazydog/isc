@@ -15,6 +15,7 @@
 $(document).on("click", ".open-DetailDialog", function () {
      var myId = $(this).data('id');
      var myColumn = $(this).data('column');
+     var myDescription = $(this).data('description');
      //console.log(myId+' - '+myColumn);
 
      //$(".modal-body #bookId").val( myId+'='+myColumn  );
@@ -27,6 +28,7 @@ $(document).on("click", ".open-DetailDialog", function () {
 		table.destroy();
 
     $('#DetailModalLabel').text(myColumn);
+    $('#DetailModalDescription').text(myDescription);
 
 		table = $('#detailTable').DataTable({
 		    "language": {"emptyTable": "No data available for column:"+myColumn},
@@ -37,8 +39,7 @@ $(document).on("click", ".open-DetailDialog", function () {
 		    "ajax": dataURL,
 		    "columns": [
           { "title": "Value" },
-          { "title": "Type" },
-          { "title": "Data Label" }
+          { "title": "Notes" }
 		     ]
 		});
 

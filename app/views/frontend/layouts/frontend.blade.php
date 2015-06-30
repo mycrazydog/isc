@@ -28,7 +28,7 @@
         <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
         <!-- Custom styles for this template -->
-        <link href="{{ asset('assets/css/custom/agency.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/custom/frontend-style.css') }}" rel="stylesheet">
 
 
 
@@ -38,13 +38,13 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
 
-        <!-- Favicons
-        ================================================== -->
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('assets/ico/apple-touch-icon-144-precomposed.png') }}">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('assets/ico/apple-touch-icon-114-precomposed.png') }}">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('assets/ico/apple-touch-icon-72-precomposed.png') }}">
-        <link rel="apple-touch-icon-precomposed" href="{{ asset('assets/ico/apple-touch-icon-57-precomposed.png') }}">
-        <link rel="shortcut icon" href="{{ asset('assets/ico/favicon.png') }}">
+        <!-- Favicons ================================================== -->
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('assets/ico/apple-touch-icon-144-precomposed.png?v=2') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('assets/ico/apple-touch-icon-114-precomposed.png?v=2') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('assets/ico/apple-touch-icon-72-precomposed.png?v=2') }}">
+        <link rel="apple-touch-icon-precomposed" href="{{ asset('assets/ico/apple-touch-icon-57-precomposed.png?v=2') }}">
+        <link rel="shortcut icon" href="{{ asset('assets/ico/favicon.ico') }}" type="image/x-icon">
+
     </head>
 
 <body id="page-top" class="index">
@@ -72,15 +72,15 @@
                         <a href="#page-top"></a>
                     </li>
 
-                    <li><a class="page-scroll" href="{{ URL::to('about-us') }}">About ISC</a></li>
-                    <li><a class="page-scroll" href="{{ URL::to('faq') }}">FAQ</a></li>
-                    <li><a class="page-scroll" href="{{ URL::to('contact-us') }}">Contact us</a></li>
+                    <li><a class="page-scroll" href="{{ route('home') }}#aboutus">About ISC</a></li>
+                    <li><a class="page-scroll" href="{{ route('home') }}#faq">FAQ</a></li>
+                    <li><a class="page-scroll" href="{{ route('home') }}#contactus">Contact us</a></li>
 
 
 
 
                    @if (Sentry::check())
-                   <li><a class="page-scroll"  href="{{ URL::to('admin/dictionary')  }}">Data Dictionary</a></li>
+                   <li><a class="page-scroll"  href="{{ URL::to('admin/dictionary')  }}">Access Codebook</a></li>
                    <li><a class="page-scroll"  href="{{ route('logout') }}">Logout</a></li>
                    @else
                   <li><a href="{{ route('signin') }}">Login</a></li>
@@ -107,20 +107,26 @@
 
 
 
+@if(Route::current()->getName() != 'home')
+<section class="section-compressed">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+@endif
 
-    <!-- Services Section -->
-    <section id="services">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-
-					<!-- Content -->
-					@yield('content')
-
-                </div>
+	<!-- Content -->
+	@yield('content')
+	
+	
+@if(Route::current()->getName() != 'home')
             </div>
-        </div>
-    </section>
+        </div>            
+    </div>
+</section>
+
+@endif	
+
+
 
 
 

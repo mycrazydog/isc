@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-@lang('admin/licenses/title.blogmanagement') ::
+License request status ::
 @parent
 @stop
 
@@ -10,12 +10,15 @@
 @section('content')
 <div class="page-header">
     <h3>
-        Manage Licenses
+       License request status
 
 
+        @if(Sentry::getUser()->hasAccess('admin'))
         <div class="pull-right">
             <a href="{{ route('create/license') }}" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span>Create license</a>
         </div>
+        @endif
+        
 
     </h3>
 </div>

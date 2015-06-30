@@ -13,7 +13,6 @@ class License extends Elegant
      */
     public function delete()
     {
-
         // Delete the license
         return parent::delete();
     }

@@ -36,7 +36,7 @@ Contact us ::
 	<a href="mailto:ashley.clark@uncc.edu">ashley.clark@uncc.edu</a>	704-687-1193</p>
 
 	<p><strong>David Hill</strong><br>
-	Research Associate/ Database Administrator<br>
+	Research Associate/ Database Scientist<br>
 	<a href="mailto:dchill@uncc.edu">dchill@uncc.edu</a>	704-687-1190</p>
 
 	<p><strong>Diane Gavarkavich</strong><br/>

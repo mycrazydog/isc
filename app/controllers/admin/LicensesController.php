@@ -18,10 +18,13 @@ class LicensesController extends AdminController
 {
 
     protected $license;
+    
+    private $license_options;
 
       public function __construct(license $license)
       {
           $this->license = $license;
+          $this->license_options = array('default' => 'Please Select', 'Approved' => 'Approved', 'Processing' => 'Processing', 'Submitted' => 'Submitted', 'Denied' => 'Denied', 'N/A' => 'N/A');
       }
 
     /**
@@ -85,7 +88,9 @@ class LicensesController extends AdminController
     	//populate the users dropbox
     	$user_options = DB::table('users')->select(DB::raw('concat (first_name," ",last_name) as full_name,id'))->orderBy('id', 'asc')->lists('full_name', 'id');
     	
-    	return View::make('backend/licenses/create', compact('user_options'));
+    	$lo = $this->license_options;
+    	
+    	return View::make('backend/licenses/create', compact('user_options', 'lo'));
     }
     
     
@@ -101,6 +106,15 @@ class LicensesController extends AdminController
 
          // get the  data
         $new = Input::all();
+        
+            $validator = Validator::make(Input::all(), $rules);
+        
+            if ($validator->fails())
+            {
+                return redirect('register')->withErrors($validator);
+            }
+        
+        
         $license = new License;
 
         if ($license->validate($new)) {
@@ -120,17 +134,16 @@ class LicensesController extends AdminController
             $license->complete		= e(Input::get('complete'));
             $license->notes      		= e(Input::get('notes'));
 
-
-            // Was the blog license created?
-            if ($license->save()) {
-
-            	//$the_id = $license->id;
-            	//$the_status = $license->licensestatus;
-            	//$this->sendMail($the_id, $the_status);
-
-                // Redirect to the new blog license page
-                return Redirect::to("admin/dictionary")->with('success', Lang::get('admin/licenses/message.create.success'));
-            }
+	        // Was the blog license created?
+	        if ($license->save()) {
+	
+	        	//$the_id = $license->id;
+	        	//$the_status = $license->licensestatus;
+	        	//$this->sendMail($the_id, $the_status);
+	
+	            // Redirect to the new blog license page
+	            return Redirect::to("admin/dictionary")->with('success', Lang::get('admin/licenses/message.create.success'));
+	        }
 
         } else {
             // If validation fails, we'll exit the operation now with errors            
@@ -163,8 +176,10 @@ class LicensesController extends AdminController
         //populate the users dropbox
         $user_options = DB::table('users')->select(DB::raw('concat (first_name," ",last_name) as full_name,id'))->orderBy('id', 'asc')->lists('full_name', 'id');        
 
+        $lo = $this->license_options;
+        
         // Show the page
-        return View::make('backend/licenses/edit', compact('license', 'user_options'));
+        return View::make('backend/licenses/edit', compact('license', 'user_options', 'lo'));
     }
 
 

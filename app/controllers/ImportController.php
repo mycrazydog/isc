@@ -261,15 +261,38 @@ class ImportController extends BaseController
 			    ->showColumns('TBL','CLM', 'data_type', 'max_length', 'complete', 'total_rows', 'pct_complete', 'description')
 					->addColumn('actived',function($model)
 					{
-
-					    	//return '<a href="'. URL::to('parkingcompany/update/'.$model->CLM.'/'.$model->partner_id) .'">Details</a>';
-					    	return '<a class="open-DetailDialog btn btn-primary" data-toggle="modal" data-target="#DetailModal" data-id="'.$model->partner_id.'" data-column="'.$model->CLM.'" >Details</a>';
+						//$vFileName = $this->checkName($vFile->getClientOriginalName(),'xls');
+				    	//return '<a href="'. URL::to('parkingcompany/update/'.$model->CLM.'/'.$model->partner_id) .'">Details</a>';
+				    	
+				    	$detail_collection =  $this->getDetails($model->partner_id, $model->CLM);				    	
+				    	
+				    	if ($detail_collection->count()) {	    	
+					    	return '<a class="open-DetailDialog btn btn-primary" data-toggle="modal" data-target="#DetailModal" data-id="'.$model->partner_id.'" data-column="'.$model->CLM.'" data-description="'.$model->description.'">Details</a>';
+					    }else{
+					    	return '<a class="open-DetailDialog btn btn-warning" data-id="'.$model->partner_id.'" data-column="'.$model->CLM.'" >No Details</a>';
+					    }
 
 					})
 
 			        ->make();
 			        //)->get();return $collection;
 		}
+		
+		public function getDetails($partner_id, $column_name)
+		{
+			
+			$data['partner_id'] = $partner_id;
+			$data['column_name'] = $column_name;			
+			
+			$collection = DB::table('tabDataChild')->select("table_name as TBL","column_name as CLM", "partner_id", "data_value", "data_type", "data_label")->where('partner_id', '=', $partner_id) ->where('column_name', '=', $column_name);
+			////$collection = DB::table('tabDataChild')->select("table_name as TBL","column_name as CLM", "partner_id", "data_value")->where('partner_id', '=', $partner_id) ->where('column_name', '=', $column_name)->get();
+			
+			
+			//Log::info($query, $data);
+			return $collection;
+			
+		}
+		
 
 		/**
 		 * Returns data from import to preview
@@ -278,16 +301,11 @@ class ImportController extends BaseController
 		public function getPartnerColumnDatatable($partner_id, $column_name)
 		{
 
-			$data['partner_id'] = $partner_id;
-			$data['column_name'] = $column_name;
-
-
-			$collection = DB::table('tabDataChild')->select("table_name as TBL","column_name as CLM", "partner_id", "data_value", "data_type", "data_label")->where('partner_id', '=', $partner_id) ->where('column_name', '=', $column_name);
-			////$collection = DB::table('tabDataChild')->select("table_name as TBL","column_name as CLM", "partner_id", "data_value")->where('partner_id', '=', $partner_id) ->where('column_name', '=', $column_name)->get();
+			$collection =  $this->getDetails($partner_id, $column_name);
 
 			//return Datatable::from(DB::table('tabDataParent')->select('table_name as Table Name','column_name as Column Name'))
 			return Datatable::query($collection)
-			        ->showColumns('data_value', 'data_type', 'data_label')
+			        ->showColumns('data_value', 'data_label')
 			        ->make();
 
 			////return Response::json($collection, 200);
@@ -324,6 +342,10 @@ class ImportController extends BaseController
 			->join('statuses', 'posts.status_id', '=', 'statuses.id')
 			->select("posts.title", "posts.tags", "statuses.status", "posts.slug")
 			->orderby('statuses.id');
+			
+			$tags = $post->tags->lists('tag');
+			Log::info('This is some useful information-'.$tags);
+			
 
 
 			return Datatable::query($collection)

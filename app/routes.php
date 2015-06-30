@@ -210,3 +210,8 @@ Route::get('/', array('as' => 'home', 'uses' => 'HomeController@getIndex'));
 //Route::get('export', array('as' => 'xls', 'uses' => 'PostController@xlsImport'));
 
 //Route::get('import/data', 'ImportController@getData');
+
+
+Route::group(array('prefix' => 'api'), function() {
+	Route::resource('datastatus', 'DataStatusController');
+});  

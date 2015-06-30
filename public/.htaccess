@@ -1,9 +1,17 @@
+<Limit GET POST PUT DELETE>
+Order Allow,Deny
+Allow from all
+</Limit>
+
+
 <IfModule mod_rewrite.c>
     <IfModule mod_negotiation.c>
         Options -MultiViews
     </IfModule>
 
     RewriteEngine On
+    RewriteBase /
+
 
     # Redirect Trailing Slashes...
     RewriteRule ^(.*)/$ /$1 [L,R=301]

@@ -2,14 +2,14 @@
 
 {{-- Page title --}}
 @section('title')
-@lang('admin/licenses/title.blogmanagement') ::
-@parent
+	Request Data License ::
+	@parent
 @stop
 
 {{-- Page content --}}
 @section('content')
 
-<h3>Download License Request</h3>
+<h3>Request Data License</h3>
 
 <div class="row mt">
   <div class="col-lg-12">
@@ -21,8 +21,8 @@
         Data and Research Coordinator<br>
         <a href="mailto:ashley.clark@uncc.edu">ashley.clark@uncc.edu</a> 704-687-1193</p>
 
-      <a href="/pdf/ISC_License_Request.pdf" class="btn btn-primary btn-lg" type="button"> <i class="fa fa-file-pdf-o"></i>  Download License Request</a>
-      <a href="/pdf/ISC_Aggregate_Request.pdf" class="btn btn-primary btn-lg" type="button"> <i class="fa fa-file-pdf-o"></i>  Download Aggregate License Request</a>
+      <a href="/media/ISC_License_Request.doc" class="btn btn-primary btn-lg" type="button" target="_blank"> <i class="fa fa-file-word-o"></i>  Download License Request</a>
+      <a href="/media/ISC_Aggregate_Request.docx" class="btn btn-primary btn-lg" type="button" target="_blank"> <i class="fa fa-file-word-o"></i>  Download Aggregate License Request</a>
       <p>&nbsp;</p>
     </div>
   </div>

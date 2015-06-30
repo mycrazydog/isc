@@ -100,5 +100,9 @@ class Post extends Elegant
 
         return 'http://placehold.it/150x150';
     }
+    
+    public function tags() {
+    	return $this->belongsToMany('Tag');	
+    }
 
 }

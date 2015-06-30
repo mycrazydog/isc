@@ -31,68 +31,79 @@
 
 
 <div class="row">
-
-				<div class="col-xs-2 col-min">
-        	<div class="form-panel">
-
-							@if ($post->img())
-							<img class="img-responsive" src="/logos/{{{ $post->filePartnerLogo }}}" alt="{{{ $post->filePartnerLogo }}}">
-							@endif
-							<br/>
-							<a class="btn btn-primary" href="{{{ $post->partnerwebsite }}}" target="_blank">visit website <i class="fa fa-share"></i></a>
-
-
-
-          	</div><!-- /form-panel -->
-          </div>
-
-					<div class="col-xs-3 col-min">
-						<div class="form-panel">
-
-							<h5><i class="fa fa-angle-right"></i> Status</h5>
-							<span class="btn btn-round btn-info">{{{ Status::find($post->status_id)->status }}}</span>
-
-							<br/><br/>
-							<h5><i class="fa fa-angle-right"></i> Years Available</h5>
-							{{{ $post->yearsavailable }}}
-
-						</div><!-- /form-panel -->
-					</div>
-
-
-					<div class="col-xs-7">
-							<div class="form-panel">
-					  	  <h4 class="mb"><i class="fa fa-angle-right"></i> Depositor Description</h4>
-					      <p>{{ nl2br(e($post->content())) }}</p>
-						</div><!-- /form-panel -->
-					</div>
-
+	<div class="col-lg-12">
+		<div class="form-panel">
+			@if ($post->img())
+			<img class="img-responsive" src="/logos/{{{ $post->filePartnerLogo }}}" alt="{{{ $post->filePartnerLogo }}}">
+			@endif
+			<br/>
+			<a href="{{{ $post->partnerwebsite }}}" target="_blank">{{{ $post->partnerwebsite }}} <i class="fa fa-share"></i></a>
+						
+			
+			<h5><i class="fa fa-angle-right"></i> Status</h5>
+			<span class="btn btn-round btn-info">{{{ Status::find($post->status_id)->status }}}</span>
+			
+			<br/><br/>
+			
+			<h5><i class="fa fa-angle-right"></i> Years Available</h5>
+			{{{ $post->yearsavailable }}}
+			
+			
+			<table id="statusTable" class="table table-striped">
+			  <thead>
+			  <tr>
+			      <th>Year</th>
+			      <th>Status</th>
+			  </tr>
+			  </thead>
+			  <tbody>
+			  <tr>
+			      <td>Mark</td>
+			      <td>Otto</td>
+			  </tr>
+			  <tr>
+			      <td>Jacob</td>
+			      <td>Thornton</td>
+			  </tr>
+			  <tr>
+			      <td>Larry</td>
+			      <td>the Bird</td>
+			  </tr>
+			  </tbody>
+			</table>			
+			
+			
+			
+			
+			<p>{{ nl2br(e($post->content())) }}</p>			
+		</div><!-- /form-panel -->
+	</div>
 </div>
 
 
 
 <div class="row">
-
-				<div class="col-lg-12">
-          			<div class="form-panel">
-	          			<div class="form-group">
-	                  	  <h4 class="mb"><i class="fa fa-angle-right"></i> Notes on data source</h4>
-							<p>{{ nl2br(e($post->notessource)) }}</p>
-						</div>
-
-						<div class="form-group">
-					  	  <h4 class="mb"><i class="fa fa-angle-right"></i> Notes on data</h4>
-					     <p>{{ nl2br(e($post->notescleaning)) }}</p>
-					    </div>
-
-					    <div class="form-group">
-					    	  <h4 class="mb"><i class="fa fa-angle-right"></i> Version notes</h4>
-					      <p>{{ nl2br(e($post->notesversion)) }}</p>
-					    </div>
-					</div><!-- /form-panel -->
-				</div>
-
+	<div class="col-lg-12">
+			<div class="form-panel">
+				<div class="form-group">
+	      	  <h4 class="mb"><i class="fa fa-angle-right"></i> Notes on data source</h4>
+				<p>{{ nl2br(e($post->notessource)) }}</p>
+			</div>
+	
+			<div class="form-group">
+		  	  <h4 class="mb"><i class="fa fa-angle-right"></i> Notes on data</h4>
+		     <p>{{ nl2br(e($post->notescleaning)) }}</p>
+		    </div>
+	
+		    <div class="form-group">
+		    	  <h4 class="mb"><i class="fa fa-angle-right"></i> Version notes</h4>
+		      <p>{{ nl2br(e($post->notesversion)) }}</p>
+		    </div>
+		</div><!-- /form-panel -->
+	</div>
 </div>
+
+
 
 <div class="row mt">
 	<div class="col-lg-12">
@@ -118,12 +129,13 @@ http://stackoverflow.com/questions/10626885/passing-data-to-a-bootstrap-modal
 		      </div>
 		      <div class="modal-body">
 					<!--<input type="text" name="bookId" id="bookId" value=""/>-->
+						<div id="DetailModalDescription"></div>
+						
 						<table id="detailTable" class="display" cellspacing="0" width="100%">
 					        <thead>
 					            <tr>
-					                <th>Data Value</th>
-									<th>Data Type</th>
-									<th>Data Label</th>
+					                <th>Data Value</th>									
+									<th>Notes</th>
 					            </tr>
 					        </thead>
 					    </table>
@@ -261,7 +273,7 @@ http://stackoverflow.com/questions/10626885/passing-data-to-a-bootstrap-modal
 			          { "title": "Max Length" },
 			          { "title": "Complete" },
 			          { "title": "Total Rows" },
-			          { "title": "% Complete" },
+			          { "title": "Percent Complete" },
 			          { "title": "Description" },
 			          { "title": "" }			          
 					     ]
@@ -269,7 +281,8 @@ http://stackoverflow.com/questions/10626885/passing-data-to-a-bootstrap-modal
 					    	     
 				  });
 				  
-				  yadcf.init(mytable , [{column_number : 0, filter_type: "multi_select", select_type: "chosen", filter_default_label: "Select Tables"}]);
+				  
+				  yadcf.init(mytable , [{column_number : 0, filter_type: "select", select_type: "chosen", filter_default_label: "Select a Table", filter_reset_button_text: "clear"}]);
 
 
 				  	

@@ -16,6 +16,10 @@
 
 {{-- Page content --}}
 @section('content')
+
+
+ 
+
 <div class="page-header">
     <h3>@lang('account/title.signup')</h3>
 </div>
@@ -183,4 +187,8 @@
 
     </form>
 </div>
+
+
+
+
 @stop

@@ -27,7 +27,7 @@
         <link href='http://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700' rel='stylesheet' type='text/css'>
 
         <!-- Custom styles for this template -->
-        <link href="{{ asset('assets/css/custom/style.css') }}" rel="stylesheet">
+        <link href="{{ asset('assets/css/custom/backend-style.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/custom/style-responsive.css') }}" rel="stylesheet">
         <link href="{{ asset('assets/css/custom/to-do.css') }}" rel="stylesheet" >
         <link href="//cdn.datatables.net/1.10.6/css/jquery.dataTables.min.css" rel="stylesheet">
@@ -52,13 +52,17 @@
         @show
         </style>
 
-        <!-- Put these JS files up here for datatable-->
-    
+        <!-- Put these JS files up here for datatable-->    
         <script src="{{ asset('assets/js/jquery.1.10.2.min.js') }}"></script>     
         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.2/jquery-ui.min.js"></script>
         <script type="text/javascript" src="//cdn.datatables.net/1.10.6/js/jquery.dataTables.js"></script>
         <script src="{{ asset('assets/js/custom/jquery.dataTables.yadcf.js') }}"></script> 
-        <script src="{{ asset('assets/js/custom/jquery.chosen.min.js') }}"></script>    
+        <script src="{{ asset('assets/js/custom/jquery.chosen.min.js') }}"></script>   
+        
+        <!-- js-grid -->
+        <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/custom/jsgrid.min.css') }}" />
+        <link type="text/css" rel="stylesheet" href="{{ asset('assets/css/custom/jsgrid-theme.min.css') }}" />
+        <script type="text/javascript" src="{{ asset('assets/js/custom/jsgrid.min.js') }}"></script> 
 
 
         <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
@@ -69,11 +73,11 @@
 
         <!-- Favicons
         ================================================== -->
-        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('assets/ico/apple-touch-icon-144-precomposed.png') }}">
-        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('assets/ico/apple-touch-icon-114-precomposed.png') }}">
-        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('assets/ico/apple-touch-icon-72-precomposed.png') }}">
-        <link rel="apple-touch-icon-precomposed" href="{{ asset('assets/ico/apple-touch-icon-57-precomposed.png') }}">
-        <link rel="shortcut icon" href="{{ asset('assets/ico/favicon.png') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ asset('assets/ico/apple-touch-icon-144-precomposed.png?v=2') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ asset('assets/ico/apple-touch-icon-114-precomposed.png?v=2') }}">
+        <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ asset('assets/ico/apple-touch-icon-72-precomposed.png?v=2') }}">
+        <link rel="apple-touch-icon-precomposed" href="{{ asset('assets/ico/apple-touch-icon-57-precomposed.png?v=2') }}">
+        <link rel="shortcut icon" href="{{ asset('assets/ico/favicon.ico') }}" type="image/x-icon">
     </head>
 
     <body>
@@ -83,26 +87,42 @@
 		      <!-- **********************************************************************************************************************************************************
 		      TOP BAR CONTENT & NOTIFICATIONS
 		      *********************************************************************************************************************************************************** -->
+      
+
+		      
+		      
+		      
 		      <!--header start-->
 		      <header class="header black-bg">
-		              <div class="sidebar-toggle-box">
-		                  <div class="fa fa-bars btn-white tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
-		              </div>
-		            <!--logo start-->
-		            <a href="/" class="logo"><b>ISC Database</b></a>
-		            <!--logo end-->
-		            <div class="nav notify-row" id="top_menu">
-
-		            </div>
-		            <div class="top-menu">
-
-		            	<ul class="nav pull-right top-menu">
-		                    @if (Sentry::check())
-		                     <li><a class="logout"  href="{{ route('logout') }}"><i class="icon-off"></i> Logout</a></li>
-		                     @endif
-		            	</ul>
-
-		            </div>
+		      
+					<div class="row">
+					<ul class="nav navbar-nav site-nav pull-right hidden-xs">
+		                <li class=""><a href="/">Homepage</a></li>
+		                <li class=""><a href="/#aboutus">About us</a></li>
+		                <li class=""><a href="/#faq">FAQ</a></li>		                    
+		                <li class=""><a href="/#contactus">Contact us</a></li>    
+		        	</ul>
+		        	</div>
+		        	
+		      		      
+				<div class="sidebar-toggle-box">
+					<div class="fa fa-bars btn-white tooltips" data-placement="right" data-original-title="Toggle Navigation"></div>
+				</div>
+				<!--logo start-->
+				<a href="/" class="logo"><b>ISC Database</b></a>
+				<!--logo end-->
+				<div class="nav notify-row" id="top_menu"></div>
+				
+				<ul class="nav pull-right top-menu">		      	                    
+					@if (Sentry::check())
+					 <li><a class="logout"  href="{{ route('logout') }}"><i class="icon-off"></i> LOGOUT</a></li>
+					 @endif
+				</ul>
+		            
+		              
+		   
+		    
+ 
 		        </header>
 		      <!--header end-->
 
@@ -123,7 +143,7 @@
 
 		              	  <h5 class="centered">Welcome, {{ Sentry::getUser()->first_name }}</h5>
 
-		                  <li class="sub-menu"><a class="{{ (Request::is('dictionary') ? ' active' : '') }}" href="{{ route('dictionary') }}"><i class="fa fa-dashboard"></i><span>Dictionary dashboard</span></a></li>
+		                  <li class="sub-menu"><a class="{{ (Request::is('dictionary') ? ' active' : '') }}" href="{{ route('dictionary') }}"><i class="fa fa-dashboard"></i><span>Codebook</span></a></li>
 
 
 
@@ -171,12 +191,6 @@
 
 
 					  @endif
-
-
-					  <li class="sub-menu {{ (Request::is('faq') ? ' active' : '') }}"><a href="{{ URL::to('faq') }}"><i class="fa fa-tasks"></i><span>FAQ</span></a></li>
-					  <li class="sub-menu"><a href="{{ URL::to('about-us') }}"><i class="fa fa-user"></i><span>About us</span></a></li>
-					  <li class="sub-menu"><a href="{{ URL::to('contact-us') }}"><i class="fa fa-envelope"></i><span>Contact us</span></a></li>
-					  <li class="sub-menu"><a href="/"><i class="fa fa-home"></i> <span>Homepage</span></a></li>
 
 		              </ul>
 		              <!-- sidebar menu end-->

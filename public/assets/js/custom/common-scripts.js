@@ -11,6 +11,8 @@ $(function() {
 //        cookie: 'dcjq-accordion-1',
         classExpand: 'dcjq-current-parent'
     });
+    
+    $( "select.first-disabled option:first-child" ).attr("disabled", "disabled");
 });
 
 

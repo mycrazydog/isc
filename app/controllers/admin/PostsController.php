@@ -11,6 +11,7 @@ use Str;
 use Validator;
 use View;
 use Status;
+use Tag;
 
 class PostsController extends AdminController
 {
@@ -164,9 +165,11 @@ class PostsController extends AdminController
         }
 
         $status_options = Status::lists('status', 'id');
+        $available_tags = Tag::lists('tag', 'id');        
+        $selected_tags = explode(",",$post->tags);
 
         // Show the page
-        return View::make('backend/posts/edit', compact('post'))->with('status_options',$status_options);
+        return View::make('backend/posts/edit', compact('post'))->with('status_options',$status_options)->with('selected_tags',$selected_tags)->with('available_tags',$available_tags);
     }
 
     /**
@@ -205,6 +208,8 @@ class PostsController extends AdminController
             return Redirect::back()->withInput()->withErrors($validator);
         }
 
+
+
         // Update the blog post data
         $post->title            = e(Input::get('title'));
         $post->slug             = e(Input::get('slug'));
@@ -214,7 +219,16 @@ class PostsController extends AdminController
         $post->meta_keywords    = e(Input::get('meta-keywords'));
             $post->partnerwebsite   = e(Input::get('partnerwebsite'));
             $post->status_id           = e(Input::get('status_id'));
-            $post->tags           = e(Input::get('tags'));
+            
+
+            
+            //$comma_tags =implode(",", e(Input::get('tags')));            
+            //$post->tags         = $comma_tags;
+            
+            $post->tags = implode(',', Input::get('tags'));
+
+            
+            
             $post->yearsavailable   = e(Input::get('yearsavailable'));
             $post->notescleaning    = e(Input::get('notescleaning'));
             $post->notessource      = e(Input::get('notessource'));

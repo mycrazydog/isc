@@ -2,7 +2,7 @@
 
 {{-- Page title --}}
 @section('title')
-@lang('admin/posts/title.blogmanagement') ::
+Manage imports ::
 @parent
 @stop
 
@@ -10,7 +10,7 @@
 @section('content')
 <div class="page-header">
     <h3>
-        Manage Imports
+        Manage imports
 
         <div class="pull-right">
             <a href="{{ route('create/import') }}" class="btn btn-info"><span class="glyphicon glyphicon-plus"></span> New import</a>
