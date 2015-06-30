@@ -65,7 +65,7 @@ $(function() {
 		    	item._token = "{{ csrf_token() }}";
 		        return $.ajax({
 		            type: "PUT",
-		            url: "http://charlotteresearch.info/api/datastatus",
+		            url: "http://charlotteresearch.info/api/datastatus/"+item.id,
 		            data: item,
 		            dataType: "json"
 		        });
@@ -75,7 +75,7 @@ $(function() {
 		    	item._token = "{{ csrf_token() }}";
 		        return $.ajax({
 		            type: "DELETE",
-		            url: "http://charlotteresearch.info/api/datastatus",
+		            url: "http://charlotteresearch.info/api/datastatus/"+item.id,
 		            data: item,
 		            dataType: "json"
 		        });

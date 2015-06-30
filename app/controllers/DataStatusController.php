@@ -98,7 +98,6 @@ class DataStatusController extends \BaseController {
 	public function destroy($id)
 	{
 		
-		return 'SHIT';
 		// delete
 		$data = DataStatus::find($id);
 		$data->delete();
