@@ -168,7 +168,7 @@ class PostsController extends AdminController
             return Redirect::to('admin/blogs')->with('error', Lang::get('admin/posts/message.does_not_exist'));
         }
 
-        $status_options = Status::lists('status', 'id');
+        $status_options = Status::lists('name', 'id');
         $tags = Tag::lists('name', 'id');  
         $selected_tags =  $post->tags->lists('id');
         
