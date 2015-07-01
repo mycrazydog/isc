@@ -343,8 +343,8 @@ class ImportController extends BaseController
 			->select("posts.title", "posts.tags", "statuses.status", "posts.slug")
 			->orderby('statuses.id');
 			
-			$tags = $post->tags->lists('tag');
-			Log::info('This is some useful information-'.$tags);
+			//$tags = $post->tags->lists('tag');
+			//Log::info('This is some useful information-'.$tags);
 			
 
 

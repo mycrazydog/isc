@@ -38,7 +38,7 @@ class DataStatusController extends \BaseController {
 		$data->year = Input::get('year');
 		$data->status = Input::get('status');
 		$data->save();
-		return Response::make(['id'=>$data->id], 201);
+		return Response::make($data, 201);
 		
 	}
 

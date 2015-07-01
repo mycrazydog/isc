@@ -10,7 +10,8 @@
 @section('content')
 <div class="page-header">
     <h3>
-        @lang('admin/posts/title.edit')
+        @lang('admin/posts/title.edit') - {{ $post->title }} 
+        
 
         <div class="pull-right">
             <a href="{{ route('posts') }}" class="btn btn-small btn-inverse"><i class="icon-circle-arrow-left icon-white"></i> @lang('button.back')</a>
@@ -41,25 +42,19 @@ $(function() {
 		        });
 		    },
 		
+		    
 		    insertItem: function(item) {
-
-		    	 item._token = "{{ csrf_token() }}";
-		    	 var d = $.Deferred();		    
-
-		        
-		            $.ajax({
-		                type: "POST",
-		                url: "http://charlotteresearch.info/api/datastatus",
-		                data: item
-		            }).done(function(updatedItemReturnedFromServer) {
-		                d.resolve(updatedItemReturnedFromServer); // here we resolve promise with actual item
-		            });
-		        
-		            return d.promise();
-		        
-		        
-		        
+		    	item._token = "{{ csrf_token() }}";
+		    	item.partner_id = "{{ $post->id }}";
+		        return $.ajax({
+		            type: "POST",
+		            url: "http://charlotteresearch.info/api/datastatus",
+		            data: item,
+		            dataType: "json"
+		        });
 		    },
+		    
+		    
 		
 		    updateItem: function(item) {
 		    	item._token = "{{ csrf_token() }}";
@@ -83,10 +78,9 @@ $(function() {
         },
  
         fields: [
-            { name: "id", type: "number", inserting: false, editing:false },
-            { name: "partner_id", type: "number"},
-            { name: "year", type: "text"},
-            { name: "status", type: "text"},
+            
+            { name: "year", type: "text", align: "center"},
+            { name: "status", type: "text", align: "center"},
             { type: "control" }
         ]
     });

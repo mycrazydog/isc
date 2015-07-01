@@ -69,7 +69,7 @@
                     <div class="col-sm-5">
                       <!--Form::text('tags', null, ['class' => 'form-control', 'placeholder' => 'Use a comma separted list. Example: Demographics, Environmont, Economy']) -->
                       
-                      {{  Form::select('tags[]', $available_tags, $selected_tags, ['class' => 'form-control', 'multiple' => 'multiple']) }}
+                       Form::select('tags[]', $available_tags, $selected_tags, ['class' => 'form-control', 'multiple' => 'multiple']) 
                       
                       
                     </div>
@@ -167,6 +167,6 @@
     <div class="form-group">
       <div class="col-sm-offset-2 col-sm-10">
         <a class="btn btn-link" href="{{ route('posts') }}">@lang('button.cancel')</a>
-        <button type="submit" class="btn btn-default">@lang('button.publish')</button>
+        <button type="submit" class="btn btn-default">Save</button>
       </div>
     </div>

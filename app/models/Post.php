@@ -8,7 +8,6 @@ class Post extends Elegant
     protected $rules = array(
             'title'   => 'required|min:3',
             'slug'   => "unique:posts",
-            'content' => 'required|min:3',
     );
 
     /**

@@ -36,46 +36,49 @@
 			@if ($post->img())
 			<img class="img-responsive" src="/logos/{{{ $post->filePartnerLogo }}}" alt="{{{ $post->filePartnerLogo }}}">
 			@endif
-			<br/>
-			<a href="{{{ $post->partnerwebsite }}}" target="_blank">{{{ $post->partnerwebsite }}} <i class="fa fa-share"></i></a>
+			<p><a href="{{{ $post->partnerwebsite }}}" target="_blank">{{{ $post->partnerwebsite }}} <i class="fa fa-share"></i></a></p>
+			
+			<p>{{ nl2br(e($post->content())) }}</p>		
 						
 			
-			<h5><i class="fa fa-angle-right"></i> Status</h5>
-			<span class="btn btn-round btn-info">{{{ Status::find($post->status_id)->status }}}</span>
+			<h5><i class="fa fa-angle-right"></i> Data Status</h5>
+			<!--Status::find($post->status_id)->status }}}-->
 			
-			<br/><br/>
+			<script>
+			$(function() {
+			 
+			    $("#jsGrid").jsGrid({
+			        height: "auto",
+			        width: "100%",
+			 
+			        inserting: false,
+			        editing: false,
+			        sorting: false,
+			        paging: false,
+			        autoload: true,
+			 
+			        controller: {
+					    loadData: function(filter) {
+					        return $.ajax({
+					            type: "GET",
+					            url: "http://charlotteresearch.info/api/datastatus/{{ $post->id }}",
+					            data: filter,
+					            dataType: "json"
+					        });
+					    },
+			        },
+			 
+			        fields: [            
+			            { name: "year", type: "text", align: "center"},
+			            { name: "status", type: "text", align: "center"},
+			        ]
+			    });
+			 
+			});
+			</script>
 			
-			<h5><i class="fa fa-angle-right"></i> Years Available</h5>
-			{{{ $post->yearsavailable }}}
-			
-			
-			<table id="statusTable" class="table table-striped">
-			  <thead>
-			  <tr>
-			      <th>Year</th>
-			      <th>Status</th>
-			  </tr>
-			  </thead>
-			  <tbody>
-			  <tr>
-			      <td>Mark</td>
-			      <td>Otto</td>
-			  </tr>
-			  <tr>
-			      <td>Jacob</td>
-			      <td>Thornton</td>
-			  </tr>
-			  <tr>
-			      <td>Larry</td>
-			      <td>the Bird</td>
-			  </tr>
-			  </tbody>
-			</table>			
-			
-			
-			
-			
-			<p>{{ nl2br(e($post->content())) }}</p>			
+			<div id="jsGrid"></div>		
+				
 		</div><!-- /form-panel -->
 	</div>
 </div>
