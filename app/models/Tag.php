@@ -3,18 +3,18 @@
 class Tag extends Elegant
 {
 
- 	protected $table = 'tags';
- /**
-  * A post model might have many tags
-  *
-  *
-  * @return
-  */
+	protected $table = 'tags';
+	/**
+	* Get the posts associated with the given tag
+	*
+	*
+	* @return
+	*/
 
 	public function posts()
 	{
-	    //return $this->hasMany('Post', 'tags');
-	    return $this->belongsToMany('Post');
+		//return $this->hasMany('Post', 'tags');
+		return $this->belongsToMany('Post');
 	}
 
 }

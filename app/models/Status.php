@@ -15,9 +15,9 @@ class Status extends Elegant
 //        return $this->belongsTo('Post');
 //    }
 
-	public function posts()
+	public function post()
 	{
-	    return $this->hasMany('Post', 'status_id');
+	   return $this->belongsTo('Post','status_id','id');
 	}
 
 }

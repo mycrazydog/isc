@@ -65,16 +65,13 @@
 
             <!--TAGS GOES HERE-->
             <div class="form-group {{ $errors->first('tags', 'has-error') }}">
-                <label for="tags" class="col-sm-3 control-label">Tags to describe data</label>
+                <label for="tag_list" class="col-sm-3 control-label">Tags to describe data</label>
                     <div class="col-sm-5">
-                      <!--Form::text('tags', null, ['class' => 'form-control', 'placeholder' => 'Use a comma separted list. Example: Demographics, Environmont, Economy']) -->
-                      
-                       Form::select('tags[]', $available_tags, $selected_tags, ['class' => 'form-control', 'multiple' => 'multiple']) 
-                      
-                      
+                      <!--Form::text('tags', null, ['class' => 'form-control', 'placeholder' => 'Use a comma separted list. Example: Demographics, Environmont, Economy']) -->                      
+                      {{ Form::select('tag_list[]', $tags, $selected_tags, ['class' => 'form-control', 'multiple' => 'multiple']) }}                      
                     </div>
                     <div class="col-sm-4">
-                        {{ $errors->first('status', '<span class="help-block">:message</span>') }}
+                        {{ $errors->first('tag_list', '<span class="help-block">:message</span>') }}
                     </div>
             </div>
 

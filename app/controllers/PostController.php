@@ -1,4 +1,7 @@
 <?php
+use Post;
+use Tag;
+use Status;
 
 class PostController extends BaseController
 {
@@ -19,16 +22,13 @@ class PostController extends BaseController
     {
         // Get all the blog posts
         // return $this->post->all();
-        $posts = $this->post->with(array(
-            'author' => function ($query) {
-                $query->withTrashed();
-            },
-        ))->orderBy('created_at', 'DESC')->paginate();
+        //$posts = $this->post; 
         
         
-        $statuses = DB::table('statuses')->get();        
+        $posts = $this->post->all();
+   
 
-        return View::make('backend/posts/dictionary')->with('posts', $posts)->with('statuses', $statuses);
+        return View::make('backend/posts/dictionary')->with('posts', $posts);
         
         //return View::make('backend/posts/dictionary', compact('posts'));
 

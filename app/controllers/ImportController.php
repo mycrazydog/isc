@@ -3,6 +3,9 @@
 //Maatwebsite\Excel\Excel;
 //Illuminate\Redis\Database;
 
+use Post;
+use Tag;
+
 
 class ImportController extends BaseController
 {
@@ -338,24 +341,24 @@ class ImportController extends BaseController
 
 
 
-			$collection = DB::table('posts')
+			$posts = DB::table('posts')
 			->join('statuses', 'posts.status_id', '=', 'statuses.id')
-			->select("posts.title", "posts.tags", "statuses.status", "posts.slug")
+			->select("posts.id", "posts.title", "statuses.status", "posts.slug")
 			->orderby('statuses.id');
 			
-			//$tags = $post->tags->lists('tag');
-			//Log::info('This is some useful information-'.$tags);
+			/*
+			foreach ($post->tags as $tag) {
+				$tag->name
+			}
+			*/
 			
+			
+			//$tags = $posts->tags()->get();
 
-
-			return Datatable::query($collection)
-			->showColumns('title', 'tags', 'status')
-			->addColumn('view',function($model)
-			{
-				return '<a class="open-DetailDialog btn btn-primary" href="'. URL::to('admin/dictionary/'.$model->slug) .'">View codebook</a>';
-			})
-			->make();
-
+			
+			$post = $this->posts->find($posts->id);
+			$tags = $post->tags->lists('name');
+			
 
 		}
 

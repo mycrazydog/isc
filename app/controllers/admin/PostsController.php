@@ -47,10 +47,13 @@ class PostsController extends AdminController
     public function getCreate()
     {
 
-        $status_options = Status::lists('status', 'id');
+        //$status_options = Status::lists('status', 'id');        
+        //$available_tags = Tag::lists('name', 'id'));       
 
-        return View::make('backend/posts/create')->with('status_options',$status_options);
-
+        return View::make('backend/posts/create');
+		//->with('status_options',$status_options)->with('available_tags',$available_tags)
+		
+		
     	 	/*
 
     	 	WES CODE TO COME BACK TO
@@ -110,29 +113,30 @@ class PostsController extends AdminController
 
              // Update the blog post data
             $post->title            = e(Input::get('title'));
+            
+            /*
+            // Not needed because we create a post with just title to be able to go ahead and get the post-id
             $post->content          = e(Input::get('content'));
             $post->slug             = e(Input::get('slug'));
             $post->meta_title       = e(Input::get('meta-title'));
             $post->meta_description = e(Input::get('meta-description'));
             $post->meta_keywords    = e(Input::get('meta-keywords'));
             $post->user_id          = Sentry::getUser()->id;
-                $post->partnerwebsite   = e(Input::get('partnerwebsite'));
-                $post->status_id           = e(Input::get('status'));
-                $post->tags           = e(Input::get('tags'));
-                $post->yearsavailable   = e(Input::get('yearsavailable'));
-                $post->notescleaning    = e(Input::get('notescleaning'));
-                $post->notessource      = e(Input::get('notessource'));
-                $post->notesversion     = e(Input::get('notesversion'));
+            $post->partnerwebsite   = e(Input::get('partnerwebsite'));
+            $post->status_id        = e(Input::get('status'));
+            $post->tags           	= e(Input::get('tags'));
+            $post->yearsavailable   = e(Input::get('yearsavailable'));
+            $post->notescleaning    = e(Input::get('notescleaning'));
+            $post->notessource      = e(Input::get('notessource'));
+            $post->notesversion     = e(Input::get('notesversion'));
 
-
-                if (Input::hasFile('filePartnerLogo')) {
-                	$file = Input::file('filePartnerLogo');
-                	$name = 'filePartnerLogo-' . $file->getClientOriginalName();
-                	$file = $file->move(base_path('public/logos'), $name);
-                	$post->filePartnerLogo = $name;
-                }
-
-
+            if (Input::hasFile('filePartnerLogo')) {
+            	$file = Input::file('filePartnerLogo');
+            	$name = 'filePartnerLogo-' . $file->getClientOriginalName();
+            	$file = $file->move(base_path('public/logos'), $name);
+            	$post->filePartnerLogo = $name;
+            }
+            */
 
 
             // Was the blog post created?
@@ -165,11 +169,11 @@ class PostsController extends AdminController
         }
 
         $status_options = Status::lists('status', 'id');
-        $available_tags = Tag::lists('tag', 'id');        
-        $selected_tags = explode(",",$post->tags);
-
+        $tags = Tag::lists('name', 'id');  
+        $selected_tags =  $post->tags->lists('id');
+        
         // Show the page
-        return View::make('backend/posts/edit', compact('post'))->with('status_options',$status_options)->with('selected_tags',$selected_tags)->with('available_tags',$available_tags);
+        return View::make('backend/posts/edit', compact('post'))->with('status_options',$status_options)->with('tags',$tags)->with('selected_tags', $selected_tags);
     }
 
     /**
@@ -217,37 +221,32 @@ class PostsController extends AdminController
         $post->meta_title       = e(Input::get('meta-title'));
         $post->meta_description = e(Input::get('meta-description'));
         $post->meta_keywords    = e(Input::get('meta-keywords'));
-            $post->partnerwebsite   = e(Input::get('partnerwebsite'));
-            $post->status_id           = e(Input::get('status_id'));
-            
+        $post->partnerwebsite   = e(Input::get('partnerwebsite'));
+        $post->status_id           = e(Input::get('status_id'));              
+        
+        //$comma_tags =implode(",", e(Input::get('tags')));            
+        //$post->tags         = $comma_tags;            
+        //$post->tags = implode(',', Input::get('tags'));  
+        
+        //$tagIds = Input::get('tags');
+        $post->tags()->sync(Input::get('tag_list'));       
+                
+        
+        $post->yearsavailable   = e(Input::get('yearsavailable'));
+        $post->notescleaning    = e(Input::get('notescleaning'));
+        $post->notessource      = e(Input::get('notessource'));
+        $post->notesversion     = e(Input::get('notesversion'));
 
-            
-            //$comma_tags =implode(",", e(Input::get('tags')));            
-            //$post->tags         = $comma_tags;
-            
-            $post->tags = implode(',', Input::get('tags'));
-
-            
-            
-            $post->yearsavailable   = e(Input::get('yearsavailable'));
-            $post->notescleaning    = e(Input::get('notescleaning'));
-            $post->notessource      = e(Input::get('notessource'));
-            $post->notesversion     = e(Input::get('notesversion'));
-
-            if (Input::hasFile('filePartnerLogo')) {
-            	$file = Input::file('filePartnerLogo');
-            	$name = 'filePartnerLogo-' . $file->getClientOriginalName();
-            	$file = $file->move(base_path('public/logos'), $name);
-            	$post->filePartnerLogo = $name;
-            }
+        if (Input::hasFile('filePartnerLogo')) {
+        	$file = Input::file('filePartnerLogo');
+        	$name = 'filePartnerLogo-' . $file->getClientOriginalName();
+        	$file = $file->move(base_path('public/logos'), $name);
+        	$post->filePartnerLogo = $name;
+        }
 
         // Was the blog post updated?
         if ($post->save()) {
-
-
         	//$post->status()->sync(Input::get('status'));
-
-
             // Redirect to the new blog post page
             return Redirect::to("admin/posts/$postId/edit")->with('success', 'Updated successfully');
         }

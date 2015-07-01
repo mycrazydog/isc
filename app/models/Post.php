@@ -25,16 +25,7 @@ class Post extends Elegant
     }
 
 
- /**
-  * A post model might have one status
-  *
-  *
-  * @return
-  */
-    public function statuses()
-    {
-        return $this->hasMany('Status');
-    }
+
 
 
 /**
@@ -100,8 +91,40 @@ class Post extends Elegant
         return 'http://placehold.it/150x150';
     }
     
-    public function tags() {
-    	return $this->belongsToMany('Tag');	
-    }
+	
+	/**
+	* A post model might have one status
+	*
+	*
+	* @return
+	*/
+	public function statuses()
+	{
+	   return $this->hasMany('Status','id','status_id');
+	}     
+       
+       
+    
+	/**
+	* Get the tags associated with the given post
+	*
+	* 
+	*/     
+	public function tags()
+	{
+		return $this->belongsToMany('Tag');	
+	}
+	
+	/**
+	* Get the tag ids associated with the current post
+	* @return array
+	* 
+	*/  	
+	public function getTagListAttribute()
+	{
+		//Could not get to work
+		 //$this->tags->lists('id');
+	}
+	
 
 }
