@@ -113,11 +113,12 @@ class PostsController extends AdminController
 
              // Update the blog post data
             $post->title            = e(Input::get('title'));
+            $post->slug             = e(Input::get('slug'));
             
             /*
             // Not needed because we create a post with just title to be able to go ahead and get the post-id
             $post->content          = e(Input::get('content'));
-            $post->slug             = e(Input::get('slug'));
+            
             $post->meta_title       = e(Input::get('meta-title'));
             $post->meta_description = e(Input::get('meta-description'));
             $post->meta_keywords    = e(Input::get('meta-keywords'));
@@ -127,7 +128,7 @@ class PostsController extends AdminController
             $post->tags           	= e(Input::get('tags'));
             $post->yearsavailable   = e(Input::get('yearsavailable'));
             $post->notescleaning    = e(Input::get('notescleaning'));
-            $post->notessource      = e(Input::get('notessource'));
+            //$post->notessource      = e(Input::get('notessource'));
             $post->notesversion     = e(Input::get('notesversion'));
 
             if (Input::hasFile('filePartnerLogo')) {
@@ -229,19 +230,23 @@ class PostsController extends AdminController
         //$post->tags = implode(',', Input::get('tags'));  
         
         //$tagIds = Input::get('tags');
-        $post->tags()->sync(Input::get('tag_list'));       
+         if (Input::get('tag_list')) {
+        	$post->tags()->sync(Input::get('tag_list'));  
+        }     
                 
         
         $post->yearsavailable   = e(Input::get('yearsavailable'));
         $post->notescleaning    = e(Input::get('notescleaning'));
-        $post->notessource      = e(Input::get('notessource'));
+        //$post->notessource      = e(Input::get('notessource'));
         $post->notesversion     = e(Input::get('notesversion'));
 
         if (Input::hasFile('filePartnerLogo')) {
-        	$file = Input::file('filePartnerLogo');
-        	$name = 'filePartnerLogo-' . $file->getClientOriginalName();
-        	$file = $file->move(base_path('public/logos'), $name);
-        	$post->filePartnerLogo = $name;
+        	    
+	        	$file = Input::file('filePartnerLogo');
+	        	$name = 'filePartnerLogo-' . $file->getClientOriginalName();
+	        	$file = $file->move(base_path('public/logos'), $name);
+	        	$post->filePartnerLogo = $name;        	
+        	     	
         }
 
         // Was the blog post updated?
@@ -295,6 +300,7 @@ class PostsController extends AdminController
 
         // Redirect to the blog posts management page
         return Redirect::to('admin/posts')->with('success', Lang::get('admin/posts/message.delete.success'));
-    }
+    }    
+
 
 }

@@ -87,11 +87,13 @@
 
 <div class="row">
 	<div class="col-lg-12">
-			<div class="form-panel">
-				<div class="form-group">
+		<div class="form-panel">
+			<!--
+			<div class="form-group">
 	      	  <h4 class="mb"><i class="fa fa-angle-right"></i> Notes on data source</h4>
-				<p>{{ nl2br(e($post->notessource)) }}</p>
+				<p>$post->notessource</p>
 			</div>
+			-->
 	
 			<div class="form-group">
 		  	  <h4 class="mb"><i class="fa fa-angle-right"></i> Notes on data</h4>
@@ -272,7 +274,6 @@ http://stackoverflow.com/questions/10626885/passing-data-to-a-bootstrap-modal
 					    "columns": [
 					  { "title": "Table"}, 
 			          { "title": "Fields"},
-			          { "title": "Data Type <a title='This is a sentence explaining the difference between numeric and nvarchar'><i class='a fa-question-circle'></i></a>" },
 			          { "title": "Max Length" },
 			          { "title": "Complete" },
 			          { "title": "Total Rows" },
@@ -289,7 +290,7 @@ http://stackoverflow.com/questions/10626885/passing-data-to-a-bootstrap-modal
 
 
 				  	
-
+//			          { "title": "Data Type <a title='This is a sentence explaining the difference between numeric and nvarchar'><i class='a fa-question-circle'></i></a>" },
 
 	   	});
 

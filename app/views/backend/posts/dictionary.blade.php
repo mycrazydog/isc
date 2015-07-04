@@ -27,16 +27,23 @@
         <tr>
             <td>{{{ $post->title }}}</td>
             <td>            
-				@foreach ($post->statuses as $status)            
-					{{ $status->name }},
-				@endforeach             
+				@foreach ($post->tags as $tag)            
+					{{ $tag->name }},
+				@endforeach          
             </td>
             <td>
-	            @foreach ($post->tags as $tag)            
-	            	{{ $tag->name }},
-	            @endforeach
+            	@foreach ($post->statuses as $status)            
+            		{{ $status->name }}
+            	@endforeach  
             </td>
-            <td><a class="open-DetailDialog btn btn-primary" href="{{ URL::to('admin/dictionary/'.$post->slug) }} ">View codebook</a></td>
+            <td>
+            	@if($post->status_id == 2)           
+                        <span class="btn btn-warning disabled" >Codebook available soon</span> 
+                 @else
+                 		<a class="open-DetailDialog btn btn-primary" href="{{ URL::to('admin/dictionary/'.$post->slug) }} ">View codebook</a> 
+                 @endif       
+                       
+            </td>
         </tr>
         @endforeach
     </tbody>

@@ -14,30 +14,32 @@ class PostController extends BaseController
       }
 
     /**
-     * Returns all the blog posts.
+     * Returns all the posts.
      *
      * @return View
      */
     public function getIndex()
     {
-        // Get all the blog posts
-        // return $this->post->all();
-        //$posts = $this->post; 
-        
-        
-        $posts = $this->post->all();
-   
+    
+    	
+    	// $users = DB::table('users')->get();    	
+    	// foreach ($users as $user){
+    	// var_dump($user->name);
+    	// }
+    		
+    
+        // Get all the posts          
+        $posts = $this->post->all();   
 
-        return View::make('backend/posts/dictionary')->with('posts', $posts);
+        return View::make('backend/posts/dictionary')->with('posts', $posts);        
         
-        //return View::make('backend/posts/dictionary', compact('posts'));
 
     }
 
     /**
      * View a blog post.
      *
-     * @param  string                $slug
+     * @param  string $slug
      * @return View
      * @throws NotFoundHttpException
      */

@@ -11,11 +11,13 @@
             <p>{{ Form::file('filePartnerLogo') }}</p>
             <?php
             if (isset($post->filePartnerLogo)) {
-            if (($post->filePartnerLogo != '')){
-            	echo "<div class='alert alert-block'>Previously uploaded logo:<br/><img style='width:200px' src='/logos/".$post->filePartnerLogo."'></div>";
-            }
+	            if (($post->filePartnerLogo != '')){
+	            	echo "<div class='alert alert-block'>Previously uploaded logo:<br/><img style='width:200px' src='/logos/".$post->filePartnerLogo."'></div>";
+	            }
             }
             ?>
+            
+            {{ $errors->first('filePartnerLogo', '<span class="help-block">:message</span>') }}
             </div>
             </div>
 
@@ -100,16 +102,8 @@
                     {{ Form::textarea('notescleaning', null, ['class' => 'form-control']) }}
                     {{ $errors->first('notescleaning', '<span class="help-block">:message</span>') }}
                     </div>
-            </div>
-
-            <!--notessource-->
-            <div class="form-group {{ $errors->first('notessource', 'has-error') }}">
-                    <label for="notessource" class="col-sm-3 control-label">@lang('admin/posts/form.notessource')</label>
-                    <div class="col-sm-9">
-                     {{ Form::textarea('notessource', null, ['class' => 'form-control']) }}
-                     {{ $errors->first('notessource', '<span class="help-block">:message</span>') }}
-                    </div>
-            </div>
+            </div>       
+                     
 
             <!--notesversion-->
             <div class="form-group {{ $errors->first('notesversion', 'has-error') }}">

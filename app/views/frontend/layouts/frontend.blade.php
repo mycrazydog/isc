@@ -173,6 +173,7 @@
             <script type="text/javascript" src="{{ asset('assets/js/custom/jquery.dcjqaccordion.2.7.js') }}"></script>
             <script type="text/javascript" src="{{ asset('assets/js/custom/jquery.scrollTo.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('assets/js/custom/jquery.nicescroll.js') }}"></script>
+             <script type="text/javascript" src="{{ asset('assets/js/custom/bootstrap-session-timeout.min.js') }}"></script>
 
             <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
             <script src="{{ asset('assets/js/custom/classie.js') }}"></script>

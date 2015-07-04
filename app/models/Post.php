@@ -8,6 +8,7 @@ class Post extends Elegant
     protected $rules = array(
             'title'   => 'required|min:3',
             'slug'   => "unique:posts",
+            'filePartnerLogo' => 'image|max:1000|mimes:jpeg,jpg,bmp,png,gif',
     );
 
     /**

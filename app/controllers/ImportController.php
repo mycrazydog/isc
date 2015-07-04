@@ -257,11 +257,11 @@ class ImportController extends BaseController
 
 			$data['partner_id'] = $partner_id;
 			Log::info('This is some useful information-'.$partner_id);
-			$collection = ImportForm::select("table_name as TBL","column_name as CLM", "data_type", "max_length", "complete", "total_rows", "pct_complete", "description", "partner_id")->where('partner_id', '=', $partner_id);
+			$collection = ImportForm::select("table_name as TBL","column_name as CLM", "max_length", "complete", "total_rows", "pct_complete", "description", "partner_id")->where('partner_id', '=', $partner_id);
 
 			//OLDreturn Datatable::from(DB::table('tabDataParent')->select('table_name as Table Name','column_name as Column Name'))
 			return Datatable::query($collection)
-			    ->showColumns('TBL','CLM', 'data_type', 'max_length', 'complete', 'total_rows', 'pct_complete', 'description')
+			    ->showColumns('TBL','CLM', 'max_length', 'complete', 'total_rows', 'pct_complete', 'description')
 					->addColumn('actived',function($model)
 					{
 						//$vFileName = $this->checkName($vFile->getClientOriginalName(),'xls');
