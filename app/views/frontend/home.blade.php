@@ -87,7 +87,7 @@ The ISC Data and Research Oversight Committee (DAROC) always includes a member o
                         
                         <p>The <strong>Institute for Social Capital</strong>, Inc. was founded in 2004, and became part of the UNC Charlotte Urban Institute in March 2012. Its mission is to support university research and increase the community’s capacity for data-informed decision-making.</p>
                         
-                        <p>At its core is a comprehensive set of administrative data gathered from governmental and nonprofit agencies in the region. By combining key data into one community database, ISC provides a valuable resource for understanding the outcomes for the most vulnerable members of our communities from a multi-agency context.</p>
+                        <p>At its core, there is a comprehensive set of administrative data gathered from governmental and nonprofit agencies in the region. By combining key data into one community database, ISC provides a valuable resource for understanding the outcomes for the most vulnerable members of our communities from a multi-agency context.</p>
                         
                         <p>Through its affiliation with UNC Charlotte and the UNC Charlotte Urban Institute, ISC also offers valuable analytical support to assist organizations in their research and data analyses efforts.</p>
                         
@@ -122,22 +122,22 @@ The ISC Data and Research Oversight Committee (DAROC) always includes a member o
 
                     	      <h3>What is the Institute for Social Capital (ISC)?</h3>
                     	      <div class="panel-body">
-                    	       ISC, Inc. is a 501(c)(3) organization that provides oversight for the ISC Community Database, which is the only integrated data system in North Carolina. The ISC’s mission is to advance university research and increase the community’s capacity for data-based planning and evaluation.
+                    	       <p>ISC, Inc. is a 501(c)(3) organization that provides oversight for the ISC Community Database, which is the only integrated data system in North Carolina. The ISC’s mission is to advance university research and increase the community’s capacity for data-based planning and evaluation.</p>
                     	      </div>
 
                     	      <h3>What is an integrated data System?</h3>
                     	      <div class="panel-body">
-                    	        An integrated data system holds administrative data from numerous organizations and can match information across these organizations at the individual level. For example, the information about students in a certain school can be matched to data from the Department of Social Services so that a school can better understand its population. Or, a nonprofit organization can match its program list to both these agencies to learn how to better serve its target population. Therefore, an integrated data system (IDS) is a unique resource and powerful tool for local program evaluation and policy formulation.
+                    	        <p>An integrated data system holds administrative data from numerous organizations and can match information across these organizations at the individual level. For example, the information about students in a certain school can be matched to data from the Department of Social Services so that a school can better understand its population. Or, a nonprofit organization can match its program list to both these agencies to learn how to better serve its target population. Therefore, an integrated data system (IDS) is a unique resource and powerful tool for local program evaluation and policy formulation.</p>
                     	      </div>
                     	    
                     	      <h3>What is administrative data?</h3>
                     	      <div class="panel-body">
-                    	        Administrative data is the information that organizations and agencies collect in the process of their daily work. This information includes demographics such as race and age as well as program use and data like student attendance and community arrest records.
+                    	        <p>Administrative data is the information that organizations and agencies collect in the process of their daily work. This information includes demographics such as race and age as well as program use and data like student attendance and community arrest records.</p>
                     	      </div>
                     	    
                     	      <h3>What is the purpose of using administrative data in research?</h3>                    	          
                     	      <div class="panel-body">
-                    	        Administrative data is not collected for research purposes. However, it is useful data for researchers because it does not rely on self-report and it tells us who uses what services and how much. If a study wanted to look at the impact of absenteeism on test scores, a researcher could survey individual students for information on their attendance and test scores. This information already exists as administrative data, which means that researchers can study a population instead of a sample. Without using administrative data that has already been collected, this research is very difficult, time-consuming, and expensive. Using administrative data is not only faster and easier, it can provide more statistically powerful results.
+                    	        <p>Administrative data is not collected for research purposes. However, it is useful data for researchers because it does not rely on self-report and it tells us who uses what services and how much. If a study wanted to look at the impact of absenteeism on test scores, a researcher could survey individual students for information on their attendance and test scores. This information already exists as administrative data, which means that researchers can study a population instead of a sample. Without using administrative data that has already been collected, this research is very difficult, time-consuming, and expensive. Using administrative data is not only faster and easier, it can provide more statistically powerful results.</p>
                     	      </div>
                     	      	
                     	      <h3>What procedures are in place to protect this data?</h3>
@@ -152,20 +152,20 @@ The ISC Data and Research Oversight Committee (DAROC) always includes a member o
                     	      
                     	      <h3>What administrative data does the ISC hold?</h3>
                     	      <div class="panel-body">
-                    	        We are always in the process of negotiating data sharing agreements with local government and non-profit agencies. Please access the Codebook portion of the website to access a full list of our depositors.
+                    	        <p>We are always in the process of negotiating data sharing agreements with local government and non-profit agencies. Please access the Codebook portion of the website to access a full list of our depositors.</p>
                     	      </div>
 
 
                     	      <h3>What kind of projects use the ISC community database?</h3>
                     	      <div class="panel-body">
-                    	        ISC collaborates with both researchers and community members. Therefore, data from the ISC Community Database is used for research projects such as investigating the educational attainment of Black males who attended Charlotte-Mecklenburg Schools then UNC Charlotte.
+                    	        <p>ISC collaborates with both researchers and community members. Therefore, data from the ISC Community Database is used for research projects such as investigating the educational attainment of Black males who attended Charlotte-Mecklenburg Schools then UNC Charlotte.</p>
                     	      </div>
 
                     	      <h3>How can I use the ISC community database for my research?</h3>                   	          
                     	      <div class="panel-body">
                     	      	<p><strong>Codebook:</strong> If you are an academic researcher, we have a codebook for each of our data depositors. To access the codebook, visit <a href="http://charlotteresearch.info">http://charlotteresearch.info</a> to request access.</p>
                     	      	
-                    	      	<p><strong>Research requests:</strong> If you believe the data outlined in the codebook is a good fit for your research and you would like to use data from the ISC Community Database, contact Data and Research Coordinator, Ashley Williams Clark <href="mailto:Ashley.Clark@uncc.edu">Ashley.Clark@uncc.edu</a>) to set-up a meeting.</p>
+                    	      	<p><strong>Research requests:</strong> If you believe the data outlined in the codebook is a good fit for your research and you would like to use data from the ISC Community Database, contact Data and Research Coordinator, Ashley Williams Clark (<href="mailto:Ashley.Clark@uncc.edu">Ashley.Clark@uncc.edu</a>) to set-up a meeting.</p>
                     	      	
                     	      	<p><strong>Program Evaluations:</strong> If you are a community organization who is interested in evaluating a program or programs using the ISC Community Database, contact Data and Research Specialist, Diane Gavarkavich to set-up a meeting.</p>
                     	      	
@@ -202,7 +202,6 @@ The ISC Data and Research Oversight Committee (DAROC) always includes a member o
                 <div class="row">
                     <div class="col-lg-12 text-center">
                         <h2 class="section-heading">Contact Us</h2>
-                        <h3 class="section-subheading text-muted">Lorem ipsum dolor sit amet consectetur.</h3>
                     </div>
                 </div>
                 <div class="row">

@@ -6,21 +6,22 @@
 
 return array(
 
-    'does_not_exist' => 'Blog post does not exist.',
+    'does_not_exist' => 'Partner does not exist.',
 
     'create' => array(
-        'error'   => 'Blog post was not created, please try again.',
-        'success' => 'Blog post created successfully.'
+        'error'   => 'Partner was not created, please try again.',
+        'success' => 'Partner created successfully.'
     ),
 
     'update' => array(
-        'error'   => 'Blog post was not updated, please try again',
-        'success' => 'Blog post updated successfully.'
+    	'image-size' => 'Please adjust the size of your image',
+        'error'   => 'Partner was not updated, please try again',
+        'success' => 'Partner updated successfully.'
     ),
 
     'delete' => array(
-        'error'   => 'There was an issue deleting the blog post. Please try again.',
-        'success' => 'The blog post was deleted successfully.'
+        'error'   => 'There was an issue deleting the partner. Please try again.',
+        'success' => 'The partner was deleted successfully.'
     )
 
 );

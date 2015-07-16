@@ -240,13 +240,11 @@ class PostsController extends AdminController
         //$post->notessource      = e(Input::get('notessource'));
         $post->notesversion     = e(Input::get('notesversion'));
 
-        if (Input::hasFile('filePartnerLogo')) {
-        	    
-	        	$file = Input::file('filePartnerLogo');
-	        	$name = 'filePartnerLogo-' . $file->getClientOriginalName();
-	        	$file = $file->move(base_path('public/logos'), $name);
-	        	$post->filePartnerLogo = $name;        	
-        	     	
+        if (Input::hasFile('filePartnerLogo') && $this->correct_size(Input::file('filePartnerLogo'))) {        	    
+        	$file = Input::file('filePartnerLogo');
+        	$name = 'filePartnerLogo-' . $file->getClientOriginalName();
+        	$file = $file->move(base_path('public/logos'), $name);
+        	$post->filePartnerLogo = $name;        	     	
         }
 
         // Was the blog post updated?
@@ -300,7 +298,15 @@ class PostsController extends AdminController
 
         // Redirect to the blog posts management page
         return Redirect::to('admin/posts')->with('success', Lang::get('admin/posts/message.delete.success'));
-    }    
+    } 
+    
+    
+    public function correct_size($photo) {
+        $maxHeight = 250;
+        $maxWidth = 250;
+        list($width, $height) = getimagesize($photo);
+        return ( ($width <= $maxWidth) && ($height <= $maxHeight) );
+    }   
 
 
 }

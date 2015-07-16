@@ -58,7 +58,7 @@ class ImportController extends BaseController
 		}
 		// default message for get /import
 		else {
-			$message ="NA";
+			$message = null;
 		}
 
 		$this->Clear();//Remove all Tempfile and Session
@@ -83,9 +83,9 @@ class ImportController extends BaseController
 	   $validator = ImportForm::validate(Input::all());
 
 	    if($validator->fails()) {
-				//if file display error message
-				return View::make('backend/import.import')->withErrors($validator)->with('message',' FAILED ')->with('partner_options',$partner_options);
-			}
+			//if file display error message
+			return View::make('backend/import.import')->withErrors($validator)->with('message',' FAILED ')->with('partner_options',$partner_options);
+		}
 
 
 			///Log::info('This is some useful information-'.$fileNameParent.'--'.$fileNameChild);
@@ -99,22 +99,27 @@ class ImportController extends BaseController
 			$batch_description = e(Input::get('batch_description'));
 			$batch_id = $this->createBatch($user_id, $partner_id, $batch_description);
 
+			$message = null;
 			// Handle the file
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 			if (Input::file('file_parent')){
-				$this->importFile($batch_id, 'file_parent', 'tabDataParent', $partner_id, $partner_options);
+				$message .= $this->importFile($batch_id, 'file_parent', 'tabDataParent', $partner_id, $partner_options);
 			}
 			if (Input::file('file_child')){
-				$this->importFile($batch_id, 'file_child', 'tabDataChild', $partner_id, $partner_options);
+				$message .= $this->importFile($batch_id, 'file_child', 'tabDataChild', $partner_id, $partner_options);
 			}
 			///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+			
 
 			// Told do imports independently and not do $distinct_check
 			//$distinct_check =$this->getDistinct($batch_id);
 
 			//return View::make('backend/import.preview')->with('fileName','<code>'.$fileName.'</code>')->with('batch_id',$batch_id)->with('distinct_check',$distinct_check);
-
-			Log::info('This is some useful information-2');
+			
+			if(!empty($message)){
+				return View::make('backend/import.import')->with('message' , $message)->with('partner_options',$partner_options);
+			}
+		
 			return View::make('backend/import.import')->with('batch_id',$batch_id)->with('message', 'Import Successful')->with('partner_options',$partner_options);
 
 		}//end if-validator
@@ -164,43 +169,53 @@ class ImportController extends BaseController
 
 		try {
 			if($vInput == 'file_parent'){
-
+				
 				foreach ($results as $value) {
 					$temp = array(
 						'partner_id'  => $partner_id,
 						'table_name'  => trim($value['table_name']),
-						'column_name' => Str::slug(trim($value['column_name'])),
+						'column_name' => trim($value['column_name']),
+						'column_name_slug' => Str::slug(trim($value['column_name'])),
 						'data_type' 	=> trim($value['data_type']),
 						'max_length' 	=> $value['max_length'],
-						'complete'    => $value['complete'],
-						'total_rows'  => $value['total_rows'],
+						'complete'    	=> $value['complete'],
+						'total_rows'  	=> $value['total_rows'],
 						'pct_complete'=> $value['pct_complete'],
-						'description'=> $value['description'],
+						'description'=> e($value['description']),
 						'batch_id'		=> $batch_id
 					);
 					$arr[$value['table_name']][] = $temp;
 				}//end foreach
 			}else{
-
-				foreach ($results as $value) {
+				Log::info('1');
+				
+				foreach ($results as $value) {				
+					Log::info('2');
 					$temp = array(
 						'partner_id'  => $partner_id,
 						'table_name'  => trim($value['table_name']),
-						'column_name' => Str::slug(trim($value['column_name'])),
+						'column_name' => trim($value['column_name']),
+						'column_name_slug' => Str::slug(trim($value['column_name'])),
 						'data_value' 	=> trim($value['data_value']),
 						'data_type' 	=> trim($value['data_type']),
 						'data_label' 	=> trim($value['data_label']),
 						'batch_id'		=> $batch_id
 					);
 					$arr[$value['table_name']][] = $temp;
+					Log::info('3');
+					//dd($arr);
+					
 				}//end foreach
+				
+				
 			}//endif
 
 			try {
-
+				
 				//dd($arr);
 				// Insert all data
 				foreach ($arr as $station => $value) {
+					Log::info('4');
 					DB::table($vTable)->insert($value);
 				} //end foreach
 
@@ -209,7 +224,8 @@ class ImportController extends BaseController
 
 				// Problem inserting values
 				$this->deleteBatch($batch_id);
-				return View::make('backend/import.import')->with('message' , 'Problem inserting values - '.$e->getMessage())->with('partner_options',$partner_options);
+				$message = 'Import Failed<br/>Please review '.$vInput.'-- Problem inserting values - '.$e->getMessage();
+				return $message;
 
 			}//end inner-catch
 
@@ -218,9 +234,12 @@ class ImportController extends BaseController
 
 			// file incorrect
 			$this->deleteBatch($batch_id);
-			return View::make('backend/import.import')->with('message' , 'Field formatting incorrect - '.$e->getMessage())->with('partner_options',$partner_options);
+			$message = 'Import Failed<br/>Please review '.$vInput.'-- Field formatting incorrect - '.$e->getMessage();
+			return $message;
 
 		}//end outer-catch
+		
+		return;
 
 	}
 
@@ -257,7 +276,7 @@ class ImportController extends BaseController
 
 			$data['partner_id'] = $partner_id;
 			Log::info('This is some useful information-'.$partner_id);
-			$collection = ImportForm::select("table_name as TBL","column_name as CLM", "max_length", "complete", "total_rows", "pct_complete", "description", "partner_id")->where('partner_id', '=', $partner_id);
+			$collection = ImportForm::select("table_name as TBL","column_name as CLM", "column_name_slug", "max_length", "complete", "total_rows", "pct_complete", "description", "partner_id")->where('partner_id', '=', $partner_id);
 
 			//OLDreturn Datatable::from(DB::table('tabDataParent')->select('table_name as Table Name','column_name as Column Name'))
 			return Datatable::query($collection)
@@ -267,10 +286,10 @@ class ImportController extends BaseController
 						//$vFileName = $this->checkName($vFile->getClientOriginalName(),'xls');
 				    	//return '<a href="'. URL::to('parkingcompany/update/'.$model->CLM.'/'.$model->partner_id) .'">Details</a>';
 				    	
-				    	$detail_collection =  $this->getDetails($model->partner_id, $model->CLM);				    	
+				    	$detail_collection =  $this->getDetails($model->partner_id, $model->column_name_slug, $model->TBL);				    	
 				    	
 				    	if ($detail_collection->count()) {	    	
-					    	return '<a class="open-DetailDialog btn btn-primary" data-toggle="modal" data-target="#DetailModal" data-id="'.$model->partner_id.'" data-column="'.$model->CLM.'" data-description="'.$model->description.'">Details</a>';
+					    	return '<a class="open-DetailDialog btn btn-primary" data-toggle="modal" data-target="#DetailModal" data-id="'.$model->partner_id.'" data-column="'.$model->column_name_slug.'" data-table="'.$model->TBL.'" data-description="'.$model->description.'">Details</a>';
 					    }else{
 					    	return '<a class="open-DetailDialog btn btn-warning" data-id="'.$model->partner_id.'" data-column="'.$model->CLM.'" >No Details</a>';
 					    }
@@ -281,13 +300,14 @@ class ImportController extends BaseController
 			        //)->get();return $collection;
 		}
 		
-		public function getDetails($partner_id, $column_name)
+		public function getDetails($partner_id, $column_name_slug, $table_name)
 		{
 			
 			$data['partner_id'] = $partner_id;
-			$data['column_name'] = $column_name;			
+			$data['column_name_slug'] = $column_name_slug;
+			$data['table_name'] = $table_name;			
 			
-			$collection = DB::table('tabDataChild')->select("table_name as TBL","column_name as CLM", "partner_id", "data_value", "data_type", "data_label")->where('partner_id', '=', $partner_id) ->where('column_name', '=', $column_name);
+			$collection = DB::table('tabDataChild')->select("table_name as TBL","column_name as CLM", "partner_id", "data_value", "data_type", "data_label")->where('partner_id', '=', $partner_id) ->where('column_name_slug', '=', $column_name_slug)->where('table_name', '=', $table_name);
 			////$collection = DB::table('tabDataChild')->select("table_name as TBL","column_name as CLM", "partner_id", "data_value")->where('partner_id', '=', $partner_id) ->where('column_name', '=', $column_name)->get();
 			
 			
@@ -301,10 +321,10 @@ class ImportController extends BaseController
 		 * Returns data from import to preview
 		 *
 		 */
-		public function getPartnerColumnDatatable($partner_id, $column_name)
+		public function getPartnerColumnDatatable($partner_id, $column_name_slug, $table_name)
 		{
 
-			$collection =  $this->getDetails($partner_id, $column_name);
+			$collection =  $this->getDetails($partner_id, $column_name_slug, $table_name);
 
 			//return Datatable::from(DB::table('tabDataParent')->select('table_name as Table Name','column_name as Column Name'))
 			return Datatable::query($collection)

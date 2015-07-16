@@ -7,15 +7,17 @@
 
             <div class="form-group">
             	<div class="col-sm-12">
-                <strong>Partner Logo</strong>
+                <strong>Partner Logo</strong> (Max size: 250px width / 250 height)<br/>
             <p>{{ Form::file('filePartnerLogo') }}</p>
             <?php
             if (isset($post->filePartnerLogo)) {
 	            if (($post->filePartnerLogo != '')){
-	            	echo "<div class='alert alert-block'>Previously uploaded logo:<br/><img style='width:200px' src='/logos/".$post->filePartnerLogo."'></div>";
+	            	echo "<div class='alert alert-block'>Previously uploaded logo:<br/><img style='max-width:250px' src='/logos/".$post->filePartnerLogo."'></div>";
 	            }
             }
             ?>
+            
+            
             
             {{ $errors->first('filePartnerLogo', '<span class="help-block">:message</span>') }}
             </div>
@@ -81,7 +83,7 @@
             <div class="form-group {{ $errors->first('content', 'has-error') }}">
                     <label for="content" class="col-sm-3 control-label">Description</label>
                     <div class="col-sm-9">
-                    {{ Form::textarea('content', null, ['class' => 'form-control']) }}
+                    {{ Form::textarea('content', null, ['class' => 'form-control summernote']) }}
                     {{ $errors->first('content', '<span class="help-block">:message</span>') }}
                     </div>
             </div>
@@ -99,7 +101,7 @@
             <div class="form-group {{ $errors->first('notescleaning', 'has-error') }}">
                     <label for="notescleaning" class="col-sm-3 control-label">@lang('admin/posts/form.notescleaning')</label>
                     <div class="col-sm-9">
-                    {{ Form::textarea('notescleaning', null, ['class' => 'form-control']) }}
+                    {{ Form::textarea('notescleaning', null, ['class' => 'form-control summernote']) }}
                     {{ $errors->first('notescleaning', '<span class="help-block">:message</span>') }}
                     </div>
             </div>       
@@ -109,7 +111,7 @@
             <div class="form-group {{ $errors->first('notesversion', 'has-error') }}">
                     <label for="notesversion" class="col-sm-3 control-label">@lang('admin/posts/form.notesversion')</label>
                     <div class="col-sm-9">
-                    {{ Form::textarea('notesversion', null, ['class' => 'form-control']) }}
+                    {{ Form::textarea('notesversion', null, ['class' => 'form-control summernote']) }}
                     {{ $errors->first('notesversion', '<span class="help-block">:message</span>') }}
                     </div>
             </div>

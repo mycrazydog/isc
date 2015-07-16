@@ -26,7 +26,8 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth', 'after' => 'no-cache
 	Route::group(array('prefix' => 'datatables'), function () {
 		Route::get('/', array('as'=>'datatables', 'uses'=>'ImportController@getDatatable'));
 		Route::get('partner/{partner_id}', array('as'=>'datatables/partner', 'uses'=>'ImportController@getPartnerDatatable'));
-		Route::get('partner/{partner_id}/column/{column_name}', array('as'=>'datatables/partner/column', 'uses'=>'ImportController@getPartnerColumnDatatable'));
+		//Route::get('partner/{partner_id}/column/{column_name_slug}', array('as'=>'datatables/partner/column', 'uses'=>'ImportController@getPartnerColumnDatatable'));
+		Route::get('partner/{partner_id}/column/{column_name_slug}/table/{table_name}', array('as'=>'datatables/partner/column', 'uses'=>'ImportController@getPartnerColumnDatatable'));
 		Route::get('statuses/{status_id}', array('as'=>'datatables/statuses', 'uses'=>'ImportController@getStatusesDatatable'));
 	});
 

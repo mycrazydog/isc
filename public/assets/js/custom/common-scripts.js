@@ -1,5 +1,7 @@
 /*---LEFT BAR ACCORDION----*/
 $(function() {
+	$('.summernote').summernote();
+
     $('#nav-accordion').dcAccordion({
         eventType: 'click',
         autoClose: true,

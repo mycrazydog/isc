@@ -34,6 +34,7 @@
         <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
         <link href="{{ asset('assets/css/custom/jquery.dataTables.yadcf.css') }}" rel="stylesheet" >
         <link href="{{ asset('assets/css/custom/chosen.min.css') }}" rel="stylesheet" >
+        <link href="{{ asset('assets/css/custom/summernote.css') }}" rel="stylesheet" >
 
         <style>
         @section('styles')
@@ -232,6 +233,7 @@
             <script type="text/javascript" src="{{ asset('assets/js/custom/jquery.scrollTo.min.js') }}"></script>
             <script type="text/javascript" src="{{ asset('assets/js/custom/jquery.nicescroll.js') }}"></script>
             <script type="text/javascript" src="{{ asset('assets/js/custom/bootstrap-session-timeout.min.js') }}"></script>
+            <script type="text/javascript" src="{{ asset('assets/js/custom/summernote.min.js') }}"></script>
 
 
 

@@ -27,8 +27,20 @@
         <tr>
             <td>{{{ $post->title }}}</td>
             <td>            
-				@foreach ($post->tags as $tag)            
-					{{ $tag->name }},
+				<?php $not_first = false; ?>
+				
+				@foreach ($post->tags as $key => $tag)            
+					
+					<?php
+					if ($not_first) {
+				        print(", ");
+				    }
+				    $not_first = true;
+					?>
+					{{ $tag->name }}
+					
+
+					
 				@endforeach          
             </td>
             <td>

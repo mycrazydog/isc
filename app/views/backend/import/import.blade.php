@@ -21,12 +21,22 @@
 		echo "<div class='alert alert-danger' role='alert'>".$errors->first('file') ."</div>";
 		echo $message;
 	}
-
 	?>
 
-@if ($message <> 'NA')
-<div class="alert alert-success">{{ $message }}</div>
-@endif
+
+	@if ($errors->has())
+		<div class="alert alert-danger">
+		    @foreach ($errors->all() as $error)
+		        {{ $error }}<br>        
+		    @endforeach
+		</div>
+	@endif
+	
+	@if ($message)
+		<div class="alert alert-warning">
+			{{ $message }}
+		</div>
+	@endif
 
 
 

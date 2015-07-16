@@ -34,11 +34,11 @@
 	<div class="col-lg-12">
 		<div class="form-panel">
 			@if ($post->img())
-			<img class="img-responsive" src="/logos/{{{ $post->filePartnerLogo }}}" alt="{{{ $post->filePartnerLogo }}}">
+			<img class="img-responsive" style="max-width:250px" src="/logos/{{{ $post->filePartnerLogo }}}" alt="{{{ $post->filePartnerLogo }}}">
 			@endif
 			<p><a href="{{{ $post->partnerwebsite }}}" target="_blank">{{{ $post->partnerwebsite }}} <i class="fa fa-share"></i></a></p>
 			
-			<p>{{ nl2br(e($post->content())) }}</p>		
+			<p>{{ nl2br(HTML::decode($post->content())) }}</p>		
 						
 			
 			<h5><i class="fa fa-angle-right"></i> Data Status</h5>
@@ -97,12 +97,12 @@
 	
 			<div class="form-group">
 		  	  <h4 class="mb"><i class="fa fa-angle-right"></i> Notes on data</h4>
-		     <p>{{ nl2br(e($post->notescleaning)) }}</p>
+		     <p>{{ nl2br(HTML::decode($post->notescleaning)) }}</p>
 		    </div>
 	
 		    <div class="form-group">
 		    	  <h4 class="mb"><i class="fa fa-angle-right"></i> Version notes</h4>
-		      <p>{{ nl2br(e($post->notesversion)) }}</p>
+		      <p>{{ nl2br(HTML::decode($post->notesversion)) }}</p>
 		    </div>
 		</div><!-- /form-panel -->
 	</div>
