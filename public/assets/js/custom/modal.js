@@ -35,7 +35,7 @@ $(document).on("click", ".open-DetailDialog", function () {
 		table = $('#detailTable').DataTable({
 		    "language": {"emptyTable": "No data available for column:"+myColumn+" in table "+myTable},
 		    "processing": false,
-		    "paging": false,
+		    "paging": true,
 		    "searching": false,
 		    "bStateSave": true,
 		    "ajax": dataURL,

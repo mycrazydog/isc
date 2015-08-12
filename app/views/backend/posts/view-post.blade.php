@@ -266,25 +266,83 @@ http://stackoverflow.com/questions/10626885/passing-data-to-a-bootstrap-modal
 					var mytable = $('#partnerTable').DataTable({
 					    "language": {"emptyTable": "No data available for column:"},
 					    "processing": false,
-					    "paging": true,
+					    "paging": false,
 					    "searching": true,
 					    "bStateSave": true,
 					    "ajax": dataURL,
 					   // "sAjaxDataProp": "aaData",	
-					    "columns": [
-					  { "title": "Table"}, 
-			          { "title": "Fields"},
-			          { "title": "Max Length" },
-			          { "title": "Complete" },
-			          { "title": "Total Rows" },
-			          { "title": "Percent Complete" },
-			          { "title": "Description" },
-			          { "title": "" }			          
+					    "columns": [					    
+					  { "title": "Table", "data": "TBL"}, 
+			          { "title": "Fields", "data": "CLM"},
+			          { "title": "Max Length", "data": "max_length"},
+			          { "title": "Complete", "data": "complete"},
+			          { "title": "Total Rows", "data": "total_rows"},
+			          { "title": "Percent Complete", "data": "pct_complete"},
+			          {
+			              "class":          "details-control",
+			              "title":			"Description",
+			              "orderable":      false,
+			              "data":           null,
+			              "defaultContent": "<a class=\"btn btn-success\">Description</a>"
+			          },
+			          { "title": "", "data": "actived"}	          
 					     ]
 					     
 					    	     
 				  });
 				  
+				  function format ( d ) {
+				      return '<strong>Description:</strong>  '+d['description'];
+				  }
+				  
+				  
+				     // Array to track the ids of the details displayed rows
+				     var detailRows = [];
+				  
+				     $('#partnerTable tbody').on( 'click', 'tr td.details-control', function () {
+				         var tr = $(this).closest('tr');
+				         var row = mytable.row( tr );
+				         var idx = $.inArray( tr.attr('id'), detailRows );
+				  
+				         if ( row.child.isShown() ) {
+				             tr.removeClass( 'details' );
+				             row.child.hide();
+				  
+				             // Remove from the 'open' array
+				             detailRows.splice( idx, 1 );
+				         }
+				         else {
+				             tr.addClass( 'details' );
+				             console.log(row.data());
+				             row.child( format( row.data() ) ).show();
+				  
+				             // Add to the 'open' array
+				             if ( idx === -1 ) {
+				                 detailRows.push( tr.attr('id') );
+				             }
+				         }
+				     } );
+				  
+				     // On each draw, loop over the `detailRows` array and show any child rows
+				     mytable.on( 'draw', function () {
+				         $.each( detailRows, function ( i, id ) {
+				             $('#'+id+' td.details-control').trigger( 'click' );
+				         } );
+				     } );
+				  
+				  
+				  
+				  
+				  
+				  
+				  
+				  
+				  
+				  
+				  
+				  
+				  
+				  mytable.search( '' ).columns().search( '' ).draw();
 				  
 				  yadcf.init(mytable , [{column_number : 0, filter_type: "select", select_type: "chosen", filter_default_label: "Select a Table", filter_reset_button_text: "clear"}]);
 

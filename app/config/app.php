@@ -108,8 +108,8 @@ return array(
         'Illuminate\Workbench\WorkbenchServiceProvider',
         'Cartalyst\Sentry\SentryServiceProvider',
         'Barryvdh\Debugbar\ServiceProvider',
-	'Maatwebsite\Excel\ExcelServiceProvider',
-	'Chumper\Datatable\DatatableServiceProvider',
+		'Maatwebsite\Excel\ExcelServiceProvider',
+		'Chumper\Datatable\DatatableServiceProvider',
     ),
 
     /*
@@ -176,8 +176,8 @@ return array(
         'Validator'       => 'Illuminate\Support\Facades\Validator',
         'View'            => 'Illuminate\Support\Facades\View',
         'Sentry' => 'Cartalyst\Sentry\Facades\Laravel\Sentry',
-	'Excel' => 'Maatwebsite\Excel\Facades\Excel',
-	'Datatable' => 'Chumper\Datatable\Facades\DatatableFacade',
+		'Excel' => 'Maatwebsite\Excel\Facades\Excel',
+		'Datatable' => 'Chumper\Datatable\Facades\DatatableFacade',
     ),
 
 );

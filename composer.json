@@ -8,7 +8,7 @@
 		"barryvdh/laravel-debugbar": "dev-master",
 		"mockery/mockery": "dev-master@dev",
 		"maatwebsite/excel": "~1.2.1",
-		"chumper/datatable": "2.*"
+		"chumper/datatable": "2.*"		
 	},
 	"autoload": {
 		"classmap": [

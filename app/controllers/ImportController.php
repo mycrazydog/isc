@@ -296,8 +296,12 @@ class ImportController extends BaseController
 
 					})
 
-			        ->make();
-			        //)->get();return $collection;
+			        //->make();
+			        ->setAliasMapping()->make();
+			        
+			        
+			        //return $collection;
+			        //->get();
 		}
 		
 		public function getDetails($partner_id, $column_name_slug, $table_name)

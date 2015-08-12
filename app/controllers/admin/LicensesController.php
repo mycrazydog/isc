@@ -149,7 +149,7 @@ class LicensesController extends AdminController
 	        	$this->sendMail($license_id, $license_status);
 
 	            // Redirect to the new blog license page
-	            return Redirect::to("admin/licenses/$licenseId/edit")->with('success', Lang::get('admin/licenses/message.update.success'));
+	            return Redirect::to("admin/licenses/$license_id/edit")->with('success', Lang::get('admin/licenses/message.update.success'));
 	        } // END if->save
 
         } else {
@@ -240,11 +240,11 @@ class LicensesController extends AdminController
 			$license_id = $license->id;
 			$license_status = $license->complete;
 			$this->sendMail($license_id, $license_status);
-            return Redirect::to("admin/licenses/$licenseId/edit")->with('success', Lang::get('admin/licenses/message.update.success'));
+            return Redirect::to("admin/licenses/$license_id/edit")->with('success', Lang::get('admin/licenses/message.update.success'));
         }
 
         // Redirect to the blogs license management page
-        return Redirect::to("admin/licenses/$licenseId/edit")->with('error', Lang::get('admin/licenses/message.update.error'));
+        return Redirect::to("admin/licenses/$license_id/edit")->with('error', Lang::get('admin/licenses/message.update.error'));
     }
 
 
