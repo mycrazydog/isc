@@ -1,6 +1,10 @@
 /*---LEFT BAR ACCORDION----*/
 $(function() {
-	$('.summernote').summernote();
+	
+	
+	if ( $('.summernote').length ) {	
+		$('.summernote').summernote();
+	}
 
     $('#nav-accordion').dcAccordion({
         eventType: 'click',

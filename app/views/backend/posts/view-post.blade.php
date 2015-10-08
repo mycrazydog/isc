@@ -50,7 +50,8 @@
 			    $("#jsGrid").jsGrid({
 			        height: "auto",
 			        width: "100%",
-			 
+			 		
+			 		selecting: false,
 			        inserting: false,
 			        editing: false,
 			        sorting: false,

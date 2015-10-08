@@ -184,18 +184,18 @@ Route::group(array('prefix' => 'account'), function () {
 |
 */
 
-Route::get('about-us', function () {
-    return View::make('frontend/about-us');
-});
+//Route::get('about-us', function () {
+//   return View::make('frontend/about-us');
+//});
 
-Route::get('faq', function () {
-    return View::make('frontend/faq');
-});
+//Route::get('faq', function () {
+//    return View::make('frontend/faq');
+//});
 
-Route::get('contact-us', array('as' => 'contact-us', 'uses' => 'ContactUsController@getIndex'));
-Route::post('contact-us', 'ContactUsController@postIndex');
+//Route::get('contact-us', array('as' => 'contact-us', 'uses' => 'ContactUsController@getIndex'));
+//Route::post('contact-us', 'ContactUsController@postIndex');
 
-Route::get('partners', array('as' => 'partners', 'uses' => 'PartnersController@getIndex'));
+//Route::get('partners', array('as' => 'partners', 'uses' => 'PartnersController@getIndex'));
 
 Route::get('/', array('as' => 'home', 'uses' => 'HomeController@getIndex'));
 

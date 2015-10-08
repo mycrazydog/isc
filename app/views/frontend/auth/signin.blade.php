@@ -19,6 +19,15 @@
 
 
 
+@if ($errors->has())
+<div class="alert alert-danger">
+    @foreach ($errors->all() as $error)
+        {{ $error }}<br>        
+    @endforeach
+</div>
+@endif
+
+
 
 
 <div class="page-header">
@@ -37,18 +46,18 @@
                 <input type="email" class="form-control" name="email" id="email" value="{{ Input::old('email') }}">
             </div>
             <div class="col-sm-4">
-                {{ $errors->first('email', '<span class="help-block">:message</span>') }}
+                
             </div>
         </div>
 
         <!-- Password -->
-        <div class="form-group {{ $errors->first('password', 'has-error') }}">
+        <div class="form-group {{ $errors->first('email', 'has-error') }}">
             <label for="password" class="col-sm-2 control-label">@lang('account/form.password')</label>
             <div class="col-sm-4">
                 <input type="password" class="form-control" name="password" id="password">
             </div>
             <div class="col-sm-4">
-                {{ $errors->first('password', '<span class="help-block">:message</span>') }}
+                
             </div>
         </div>
 

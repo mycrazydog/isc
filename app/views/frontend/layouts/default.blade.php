@@ -9,9 +9,9 @@
             @lang('general.site_name')
             @show
         </title>
-        <meta name="keywords" content="your, awesome, keywords, here" />
-        <meta name="author" content="Jon Doe" />
-        <meta name="description" content="Lorem ipsum dolor sit amet, nihil fabulas et sea, nam posse menandri scripserit no, mei." />
+		<meta name="keywords" content="Data, Charlotte, UNC Charlotte, Institute for Social Capital" />
+		<meta name="author" content="UNC Charlotte Institute for Social Capital / UNC Charlotte Urban Institute" />
+		<meta name="description" content="Community Database Information Portal" />
 
         <!-- Mobile Specific Metas
         ================================================== -->
@@ -139,7 +139,7 @@
 		              @if (Sentry::check())
 
 		              	  <p class="centered">
-		              	  	<a href="{{ route('profile') }}"><img width="60" src="{{{ Sentry::getUser()->gravatar() }}}" class="img-circle" /></a>
+		              	  	<img width="60" src="{{{ Sentry::getUser()->gravatar() }}}" class="img-circle" />
 		              	  </p>
 
 		              	  <h5 class="centered">Welcome, {{ Sentry::getUser()->first_name }}</h5>
@@ -254,5 +254,6 @@
 
         @section('body_bottom')
         @show
-    </body>
+        @include('_ga')
+    </body>   
 </html>

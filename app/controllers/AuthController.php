@@ -37,7 +37,7 @@ class AuthController extends BaseController
         // If validation fails, we'll exit the operation now.
         if ($validator->fails()) {
             // Ooops.. something went wrong
-            return Redirect::back()->withInput()->withErrors($validator);
+            return Redirect::back()->withInput(Input::except('password'))->withErrors($validator);
         }
 
         try {

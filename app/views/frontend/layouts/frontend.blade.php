@@ -9,9 +9,9 @@
             @lang('general.site_name')
             @show
         </title>
-        <meta name="keywords" content="" />
-        <meta name="author" content="" />
-        <meta name="description" content="" />
+        <meta name="keywords" content="Data, Charlotte, UNC Charlotte, Institute for Social Capital" />
+        <meta name="author" content="UNC Charlotte Institute for Social Capital / UNC Charlotte Urban Institute" />
+        <meta name="description" content="Community Database Information Portal" />
 
         <!-- Mobile Specific Metas
         ================================================== -->
@@ -194,5 +194,6 @@
 
 
         @yield('body_bottom')
-    </body>
+        @include('_ga')
+    </body>  
 </html>
