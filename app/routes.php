@@ -20,7 +20,7 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth', 'after' => 'no-cache
 	Route::group(array('prefix' => 'dictionary'), function () {
 		Route::get('/', array('as' => 'dictionary', 'uses' => 'PostController@getIndex'));
 		Route::get('{postSlug}', array('as' => 'view-post', 'uses' => 'PostController@getView'));
-		Route::post('{postSlug}', 'PostController@postView');
+		// Not using (for comments) Route::post('{postSlug}', 'PostController@postView');
 	});
 
 	Route::group(array('prefix' => 'datatables'), function () {
@@ -33,21 +33,20 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth', 'after' => 'no-cache
 
     # Import
     Route::group(array('prefix' => 'import', 'before' => 'admin-auth'), function () {
-		  Route::get('/', array('as' => 'import', 'uses' => 'ImportController@getIndex'));
-	    Route::get('create', array('as' => 'create/import', 'uses' =>'ImportController@getImport'));
+		  	Route::get('/', array('as' => 'import', 'uses' => 'ImportController@getIndex'));
+	    	Route::get('create', array('as' => 'create/import', 'uses' =>'ImportController@getImport'));
 			Route::post('create', 'ImportController@postImport');
-
 			Route::get('missing', array('as' => 'missing', 'uses' =>'ImportController@getMissing'));
-	    Route::post('upload',array('as' => 'upload', 'uses' => 'ImportController@toDatabase'));
-	    Route::get('template', array('as' => 'template', 'uses' =>'ImportController@getTemplate'));
-	    Route::get('example', array('as' => 'example', 'uses' =>'ImportController@getExample'));
+		    Route::post('upload',array('as' => 'upload', 'uses' => 'ImportController@toDatabase'));
+		    Route::get('template', array('as' => 'template', 'uses' =>'ImportController@getTemplate'));
+		    Route::get('example', array('as' => 'example', 'uses' =>'ImportController@getExample'));
 			Route::get('{BatchId}/delete', array('as' => 'delete/import', 'uses' => 'ImportController@getDelete'));
 			Route::get('{BatchId}/confirm-delete', array('as' => 'confirm-delete/import', 'uses' => 'ImportController@getModalDelete'));
     });
 
     # Post Management
     Route::group(array('prefix' => 'posts', 'before' => 'admin-auth'), function () {
-    	  Route::get('/', array('as' => 'posts', 'uses' => 'Controllers\Admin\PostsController@getIndex'));
+    	Route::get('/', array('as' => 'posts', 'uses' => 'Controllers\Admin\PostsController@getIndex'));
         Route::get('create', array('as' => 'create/post', 'uses' => 'Controllers\Admin\PostsController@getCreate'));
         Route::post('create', 'Controllers\Admin\PostsController@postCreate');
         Route::get('{blogId}/edit', array('as' => 'update/post', 'uses' => 'Controllers\Admin\PostsController@getEdit'));
@@ -61,18 +60,18 @@ Route::group(array('prefix' => 'admin', 'before' => 'auth', 'after' => 'no-cache
     Route::group(array('prefix' => 'licenses'), function () {
         //Make so view only own license
         Route::get('{licenseId}/view', array('as' => 'view-license', 'uses' => 'LicenseController@getView'));
-
-				Route::get('download', array('as' => 'download/license', 'uses' => 'Controllers\Admin\LicensesController@getWelcome'));				
-				
-				Route::get('create', array('as' => 'create/license', 'uses' => 'Controllers\Admin\LicensesController@getCreate'));
-				Route::post('create', 'Controllers\Admin\LicensesController@licenseCreate');
-
-				Route::get('/status', array('as' => 'status/license', 'uses' => 'Controllers\Admin\LicensesController@getStatus'));
+		Route::get('download', array('as' => 'download/license', 'uses' => 'Controllers\Admin\LicensesController@getWelcome'));
+		Route::get('/status', array('as' => 'status/license', 'uses' => 'Controllers\Admin\LicensesController@getStatus'));
+		
     });
+    
     Route::group(array('prefix' => 'licenses', 'before' => 'admin-auth'), function () {
         Route::get('/', array('as' => 'licenses', 'uses' => 'Controllers\Admin\LicensesController@getIndex'));
-
         Route::get('{licenseId}/edit', array('as' => 'update/license', 'uses' => 'Controllers\Admin\LicensesController@getEdit'));
+        
+        Route::get('create', array('as' => 'create/license', 'uses' => 'Controllers\Admin\LicensesController@getCreate'));        
+        Route::post('create', 'Controllers\Admin\LicensesController@licenseCreate');
+        
         Route::post('{licenseId}/edit', 'Controllers\Admin\LicensesController@licenseEdit');
         Route::get('{licenseId}/delete', array('as' => 'delete/license', 'uses' => 'Controllers\Admin\LicensesController@getDelete'));
         Route::get('{licenseId}/confirm-delete', array('as' => 'confirm-delete/license', 'uses' => 'Controllers\Admin\LicensesController@getModalDelete'));

@@ -107,6 +107,7 @@ Route::filter('guest', function () {
 */
 
 Route::filter('admin-auth', function () {
+
     // Check if the user is logged in
     if ( ! Sentry::check()) {
         // Store the current uri in the session
@@ -122,6 +123,72 @@ Route::filter('admin-auth', function () {
         return View::make('error/403')->with('warning', 'yout cant create roles');
     }
 });
+
+
+/*
+|--------------------------------------------------------------------------
+| Auth IP Filter
+|--------------------------------------------------------------------------
+|
+| Created to handle API tokens
+|
+*/
+
+Route::filter('admin-ip', function () {
+		
+		//isc/app/controllers/HomeController.php
+		$iptocheck = Request::getClientIp();	
+			
+	    /* make a valid ip array to test here and add ip addresses as necessary  */
+	    $ipaddresses = array('73.180.236.0/24', '152.15.0.0/16', '10.17.0.0/16');
+	    
+	    
+	    foreach ($ipaddresses as $ipaddress) {
+	      if (!restrict_by_ip_cidrcheck($iptocheck, $ipaddress)) {
+    
+            // Redirect to the login page
+            return Redirect::route('dictionary');
+	      }
+	    }	    
+
+	    	
+});
+
+/**
+ *
+ * @param  Response $iptocheck
+ * @param  string   $ipslashcidr
+ * @return $this
+ *********
+ * Check ip address against a network in cidr notation. E.g:
+ * _restrict_by_ip_cidrcheck('192.168.10.100','192.168.10.0/24'); returns 1
+ * _restrict_by_ip_cidrcheck('192.168.10.100','192.168.12.0/24'); returns 0
+ */
+function restrict_by_ip_cidrcheck($iptocheck, $ipslashcidr) {
+  // Seperate ip address and cidr mask
+  $netmask = explode("/", $ipslashcidr);
+  // Get valid network as long
+  $ip_net = ip2long($netmask[0]);
+  // Get valid network mask as long
+  $ip_mask = ~((1 << (32 - $netmask[1])) - 1);
+  // Get ip address to check as long
+  $ip_ip = ip2long($iptocheck);
+  // Mask ip address to check to get subnet
+  $ip_ip_net = $ip_ip & $ip_mask;
+  // Only returns 1 if the valid network
+  //and the subnet of the ip address
+  //to check are the same
+  
+  //dd($ip_ip_net == $ip_net);
+  
+  return ($ip_ip_net == $ip_net);
+}
+
+
+
+
+
+
 
 
 /*
