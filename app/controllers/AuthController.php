@@ -105,6 +105,7 @@ class AuthController extends BaseController
             'irb' => 'required',
             'benefit' => 'required',
             'credentials' => 'required',
+            'g-recaptcha-response' => 'required|recaptcha'
         );
 
         // Create a new validator instance from our validation rules

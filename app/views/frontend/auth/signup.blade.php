@@ -24,7 +24,10 @@
     <h3>@lang('account/title.signup')</h3>
 </div>
 <div class="row">
-    <form method="post" action="{{ route('signup') }}" class="form-horizontal" autocomplete="off">
+    
+    
+    {{ Form::open(array('route' => 'signup', 'class' => 'form-horizontal')) }}
+    
         <!-- CSRF Token -->
         <input type="hidden" name="_token" value="{{ csrf_token() }}" />
 
@@ -170,7 +173,17 @@
 						{{ $errors->first('website', '<span class="help-block">:message</span>') }}
 					</div>
 				</div>
-
+				
+				<div class="form-group">				
+					<label class="col-sm-1 control-label">Are you human?</label>
+					<div class="col-sm-10">	
+						@if($errors->first('g-recaptcha-response'))										
+							<h5 class="has-error"><label class="control-label">{{ $errors->first('g-recaptcha-response') }}</label></h5>						
+						@endif	
+						
+						{{ Form::captcha() }}		
+					</div>
+				</div>
 
 
 
@@ -181,11 +194,13 @@
         <div class="form-group">
             <div class="col-sm-offset-2 col-sm-10">
                 <a class="btn" href="{{ route('home') }}">@lang('button.cancel')</a>
-                <button type="submit" class="btn btn-default">@lang('button.signup')</button>
+
+                {{ Form::submit('Save', array('class' => 'btn btn-default')) }}
+                
             </div>
         </div>
 
-    </form>
+    {{ Form::close() }}
 </div>
 
 

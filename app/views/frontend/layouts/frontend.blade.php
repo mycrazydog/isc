@@ -62,7 +62,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand page-scroll" href="{{ route('home') }}"><img src="/assets/img/custom/logo.png"></a>
+                <a class="navbar-brand page-scroll" href="{{ route('home') }}"><img src="/assets/img/custom/logo.png" alt="CharlotteResearch.info"></a>
             </div>
 
             <!-- Collect the nav links, forms, and other content for toggling -->

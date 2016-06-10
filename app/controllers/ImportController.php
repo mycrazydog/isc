@@ -3,8 +3,6 @@
 //Maatwebsite\Excel\Excel;
 //Illuminate\Redis\Database;
 
-use Post;
-use Tag;
 
 
 class ImportController extends BaseController

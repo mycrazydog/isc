@@ -46,8 +46,8 @@
             <div class="row text-center">
                 <div class="col-md-4">
                     <span class="fa-stack fa-4x">
-                        <i class="fa fa-circle fa-stack-2x text-green"></i>
-                        <i class="fa fa-cubes fa-stack-1x fa-inverse"></i>
+						<i class="fa fa-circle fa-stack-2x text-green"></i>
+						<i class="fa fa-code-fork fa-stack-1x fa-inverse"></i>
                     </span>
                     <h4 class="service-heading">The value of data sharing</h4>
                     <p class="text-muted">To best serve vulnerable individuals within our community, we must communicate across the silos of data created by governmental and community agencies.
@@ -82,7 +82,7 @@ The ISC Data and Research Oversight Committee (DAROC) always includes a member o
                          <div class="text-center">
 	                        <h2 class="section-heading">About ISC</h2>
 	                        <h3 class="section-subheading text-muted">Who we are</h3>                        
-	                       <img class="media-object img-responsive" alt="Charlotte Skyline - photo: James Willamor"src="/assets/img/custom/skyline.jpg">
+	                       <img class="media-object img-responsive" alt="Charlotte Skyline - photo: James Willamor" src="/assets/img/custom/skyline.jpg">
                        </div>
                         
                         <p>The <strong>Institute for Social Capital</strong>, Inc. was founded in 2004, and became part of the UNC Charlotte Urban Institute in March 2012. Its mission is to support university research and increase the community’s capacity for data-informed decision-making.</p>
@@ -96,7 +96,7 @@ The ISC Data and Research Oversight Committee (DAROC) always includes a member o
                         <p>By combining key sources of data into one community database, ISC provides a valuable resource to assess the impact of specific interventions across agency lines and to better understand the social and environmental variables that affect the community, particularly with regard to outcomes for children and families.</p>
                         
                         <p><em>The ISC is a 501(c)3 nonprofit dedicated to maintaining the confidentiality of these crucial data.</em></p>
-                        </p>
+                        
                     </div>
                 </div>
                 
@@ -165,7 +165,7 @@ The ISC Data and Research Oversight Committee (DAROC) always includes a member o
                     	      <div class="panel-body">
                     	      	<p><strong>Codebook:</strong> If you are an academic researcher, we have a codebook for each of our data depositors. To access the codebook, visit <a href="http://charlotteresearch.info">http://charlotteresearch.info</a> to request access.</p>
                     	      	
-                    	      	<p><strong>Research requests:</strong> If you believe the data outlined in the codebook is a good fit for your research and you would like to use data from the ISC Community Database, contact Data and Research Coordinator, Ashley Williams Clark (<href="mailto:Ashley.Clark@uncc.edu">Ashley.Clark@uncc.edu</a>) to set-up a meeting.</p>
+                    	      	<p><strong>Research requests:</strong> If you believe the data outlined in the codebook is a good fit for your research and you would like to use data from the ISC Community Database, contact Data and Research Coordinator, Ashley Williams Clark (<a href="mailto:Ashley.Clark@uncc.edu">Ashley.Clark@uncc.edu</a>) to set-up a meeting.</p>
                     	      	
                     	      	<p><strong>Program Evaluations:</strong> If you are a community organization who is interested in evaluating a program or programs using the ISC Community Database, contact Data and Research Specialist, Diane Gavarkavich to set-up a meeting.</p>
                     	      	

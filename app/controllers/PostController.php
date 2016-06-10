@@ -1,7 +1,6 @@
 <?php
-use Post;
-use Tag;
-use Status;
+
+
 
 class PostController extends BaseController
 {
